@@ -125,6 +125,9 @@ public partial class Player : MonoBehaviour
 
     private void Update()
     {
+        if (GameManager.Instance.IsGamePaused) return;
+
+
         HandleVelocity();
         _playerJumping.GroundCheck();
         _playerWallSliding.WallCheck();

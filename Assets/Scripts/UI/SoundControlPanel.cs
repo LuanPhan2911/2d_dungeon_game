@@ -2,25 +2,19 @@ using System;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class SoundControlPanelUI : MonoBehaviour
+public class SoundControlPanel : MonoBehaviour
 {
     [SerializeField] private Slider _musicSlider;
     [SerializeField] private Slider _soundFxSlider;
-    [SerializeField] private Button _resumeButton;
-    [SerializeField] private Button _closeButton;
-
-
+   
     private void OnEnable()
     {
-        _resumeButton.onClick.AddListener(ResumeButtonClick);
-        _closeButton.onClick.AddListener(CloseButtonClick);
+        
         _musicSlider.onValueChanged.AddListener(MusicSliderChange);
         _soundFxSlider.onValueChanged.AddListener(SoundFxSliderChange);
     }
     private void OnDisable()
     {
-        _resumeButton.onClick.RemoveListener(ResumeButtonClick);
-        _closeButton.onClick.RemoveListener(CloseButtonClick);
         _musicSlider.onValueChanged.RemoveListener(MusicSliderChange);
         _soundFxSlider.onValueChanged.RemoveListener(SoundFxSliderChange);
     }
@@ -28,7 +22,6 @@ public class SoundControlPanelUI : MonoBehaviour
     {
         _musicSlider.value= AudioManager.Instance.GetMusicVolume();
         _soundFxSlider.value= AudioManager.Instance.GetSoundFxVolume();
-        
         Hide();
     }
     private void MusicSliderChange(float value)
@@ -39,21 +32,14 @@ public class SoundControlPanelUI : MonoBehaviour
     {
         AudioManager.Instance.SetSoundFxVolume(value);
     }
-    private void CloseButtonClick()
-    {
-        Hide();
-    }
-
-    private void ResumeButtonClick()
-    {
-        GameManager.Instance.Unpause();
-    }
-
+    
+ 
     
 
     public void Show()
     {
         gameObject.SetActive(true);
+        _musicSlider.Select();
     }
     public void Hide()
     {

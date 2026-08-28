@@ -95,7 +95,7 @@ public class PlayerJumping : MonoBehaviour
 
         bool isHit = collider != null && !collider.isTrigger;
 
-        Debug.Log(collider);
+       
         if (( isHit|| _player.IsSwimming) && !_isJumpPress  )
         {
             _player.IsGrounded = true;

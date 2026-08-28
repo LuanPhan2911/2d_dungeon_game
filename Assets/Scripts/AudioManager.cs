@@ -39,6 +39,20 @@ public class AudioManager : MonoBehaviour
     {
         SetMusicVolume(_musicVolume);
         SetSoundFxVolume(_soundFxVolume);
+
+        GameManager.Instance.OnGamePauseChanged += GameManager_OnGamePauseChanged;
+    }
+
+    private void GameManager_OnGamePauseChanged(object sender, System.EventArgs e)
+    {
+        if (GameManager.Instance.IsGamePaused)
+        {
+            _musicAudioSource.Stop();
+        }
+        else
+        {
+            _musicAudioSource.Play();
+        }
     }
 
     public void Play(AudioClip audioClip, Vector3 position)
