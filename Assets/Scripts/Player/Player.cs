@@ -41,13 +41,9 @@ public partial class Player : MonoBehaviour
     public LayerMask WaterLayerMask;
     public LayerMask PlatformLayer;
 
-
-
-
     public PlayerAnimation PlayerAnimation { get; private set; }
     public SpriteRenderer SpriteRenderer { get; private set; }
     public Rigidbody2D Rb { get; private set; }
-    public PlayerInput PlayerInput { get; private set; }
     public PlayerSprite PlayerSprite { get; private set; }
 
    
@@ -73,7 +69,7 @@ public partial class Player : MonoBehaviour
         Rb = GetComponent<Rigidbody2D>();
         SpriteRenderer = GetComponent<SpriteRenderer>();
         PlayerAnimation = GetComponent<PlayerAnimation>();
-        PlayerInput = GetComponent<PlayerInput>();
+      
 
         PlayerSprite = GetComponent<PlayerSprite>();
 
@@ -101,33 +97,13 @@ public partial class Player : MonoBehaviour
 
        
     }
-    private void OnEnable()
-    {
-        PlayerInput.actions["Pause"].performed += Player_PauseGame;
-    }
-    private void OnDisable()
-    {
-        PlayerInput.actions["Pause"].performed -= Player_PauseGame;
-    }
+   
 
-    private void Player_PauseGame(InputAction.CallbackContext obj)
-    {
-      
-        if (GameManager.Instance.IsGamePaused)
-        {
-            GameManager.Instance.Unpause();
-        }
-        else
-        {
-            GameManager.Instance.Pause();
-        }
-    }
+  
 
     private void Update()
     {
         if (GameManager.Instance.IsGamePaused) return;
-
-
         HandleVelocity();
         _playerJumping.GroundCheck();
         _playerWallSliding.WallCheck();

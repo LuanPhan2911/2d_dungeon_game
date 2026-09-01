@@ -16,7 +16,7 @@ public class PlayerMoving : MonoBehaviour
     }
     public void HandleMoving()
     {
-        float horizontalInput = _player.PlayerInput.actions["Move"].ReadValue<Vector2>().x;
+        float horizontalInput = GameInputManager.Instance.GetHorizontalInput();
 
         float horizontalVelocity = _player.CurrentPlayerVelocity.HorizontalVelocity;
         _player.HorizontalVelocity = horizontalInput * horizontalVelocity;

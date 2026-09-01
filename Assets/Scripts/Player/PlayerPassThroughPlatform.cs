@@ -15,7 +15,7 @@ public class PlayerPassThroughPlatform : MonoBehaviour
 
         if (_currentPlatformCollider != null)
         {
-            if (_player.PlayerInput.actions["PassThrough"].IsPressed())
+            if (GameInputManager.Instance.IsDownPressed())
             {
                 _player.PlayerSprite.IgnoreCollision(_currentPlatformCollider, _ignoreCollisonDuration);
             }

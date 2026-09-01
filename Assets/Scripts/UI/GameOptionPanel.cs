@@ -27,11 +27,13 @@ public class GameOptionPanel : MonoBehaviour
     private void ControllerButtonClick()
     {
         Hide();
+       
         _controllerPanel.Show();
     }
     private void SoundButtonClick()
     {
         Hide();
+       
         _soundControlPanel.Show();
     }
   
@@ -39,8 +41,10 @@ public class GameOptionPanel : MonoBehaviour
     {
         gameObject.SetActive(true);
         _controllerButton.Select();
+
         _soundControlPanel.Hide();
         _controllerPanel.Hide();
+
     }
     public void Hide()
     {

@@ -18,8 +18,8 @@ public class PlayerClimbing : MonoBehaviour
     {
 
 
-        float verticalInput = _player.PlayerInput.actions["Move"].ReadValue<Vector2>().y;
-        float horizontalInput = _player.PlayerInput.actions["Move"].ReadValue<Vector2>().x;
+        float verticalInput = GameInputManager.Instance.GetVerticalInput();
+        float horizontalInput = GameInputManager.Instance.GetHorizontalInput();
         if (CanClimb)
         {
             const float thresholdInput = 0.1f;
@@ -49,7 +49,7 @@ public class PlayerClimbing : MonoBehaviour
                 }
 
                 // Stop climb
-                if (_player.IsClimbing && _player.PlayerInput.actions["Jump"].triggered)
+                if (_player.IsClimbing && GameInputManager.Instance.PlayerJumpAction.IsPressed())
                 {
                     Debug.Log("Player Stop climbing");
                     _player.IsClimbing = false;

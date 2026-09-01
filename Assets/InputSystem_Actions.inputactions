@@ -23,60 +23,9 @@
                     "processors": "",
                     "interactions": "",
                     "initialStateCheck": false
-                },
-                {
-                    "name": "PassThrough",
-                    "type": "Button",
-                    "id": "5fcaba0f-2513-44e6-9a4e-5af1a856f479",
-                    "expectedControlType": "",
-                    "processors": "",
-                    "interactions": "",
-                    "initialStateCheck": false
-                },
-                {
-                    "name": "Interact",
-                    "type": "Button",
-                    "id": "3831eaba-e0ee-47b7-b083-86726d3540d2",
-                    "expectedControlType": "",
-                    "processors": "",
-                    "interactions": "",
-                    "initialStateCheck": false
                 }
             ],
             "bindings": [
-                {
-                    "name": "",
-                    "id": "978bfe49-cc26-4a3d-ab7b-7d7a29327403",
-                    "path": "<Gamepad>/leftStick",
-                    "interactions": "",
-                    "processors": "",
-                    "groups": ";Gamepad",
-                    "action": "Move",
-                    "isComposite": false,
-                    "isPartOfComposite": false
-                },
-                {
-                    "name": "",
-                    "id": "1635d3fe-58b6-4ba9-a4e2-f4b964f6b5c8",
-                    "path": "<XRController>/{Primary2DAxis}",
-                    "interactions": "",
-                    "processors": "",
-                    "groups": "XR",
-                    "action": "Move",
-                    "isComposite": false,
-                    "isPartOfComposite": false
-                },
-                {
-                    "name": "",
-                    "id": "3ea4d645-4504-4529-b061-ab81934c3752",
-                    "path": "<Joystick>/stick",
-                    "interactions": "",
-                    "processors": "",
-                    "groups": "Joystick",
-                    "action": "Move",
-                    "isComposite": false,
-                    "isPartOfComposite": false
-                },
                 {
                     "name": "WASD",
                     "id": "0ab4fec4-3862-43a7-928d-4e61102119b7",
@@ -89,8 +38,8 @@
                     "isPartOfComposite": false
                 },
                 {
-                    "name": "up",
-                    "id": "f18b8339-088d-4001-8b79-ebd05eaa00f4",
+                    "name": "Up",
+                    "id": "e1ffce20-3f44-4630-8108-33a5382db955",
                     "path": "<Keyboard>/w",
                     "interactions": "",
                     "processors": "",
@@ -100,8 +49,8 @@
                     "isPartOfComposite": true
                 },
                 {
-                    "name": "down",
-                    "id": "2f0f57e1-1f52-438b-861c-4a8e2ee0646a",
+                    "name": "Down",
+                    "id": "5df39c42-0a1a-4171-ac36-b450d6198d4c",
                     "path": "<Keyboard>/s",
                     "interactions": "",
                     "processors": "",
@@ -111,8 +60,8 @@
                     "isPartOfComposite": true
                 },
                 {
-                    "name": "left",
-                    "id": "e1ffce20-3f44-4630-8108-33a5382db955",
+                    "name": "Left",
+                    "id": "c59430d2-1d79-43d2-bcc9-353d4ad5072d",
                     "path": "<Keyboard>/a",
                     "interactions": "",
                     "processors": "",
@@ -122,8 +71,8 @@
                     "isPartOfComposite": true
                 },
                 {
-                    "name": "right",
-                    "id": "5df39c42-0a1a-4171-ac36-b450d6198d4c",
+                    "name": "Right",
+                    "id": "7f6c26ab-7f8c-44f2-be23-bf893e3506e4",
                     "path": "<Keyboard>/d",
                     "interactions": "",
                     "processors": "",
@@ -140,50 +89,6 @@
                     "processors": "",
                     "groups": "Keyboard&Mouse",
                     "action": "Jump",
-                    "isComposite": false,
-                    "isPartOfComposite": false
-                },
-                {
-                    "name": "",
-                    "id": "daba33a1-ad0c-4742-a909-43ad1cdfbeb6",
-                    "path": "<Gamepad>/buttonSouth",
-                    "interactions": "",
-                    "processors": "",
-                    "groups": "Gamepad",
-                    "action": "Jump",
-                    "isComposite": false,
-                    "isPartOfComposite": false
-                },
-                {
-                    "name": "",
-                    "id": "603f3daf-40bd-4854-8724-93e8017f59e3",
-                    "path": "<XRController>/secondaryButton",
-                    "interactions": "",
-                    "processors": "",
-                    "groups": "XR",
-                    "action": "Jump",
-                    "isComposite": false,
-                    "isPartOfComposite": false
-                },
-                {
-                    "name": "",
-                    "id": "238a7043-3e82-4b12-b527-b45e32437fac",
-                    "path": "<Keyboard>/s",
-                    "interactions": "",
-                    "processors": "",
-                    "groups": "",
-                    "action": "PassThrough",
-                    "isComposite": false,
-                    "isPartOfComposite": false
-                },
-                {
-                    "name": "",
-                    "id": "418f3f20-7bf4-416f-ac1a-3a2f53571ad3",
-                    "path": "<Mouse>/leftButton",
-                    "interactions": "",
-                    "processors": "",
-                    "groups": "",
-                    "action": "Interact",
                     "isComposite": false,
                     "isPartOfComposite": false
                 }

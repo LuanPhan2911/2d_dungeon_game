@@ -20,14 +20,14 @@ public class PlayerWallJumping : MonoBehaviour
 
     public void HandleWallJump()
     {
-        if (_player.PlayerInput.actions["Jump"].WasPressedThisFrame() && JumpRemaining >0)
+        if (GameInputManager.Instance.PlayerJumpAction.WasPressedThisFrame() && JumpRemaining >0)
         {
             JumpRemaining--;
             _wallJumpDuration = 0f;
             _player.IsWallJumping= true;
           
         }
-        if (_player.PlayerInput.actions["Jump"].IsPressed() && _player.IsWallJumping)
+        if (GameInputManager.Instance.PlayerJumpAction.IsPressed() && _player.IsWallJumping)
         {
             _wallJumpDuration+=Time.deltaTime;
             bool isFirstJump = _player.JumpAvailable - JumpRemaining == 1;
@@ -53,7 +53,7 @@ public class PlayerWallJumping : MonoBehaviour
             }
         }
 
-        if (_player.PlayerInput.actions["Jump"].WasReleasedThisFrame())
+        if (GameInputManager.Instance.PlayerJumpAction.WasReleasedThisFrame())
         {
             _player.IsWallJumping = false;
         }

@@ -42,7 +42,7 @@ public class PlayerJumping : MonoBehaviour
     {
         
 
-        if (_player.PlayerInput.actions["Jump"].WasPressedThisFrame() && JumpRemaining > 0)
+        if (GameInputManager.Instance.PlayerJumpAction.WasPressedThisFrame() && JumpRemaining > 0)
         {
             JumpRemaining--;
             _isJumpPress = true;
@@ -50,7 +50,7 @@ public class PlayerJumping : MonoBehaviour
             AudioManager.Instance.Play(_jumpSound, transform.position);
         }
 
-        if (_player.PlayerInput.actions["Jump"].IsPressed() && _isJumpPress)
+        if (GameInputManager.Instance.PlayerJumpAction.IsPressed() && _isJumpPress)
         {
             _jumpDuration += Time.deltaTime;
             bool isFirstJump = _player.JumpAvailable - JumpRemaining == 1;
@@ -76,7 +76,7 @@ public class PlayerJumping : MonoBehaviour
             }
 
         }
-        if (_player.PlayerInput.actions["Jump"].WasReleasedThisFrame())
+        if (GameInputManager.Instance.PlayerJumpAction.WasReleasedThisFrame())
         {
             _isJumpPress = false;
         }

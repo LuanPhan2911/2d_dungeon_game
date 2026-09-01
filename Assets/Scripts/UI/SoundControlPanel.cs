@@ -17,12 +17,13 @@ public class SoundControlPanel : MonoBehaviour
     {
         _musicSlider.onValueChanged.RemoveListener(MusicSliderChange);
         _soundFxSlider.onValueChanged.RemoveListener(SoundFxSliderChange);
+       
     }
     private void Start()
     {
         _musicSlider.value= AudioManager.Instance.GetMusicVolume();
         _soundFxSlider.value= AudioManager.Instance.GetSoundFxVolume();
-        Hide();
+       
     }
     private void MusicSliderChange(float value)
     {
