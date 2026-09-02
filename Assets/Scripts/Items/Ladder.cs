@@ -6,6 +6,8 @@ public class Ladder : MonoBehaviour
 {
     [SerializeField] private BoxCollider2D _topLadderCollider2d;
 
+    [SerializeField] private InteractUI _interactUI;
+
     private Player _player;
 
     private void Update()
@@ -29,6 +31,9 @@ public class Ladder : MonoBehaviour
         {
             playerClimbing.CanClimb = true;
             _player = playerClimbing.GetComponent<Player>();
+            _interactUI.Show();
+
+            
 
 
         }
@@ -40,8 +45,16 @@ public class Ladder : MonoBehaviour
         {
             playerClimbing.CanClimb = false;
             _player = null;
+            _interactUI.Hide(); 
 
 
+        }
+    }
+    private void OnTriggerStay2D(Collider2D collision)
+    {
+        if (_player != null)
+        {
+            _interactUI.SetYPosition(_player.transform.position.y);
         }
     }
 

@@ -64,7 +64,7 @@ TagManager:
   - name: Ground
     uniqueID: 280337069
     locked: 0
-  - name: VFX
+  - name: VFX,UI
     uniqueID: 2696747319
     locked: 0
   m_RenderingLayers:

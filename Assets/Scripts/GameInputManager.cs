@@ -45,7 +45,7 @@ public class GameInputManager : MonoBehaviour
         {
             _inputActions.LoadBindingOverridesFromJson(PlayerPrefs.GetString(PLAYER_PREFS_BINDINGS));
         }
-       
+
 
 
         PlayerMoveAction = _inputActions.Player.Move;
@@ -83,32 +83,22 @@ public class GameInputManager : MonoBehaviour
         return PlayerMoveAction.ReadValue<Vector2>().y;
     }
 
-
     public bool IsUpPressed()
     {
-        return PlayerMoveAction.ReadValue<Vector2>().y > 0.1f;
+        return PlayerMoveAction.ReadValue<Vector2>().y > 0;
     }
-    
     public bool IsDownPressed()
     {
-        return PlayerMoveAction.ReadValue<Vector2>().y < -0.1f;
+        return PlayerMoveAction.ReadValue<Vector2>().y < 0;
     }
-
     public bool IsLeftPressed()
     {
-        return PlayerMoveAction.ReadValue<Vector2>().x < -0.1f;
+        return PlayerMoveAction.ReadValue<Vector2>().x < 0;
     }
     public bool IsRightPressed()
     {
-        return PlayerMoveAction.ReadValue<Vector2>().x > 0.1f;
+        return PlayerMoveAction.ReadValue<Vector2>().x > 0;
     }
-    
-
-
-   
-
-
-
     private void PauseAction_Performed(InputAction.CallbackContext obj)
     {
 

@@ -1,4 +1,5 @@
 using System;
+using TMPro;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
@@ -6,26 +7,34 @@ public class InteractObject : MonoBehaviour
 {
     [SerializeField] private ItemData _needItemData;
 
+    [SerializeField] private InteractUI _interactUI;
+
     public bool CanInteract;
 
   
     public event EventHandler InteractSuccessAction;
     public event EventHandler InteractFailAction;
+    
 
     private void Update()
     {
-        //if (CanInteract && _playerInput.actions["Interact"].WasPressedThisFrame())
-        //{
-        //    if (InventoryManager.Instance.HasItem(_needItemData))
-        //    {
-        //        InteractSuccessAction?.Invoke(this, EventArgs.Empty);
-        //    }
-        //    else
-        //    {
-        //        Debug.Log("Need required item");
-        //        InteractFailAction?.Invoke(this, EventArgs.Empty);
-        //    }
-        //}
+        if (CanInteract )
+        {
+            if(GameInputManager.Instance.PlayerMoveAction.WasPressedThisFrame() &&
+                GameInputManager.Instance.IsUpPressed())
+            {
+                if (InventoryManager.Instance.HasItem(_needItemData))
+                {
+                    InteractSuccessAction?.Invoke(this, EventArgs.Empty);
+                }
+                else
+                {
+                    Debug.Log("Need required item");
+                    InteractFailAction?.Invoke(this, EventArgs.Empty);
+                }
+            }
+           
+        }
     }
 
 
@@ -34,7 +43,10 @@ public class InteractObject : MonoBehaviour
         if (collision.TryGetComponent(out Player player))
         {
             CanInteract = true;
-           
+            _interactUI.Show();
+            _interactUI.SetInteractText(GameInputManager.Instance.GetBindingDisplayString(GameInputManager.Instance.PlayerMoveAction,
+            GameInputManager.UpBindingIndex));
+
         }
     }
     private void OnTriggerExit2D(Collider2D collision)
@@ -42,8 +54,11 @@ public class InteractObject : MonoBehaviour
         if (collision.TryGetComponent(out Player player))
         {
             CanInteract = false;
+            _interactUI.Hide();
             
         }
     }
+
+   
 
 }
