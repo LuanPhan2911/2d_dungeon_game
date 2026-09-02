@@ -45,7 +45,6 @@ public class ObjectMoving : MonoBehaviour
     public virtual void Move()
     {
         float t = Mathf.PingPong(Time.time * Speed, 1f);
-
         transform.position = Vector3.Lerp(StartPosition, EndPosition, t);
     }
 
