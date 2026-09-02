@@ -14,6 +14,11 @@ public class GameInputManager : MonoBehaviour
     public InputAction PlayerJumpAction;
     public InputAction UIPauseAction;
 
+    public enum PlayerBindingAction
+    {
+      LeftBinding, RightBinding, UpBinding, DownBinding,
+      JumpedBinding,
+    }
 
     public  const int UpBindingIndex = 1;
     public const int DownBindingIndex = 2;
@@ -112,28 +117,42 @@ public class GameInputManager : MonoBehaviour
         }
     }
 
-
-
-    public void StartRebinding(InputAction action)
+    public void StartRebinding(PlayerBindingAction bindingAction)
     {
-        // 1. Disable the action before modifying its bindings
-        _inputActions.Disable();
-        OnRebindStarted?.Invoke();
-
-        // 2. Configure and start the interactive rebind
-        action.PerformInteractiveRebinding()
-           // Optional: Prevent assigning the Escape key (commonly used to cancel)
-           .WithCancelingThrough("<Keyboard>/escape")
-            // Callback for when the user successfully presses a new key
-            .OnComplete(FinishRebinding)
-            // Callback if the user cancels the rebind operation
-            .OnCancel(CancelRebinding)
-           .Start();
-           
-
-       
+        InputAction actionToRebind = null;
+        int bindingIndex = -1;
+        switch (bindingAction)
+        {
+            case PlayerBindingAction.LeftBinding:
+                actionToRebind = PlayerMoveAction;
+                bindingIndex = LeftBindingIndex;
+                break;
+            case PlayerBindingAction.RightBinding:
+                actionToRebind = PlayerMoveAction;
+                bindingIndex = RightBindingIndex;
+                break;
+            case PlayerBindingAction.UpBinding:
+                actionToRebind = PlayerMoveAction;
+                bindingIndex = UpBindingIndex;
+                break;
+            case PlayerBindingAction.DownBinding:
+                actionToRebind = PlayerMoveAction;
+                bindingIndex = DownBindingIndex;
+                break;
+            case PlayerBindingAction.JumpedBinding:
+                actionToRebind = PlayerJumpAction;
+                bindingIndex = 0; // Assuming Jump has only one binding
+                break;
+            default:
+                Debug.LogError($"Unknown binding action: {bindingAction}");
+                return;
+        }
+        Rebinding(actionToRebind, bindingIndex);
     }
-    public void StartCompositeRebinding(InputAction action, int bindingIndex)
+
+
+   
+    private void Rebinding(InputAction action, int bindingIndex)
     {
         // 1. Disable the action before modifying its bindings
         _inputActions.Disable();
@@ -182,7 +201,7 @@ public class GameInputManager : MonoBehaviour
         Debug.Log("Rebinding canceled.");
     }
 
-    public string GetBindingDisplayString(InputAction action, int bindingIndex)
+    private string GetBindingDisplayString(InputAction action, int bindingIndex)
     {
         if (bindingIndex < 0 || bindingIndex >= action.bindings.Count)
         {
@@ -190,6 +209,27 @@ public class GameInputManager : MonoBehaviour
             return string.Empty;
         }
         return action.GetBindingDisplayString(bindingIndex);
+    }
+
+
+    public string GetBindingKey(PlayerBindingAction action)
+    {
+        switch (action)
+        {
+            case PlayerBindingAction.LeftBinding:
+                return GetBindingDisplayString(PlayerMoveAction, LeftBindingIndex);
+            case PlayerBindingAction.RightBinding:
+                return GetBindingDisplayString(PlayerMoveAction, RightBindingIndex);
+            case PlayerBindingAction.UpBinding:
+                return GetBindingDisplayString(PlayerMoveAction, UpBindingIndex);
+            case PlayerBindingAction.DownBinding:
+                return GetBindingDisplayString(PlayerMoveAction, DownBindingIndex);
+            case PlayerBindingAction.JumpedBinding:
+                return GetBindingDisplayString(PlayerJumpAction, 0); // Assuming Jump has only one binding
+            default:
+                Debug.LogError($"Unknown binding action: {action}");
+                return string.Empty;
+        }
     }
 
 

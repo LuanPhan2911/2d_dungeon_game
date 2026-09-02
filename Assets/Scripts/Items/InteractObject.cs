@@ -44,8 +44,7 @@ public class InteractObject : MonoBehaviour
         {
             CanInteract = true;
             _interactUI.Show();
-            _interactUI.SetInteractText(GameInputManager.Instance.GetBindingDisplayString(GameInputManager.Instance.PlayerMoveAction,
-            GameInputManager.UpBindingIndex));
+            _interactUI.SetInteractText(GameInputManager.Instance.GetBindingKey(GameInputManager.PlayerBindingAction.UpBinding));
 
         }
     }

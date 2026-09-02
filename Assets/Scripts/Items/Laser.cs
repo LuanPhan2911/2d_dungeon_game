@@ -16,13 +16,11 @@ public class Laser : MonoBehaviour
     {
         _lineRenderer = GetComponent<LineRenderer>();
     }
-    private void Start()
-    {
-
-    }
+   
 
     public void Toggle(bool isOn)
     {
+        
         _isOn = isOn;
         _lineRenderer.enabled = isOn;
     }
@@ -38,8 +36,12 @@ public class Laser : MonoBehaviour
         Vector2 startPoint = (Vector2)transform.position + _startOffset;
         Vector2 endPoint = startPoint + _direction * _distance;
 
+        Debug.Log($"Laser start point: {startPoint}, end point: {endPoint}");   
+
         RaycastHit2D hit = Physics2D.Raycast(startPoint, _direction, _distance);
-        if (hit.collider != null)
+
+        Debug.Log($"Raycast hit: {hit.collider?.name ?? "None"} at point: {hit.point}");
+        if (hit.collider != null && !hit.collider.isTrigger)
         {
             endPoint = hit.point;
             _burst.Show();
@@ -50,10 +52,7 @@ public class Laser : MonoBehaviour
                 takeDamage.TakeLaserDamage();
 
             }
-            else
-            {
-                _burst.Hide();
-            }
+          
         }
         else
         {

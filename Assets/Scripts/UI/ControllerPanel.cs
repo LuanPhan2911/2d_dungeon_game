@@ -21,11 +21,11 @@ public class ControllerPanel : MonoBehaviour
 
     private void OnEnable()
     {
-        _upButton.onClick.AddListener(() => RebindingAction(GameInputManager.Instance.PlayerMoveAction, _upBindingText, GameInputManager.UpBindingIndex));
-        _downButton.onClick.AddListener(() => RebindingAction(GameInputManager.Instance.PlayerMoveAction, _downBindingText, GameInputManager.DownBindingIndex));
-        _leftButton.onClick.AddListener(() => RebindingAction(GameInputManager.Instance.PlayerMoveAction, _leftBindingText, GameInputManager.LeftBindingIndex));
-        _rightButton.onClick.AddListener(() => RebindingAction(GameInputManager.Instance.PlayerMoveAction, _rightBindingText, GameInputManager.RightBindingIndex));
-        _jumpButton.onClick.AddListener(() => RebindingAction(GameInputManager.Instance.PlayerJumpAction, _jumpBindingText, 0));
+        _upButton.onClick.AddListener(() => RebindingAction(GameInputManager.PlayerBindingAction.UpBinding, _upBindingText));
+        _downButton.onClick.AddListener(() => RebindingAction(GameInputManager.PlayerBindingAction.DownBinding, _downBindingText));
+        _leftButton.onClick.AddListener(() => RebindingAction(GameInputManager.PlayerBindingAction.LeftBinding, _leftBindingText));
+        _rightButton.onClick.AddListener(() => RebindingAction(GameInputManager.PlayerBindingAction.RightBinding, _rightBindingText));
+        _jumpButton.onClick.AddListener(() => RebindingAction(GameInputManager.PlayerBindingAction.JumpedBinding, _jumpBindingText));
 
         GameInputManager.Instance.OnRebindStarted += GameInputManager_RebindingStart;
         GameInputManager.Instance.OnRebindCompleted += GameInputManager_RebindingCompleted;
@@ -34,6 +34,12 @@ public class ControllerPanel : MonoBehaviour
     {
         GameInputManager.Instance.OnRebindStarted -= GameInputManager_RebindingStart;
         GameInputManager.Instance.OnRebindCompleted -= GameInputManager_RebindingCompleted;
+
+        _upButton.onClick.RemoveAllListeners();
+        _downButton.onClick.RemoveAllListeners();
+        _leftButton.onClick.RemoveAllListeners();
+        _rightButton.onClick.RemoveAllListeners();
+        _jumpButton.onClick.RemoveAllListeners();
     }
 
 
@@ -51,24 +57,23 @@ public class ControllerPanel : MonoBehaviour
         _rebindingOverlayImage.gameObject.SetActive(false);
         UpdateUI();
     }
-    private void RebindingAction(InputAction action, TextMeshProUGUI bindingText, int bindingIndex=0 )
+    private void RebindingAction(GameInputManager.PlayerBindingAction bindingAction, TextMeshProUGUI bindingText)
     {
-        GameInputManager.Instance.StartCompositeRebinding(action, bindingIndex);
-
-        bindingText.text= "Any";
-
+        GameInputManager.Instance.StartRebinding(bindingAction );
+        bindingText.text = "Any";
     }
 
     private void UpdateUI()
     {
-        _upBindingText.text= GameInputManager.Instance.GetBindingDisplayString(GameInputManager.Instance.PlayerMoveAction, GameInputManager.UpBindingIndex);
+        _upBindingText.text= GameInputManager.Instance.GetBindingKey(GameInputManager.PlayerBindingAction.UpBinding);
     
-        _downBindingText.text = GameInputManager.Instance.GetBindingDisplayString(GameInputManager.Instance.PlayerMoveAction, GameInputManager.DownBindingIndex);
+        _downBindingText.text = GameInputManager.Instance.GetBindingKey(GameInputManager.PlayerBindingAction.DownBinding);
     
-        _leftBindingText.text = GameInputManager.Instance.GetBindingDisplayString(GameInputManager.Instance.PlayerMoveAction, GameInputManager.LeftBindingIndex);
+        _leftBindingText.text = GameInputManager.Instance.GetBindingKey(GameInputManager.PlayerBindingAction.LeftBinding        );
         
-        _rightBindingText.text = GameInputManager.Instance.GetBindingDisplayString(GameInputManager.Instance.PlayerMoveAction, GameInputManager.RightBindingIndex);
-        _jumpBindingText.text = GameInputManager.Instance.GetBindingDisplayString(GameInputManager.Instance.PlayerJumpAction, 0);
+        _rightBindingText.text = GameInputManager.Instance.GetBindingKey(GameInputManager.PlayerBindingAction.RightBinding);
+
+        _jumpBindingText.text = GameInputManager.Instance.GetBindingKey(GameInputManager.PlayerBindingAction.JumpedBinding);
     }
 
     public void Show()

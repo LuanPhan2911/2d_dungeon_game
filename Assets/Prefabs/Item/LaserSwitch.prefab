@@ -10,8 +10,8 @@ GameObject:
   m_Component:
   - component: {fileID: 3359897961562601240}
   - component: {fileID: 651841198352548658}
-  - component: {fileID: 7910459524081509393}
   - component: {fileID: 4708421006919282110}
+  - component: {fileID: 4012333046739812097}
   m_Layer: 9
   m_Name: LaserSwitch
   m_TagString: Untagged
@@ -31,7 +31,8 @@ Transform:
   m_LocalPosition: {x: -0.25, y: -1.99, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
-  m_Children: []
+  m_Children:
+  - {fileID: 8407163859802173349}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!212 &651841198352548658
@@ -93,8 +94,30 @@ SpriteRenderer:
   m_SpriteTileMode: 0
   m_WasSpriteAssigned: 1
   m_SpriteSortPoint: 0
---- !u!61 &7910459524081509393
-BoxCollider2D:
+--- !u!114 &4708421006919282110
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8097248167671568273}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d00c13c7fc19b5f4fa0b44368fa39917, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::LaserSwitch
+  _offSwitchSprite: {fileID: -7368629933034728548, guid: 6b9cd0d9a5eca3c46b00c0f92bbbffd1, type: 3}
+  _onSwitchSprite: {fileID: 4972720973902569000, guid: 984260c71c72c7f459585c25786dcce7, type: 3}
+  _switchSound: {fileID: 8300000, guid: 711218306ea82dc4b84c643db5b61d91, type: 3}
+  _delayTime: 0.5
+  _interactUI: {fileID: 6036222293067800811}
+  _isOn: 0
+  CanInteract: 0
+  OnSwitchChanged:
+    m_PersistentCalls:
+      m_Calls: []
+--- !u!58 &4012333046739812097
+CircleCollider2D:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
@@ -127,60 +150,118 @@ BoxCollider2D:
   m_UsedByEffector: 0
   m_CompositeOperation: 0
   m_CompositeOrder: 0
-  m_Offset: {x: 0.03, y: 0}
-  m_SpriteTilingProperty:
-    border: {x: 0, y: 0, z: 0, w: 0}
-    pivot: {x: 0.5, y: 0.5}
-    oldSize: {x: 0.95714283, y: 1}
-    newSize: {x: 0.67, y: 0.7}
-    adaptiveTilingThreshold: 0.5
-    drawMode: 0
-    adaptiveTiling: 0
-  m_AutoTiling: 0
-  m_Size: {x: 0.5, y: 1}
-  m_EdgeRadius: 0
---- !u!114 &4708421006919282110
-MonoBehaviour:
+  m_Offset: {x: 0, y: 0}
+  m_Radius: 1
+--- !u!1001 &6767227524683324191
+PrefabInstance:
   m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
+  serializedVersion: 2
+  m_Modification:
+    serializedVersion: 3
+    m_TransformParent: {fileID: 3359897961562601240}
+    m_Modifications:
+    - target: {fileID: 670595655486764250, guid: 1e6c7011568cab2478504e930e6e08d8, type: 3}
+      propertyPath: m_Name
+      value: CircleInteractUI
+      objectReference: {fileID: 0}
+    - target: {fileID: 2974129924387665082, guid: 1e6c7011568cab2478504e930e6e08d8, type: 3}
+      propertyPath: m_Pivot.x
+      value: 0.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 2974129924387665082, guid: 1e6c7011568cab2478504e930e6e08d8, type: 3}
+      propertyPath: m_Pivot.y
+      value: 0.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 2974129924387665082, guid: 1e6c7011568cab2478504e930e6e08d8, type: 3}
+      propertyPath: m_AnchorMax.x
+      value: 0.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 2974129924387665082, guid: 1e6c7011568cab2478504e930e6e08d8, type: 3}
+      propertyPath: m_AnchorMax.y
+      value: 0.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 2974129924387665082, guid: 1e6c7011568cab2478504e930e6e08d8, type: 3}
+      propertyPath: m_AnchorMin.x
+      value: 0.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 2974129924387665082, guid: 1e6c7011568cab2478504e930e6e08d8, type: 3}
+      propertyPath: m_AnchorMin.y
+      value: 0.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 2974129924387665082, guid: 1e6c7011568cab2478504e930e6e08d8, type: 3}
+      propertyPath: m_SizeDelta.x
+      value: 100
+      objectReference: {fileID: 0}
+    - target: {fileID: 2974129924387665082, guid: 1e6c7011568cab2478504e930e6e08d8, type: 3}
+      propertyPath: m_SizeDelta.y
+      value: 100
+      objectReference: {fileID: 0}
+    - target: {fileID: 2974129924387665082, guid: 1e6c7011568cab2478504e930e6e08d8, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2974129924387665082, guid: 1e6c7011568cab2478504e930e6e08d8, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2974129924387665082, guid: 1e6c7011568cab2478504e930e6e08d8, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2974129924387665082, guid: 1e6c7011568cab2478504e930e6e08d8, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2974129924387665082, guid: 1e6c7011568cab2478504e930e6e08d8, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2974129924387665082, guid: 1e6c7011568cab2478504e930e6e08d8, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2974129924387665082, guid: 1e6c7011568cab2478504e930e6e08d8, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2974129924387665082, guid: 1e6c7011568cab2478504e930e6e08d8, type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: 0.02
+      objectReference: {fileID: 0}
+    - target: {fileID: 2974129924387665082, guid: 1e6c7011568cab2478504e930e6e08d8, type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: 1.17
+      objectReference: {fileID: 0}
+    - target: {fileID: 2974129924387665082, guid: 1e6c7011568cab2478504e930e6e08d8, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2974129924387665082, guid: 1e6c7011568cab2478504e930e6e08d8, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2974129924387665082, guid: 1e6c7011568cab2478504e930e6e08d8, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+    m_RemovedGameObjects: []
+    m_AddedGameObjects: []
+    m_AddedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: 1e6c7011568cab2478504e930e6e08d8, type: 3}
+--- !u!114 &6036222293067800811 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 1022033054486985716, guid: 1e6c7011568cab2478504e930e6e08d8, type: 3}
+  m_PrefabInstance: {fileID: 6767227524683324191}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8097248167671568273}
+  m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: d00c13c7fc19b5f4fa0b44368fa39917, type: 3}
+  m_Script: {fileID: 11500000, guid: 51960deab435b5c45a9a1a802935d86b, type: 3}
   m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::LaserSwitch
-  _offSwitchSprite: {fileID: -7368629933034728548, guid: 6b9cd0d9a5eca3c46b00c0f92bbbffd1, type: 3}
-  _onSwitchSprite: {fileID: 4972720973902569000, guid: 984260c71c72c7f459585c25786dcce7, type: 3}
-  _switchSound: {fileID: 8300000, guid: 711218306ea82dc4b84c643db5b61d91, type: 3}
-  OnSwitchOn:
-    m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 0}
-        m_TargetAssemblyTypeName: Laser, Assembly-CSharp
-        m_MethodName: Toggle
-        m_Mode: 6
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 1
-        m_CallState: 2
-  OnSwitchOff:
-    m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 0}
-        m_TargetAssemblyTypeName: Laser, Assembly-CSharp
-        m_MethodName: Toggle
-        m_Mode: 6
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
+  m_EditorClassIdentifier: Assembly-CSharp::InteractUI
+--- !u!224 &8407163859802173349 stripped
+RectTransform:
+  m_CorrespondingSourceObject: {fileID: 2974129924387665082, guid: 1e6c7011568cab2478504e930e6e08d8, type: 3}
+  m_PrefabInstance: {fileID: 6767227524683324191}
+  m_PrefabAsset: {fileID: 0}

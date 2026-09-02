@@ -1,23 +1,22 @@
 using UnityEngine;
 
-public class MovingPlatform : MonoBehaviour
+public class ObjectMoving : MonoBehaviour
 {
 
+    public bool CanStanding = true;
+    public float Speed = 0.5f;
+  
 
 
-
-    [SerializeField] private float _speed = 0.5f;
     public Vector3 StartPosition, EndPosition;
     private void OnDrawGizmos()
     {
 
 
         Gizmos.color = Color.red;
-        if (gameObject.TryGetComponent(out BuildPlatform platform))
-        {
-            Gizmos.DrawWireCube(StartPosition, platform.GetSize());
-            Gizmos.DrawWireCube(EndPosition, platform.GetSize());
-        }
+        Gizmos.DrawSphere(StartPosition, 0.3f);
+        Gizmos.color = Color.green;
+        Gizmos.DrawSphere(EndPosition, 0.3f);
 
 
     }
@@ -36,17 +35,23 @@ public class MovingPlatform : MonoBehaviour
 
     private void Start()
     {
-        StartPosition = transform.position;
+        transform.position = StartPosition;
     }
     private void Update()
     {
-        float t = Mathf.PingPong(Time.time * _speed, 1f);
+        Move();
+    }
+
+    public virtual void Move()
+    {
+        float t = Mathf.PingPong(Time.time * Speed, 1f);
 
         transform.position = Vector3.Lerp(StartPosition, EndPosition, t);
     }
 
     private void OnCollisionEnter2D(Collision2D collision)
     {
+        if(!CanStanding) return;
         if (collision.collider.TryGetComponent(out Player player))
         {
             player.transform.SetParent(transform);
@@ -54,6 +59,7 @@ public class MovingPlatform : MonoBehaviour
     }
     private void OnCollisionExit2D(Collision2D collision)
     {
+        if(!CanStanding) return;
         if (collision.collider.TryGetComponent(out Player player))
         {
             player.transform.SetParent(null);
