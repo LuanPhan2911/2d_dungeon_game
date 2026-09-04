@@ -98,7 +98,7 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_GlobalIlluminationMeshLod: 0
   m_SortingLayerID: 1891796409
-  m_SortingLayer: 4
+  m_SortingLayer: 3
   m_SortingOrder: 0
   m_MaskInteraction: 0
   m_Sprite: {fileID: 402502597922571196, guid: 73d4dae70d4022844a443f1de8996d64, type: 3}
@@ -234,13 +234,13 @@ MonoBehaviour:
   AirJumpFX: {fileID: 5658523495494309960}
   GroundLayerMask:
     serializedVersion: 2
-    m_Bits: 320
+    m_Bits: 832
   WaterLayerMask:
     serializedVersion: 2
     m_Bits: 16
-  PlatformLayer:
+  WallLayerMask:
     serializedVersion: 2
-    m_Bits: 256
+    m_Bits: 64
   _hurtSound: {fileID: 8300000, guid: 0d1a58769e7e82f44a3d3a95ff901221, type: 3}
 --- !u!114 &6360542579684432280
 MonoBehaviour:
@@ -390,9 +390,6 @@ MonoBehaviour:
   _wallCheckLeft: {fileID: 7526601274356305735}
   _wallCheckRight: {fileID: 8297094693124432445}
   _sliddingSpeed: 2
-  _wallCheckMask:
-    serializedVersion: 2
-    m_Bits: 64
 --- !u!114 &4595185602273176379
 MonoBehaviour:
   m_ObjectHideFlags: 0

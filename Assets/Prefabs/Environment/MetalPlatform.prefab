@@ -218,7 +218,7 @@ HingeJoint2D:
   m_BreakAction: 3
   m_AutoConfigureConnectedAnchor: 1
   m_Anchor: {x: 0, y: 0}
-  m_ConnectedAnchor: {x: 5.54, y: 0.89}
+  m_ConnectedAnchor: {x: 4.6893215, y: 1.0107622}
   m_UseConnectedAnchor: 1
   m_UseMotor: 0
   m_Motor:
@@ -226,8 +226,8 @@ HingeJoint2D:
     m_MaximumMotorForce: 100000
   m_UseLimits: 1
   m_AngleLimits:
-    m_LowerAngle: -45
-    m_UpperAngle: 45
+    m_LowerAngle: -30
+    m_UpperAngle: 30
 --- !u!1 &5113583987677755626
 GameObject:
   m_ObjectHideFlags: 0

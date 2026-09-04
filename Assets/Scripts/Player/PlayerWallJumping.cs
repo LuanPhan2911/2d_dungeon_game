@@ -5,11 +5,11 @@ public class PlayerWallJumping : MonoBehaviour
 {
 
     public float WallJumpDirection;
-    public int JumpRemaining = 0;
 
-    [SerializeField] private float _wallJumpDurationMax=0.25f;
+
+    [SerializeField] private float _wallJumpDuration=0.25f;
     [SerializeField]  private Vector2 _wallJumpVelocity = new Vector2(6, 8);
-    private float _wallJumpDuration=0;
+    private float _jumpDuration=0;
 
     private Player _player;
     private void Awake()
@@ -20,44 +20,46 @@ public class PlayerWallJumping : MonoBehaviour
 
     public void HandleWallJump()
     {
-        if (GameInputManager.Instance.PlayerJumpAction.WasPressedThisFrame() && JumpRemaining >0)
+      
+
+
+        if (GameInputManager.Instance.PlayerJumpAction.WasPressedThisFrame() && _player.IsWallSliding )
         {
-            JumpRemaining--;
-            _wallJumpDuration = 0f;
+
+            Debug.Log("Wall jump start");
+            _jumpDuration = 0f;
             _player.IsWallJumping= true;
           
         }
+        
         if (GameInputManager.Instance.PlayerJumpAction.IsPressed() && _player.IsWallJumping)
         {
-            _wallJumpDuration+=Time.deltaTime;
-            bool isFirstJump = _player.JumpAvailable - JumpRemaining == 1;
-            bool isAirJump = JumpRemaining == 0;
-            float maxDuration = isFirstJump ? _wallJumpDurationMax : _player.MaxAirJumpDuration;
-            if (_wallJumpDuration < maxDuration)
+            _jumpDuration += Time.deltaTime;
+
+            if (_jumpDuration < _wallJumpDuration)
             {
-              
-                if (isFirstJump)
-                {
-                    _player.HorizontalVelocity = WallJumpDirection * _wallJumpVelocity.x;
-                    _player.VerticalVelocity = _wallJumpVelocity.y;
-                }else if (isAirJump)
-                {
-                    _player.VerticalVelocity = _player.AirJumpVelocity;
-                    _player.PlayAirJumpFX();
-                }
-               
+
+                _player.HorizontalVelocity = WallJumpDirection * _wallJumpVelocity.x;
+                _player.VerticalVelocity = _wallJumpVelocity.y;
+
             }
             else
             {
                 _player.IsWallJumping = false;
             }
         }
-
+        
+        
         if (GameInputManager.Instance.PlayerJumpAction.WasReleasedThisFrame())
         {
+            Debug.Log("Wall jump release");
             _player.IsWallJumping = false;
         }
     }
+
+
+
+
    
    
 }

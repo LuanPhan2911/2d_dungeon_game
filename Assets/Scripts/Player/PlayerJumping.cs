@@ -5,7 +5,7 @@ public class PlayerJumping : MonoBehaviour
     public int JumpRemaining;
     [SerializeField] private float _jumpVelocity = 6f;
 
-    [SerializeField] private float _maxGroundJumpDuration = 0.5f;
+    [SerializeField] private float _groundJumpDuration = 0.5f;
 
     [SerializeField] private AudioClip _jumpSound;
 
@@ -40,11 +40,12 @@ public class PlayerJumping : MonoBehaviour
     }
     public void HandleJump()
     {
+
         
 
-        if (GameInputManager.Instance.PlayerJumpAction.WasPressedThisFrame() && JumpRemaining > 0)
+        if (GameInputManager.Instance.PlayerJumpAction.WasPressedThisFrame() && _player.IsGrounded )
         {
-            JumpRemaining--;
+           
             _isJumpPress = true;
             _jumpDuration =0;
             AudioManager.Instance.Play(_jumpSound, transform.position);
@@ -53,22 +54,11 @@ public class PlayerJumping : MonoBehaviour
         if (GameInputManager.Instance.PlayerJumpAction.IsPressed() && _isJumpPress)
         {
             _jumpDuration += Time.deltaTime;
-            bool isFirstJump = _player.JumpAvailable - JumpRemaining == 1;
-            bool isAirJump = JumpRemaining == 0;
-            float _maxDuration = isFirstJump ? _maxGroundJumpDuration : _player.MaxAirJumpDuration;
+           
 
-            if (_jumpDuration < _maxDuration)
+            if (_jumpDuration < _groundJumpDuration)
             {
-              
-                if (isFirstJump)
-                {
-                    _player.VerticalVelocity = _jumpVelocity;
-                }
-                else if (isAirJump)
-                {
-                    _player.VerticalVelocity = _player.AirJumpVelocity;
-                    _player.PlayAirJumpFX();
-                }
+                _player.VerticalVelocity = _jumpVelocity;
             }
             else
             {
@@ -86,7 +76,7 @@ public class PlayerJumping : MonoBehaviour
 
     public void GroundCheck()
     {
-        _player.IsGrounded = false;
+      
       
       
         LayerMask groundMask = _player.GroundLayerMask;
@@ -96,11 +86,15 @@ public class PlayerJumping : MonoBehaviour
         bool isHit = collider != null && !collider.isTrigger;
 
        
-        if (( isHit|| _player.IsSwimming) && !_isJumpPress  )
+        if (isHit )
         {
             _player.IsGrounded = true;
-            JumpRemaining = _player.JumpAvailable;
         }
+        else
+        {
+            _player.IsGrounded = false;
+        }
+       
 
     }
 

@@ -28,9 +28,8 @@ public class PlayerFalling : MonoBehaviour
     private IEnumerator FallingStunnedCorountine()
     {
         yield return new WaitForSeconds(_fallingStunedDuration);
-        _player.PlayerSprite.RestoreDefaultColliderSize();
-        _player.PlayerAnimation.SetCroching(false);
         _player.IsFall = false;
+        _player.PlayerAnimation.SetTriggerEndCroch();
     }
 
     private void OnCollisionEnter2D(Collision2D collision)
@@ -49,9 +48,7 @@ public class PlayerFalling : MonoBehaviour
             // trigger falling animation
             _player.IsFall = true;
             StartCoroutine(FallingStunnedCorountine());
-            _player.PlayerSprite.SetCrochingCollider();
-            _player.PlayerAnimation.SetCroching(true);
-
+            _player.PlayerAnimation.SetTriggerStartCroch();
             // trigger falling sound
             AudioManager.Instance.Play(_fallingSound, transform.position);
 

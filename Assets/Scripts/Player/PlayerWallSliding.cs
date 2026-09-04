@@ -1,8 +1,9 @@
+using System.Collections;
 using UnityEngine;
 
 public class PlayerWallSliding : MonoBehaviour
 {
-
+    
     [SerializeField] private Vector2 _wallCheckSize;
 
     [SerializeField] private Transform _wallCheckLeft;
@@ -10,10 +11,16 @@ public class PlayerWallSliding : MonoBehaviour
 
     [SerializeField] private float _sliddingSpeed = 2f;
 
-    [SerializeField] private LayerMask _wallCheckMask;
+    private const float _threshold = 0.1f;
+
+
+
+
 
     private Player _player;
     private PlayerWallJumping _playerWallJumping;
+
+    private Coroutine _delayWallSlidingCoroutine;
 
     private void Awake()
     {
@@ -22,6 +29,13 @@ public class PlayerWallSliding : MonoBehaviour
     }
 
 
+    private IEnumerator DelayWallSliding()
+    {
+        yield return new WaitForSeconds(0.1f);
+
+        _player.IsWallSliding = false;
+        _delayWallSlidingCoroutine = null;
+    }
 
     private void OnDrawGizmos()
     {
@@ -34,17 +48,16 @@ public class PlayerWallSliding : MonoBehaviour
 
     public void WallCheck()
     {
-        _player.IsWallSliding = false;
-        if (_player.IsGrounded || _player.IsWallJumping) return;
-
-        Collider2D leftCollider = Physics2D.OverlapBox(_wallCheckLeft.position, _wallCheckSize, 0f, _wallCheckMask);
-        Collider2D rightCollider = Physics2D.OverlapBox(_wallCheckRight.position, _wallCheckSize, 0f, _wallCheckMask);
        
-        if (_player.HorizontalVelocity != 0 && (leftCollider!= null || rightCollider!=null))
-        {
-            // reset jump remaining
-            _playerWallJumping.JumpRemaining = _player.JumpAvailable;
+       
 
+        if (_player.IsGrounded) return;
+
+        Collider2D leftCollider = Physics2D.OverlapBox(_wallCheckLeft.position, _wallCheckSize, 0f, _player.WallLayerMask);
+        Collider2D rightCollider = Physics2D.OverlapBox(_wallCheckRight.position, _wallCheckSize, 0f, _player.WallLayerMask);
+       
+        if (_player.HorizontalVelocity != 0 && (leftCollider!= null || rightCollider!=null) )
+        {   
             _player.IsWallSliding = true;
             _player.VerticalVelocity = Mathf.Max(_player.Rb.linearVelocityY, -_sliddingSpeed);
 
@@ -52,14 +65,22 @@ public class PlayerWallSliding : MonoBehaviour
             // set wall jump direction
             if (leftCollider != null)
             {
-                _player.PlayerSprite.Flip(true);
+                _player.PlayerSprite.Flip(false);
                 _playerWallJumping.WallJumpDirection = 1;
             }else if(rightCollider!= null)
             {
-                _player.PlayerSprite.Flip(false);
+                _player.PlayerSprite.Flip(true);
                 _playerWallJumping.WallJumpDirection = -1;
             }
         }
+        else
+        {
+            if (_player.IsWallSliding && _delayWallSlidingCoroutine == null)
+            {
+                _delayWallSlidingCoroutine = StartCoroutine(DelayWallSliding());
+            }
+        }
+       
 
        
     }

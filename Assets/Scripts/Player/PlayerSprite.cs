@@ -7,11 +7,6 @@ public class PlayerSprite : MonoBehaviour
 
     private CapsuleCollider2D _playerCollider;
     private Player _player;
-
-
-    [SerializeField] private float _crochingColliderSizeY = 1f;
-
-
     public float DefaultColliderSizeX { get; private set; }
     public float DefaultColliderSizeY { get; private set; }
 
@@ -44,23 +39,6 @@ public class PlayerSprite : MonoBehaviour
         _player.SpriteRenderer.flipX = isFacingRight;
     }
 
-    public void SetColliderSizeX(float sizeX)
-    {
-        _playerCollider.size = new Vector2(sizeX, DefaultColliderSizeY);
-    }
-    public void SetColliderSizeY(float sizeY)
-    {
-        _playerCollider.size = new Vector2(DefaultColliderSizeX, sizeY);
-    }
-    public void SetColliderSize(float x, float y)
-    {
-        _playerCollider.size = new Vector2(x, y);
-    }
-    public void RestoreDefaultColliderSize()
-    {
-        _playerCollider.size = new Vector2(DefaultColliderSizeX, DefaultColliderSizeY);
-    }
-
     public void IgnoreCollision(Collider2D otherCollider, float duration)
     {
         StartCoroutine(IgnoreCollisionCoroutine(otherCollider, duration));
@@ -78,11 +56,6 @@ public class PlayerSprite : MonoBehaviour
 
         Physics2D.IgnoreCollision(_playerCollider, otherCollider, false);
 
-    }
-
-    public void SetCrochingCollider()
-    {
-        SetColliderSizeY(_crochingColliderSizeY);
     }
 
 }

@@ -26,20 +26,16 @@ public partial class Player : MonoBehaviour
     public bool IsClimbing;
     public bool IsWallSliding;
     public bool IsWallJumping;
+    public bool IsCroching;
+    public bool IsCrochWalking;
 
- 
+
     public float GravityScale = 1f;
-    public int JumpAvailable = 2;
-
-    [Header("Air Jump")]
-    public float AirJumpVelocity = 4f;
-    public float MaxAirJumpDuration = 0.4f;
-    public ParticleSystem AirJumpFX;
-
+  
     [Header("Mask")]
     public LayerMask GroundLayerMask;
     public LayerMask WaterLayerMask;
-    public LayerMask PlatformLayer;
+    public LayerMask WallLayerMask;
 
     public PlayerAnimation PlayerAnimation { get; private set; }
     public SpriteRenderer SpriteRenderer { get; private set; }
@@ -55,9 +51,10 @@ public partial class Player : MonoBehaviour
     private PlayerJumping _playerJumping;
     private PlayerFalling _playerFalling;
     private PlayerMoving _playerMoving;
-    private PlayerClimbing _playerClimbing;
     private PlayerWallSliding _playerWallSliding;
     private PlayerWallJumping _playerWallJumping;
+
+    private PlayerCroching _playerCroching;
 
     public int Coin { get => _playerData.Coin; private set => _playerData.Coin = value; }
     public int Health { get => _playerData.Health; private set => _playerData.Health = value; }
@@ -78,9 +75,9 @@ public partial class Player : MonoBehaviour
         _playerJumping = GetComponent<PlayerJumping>();
         _playerMoving = GetComponent<PlayerMoving>();
         _playerFalling = GetComponent<PlayerFalling>();
-        _playerClimbing = GetComponent<PlayerClimbing>();
         _playerWallSliding = GetComponent<PlayerWallSliding>();
         _playerWallJumping = GetComponent<PlayerWallJumping>();
+        _playerCroching = GetComponent<PlayerCroching>();
 
 
 
@@ -95,16 +92,14 @@ public partial class Player : MonoBehaviour
         OnCoinChanged?.Invoke(this, Coin);
         OnHealthChanged?.Invoke(this, Health);
 
-       
     }
    
-
-  
-
     private void Update()
     {
         if (GameManager.Instance.IsGamePaused) return;
+
         HandleVelocity();
+        _playerCroching.CheckCroching();
         _playerJumping.GroundCheck();
         _playerWallSliding.WallCheck();
 
@@ -116,34 +111,21 @@ public partial class Player : MonoBehaviour
             VerticalVelocity = 0;
             return;
         }
-        if (!IsClimbing)
+       
+
+        _playerWallJumping.HandleWallJump();
+
+        if (!IsCroching)
         {
-            if (IsGrounded)
-            {
-                _playerWallJumping.JumpRemaining = 0;
-            }else if (IsWallSliding)
-            {
-                _playerJumping.JumpRemaining = 0;
-            }
-
-            _playerWallJumping.HandleWallJump();
             _playerJumping.HandleJump();
-           
-         
-
-            if (!IsWallJumping)
-            {
-                _playerMoving.HandleMoving();
-            }
         }
 
 
-        _playerClimbing.HandleClimbing();
 
-
-
-
-
+        if (!IsWallJumping)
+        {
+            _playerMoving.HandleMoving();
+        }
     }
     private void LateUpdate()
     {
@@ -180,10 +162,6 @@ public partial class Player : MonoBehaviour
 
         Rb.linearVelocity = new Vector2(HorizontalVelocity, VerticalVelocity);
     }
-
-
-
-
     public void AddCoin()
     {
         Coin++;
@@ -215,11 +193,5 @@ public partial class Player : MonoBehaviour
         Rb.AddForce(normal * force, ForceMode2D.Impulse);
     }
 
-    public void PlayAirJumpFX()
-    {
-        if (!AirJumpFX.isPlaying)
-        {
-            AirJumpFX.Play();
-        }
-    }
+   
 }

@@ -12,6 +12,9 @@ public class GameInputManager : MonoBehaviour
     private InputSystem_Actions _inputActions;
     public InputAction PlayerMoveAction;
     public InputAction PlayerJumpAction;
+
+    public InputAction PlayerCrochAction;
+
     public InputAction UIPauseAction;
 
     public enum PlayerBindingAction
@@ -55,12 +58,14 @@ public class GameInputManager : MonoBehaviour
 
         PlayerMoveAction = _inputActions.Player.Move;
         PlayerJumpAction = _inputActions.Player.Jump;
+        PlayerCrochAction = _inputActions.Player.CrochWalk;
         // UI
         UIPauseAction = _inputActions.UI.Pause;
 
 
         PlayerMoveAction.Enable();
         PlayerJumpAction.Enable();
+        PlayerCrochAction.Enable();
         UIPauseAction.Enable();
 
     }
@@ -104,6 +109,8 @@ public class GameInputManager : MonoBehaviour
     {
         return PlayerMoveAction.ReadValue<Vector2>().x > 0;
     }
+
+    
     private void PauseAction_Performed(InputAction.CallbackContext obj)
     {
 
@@ -230,6 +237,19 @@ public class GameInputManager : MonoBehaviour
                 Debug.LogError($"Unknown binding action: {action}");
                 return string.Empty;
         }
+    }
+
+    public bool IsCrochPressed()
+    {
+        return PlayerCrochAction.IsPressed();
+    }
+    public bool IsCrochWasReleasedThisFrame()
+    {
+        return PlayerCrochAction.WasReleasedThisFrame();
+    }
+    public bool IsCrochWasPressedThisFrame()
+    {
+        return PlayerCrochAction.WasPressedThisFrame();
     }
 
 
