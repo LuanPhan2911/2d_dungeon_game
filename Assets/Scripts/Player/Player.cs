@@ -21,7 +21,6 @@ public partial class Player : MonoBehaviour
 
     [Header("Player State")]
     public bool IsGrounded;
-    public bool IsSwimming;
     public bool IsFall;
     public bool IsClimbing;
     public bool IsWallSliding;

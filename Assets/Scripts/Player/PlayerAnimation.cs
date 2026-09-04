@@ -9,10 +9,12 @@ public class PlayerAnimation : MonoBehaviour
     private Animator animator;
 
     const string HORIZONTAL = "Horizontal";
-    const string IS_JUMPING = "IsJumping";
+    const string VERTICAL = "Vertical";
     const string IS_CLIMBING = "IsClimbing";
     const string IS_SWIMMING = "IsSwimming";
     const string IS_SLIDING = "IsSliding";
+
+    const string IS_GROUNDED = "IsGrounded";
 
     const string IS_CROCHWALKING = "IsCrochWalking";
 
@@ -34,10 +36,7 @@ public class PlayerAnimation : MonoBehaviour
     }
 
 
-    public void SetJumping(bool isJumping)
-    {
-        animator.SetBool(IS_JUMPING, isJumping);
-    }
+    
 
     public void SetHorizontal(float horizontal)
     {
@@ -46,6 +45,15 @@ public class PlayerAnimation : MonoBehaviour
     public void SetClimbing(bool isClimbing)
     {
         animator.SetBool(IS_CLIMBING, isClimbing);
+    }
+    public void SetVertical(float vertical)
+    {
+        animator.SetFloat (VERTICAL, vertical);
+    }
+
+    public void SetGrounded(bool isGrounded)
+    {
+        animator.SetBool(IS_GROUNDED, isGrounded);
     }
 
     public void SetTriggerStartCroch()
@@ -73,8 +81,22 @@ public class PlayerAnimation : MonoBehaviour
     
     public void UpdateAnimation()
     {
-        SetHorizontal(_player.HorizontalVelocity);
-        SetJumping(!_player.IsGrounded);
+        float horizontal = Mathf.Clamp01(Mathf.Abs(_player.HorizontalVelocity));
+        float vertical = 0;
+
+        if(_player.VerticalVelocity> 0)
+        {
+            vertical = 1;
+        }
+        else if(_player.VerticalVelocity < 0) 
+        {
+            vertical = -1;
+        }
+
+        SetHorizontal(horizontal);
+        SetVertical(vertical);
+
+        SetGrounded(_player.IsGrounded);
         SetSliding(_player.IsWallSliding);
         SetCrochWalking(_player.IsCrochWalking);
     }
