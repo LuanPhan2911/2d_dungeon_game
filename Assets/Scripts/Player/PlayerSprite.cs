@@ -23,21 +23,19 @@ public class PlayerSprite : MonoBehaviour
     public void UpdateSprite()
 
     {
+        if (_player.IsTurning|| _player.IsWallJumping) return;
         // 2 case:
         // grounded: 
 
-        bool isSuddenlyTurn = (_player.HorizontalInput >0 && !_player.IsFacingRight) ||
-            (_player.HorizontalInput< 0 && _player.IsFacingRight);
+        bool isSuddenlyTurn = (_player.IsRightMove && !_player.IsFacingRight) ||
+            (_player.IsLeftMove && _player.IsFacingRight);
 
-        if (_player.IsRunning)
+        if (_player.IsRunning && isSuddenlyTurn)
         {
 
-            if (isSuddenlyTurn)
-            {
-                ToggleFacingRightWithTurnAnimation();
-            }
+            ToggleFacingRightWithTurnAnimation();
         }
-        else
+        else 
         {
             DefaultSpriteFlip();
         }
@@ -46,11 +44,11 @@ public class PlayerSprite : MonoBehaviour
     }
     private void DefaultSpriteFlip()
     {
-        if (_player.HorizontalInput > 0)
+        if (_player.IsRightMove)
         {
             SetFacingRight(true);
         }
-        else if (_player.HorizontalInput < 0)
+        else if (_player.IsLeftMove)
         {
             SetFacingRight(false);
         }
@@ -58,6 +56,7 @@ public class PlayerSprite : MonoBehaviour
 
     public void ToggleFacingRightWithTurnAnimation()
     {
+        _player.IsTurning = true;
         _player.PlayerAnimation.SetTriggerTurnAround();
         _player.IsFacingRight = !_player.IsFacingRight;
         

@@ -1,11 +1,10 @@
+using System.Diagnostics;
 using UnityEngine;
 
 public class PlayerJumping : MonoBehaviour
 {
-    public int JumpRemaining;
-    [SerializeField] private float _jumpVelocity = 6f;
 
-    [SerializeField] private float _groundJumpDuration = 0.5f;
+    [SerializeField] private float _jumpVelocity = 10f;
 
     [SerializeField] private AudioClip _jumpSound;
 
@@ -13,13 +12,21 @@ public class PlayerJumping : MonoBehaviour
     [SerializeField] private Transform _groundCheckTransform;
     [SerializeField] private Vector2 _groundCheckSize = new Vector2(1, 0.2f);
 
-   
+
+    [Header("Juice Mechanics")]
+    // Grace period to jump after walking off a ledge(in seconds)
+    [SerializeField]  private float _coyoteTime = 0.15f;
+
+    [SerializeField] private float _jumpBufferTime = 0.15f; 
+    private float _coyoteTimeCounter;
+
+      // How early a player can press jump before landing (in seconds)
+    private float _jumpBufferCounter;
+
+
 
     private Player _player;
-   
 
-    private float _jumpDuration;
-    private bool _isJumpPress;
 
 
     private void Awake()
@@ -33,45 +40,48 @@ public class PlayerJumping : MonoBehaviour
         Gizmos.DrawWireCube(_groundCheckTransform.position, _groundCheckSize);
     }
 
-    public void HandleJumpVelocity()
-    {
-        _player.VerticalVelocity = _player.Rb.linearVelocityY;
-        _player.Rb.gravityScale = _player.GravityScale;
-    }
+   
     public void HandleJump()
     {
+        // 1. COYOTE TIME LOGIC
+        if (_player.IsGrounded)
+        {
+            _coyoteTimeCounter = _coyoteTime;
+        }
+        else
+        {
+            _coyoteTimeCounter -= Time.deltaTime;
+        }
 
-        
 
-        if (GameInputManager.Instance.PlayerJumpAction.WasPressedThisFrame() && _player.IsGrounded )
+        // 2. JUMP BUFFER LOGIC
+        if (GameInputManager.Instance.PlayerJumpAction.WasPressedThisFrame())
+        {
+            _jumpBufferCounter = _jumpBufferTime;
+        }
+        else
+        {
+            _jumpBufferCounter-= Time.deltaTime;
+        }
+
+        // 3. EXECUTE JUMP
+        if (_coyoteTimeCounter >0f && _jumpBufferCounter>0f)
         {
            
-            _isJumpPress = true;
-            _jumpDuration =0;
+            _player.Rb.linearVelocity = new Vector2(_player.Rb.linearVelocityX, _jumpVelocity);
+            _coyoteTimeCounter = 0f;
+            _jumpBufferCounter = 0f;
+
             AudioManager.Instance.Play(_jumpSound, transform.position);
         }
 
-        if (GameInputManager.Instance.PlayerJumpAction.IsPressed() && _isJumpPress)
+        //4. Jump with variable height
+
+        if (GameInputManager.Instance.PlayerJumpAction.WasReleasedThisFrame() && _player.Rb.linearVelocityY >0)
         {
-            _jumpDuration += Time.deltaTime;
-           
-
-            if (_jumpDuration < _groundJumpDuration)
-            {
-                _player.VerticalVelocity = _jumpVelocity;
-            }
-            else
-            {
-                _isJumpPress = false;
-            }
-
+            _player.Rb.linearVelocity = new Vector2(_player.Rb.linearVelocityX, _player.Rb.linearVelocityY* 0.5f);
+            _coyoteTimeCounter = 0f;
         }
-        if (GameInputManager.Instance.PlayerJumpAction.WasReleasedThisFrame())
-        {
-            _isJumpPress = false;
-        }
-
-
     }
 
     public void CheckGround()

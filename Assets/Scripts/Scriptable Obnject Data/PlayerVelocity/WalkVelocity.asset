@@ -13,5 +13,5 @@ MonoBehaviour:
   m_Name: WalkVelocity
   m_EditorClassIdentifier: Assembly-CSharp::PlayerVelocity
   Standing: 0
-  HorizontalVelocity: 3
+  HorizontalVelocity: 5
   Acceleration: 1

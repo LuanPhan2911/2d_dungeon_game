@@ -10,9 +10,6 @@ public partial class Player : MonoBehaviour
     public const string PLAYER_TAG = "Player";
     public const string PLAYER_MASK = "Player";
 
-    [Header("Player Velocity")]
-    public float HorizontalVelocity;
-    public float VerticalVelocity;
 
     public PlayerVelocity WalkVelocity;
     public PlayerVelocity RunVelocity;
@@ -40,8 +37,16 @@ public partial class Player : MonoBehaviour
     public bool IsCrochWalking;
     public bool IsRunning;
 
+    public bool IsTurning;
 
-    public float GravityScale = 1f;
+    public bool IsHorizontalMoving => Mathf.Abs(HorizontalInput) > 0.1f;
+    public bool IsVerticalMoving => Mathf.Abs(VerticalInput) > 0.1f;
+
+    public bool IsLeftMove => HorizontalInput < 0f;
+    public bool IsRightMove => HorizontalInput > 0f;
+    [Header("Gravity")]  
+    public float FallGravityMuliplier = 2.5f;
+    public float LowJumpMultiplier = 2f;
   
     [Header("Mask")]
     public LayerMask GroundLayerMask;
@@ -60,35 +65,32 @@ public partial class Player : MonoBehaviour
     private DamageFlash _damageFlash;
     private PlayerData _playerData;
     private PlayerJumping _playerJumping;
-    private PlayerFalling _playerFalling;
     private PlayerMoving _playerMoving;
-    private PlayerWallSliding _playerWallSliding;
     private PlayerWallJumping _playerWallJumping;
-
     private PlayerCroching _playerCroching;
+    private PlayerFalling _playerFalling;
 
     public int Coin { get => _playerData.Coin; private set => _playerData.Coin = value; }
     public int Health { get => _playerData.Health; private set => _playerData.Health = value; }
 
     public static event EventHandler<int> OnCoinChanged;
     public static event EventHandler<int> OnHealthChanged;
+
+
     private void Awake()
     {
         Rb = GetComponent<Rigidbody2D>();
         SpriteRenderer = GetComponent<SpriteRenderer>();
         PlayerAnimation = GetComponent<PlayerAnimation>();
-      
-
         PlayerSprite = GetComponent<PlayerSprite>();
 
         _knockbackReceiver = GetComponent<KnockbackReceiver>();
         _damageFlash = GetComponent<DamageFlash>();
         _playerJumping = GetComponent<PlayerJumping>();
         _playerMoving = GetComponent<PlayerMoving>();
-        _playerFalling = GetComponent<PlayerFalling>();
-        _playerWallSliding = GetComponent<PlayerWallSliding>();
         _playerWallJumping = GetComponent<PlayerWallJumping>();
         _playerCroching = GetComponent<PlayerCroching>();
+        _playerFalling = GetComponent<PlayerFalling>();
 
 
 
@@ -109,22 +111,19 @@ public partial class Player : MonoBehaviour
     {
         if (GameManager.Instance.IsGamePaused) return;
 
-        HandleVelocity();
+        
         _playerCroching.CheckCroch();
-        _playerJumping.CheckGround();
-        _playerWallSliding.CheckWall();
         _playerMoving.CheckRun();
 
         if (_knockbackReceiver.IsKnockbacked) return;
+
         if (IsFall)
         {
-            // stunned player when falling great height
-            HorizontalVelocity = 0;
-            VerticalVelocity = 0;
+            _playerFalling.HandleFall();
             return;
         }
-       
 
+        _playerWallJumping.HandleWallSlide();
         _playerWallJumping.HandleWallJump();
 
         if (!IsCroching)
@@ -138,6 +137,8 @@ public partial class Player : MonoBehaviour
         {
             _playerMoving.HandleMoving();
         }
+
+        HandleGravity();
     }
     private void LateUpdate()
     {
@@ -148,32 +149,26 @@ public partial class Player : MonoBehaviour
 
         PlayerAnimation.UpdateAnimation();
     }
-
-    private void HandleVelocity()
-    {
-        if (IsClimbing)
-        {
-            HorizontalVelocity = 0;
-            Rb.gravityScale = 0f;
-            return;
-        }
-
-        if (VerticalVelocity >= 0)
-        {
-            _playerJumping.HandleJumpVelocity();
-        }
-        else
-        {
-            _playerFalling.HandleFallingVelocity();
-        }
-
-    }
-
     private void FixedUpdate()
     {
-
-        Rb.linearVelocity = new Vector2(HorizontalVelocity, VerticalVelocity);
+        _playerJumping.CheckGround();
+        _playerWallJumping.CheckWall();
     }
+
+    private void HandleGravity()
+    {
+       if(Rb.linearVelocityY < 0)
+        {
+            Rb.linearVelocity += Vector2.up * Physics2D.gravity.y * (FallGravityMuliplier - 1) * Time.deltaTime;
+        }else if(Rb.linearVelocityY >0 && !GameInputManager.Instance.PlayerJumpAction.IsPressed())
+        {
+            Rb.linearVelocity += Vector2.up * Physics2D.gravity.y * (LowJumpMultiplier - 1) * Time.deltaTime;
+        }
+
+    }
+    
+
+  
     public void AddCoin()
     {
         Coin++;

@@ -3,14 +3,11 @@ using UnityEngine;
 
 public class PlayerFalling : MonoBehaviour
 {
-
-
-    [SerializeField] private float _maxFallingVelocity = 12f;
+    [SerializeField] private float _stunnedFallingVelocity = 25f;
     [SerializeField] private float _fallingStunedDuration = 0.5f;
     [SerializeField] private AudioClip _fallingSound;
-    [SerializeField] private float _fallingSpeedMultiplier = 2f;
-    private Player _player;
 
+    private Player _player;
 
     private void Awake()
     {
@@ -18,13 +15,6 @@ public class PlayerFalling : MonoBehaviour
 
     }
 
-
-
-    public void HandleFallingVelocity()
-    {
-        _player.Rb.gravityScale = _player.GravityScale * _fallingSpeedMultiplier;
-        _player.VerticalVelocity = Mathf.Max(_player.Rb.linearVelocityY, -_maxFallingVelocity);
-    }
     private IEnumerator FallingStunnedCorountine()
     {
         yield return new WaitForSeconds(_fallingStunedDuration);
@@ -37,23 +27,23 @@ public class PlayerFalling : MonoBehaviour
         if (_player.GroundLayerMask.Contains(collision.gameObject.layer))
         {
             float fallingVelocity = collision.relativeVelocity.y;
-            HanleFallGreatHeight(fallingVelocity);
+            if (fallingVelocity >= _stunnedFallingVelocity)
+            {
+                // trigger falling animation
+                _player.IsFall = true;
+                StartCoroutine(FallingStunnedCorountine());
+                _player.PlayerAnimation.SetTriggerStartCroch();
+                // trigger falling sound
+                AudioManager.Instance.Play(_fallingSound, transform.position);
+
+
+            }
 
         }
     }
-    private void HanleFallGreatHeight(float fallVelocity)
+    public void HandleFall()
     {
-        if (fallVelocity >= _maxFallingVelocity)
-        {
-            // trigger falling animation
-            _player.IsFall = true;
-            StartCoroutine(FallingStunnedCorountine());
-            _player.PlayerAnimation.SetTriggerStartCroch();
-            // trigger falling sound
-            AudioManager.Instance.Play(_fallingSound, transform.position);
-
-
-        }
+        _player.Rb.linearVelocity = Vector2.zero;
     }
 }
 

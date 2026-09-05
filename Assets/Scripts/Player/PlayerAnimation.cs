@@ -54,7 +54,7 @@ public class PlayerAnimation : MonoBehaviour
     private float GetHorizontalValue()
     {
         float horizontal = 0;
-        if (_player.IsRunning && Mathf.Abs(_player.HorizontalInput)> 0.1f)
+        if (_player.IsRunning && _player.IsHorizontalMoving)
         {
             horizontal = 2f;
         }
@@ -115,11 +115,11 @@ public class PlayerAnimation : MonoBehaviour
     {
         float vertical = 0;
 
-        if (_player.VerticalVelocity > 0)
+        if (_player.Rb.linearVelocityY > 0)
         {
             vertical = 1;
         }
-        else if (_player.VerticalVelocity < 0)
+        else if (_player.Rb.linearVelocityY < 0)
         {
             vertical = -1;
         }

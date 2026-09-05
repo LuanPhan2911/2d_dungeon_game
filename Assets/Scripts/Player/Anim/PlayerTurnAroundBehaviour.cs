@@ -20,6 +20,7 @@ public class PlayerTurnAroundBehaviour : StateMachineBehaviour
     override public void OnStateExit(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
     {
         Player player = animator.GetComponent<Player>();
+        player.IsTurning = false;
 
         player.SpriteRenderer.flipX = !player.IsFacingRight;
     }

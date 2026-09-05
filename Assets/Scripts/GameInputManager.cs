@@ -256,19 +256,6 @@ public class GameInputManager : MonoBehaviour
         return PlayerCrochAction.WasPressedThisFrame();
     }
 
-    public bool IsRunWasPressedThisFrame()
-    {
-        return PlayerRunAction.WasPressedThisFrame();
-    }
-
-    public bool IsRunPressed()
-    {
-        return PlayerRunAction.IsPressed();
-    }
-
-    public bool IsRunWasReleasedThisFrame()
-    {
-        return PlayerRunAction.WasReleasedThisFrame();
-    }
+   
 
 }

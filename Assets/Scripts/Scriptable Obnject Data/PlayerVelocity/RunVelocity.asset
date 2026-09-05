@@ -13,5 +13,5 @@ MonoBehaviour:
   m_Name: RunVelocity
   m_EditorClassIdentifier: Assembly-CSharp::PlayerVelocity
   Standing: 0
-  HorizontalVelocity: 6
+  HorizontalVelocity: 8
   Acceleration: 1

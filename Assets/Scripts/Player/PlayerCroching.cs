@@ -31,10 +31,10 @@ public class PlayerCroching : MonoBehaviour
         }
     }
 
-    public void UpdateCrochWalk()
+    public void UpdateVelocity()
     {
         
-        if (_player.IsCroching && Mathf.Abs(_player.HorizontalInput) > 0.1f)
+        if (_player.IsCroching && _player.IsHorizontalMoving)
         {
             _player.IsCrochWalking = true;
             _player.CurrentVelocity = _player.CrochWalkVelocity;  
