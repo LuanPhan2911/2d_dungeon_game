@@ -5,15 +5,12 @@ public class PlayerCroching : MonoBehaviour
 {
     private Player _player;
 
-    [SerializeField] private PlayerVelocity _crochWalkingVelocity;
-
-
     private void Awake()
     {
         _player = GetComponent<Player>();
     }
 
-    public void CheckCroching()
+    public void CheckCroch()
     {
         if (!_player.IsGrounded)
         {
@@ -34,17 +31,18 @@ public class PlayerCroching : MonoBehaviour
         }
     }
 
-    public void CheckCrockWalking(float horizontalInput)
+    public void UpdateCrochWalk()
     {
-        if (_player.IsCroching && Mathf.Abs(horizontalInput) > 0.1f)
+        
+        if (_player.IsCroching && Mathf.Abs(_player.HorizontalInput) > 0.1f)
         {
             _player.IsCrochWalking = true;
-            _player.CurrentPlayerVelocity = _crochWalkingVelocity;  
+            _player.CurrentVelocity = _player.CrochWalkVelocity;  
         }
         else
         {
             _player.IsCrochWalking = false;
-            _player.CurrentPlayerVelocity = _player.DefaultPlayerVelocity;
+            _player.CurrentVelocity = _player.WalkVelocity;
         }
     }
 }

@@ -13826,18 +13826,21 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::Player
   HorizontalVelocity: 0
   VerticalVelocity: 0
-  DefaultPlayerVelocity: {fileID: 11400000, guid: 2ee8f40dbf900b74eb23cd41d94adcb2, type: 2}
-  CurrentPlayerVelocity: {fileID: 11400000, guid: 2ee8f40dbf900b74eb23cd41d94adcb2, type: 2}
+  WalkVelocity: {fileID: 11400000, guid: 2ee8f40dbf900b74eb23cd41d94adcb2, type: 2}
+  RunVelocity: {fileID: 11400000, guid: 61a8c3e549d6c0a4183085dda362bbd7, type: 2}
+  CrochWalkVelocity: {fileID: 11400000, guid: 030cfe82baa6c504bb6fb370d7a5554c, type: 2}
+  CurrentVelocity: {fileID: 11400000, guid: 2ee8f40dbf900b74eb23cd41d94adcb2, type: 2}
+  HorizontalInput: 0
+  VerticalInput: 0
+  IsFacingRight: 1
   IsGrounded: 0
-  IsSwimming: 0
   IsFall: 0
   IsClimbing: 0
   IsWallSliding: 0
   IsWallJumping: 0
   IsCroching: 0
   IsCrochWalking: 0
-  CanWallJump: 0
-  CanGroundJump: 0
+  IsRunning: 0
   GravityScale: 2
   GroundLayerMask:
     serializedVersion: 2
@@ -15321,7 +15324,7 @@ Transform:
   m_GameObject: {fileID: 6927385263318620340}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -0.35, y: 0.6, z: 0}
+  m_LocalPosition: {x: -0.38, y: 0.6, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -16016,7 +16019,7 @@ Transform:
   m_GameObject: {fileID: 5469605675437822827}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0.37, y: 0.6, z: 0}
+  m_LocalPosition: {x: 0.4, y: 0.6, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -16107,7 +16110,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d17b4f85f7aebb441a04d0e256b0a385, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::PlayerCroching
-  _crochWalkingVelocity: {fileID: 11400000, guid: 030cfe82baa6c504bb6fb370d7a5554c, type: 2}
 --- !u!212 &9097980118357893980
 SpriteRenderer:
   serializedVersion: 2

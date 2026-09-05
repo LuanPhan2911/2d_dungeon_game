@@ -15,6 +15,8 @@ public class GameInputManager : MonoBehaviour
 
     public InputAction PlayerCrochAction;
 
+    public InputAction PlayerRunAction;
+
     public InputAction UIPauseAction;
 
     public enum PlayerBindingAction
@@ -59,6 +61,7 @@ public class GameInputManager : MonoBehaviour
         PlayerMoveAction = _inputActions.Player.Move;
         PlayerJumpAction = _inputActions.Player.Jump;
         PlayerCrochAction = _inputActions.Player.CrochWalk;
+        PlayerRunAction= _inputActions.Player.Run;
         // UI
         UIPauseAction = _inputActions.UI.Pause;
 
@@ -66,6 +69,7 @@ public class GameInputManager : MonoBehaviour
         PlayerMoveAction.Enable();
         PlayerJumpAction.Enable();
         PlayerCrochAction.Enable();
+        PlayerRunAction.Enable();
         UIPauseAction.Enable();
 
     }
@@ -239,7 +243,7 @@ public class GameInputManager : MonoBehaviour
         }
     }
 
-    public bool IsCrochPressed()
+    public bool IsCrochPresed()
     {
         return PlayerCrochAction.IsPressed();
     }
@@ -252,5 +256,19 @@ public class GameInputManager : MonoBehaviour
         return PlayerCrochAction.WasPressedThisFrame();
     }
 
+    public bool IsRunWasPressedThisFrame()
+    {
+        return PlayerRunAction.WasPressedThisFrame();
+    }
+
+    public bool IsRunPressed()
+    {
+        return PlayerRunAction.IsPressed();
+    }
+
+    public bool IsRunWasReleasedThisFrame()
+    {
+        return PlayerRunAction.WasReleasedThisFrame();
+    }
 
 }

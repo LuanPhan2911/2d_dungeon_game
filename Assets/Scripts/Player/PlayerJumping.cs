@@ -74,11 +74,8 @@ public class PlayerJumping : MonoBehaviour
 
     }
 
-    public void GroundCheck()
+    public void CheckGround()
     {
-      
-      
-      
         LayerMask groundMask = _player.GroundLayerMask;
 
         Collider2D collider = Physics2D.OverlapBox(_groundCheckTransform.position, _groundCheckSize, 0f, groundMask);

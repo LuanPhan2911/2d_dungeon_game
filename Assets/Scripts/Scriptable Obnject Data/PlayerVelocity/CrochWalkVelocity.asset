@@ -10,8 +10,8 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 73d4bf7ea0f04ba4fb32f40b79a507c5, type: 3}
-  m_Name: GroundVelocity
+  m_Name: CrochWalkVelocity
   m_EditorClassIdentifier: Assembly-CSharp::PlayerVelocity
   Standing: 0
-  HorizontalVelocity: 4
+  HorizontalVelocity: 1.5
   Acceleration: 1

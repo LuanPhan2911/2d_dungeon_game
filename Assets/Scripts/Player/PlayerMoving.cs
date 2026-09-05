@@ -20,14 +20,15 @@ public class PlayerMoving : MonoBehaviour
     }
     public void HandleMoving()
     {
-        float horizontalInput = GameInputManager.Instance.GetHorizontalInput();
+        _player.HorizontalInput = GameInputManager.Instance.GetHorizontalInput();
 
-       _playerCroching. CheckCrockWalking(horizontalInput);
+       _playerCroching.UpdateCrochWalk();
+        UpdateRun();
 
-        float horizontalVelocity = _player.CurrentPlayerVelocity.HorizontalVelocity;
-        _player.HorizontalVelocity = horizontalInput * horizontalVelocity;
+        float horizontalVelocity = _player.CurrentVelocity.HorizontalVelocity;
+        _player.HorizontalVelocity = _player.HorizontalInput * horizontalVelocity;
 
-        if (_player.IsGrounded && Mathf.Abs(horizontalInput) > 0.1f && !_player.IsCrochWalking)
+        if (_player.IsGrounded && Mathf.Abs(_player.HorizontalInput) > 0.1f && !_player.IsCrochWalking)
         {
             if(_footStepCoroutine== null)
             {
@@ -35,6 +36,36 @@ public class PlayerMoving : MonoBehaviour
             }
         }
      
+    }
+
+    public void CheckRun()
+    {
+        if (!_player.IsGrounded || _player.IsCroching)
+        {
+            _player.IsRunning = false;
+            return;
+        }
+        if (GameInputManager.Instance.IsRunWasPressedThisFrame())
+        {
+            _player.IsRunning = true;
+        }else if (GameInputManager.Instance.IsRunWasReleasedThisFrame())
+        {
+            _player.IsRunning= false;
+        }
+    }
+
+    private void UpdateRun()
+    {
+        if (_player.IsCroching) return;
+
+        if (_player.IsRunning && Mathf.Abs(_player.HorizontalInput) > 0.1f)
+        {
+            _player.CurrentVelocity = _player.RunVelocity;
+        }
+        else
+        {
+            _player.CurrentVelocity = _player.WalkVelocity;
+        }
     }
 
    

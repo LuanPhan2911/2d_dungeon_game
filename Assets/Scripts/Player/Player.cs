@@ -14,12 +14,23 @@ public partial class Player : MonoBehaviour
     public float HorizontalVelocity;
     public float VerticalVelocity;
 
-    public PlayerVelocity DefaultPlayerVelocity;
-    public PlayerVelocity CurrentPlayerVelocity;
-  
+    public PlayerVelocity WalkVelocity;
+    public PlayerVelocity RunVelocity;
+
+    public PlayerVelocity CrochWalkVelocity;
+    public PlayerVelocity CurrentVelocity;
+
+    [Header("Player Input")]
+    public float HorizontalInput;
+    public float VerticalInput;
+
+   
+
 
 
     [Header("Player State")]
+
+    public bool IsFacingRight = true;
     public bool IsGrounded;
     public bool IsFall;
     public bool IsClimbing;
@@ -27,6 +38,7 @@ public partial class Player : MonoBehaviour
     public bool IsWallJumping;
     public bool IsCroching;
     public bool IsCrochWalking;
+    public bool IsRunning;
 
 
     public float GravityScale = 1f;
@@ -98,9 +110,10 @@ public partial class Player : MonoBehaviour
         if (GameManager.Instance.IsGamePaused) return;
 
         HandleVelocity();
-        _playerCroching.CheckCroching();
-        _playerJumping.GroundCheck();
-        _playerWallSliding.WallCheck();
+        _playerCroching.CheckCroch();
+        _playerJumping.CheckGround();
+        _playerWallSliding.CheckWall();
+        _playerMoving.CheckRun();
 
         if (_knockbackReceiver.IsKnockbacked) return;
         if (IsFall)

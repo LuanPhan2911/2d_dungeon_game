@@ -18,13 +18,15 @@ public class PlayerAnimation : MonoBehaviour
 
     const string IS_CROCHWALKING = "IsCrochWalking";
 
-    // trigger parameter for crouching
+    // trigger parameter 
 
  
 
     const string START_CROCH= "StartCroch";
 
     const string END_CROCH = "EndCroch";
+
+    const string TURN = "Turn";
 
     private Player _player;
 
@@ -35,8 +37,34 @@ public class PlayerAnimation : MonoBehaviour
         _player = GetComponent<Player>();
     }
 
+    public void UpdateAnimation()
+    {
+        float horizontal = GetHorizontalValue();
+        float vertical = GetVerticalValue();
 
-    
+
+        SetHorizontal(horizontal);
+        SetVertical(vertical);
+
+        SetGrounded(_player.IsGrounded);
+        SetSliding(_player.IsWallSliding);
+        SetCrochWalking(_player.IsCrochWalking);
+    }
+
+    private float GetHorizontalValue()
+    {
+        float horizontal = 0;
+        if (_player.IsRunning && Mathf.Abs(_player.HorizontalInput)> 0.1f)
+        {
+            horizontal = 2f;
+        }
+        else
+        {
+            horizontal = Mathf.Abs(_player.HorizontalInput);
+        }
+        return horizontal;
+    }
+
 
     public void SetHorizontal(float horizontal)
     {
@@ -78,28 +106,26 @@ public class PlayerAnimation : MonoBehaviour
     {
         animator.speed = 1f;
     }
-    
-    public void UpdateAnimation()
+    public void SetTriggerTurnAround()
     {
-        float horizontal = Mathf.Clamp01(Mathf.Abs(_player.HorizontalVelocity));
+        animator.SetTrigger(TURN);
+    }
+    
+    private float GetVerticalValue()
+    {
         float vertical = 0;
 
-        if(_player.VerticalVelocity> 0)
+        if (_player.VerticalVelocity > 0)
         {
             vertical = 1;
         }
-        else if(_player.VerticalVelocity < 0) 
+        else if (_player.VerticalVelocity < 0)
         {
             vertical = -1;
         }
-
-        SetHorizontal(horizontal);
-        SetVertical(vertical);
-
-        SetGrounded(_player.IsGrounded);
-        SetSliding(_player.IsWallSliding);
-        SetCrochWalking(_player.IsCrochWalking);
+        return vertical;
     }
+   
     public void SetSliding(bool isSliding)
     {
         animator.SetBool(IS_SLIDING, isSliding);

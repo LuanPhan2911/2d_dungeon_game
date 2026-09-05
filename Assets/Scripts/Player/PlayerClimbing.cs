@@ -18,17 +18,17 @@ public class PlayerClimbing : MonoBehaviour
     {
 
 
-        float verticalInput = GameInputManager.Instance.GetVerticalInput();
-        float horizontalInput = GameInputManager.Instance.GetHorizontalInput();
+       _player.VerticalInput = GameInputManager.Instance.GetVerticalInput();
+        _player.HorizontalInput = GameInputManager.Instance.GetHorizontalInput();
         if (CanClimb)
         {
             const float thresholdInput = 0.1f;
-            if (Mathf.Abs(verticalInput) > thresholdInput)
+            if (Mathf.Abs(_player.VerticalInput) > thresholdInput)
             {
                 _player.IsClimbing = true;
                 _player.PlayerAnimation.SetClimbing(true);
                 _player.PlayerAnimation.StartCurrentAnimation();
-                _player.VerticalVelocity = verticalInput * _climbingSpeed;
+                _player.VerticalVelocity = _player.VerticalInput * _climbingSpeed;
             }
             else
             {
@@ -39,7 +39,7 @@ public class PlayerClimbing : MonoBehaviour
                     _player.PlayerAnimation.PauseCurrentAnimation();
                 }
 
-                if (_player.IsClimbing && _player.IsGrounded && Mathf.Abs(horizontalInput) > thresholdInput)
+                if (_player.IsClimbing && _player.IsGrounded && Mathf.Abs(_player.HorizontalInput) > thresholdInput)
                 {
                     Debug.Log("Player want to movement");
                     _player.IsClimbing = false;

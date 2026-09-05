@@ -21,22 +21,52 @@ public class PlayerSprite : MonoBehaviour
     }
 
     public void UpdateSprite()
+
     {
-        if (_player.HorizontalVelocity > 0)
+        // 2 case:
+        // grounded: 
+
+        bool isSuddenlyTurn = (_player.HorizontalInput >0 && !_player.IsFacingRight) ||
+            (_player.HorizontalInput< 0 && _player.IsFacingRight);
+
+        if (_player.IsRunning)
         {
-            Flip(false);
+
+            if (isSuddenlyTurn)
+            {
+                ToggleFacingRightWithTurnAnimation();
+            }
         }
-        else if (_player.HorizontalVelocity < 0)
+        else
         {
-            Flip(true);
+            DefaultSpriteFlip();
         }
 
-
+        
     }
-    public void Flip(bool isFacingRight)
+    private void DefaultSpriteFlip()
     {
+        if (_player.HorizontalInput > 0)
+        {
+            SetFacingRight(true);
+        }
+        else if (_player.HorizontalInput < 0)
+        {
+            SetFacingRight(false);
+        }
+    }
 
-        _player.SpriteRenderer.flipX = isFacingRight;
+    public void ToggleFacingRightWithTurnAnimation()
+    {
+        _player.PlayerAnimation.SetTriggerTurnAround();
+        _player.IsFacingRight = !_player.IsFacingRight;
+        
+    }
+    public void SetFacingRight(bool isFacingRight)
+    {
+        _player.IsFacingRight = isFacingRight;
+        _player.SpriteRenderer.flipX = !isFacingRight;
+
     }
 
     public void IgnoreCollision(Collider2D otherCollider, float duration)
