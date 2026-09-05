@@ -17,7 +17,6 @@ public class PlayerWallJumping : MonoBehaviour
     [SerializeField] private float _slidingVelocity = 2f;
 
 
-    private int _wallJumpDirection;
 
     [Header("Juice Mechanics")]
     // Grace period to jump after walking off a ledge(in seconds)
@@ -89,7 +88,7 @@ public class PlayerWallJumping : MonoBehaviour
         if (_coyoteTimeCounter > 0f && _jumpBufferCounter > 0f )
         {
         
-            _player.Rb.linearVelocity = new Vector2(_wallJumpDirection * _wallJumpVelocity.x, _wallJumpVelocity.y); ;
+            _player.Rb.linearVelocity = new Vector2(_player.DirectionX * _wallJumpVelocity.x, _wallJumpVelocity.y); ;
             
             _coyoteTimeCounter = 0f;
             _jumpBufferCounter = 0f;
@@ -117,17 +116,17 @@ public class PlayerWallJumping : MonoBehaviour
 
     public void HandleWallSlide()
     {
-        if (CanWallSlide && _player.HorizontalInput !=0 )
+        if (CanWallSlide && _player.HorizontalInput !=0 && !_player.IsGrounded )
         {
             _player.IsWallSliding = true;
             float slidingVelocity = Mathf.Max(_player.Rb.linearVelocityY, -_slidingVelocity);
 
             _player.Rb.linearVelocity= new Vector2( _player.Rb.linearVelocityX, slidingVelocity);
 
-            if(_wallJumpDirection == 1)
+            if(_player.DirectionX == 1)
             {
                 _player.PlayerSprite.SetFacingRight(true);
-            }else if (_wallJumpDirection == -1)
+            }else if (_player.DirectionX == -1)
             {
                 _player.PlayerSprite.SetFacingRight(false);
             }
@@ -144,7 +143,7 @@ public class PlayerWallJumping : MonoBehaviour
         if (_player.IsGrounded) return;
 
         CanWallSlide = false;
-        _wallJumpDirection = 0;
+       
 
         Collider2D leftCollider = Physics2D.OverlapBox(_wallCheckLeft.position, _wallCheckSize, 0f, _player.WallLayerMask);
         Collider2D rightCollider = Physics2D.OverlapBox(_wallCheckRight.position, _wallCheckSize, 0f, _player.WallLayerMask);
@@ -156,12 +155,12 @@ public class PlayerWallJumping : MonoBehaviour
             if (leftCollider != null)
             {
   
-                _wallJumpDirection = 1;
+                _player.DirectionX = 1;
             }
             else if (rightCollider != null)
             {
               
-                _wallJumpDirection = -1;
+                _player.DirectionX = -1;
             }
         }
     }

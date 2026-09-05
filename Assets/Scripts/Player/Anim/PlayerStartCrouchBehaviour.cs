@@ -1,6 +1,6 @@
 using UnityEngine;
 
-public class PlayerStartCrochBehavior : StateMachineBehaviour
+public class PlayerStartCrouchBehaviour : StateMachineBehaviour
 {
     // OnStateEnter is called when a transition starts and the state machine starts to evaluate this state
     override public void OnStateEnter(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
@@ -21,7 +21,7 @@ public class PlayerStartCrochBehavior : StateMachineBehaviour
         
         
         Player player = animator.GetComponent<Player>();
-        player.IsCroching = true;
+        player.IsCrouching = true;
        
        
 

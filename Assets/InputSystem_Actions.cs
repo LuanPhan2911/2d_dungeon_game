@@ -111,7 +111,7 @@ public partial class @InputSystem_Actions: IInputActionCollection2, IDisposable
                     ""initialStateCheck"": false
                 },
                 {
-                    ""name"": ""CrochWalk"",
+                    ""name"": ""CrouchWalk"",
                     ""type"": ""Button"",
                     ""id"": ""63ff62e6-8afb-4618-bb1f-6de6205c3b23"",
                     ""expectedControlType"": """",
@@ -203,7 +203,7 @@ public partial class @InputSystem_Actions: IInputActionCollection2, IDisposable
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": """",
-                    ""action"": ""CrochWalk"",
+                    ""action"": ""CrouchWalk"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
                 },
@@ -316,7 +316,7 @@ public partial class @InputSystem_Actions: IInputActionCollection2, IDisposable
         m_Player = asset.FindActionMap("Player", throwIfNotFound: true);
         m_Player_Move = m_Player.FindAction("Move", throwIfNotFound: true);
         m_Player_Jump = m_Player.FindAction("Jump", throwIfNotFound: true);
-        m_Player_CrochWalk = m_Player.FindAction("CrochWalk", throwIfNotFound: true);
+        m_Player_CrouchWalk = m_Player.FindAction("CrouchWalk", throwIfNotFound: true);
         m_Player_Run = m_Player.FindAction("Run", throwIfNotFound: true);
         // UI
         m_UI = asset.FindActionMap("UI", throwIfNotFound: true);
@@ -404,7 +404,7 @@ public partial class @InputSystem_Actions: IInputActionCollection2, IDisposable
     private List<IPlayerActions> m_PlayerActionsCallbackInterfaces = new List<IPlayerActions>();
     private readonly InputAction m_Player_Move;
     private readonly InputAction m_Player_Jump;
-    private readonly InputAction m_Player_CrochWalk;
+    private readonly InputAction m_Player_CrouchWalk;
     private readonly InputAction m_Player_Run;
     /// <summary>
     /// Provides access to input actions defined in input action map "Player".
@@ -426,9 +426,9 @@ public partial class @InputSystem_Actions: IInputActionCollection2, IDisposable
         /// </summary>
         public InputAction @Jump => m_Wrapper.m_Player_Jump;
         /// <summary>
-        /// Provides access to the underlying input action "Player/CrochWalk".
+        /// Provides access to the underlying input action "Player/CrouchWalk".
         /// </summary>
-        public InputAction @CrochWalk => m_Wrapper.m_Player_CrochWalk;
+        public InputAction @CrouchWalk => m_Wrapper.m_Player_CrouchWalk;
         /// <summary>
         /// Provides access to the underlying input action "Player/Run".
         /// </summary>
@@ -465,9 +465,9 @@ public partial class @InputSystem_Actions: IInputActionCollection2, IDisposable
             @Jump.started += instance.OnJump;
             @Jump.performed += instance.OnJump;
             @Jump.canceled += instance.OnJump;
-            @CrochWalk.started += instance.OnCrochWalk;
-            @CrochWalk.performed += instance.OnCrochWalk;
-            @CrochWalk.canceled += instance.OnCrochWalk;
+            @CrouchWalk.started += instance.OnCrouchWalk;
+            @CrouchWalk.performed += instance.OnCrouchWalk;
+            @CrouchWalk.canceled += instance.OnCrouchWalk;
             @Run.started += instance.OnRun;
             @Run.performed += instance.OnRun;
             @Run.canceled += instance.OnRun;
@@ -488,9 +488,9 @@ public partial class @InputSystem_Actions: IInputActionCollection2, IDisposable
             @Jump.started -= instance.OnJump;
             @Jump.performed -= instance.OnJump;
             @Jump.canceled -= instance.OnJump;
-            @CrochWalk.started -= instance.OnCrochWalk;
-            @CrochWalk.performed -= instance.OnCrochWalk;
-            @CrochWalk.canceled -= instance.OnCrochWalk;
+            @CrouchWalk.started -= instance.OnCrouchWalk;
+            @CrouchWalk.performed -= instance.OnCrouchWalk;
+            @CrouchWalk.canceled -= instance.OnCrouchWalk;
             @Run.started -= instance.OnRun;
             @Run.performed -= instance.OnRun;
             @Run.canceled -= instance.OnRun;
@@ -710,12 +710,12 @@ public partial class @InputSystem_Actions: IInputActionCollection2, IDisposable
         /// <seealso cref="UnityEngine.InputSystem.InputAction.canceled" />
         void OnJump(InputAction.CallbackContext context);
         /// <summary>
-        /// Method invoked when associated input action "CrochWalk" is either <see cref="UnityEngine.InputSystem.InputAction.started" />, <see cref="UnityEngine.InputSystem.InputAction.performed" /> or <see cref="UnityEngine.InputSystem.InputAction.canceled" />.
+        /// Method invoked when associated input action "CrouchWalk" is either <see cref="UnityEngine.InputSystem.InputAction.started" />, <see cref="UnityEngine.InputSystem.InputAction.performed" /> or <see cref="UnityEngine.InputSystem.InputAction.canceled" />.
         /// </summary>
         /// <seealso cref="UnityEngine.InputSystem.InputAction.started" />
         /// <seealso cref="UnityEngine.InputSystem.InputAction.performed" />
         /// <seealso cref="UnityEngine.InputSystem.InputAction.canceled" />
-        void OnCrochWalk(InputAction.CallbackContext context);
+        void OnCrouchWalk(InputAction.CallbackContext context);
         /// <summary>
         /// Method invoked when associated input action "Run" is either <see cref="UnityEngine.InputSystem.InputAction.started" />, <see cref="UnityEngine.InputSystem.InputAction.performed" /> or <see cref="UnityEngine.InputSystem.InputAction.canceled" />.
         /// </summary>

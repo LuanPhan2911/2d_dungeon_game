@@ -4,7 +4,9 @@ using UnityEngine;
 public class PlayerJumping : MonoBehaviour
 {
 
-    [SerializeField] private float _jumpVelocity = 10f;
+    [SerializeField] private float _jumpVelocityY = 8f;
+
+    [SerializeField] private Vector2 _runJumpVelocity = new Vector2(10, 10);
 
     [SerializeField] private AudioClip _jumpSound;
 
@@ -67,8 +69,15 @@ public class PlayerJumping : MonoBehaviour
         // 3. EXECUTE JUMP
         if (_coyoteTimeCounter >0f && _jumpBufferCounter>0f)
         {
-           
-            _player.Rb.linearVelocity = new Vector2(_player.Rb.linearVelocityX, _jumpVelocity);
+
+            if (_player.IsRunning)
+            {
+                _player.Rb.linearVelocity = new Vector2(_runJumpVelocity.x * _player.DirectionX, _runJumpVelocity.y);
+            }
+            else
+            {
+                _player.Rb.linearVelocity = new Vector2(_player.Rb.linearVelocityX, _jumpVelocityY);
+            }
             _coyoteTimeCounter = 0f;
             _jumpBufferCounter = 0f;
 

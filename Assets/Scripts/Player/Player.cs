@@ -14,7 +14,7 @@ public partial class Player : MonoBehaviour
     public PlayerVelocity WalkVelocity;
     public PlayerVelocity RunVelocity;
 
-    public PlayerVelocity CrochWalkVelocity;
+    public PlayerVelocity CrouchWalkVelocity;
     public PlayerVelocity CurrentVelocity;
 
     [Header("Player Input")]
@@ -33,14 +33,17 @@ public partial class Player : MonoBehaviour
     public bool IsClimbing;
     public bool IsWallSliding;
     public bool IsWallJumping;
-    public bool IsCroching;
-    public bool IsCrochWalking;
+    public bool IsCrouching;
+    public bool IsCrouchWalking;
     public bool IsRunning;
 
     public bool IsTurning;
 
+    public bool IsDashing;
+
     public bool IsHorizontalMoving => Mathf.Abs(HorizontalInput) > 0.1f;
     public bool IsVerticalMoving => Mathf.Abs(VerticalInput) > 0.1f;
+    public int DirectionX = 1;
 
     public bool IsLeftMove => HorizontalInput < 0f;
     public bool IsRightMove => HorizontalInput > 0f;
@@ -67,8 +70,9 @@ public partial class Player : MonoBehaviour
     private PlayerJumping _playerJumping;
     private PlayerMoving _playerMoving;
     private PlayerWallJumping _playerWallJumping;
-    private PlayerCroching _playerCroching;
+    private PlayerCrouching _playerCrouching;
     private PlayerFalling _playerFalling;
+    private PlayerDashing _playerDashing;
 
     public int Coin { get => _playerData.Coin; private set => _playerData.Coin = value; }
     public int Health { get => _playerData.Health; private set => _playerData.Health = value; }
@@ -89,8 +93,9 @@ public partial class Player : MonoBehaviour
         _playerJumping = GetComponent<PlayerJumping>();
         _playerMoving = GetComponent<PlayerMoving>();
         _playerWallJumping = GetComponent<PlayerWallJumping>();
-        _playerCroching = GetComponent<PlayerCroching>();
+        _playerCrouching = GetComponent<PlayerCrouching>();
         _playerFalling = GetComponent<PlayerFalling>();
+        _playerDashing = GetComponent<PlayerDashing>();
 
 
 
@@ -111,9 +116,10 @@ public partial class Player : MonoBehaviour
     {
         if (GameManager.Instance.IsGamePaused) return;
 
-        
-        _playerCroching.CheckCroch();
-        _playerMoving.CheckRun();
+
+        _playerDashing.HandleDash();
+
+        if (IsDashing) return;
 
         if (_knockbackReceiver.IsKnockbacked) return;
 
@@ -123,10 +129,16 @@ public partial class Player : MonoBehaviour
             return;
         }
 
+
+        _playerCrouching.CheckCrouch();
+        _playerMoving.CheckRun();
+
+
+
         _playerWallJumping.HandleWallSlide();
         _playerWallJumping.HandleWallJump();
 
-        if (!IsCroching)
+        if (!IsCrouching)
         {
             _playerJumping.HandleJump();
         }
@@ -145,6 +157,7 @@ public partial class Player : MonoBehaviour
         if (!IsWallSliding)
         {
             PlayerSprite.UpdateSprite();
+            UpdateDirection();
         }
 
         PlayerAnimation.UpdateAnimation();
@@ -153,6 +166,16 @@ public partial class Player : MonoBehaviour
     {
         _playerJumping.CheckGround();
         _playerWallJumping.CheckWall();
+    }
+    private void UpdateDirection()
+    {
+        if (IsRightMove)
+        {
+            DirectionX = 1;
+        }else if (IsLeftMove)
+        {
+            DirectionX = -1;
+        }
     }
 
     private void HandleGravity()

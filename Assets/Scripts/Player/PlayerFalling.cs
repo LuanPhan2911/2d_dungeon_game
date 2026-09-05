@@ -19,7 +19,7 @@ public class PlayerFalling : MonoBehaviour
     {
         yield return new WaitForSeconds(_fallingStunedDuration);
         _player.IsFall = false;
-        _player.PlayerAnimation.SetTriggerEndCroch();
+        _player.PlayerAnimation.SetTriggerEndCrouch();
     }
 
     private void OnCollisionEnter2D(Collision2D collision)
@@ -32,7 +32,7 @@ public class PlayerFalling : MonoBehaviour
                 // trigger falling animation
                 _player.IsFall = true;
                 StartCoroutine(FallingStunnedCorountine());
-                _player.PlayerAnimation.SetTriggerStartCroch();
+                _player.PlayerAnimation.SetTriggerStartCrouch();
                 // trigger falling sound
                 AudioManager.Instance.Play(_fallingSound, transform.position);
 
