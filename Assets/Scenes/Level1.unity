@@ -1876,7 +1876,7 @@ Transform:
   m_GameObject: {fileID: 1025414980}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0.756, z: 0}
+  m_LocalPosition: {x: 0, y: 0.779, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -9334,11 +9334,11 @@ GameObject:
   - component: {fileID: 6786133018298536034}
   - component: {fileID: 9097980118357893978}
   - component: {fileID: 7255606566024709955}
-  - component: {fileID: 5570875631099867408}
   - component: {fileID: 3590639021630055598}
   - component: {fileID: 9097980118357893981}
   - component: {fileID: 9097980118357893982}
   - component: {fileID: 9097980118357893983}
+  - component: {fileID: 9097980118357893984}
   m_Layer: 7
   m_Name: Player
   m_TagString: Player
@@ -10833,7 +10833,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::PlayerWallJumping
   CanWallSlide: 0
-  WallJumpDirection: 0
+  _wallJumpDirection: 0
   _wallJumpVelocity: {x: 6, y: 8}
   _slidingVelocityY: 1.5
   _wallCheckPoint: {fileID: 1518458327}
@@ -11418,8 +11418,9 @@ MonoBehaviour:
   IsRunning: 0
   IsTurning: 0
   IsDashing: 0
+  IsAttacking: 0
   DirectionX: 1
-  FallGravityMuliplier: 5
+  FallGravityMuliplier: 3.5
   LowJumpMultiplier: 2
   GroundLayerMask:
     serializedVersion: 2
@@ -11756,21 +11757,6 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!114 &5570875631099867408
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 437736530235574217}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 1c03df7cd7d82a948ac6a089ab64d6fd, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::PlayerFalling
-  _stunnedFallingVelocity: 30
-  _fallingStunedDuration: 0.5
-  _fallingSound: {fileID: 8300000, guid: ff9fad9534614b849b1a2eae6a07af39, type: 3}
 --- !u!114 &5584563683963634187
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -13720,6 +13706,22 @@ MonoBehaviour:
   _distanceCheck: 0.5
   _ledgeCheckPoint: {fileID: 1025414981}
   _climbOffset: {x: 0.5, y: 0.5}
+--- !u!114 &9097980118357893984
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 437736530235574217}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 997096136fcf033499d75bf297abeac9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::PlayerAttack
+  ComboStep: 0
+  _comboResetTime: 1.5
+  _maxComboStep: 4
+  _crouchAttackStep: 4
 --- !u!114 &9202689964020416189
 MonoBehaviour:
   m_ObjectHideFlags: 0

@@ -20,9 +20,14 @@ public class PlayerAnimation : MonoBehaviour
 
     const string IS_CROUCH_WALKING = "IsCrouchWalking";
 
+
+    const string ATTACK_COMBO = "AttackCombo";
+
+ 
+
     // trigger parameter 
 
-
+    const string ATTACK = "Attack";
 
     const string TURN = "Turn";
 
@@ -67,7 +72,14 @@ public class PlayerAnimation : MonoBehaviour
         return horizontal;
     }
 
-
+    public void SetTriggerAttack()
+    {
+        _animator.SetTrigger(ATTACK);
+    }
+    public void SetAttackCombo(int comboStep)
+    {
+        _animator.SetInteger(ATTACK_COMBO, comboStep);
+    }
     public void SetHorizontal(float horizontal)
     {
         _animator.SetFloat(HORIZONTAL, Mathf.Abs(horizontal));
@@ -80,6 +92,7 @@ public class PlayerAnimation : MonoBehaviour
     {
         _animator.SetFloat (VERTICAL, vertical);
     }
+   
 
     public void SetGrounded(bool isGrounded)
     {

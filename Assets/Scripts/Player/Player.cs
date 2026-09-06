@@ -42,6 +42,8 @@ public partial class Player : MonoBehaviour
 
     public bool IsDashing;
 
+    public bool IsAttacking;
+
 
 
     public bool IsHorizontalMoving => Mathf.Abs(HorizontalInput) > 0.1f;
@@ -78,6 +80,7 @@ public partial class Player : MonoBehaviour
     private PlayerCrouching _playerCrouching;
     private PlayerDashing _playerDashing;
     private PlayerClimbing _playerClimbing;
+    private PlayerAttack _playerAttack;
 
     public int Coin { get => _playerData.Coin; private set => _playerData.Coin = value; }
     public int Health { get => _playerData.Health; private set => _playerData.Health = value; }
@@ -101,6 +104,8 @@ public partial class Player : MonoBehaviour
         _playerCrouching = GetComponent<PlayerCrouching>();
         _playerDashing = GetComponent<PlayerDashing>();
         _playerClimbing = GetComponent<PlayerClimbing>();
+
+        _playerAttack = GetComponent<PlayerAttack>();
 
 
 
@@ -127,6 +132,8 @@ public partial class Player : MonoBehaviour
 
 
         _playerClimbing.HandleClimbing();
+
+        _playerAttack.HandleAttack();
 
         _playerDashing.HandleDashing();
         _playerCrouching.HandleCrouching();

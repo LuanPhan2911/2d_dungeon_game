@@ -16,6 +16,7 @@ public class GameInputManager : MonoBehaviour
     public InputAction PlayerCrouchAction;
 
     public InputAction PlayerRunAction;
+    public InputAction PlayerAttackAction;
 
     public InputAction UIPauseAction;
 
@@ -62,6 +63,7 @@ public class GameInputManager : MonoBehaviour
         PlayerJumpAction = _inputActions.Player.Jump;
         PlayerCrouchAction = _inputActions.Player.CrouchWalk;
         PlayerRunAction= _inputActions.Player.Run;
+        PlayerAttackAction= _inputActions.Player.Attack;
         // UI
         UIPauseAction = _inputActions.UI.Pause;
 
@@ -70,6 +72,7 @@ public class GameInputManager : MonoBehaviour
         PlayerJumpAction.Enable();
         PlayerCrouchAction.Enable();
         PlayerRunAction.Enable();
+        PlayerAttackAction.Enable();
         UIPauseAction.Enable();
 
     }
