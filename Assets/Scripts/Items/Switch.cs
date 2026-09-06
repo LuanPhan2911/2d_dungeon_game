@@ -14,7 +14,7 @@ public class Switch : MonoBehaviour
 
 
     private SpriteRenderer _currentSprite;
-    private float _delayTimer = 0f;
+    private float _delayCounter = 0f;
 
     [SerializeField] private InteractUI _interactUI;
 
@@ -39,17 +39,17 @@ public class Switch : MonoBehaviour
 
     private void Update()
     {
-        if (_delayTimer > 0)
+        if (_delayCounter > 0)
         {
-            _delayTimer -= Time.deltaTime;
+            _delayCounter -= Time.deltaTime;
         }
 
-        if (CanInteract && _delayTimer <= 0)
+        if (CanInteract && _delayCounter <= 0)
         {
             if (GameInputManager.Instance.PlayerMoveAction.WasPressedThisFrame() &&
                 GameInputManager.Instance.IsUpPressed())
             {
-                _delayTimer = _delayTime;
+                _delayCounter = _delayTime;
                 _isOn = !_isOn;
                 _currentSprite.sprite = _isOn ? _onSwitchSprite : _offSwitchSprite;
                 OnSwitchChanged.Invoke(_isOn);

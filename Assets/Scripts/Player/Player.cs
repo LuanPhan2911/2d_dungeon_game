@@ -1,6 +1,7 @@
 using System;
 using UnityEngine;
 using UnityEngine.InputSystem;
+using static UnityEditor.Experimental.GraphView.GraphView;
 
 public partial class Player : MonoBehaviour
 {
@@ -41,14 +42,18 @@ public partial class Player : MonoBehaviour
 
     public bool IsDashing;
 
+
+
     public bool IsHorizontalMoving => Mathf.Abs(HorizontalInput) > 0.1f;
     public bool IsVerticalMoving => Mathf.Abs(VerticalInput) > 0.1f;
     public int DirectionX = 1;
+    public bool IsStopAction => (IsClimbing || IsDashing || IsTurning);
+
 
     public bool IsLeftMove => HorizontalInput < 0f;
     public bool IsRightMove => HorizontalInput > 0f;
     [Header("Gravity")]  
-    public float FallGravityMuliplier = 2.5f;
+    public float FallGravityMuliplier = 3.5f;
     public float LowJumpMultiplier = 2f;
   
     [Header("Mask")]
@@ -71,8 +76,8 @@ public partial class Player : MonoBehaviour
     private PlayerMoving _playerMoving;
     private PlayerWallJumping _playerWallJumping;
     private PlayerCrouching _playerCrouching;
-    private PlayerFalling _playerFalling;
     private PlayerDashing _playerDashing;
+    private PlayerClimbing _playerClimbing;
 
     public int Coin { get => _playerData.Coin; private set => _playerData.Coin = value; }
     public int Health { get => _playerData.Health; private set => _playerData.Health = value; }
@@ -94,8 +99,8 @@ public partial class Player : MonoBehaviour
         _playerMoving = GetComponent<PlayerMoving>();
         _playerWallJumping = GetComponent<PlayerWallJumping>();
         _playerCrouching = GetComponent<PlayerCrouching>();
-        _playerFalling = GetComponent<PlayerFalling>();
         _playerDashing = GetComponent<PlayerDashing>();
+        _playerClimbing = GetComponent<PlayerClimbing>();
 
 
 
@@ -116,56 +121,34 @@ public partial class Player : MonoBehaviour
     {
         if (GameManager.Instance.IsGamePaused) return;
 
-
-        _playerDashing.HandleDash();
-
-        if (IsDashing) return;
-
-        if (_knockbackReceiver.IsKnockbacked) return;
-
-        if (IsFall)
-        {
-            _playerFalling.HandleFall();
-            return;
-        }
-
-
-        _playerCrouching.CheckCrouch();
-        _playerMoving.CheckRun();
+        UpdateDirection();
+        UpdateInput();
 
 
 
+        _playerClimbing.HandleClimbing();
+
+        _playerDashing.HandleDashing();
+        _playerCrouching.HandleCrouching();
+        _playerJumping.HandleJump();
         _playerWallJumping.HandleWallSlide();
         _playerWallJumping.HandleWallJump();
-
-        if (!IsCrouching)
-        {
-            _playerJumping.HandleJump();
-        }
+      
+        _playerMoving.HandleMoving();
 
 
-
-        if (!IsWallJumping)
-        {
-            _playerMoving.HandleMoving();
-        }
-
-        HandleGravity();
     }
     private void LateUpdate()
     {
-        if (!IsWallSliding)
-        {
-            PlayerSprite.UpdateSprite();
-            UpdateDirection();
-        }
-
+        PlayerSprite.UpdateSprite();
         PlayerAnimation.UpdateAnimation();
+        HandleGravity();
     }
     private void FixedUpdate()
     {
         _playerJumping.CheckGround();
         _playerWallJumping.CheckWall();
+        _playerClimbing.CheckLedge();
     }
     private void UpdateDirection()
     {
@@ -176,6 +159,12 @@ public partial class Player : MonoBehaviour
         {
             DirectionX = -1;
         }
+    }
+    private void UpdateInput()
+    {
+       HorizontalInput = GameInputManager.Instance.GetHorizontalInput();
+        VerticalInput= GameInputManager.Instance.GetVerticalInput();
+
     }
 
     private void HandleGravity()
@@ -221,6 +210,11 @@ public partial class Player : MonoBehaviour
         Rb.linearVelocity = Vector2.zero;
 
         Rb.AddForce(normal * force, ForceMode2D.Impulse);
+    }
+
+    public void SetPosition(Vector2 position)
+    {
+        transform.position= position; 
     }
 
    

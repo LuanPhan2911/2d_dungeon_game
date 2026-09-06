@@ -10,39 +10,37 @@ public class PlayerCrouching : MonoBehaviour
         _player = GetComponent<Player>();
     }
 
-    public void CheckCrouch()
+    public void HandleCrouching()
     {
-        if (!_player.IsGrounded)
+        if (!_player.IsGrounded|| _player.IsStopAction)
         {
             _player.IsCrouching = false;
             return;
         }
 
+        if ( GameInputManager.Instance.PlayerCrouchAction.IsPressed())
+        {
+            _player.IsCrouching = true;
+        }
+        else 
+        {
+            _player.IsCrouching = false;
+        }
 
-        if ( GameInputManager.Instance.PlayerCrouchAction.WasPressedThisFrame())
-        {
-            
-            _player.PlayerAnimation.SetTriggerStartCrouch();
-        }
-        else if (GameInputManager.Instance.PlayerCrouchAction.WasReleasedThisFrame())
-        {
-            _player.PlayerAnimation.SetTriggerEndCrouch();
-            
-        }
+        HandleCrouchWalking();
     }
 
-    public void UpdateVelocity()
+
+    private void HandleCrouchWalking()
     {
-        
-        if (_player.IsCrouching && _player.IsHorizontalMoving)
+        if(_player.IsCrouching && _player.IsHorizontalMoving)
         {
             _player.IsCrouchWalking = true;
-            _player.CurrentVelocity = _player.CrouchWalkVelocity;  
         }
         else
         {
             _player.IsCrouchWalking = false;
-            _player.CurrentVelocity = _player.WalkVelocity;
         }
     }
+    
 }

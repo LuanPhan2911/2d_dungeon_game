@@ -8,6 +8,8 @@ public class PlayerDashing : MonoBehaviour
 
     public bool CanDash = true;
 
+    public bool CanResetDash ;
+
     [SerializeField] private float _dashCooldown = 0.75f;
 
     [SerializeField] private float _dashDuration = 0.2f;
@@ -18,7 +20,7 @@ public class PlayerDashing : MonoBehaviour
 
     private Player _player;
 
-    private float _dashCooldownTimer = 0f;
+    private float _dashCooldownCounter = 0f;
 
     private void Awake()
     {
@@ -27,17 +29,20 @@ public class PlayerDashing : MonoBehaviour
 
 
 
-    public void HandleDash()
+    public void HandleDashing()
     {
+        if (_player.IsCrouching || _player.IsStopAction)
+        {
+            CanDash = false;
+            return;
+        }
+
         if(!CanDash && !_player.IsDashing)
         {
-            _dashCooldownTimer -= Time.deltaTime;
+            _dashCooldownCounter -= Time.deltaTime;
+            ResetDash();
 
-            if (CanResetDash())
-            {
-                _dashCooldownTimer = 0f;
-                CanDash = true;
-            }
+
         }
 
         if(GameInputManager.Instance.PlayerRunAction.WasPressedThisFrame() && CanDash)
@@ -46,18 +51,43 @@ public class PlayerDashing : MonoBehaviour
             StartCoroutine(Dash());
         }
 
+        // after dash if continue press dash button, player sprint
+
+        HandleRun();
+    }
+
+    private void HandleRun()
+    {
+        if (!_player.IsGrounded)
+        {
+            _player.IsRunning = false;
+            return;
+        }
+        if (GameInputManager.Instance.PlayerRunAction.IsPressed() && _player.IsHorizontalMoving)
+        {
+            _player.IsRunning = true;
+
+            TriggerTurn();
+        }
+        else
+        {
+            _player.IsRunning = false;
+        }
     }
 
     private IEnumerator Dash()
     {
         CanDash = false;
+        CanResetDash = false;
 
         _player.IsDashing = true;
 
         float originalGravityScale = _player.Rb.gravityScale;
         _player.Rb.gravityScale = 0f;
 
-        _player.Rb.linearVelocity = new Vector2(_player.DirectionX * _dashVelocityX, 0f);
+        int direction = _player.IsWallSliding ? -_player.DirectionX : _player.DirectionX;
+
+        _player.Rb.linearVelocity = new Vector2(direction * _dashVelocityX, 0f);
 
         _dashFX.PlayDashFX(true);
 
@@ -67,7 +97,7 @@ public class PlayerDashing : MonoBehaviour
 
 
         _player.IsDashing = false;
-        _dashCooldownTimer = _dashCooldown;
+        _dashCooldownCounter = _dashCooldown;
         _dashFX.PlayDashFX(false);
 
 
@@ -76,10 +106,34 @@ public class PlayerDashing : MonoBehaviour
     }
     
 
-
-    private bool CanResetDash()
+    private void ResetDash()
     {
+        if (_player.IsGrounded || _player.IsWallSliding)
+        {
+            CanResetDash = true;
+        }
+       
+        if (CanResetDash && _dashCooldownCounter <= 0f)
+        {
+            _dashCooldownCounter = 0f;
+            CanDash = true;
+        }
+    }
+   
 
-        return (_player.IsGrounded || _player.IsWallSliding) && _dashCooldownTimer <= 0f;
+    private void TriggerTurn()
+    {
+        if ((_player.IsRightMove && !_player.IsFacingRight) ||(_player.IsLeftMove && _player.IsFacingRight))
+        {
+            _player.IsTurning = true;
+            _player.PlayerAnimation.SetTriggerTurn();
+        }
+    }
+
+
+    public void FinishTurn()
+    {
+        _player.IsTurning = false;
+        
     }
 }

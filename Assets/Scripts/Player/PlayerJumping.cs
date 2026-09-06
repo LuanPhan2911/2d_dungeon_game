@@ -6,7 +6,7 @@ public class PlayerJumping : MonoBehaviour
 
     [SerializeField] private float _jumpVelocityY = 8f;
 
-    [SerializeField] private Vector2 _runJumpVelocity = new Vector2(10, 10);
+    [SerializeField] private Vector2 _runJumpVelocity = new Vector2(8, 10);
 
     [SerializeField] private AudioClip _jumpSound;
 
@@ -45,6 +45,9 @@ public class PlayerJumping : MonoBehaviour
    
     public void HandleJump()
     {
+        if (_player.IsCrouching || _player.IsStopAction) return;
+
+
         // 1. COYOTE TIME LOGIC
         if (_player.IsGrounded)
         {
@@ -70,15 +73,9 @@ public class PlayerJumping : MonoBehaviour
         if (_coyoteTimeCounter >0f && _jumpBufferCounter>0f)
         {
 
-            if (_player.IsRunning)
-            {
-                _player.Rb.linearVelocity = new Vector2(_runJumpVelocity.x * _player.DirectionX, _runJumpVelocity.y);
-            }
-            else
-            {
-                _player.Rb.linearVelocity = new Vector2(_player.Rb.linearVelocityX, _jumpVelocityY);
-            }
-            _coyoteTimeCounter = 0f;
+
+            ExecuteJump();
+             _coyoteTimeCounter = 0f;
             _jumpBufferCounter = 0f;
 
             AudioManager.Instance.Play(_jumpSound, transform.position);
@@ -112,6 +109,21 @@ public class PlayerJumping : MonoBehaviour
         }
        
 
+    }
+
+
+    private void ExecuteJump()
+    {
+        // if player is run, execute special jump with higher height and distance
+        if (_player.IsRunning)
+        {
+            _player.Rb.linearVelocity = new Vector2(_runJumpVelocity.x * _player.DirectionX, _runJumpVelocity.y);
+        }
+        else
+        {
+            // normal jump
+            _player.Rb.linearVelocity = new Vector2(_player.Rb.linearVelocityX, _jumpVelocityY);
+        }
     }
 
 

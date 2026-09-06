@@ -3,74 +3,79 @@ using UnityEngine;
 public class PlayerClimbing : MonoBehaviour
 {
 
-    [SerializeField] private float _climbingVelocity = 1f;
+
     public bool CanClimb = false;
 
+
+
+
+    [SerializeField] private float _distanceCheck = 0.5f;
+
+    [SerializeField] private Transform _ledgeCheckPoint;
+
+    [SerializeField] private Vector2 _climbOffset = new Vector2(0.5f, 1f);
+
+    private void OnDrawGizmos()
+    {
+        Gizmos.color = Color.green;
+
+        Vector3 from = _ledgeCheckPoint.position;
+        int direction = _player != null ? _player.DirectionX : 1;
+        Vector3 to = from + Vector3.right * direction * _distanceCheck ;
+
+        Gizmos.DrawLine( from, to );
+
+
+    }
+
     private Player _player;
+    private PlayerWallJumping _playerWallJumping;
 
     private void Awake()
     {
         _player = GetComponent<Player>();
+        _playerWallJumping = GetComponent<PlayerWallJumping>();
+
 
     }
 
     public void HandleClimbing()
     {
+        if (_player.IsStopAction) return;
 
 
-       _player.VerticalInput = GameInputManager.Instance.GetVerticalInput();
-        _player.HorizontalInput = GameInputManager.Instance.GetHorizontalInput();
         if (CanClimb)
         {
            
-            if (_player.IsVerticalMoving)
-            {
-                _player.IsClimbing = true;
-                _player.PlayerAnimation.SetClimbing(true);
-                _player.PlayerAnimation.StartCurrentAnimation();
-                _player.Rb.linearVelocity = new Vector2(0f, _player.VerticalInput * _climbingVelocity);
-            }
-            else
-            {
-                // player is not climbing
-                if (_player.IsClimbing)
-                {
-                    _player.Rb.linearVelocity = Vector2.zero;
-                    _player.PlayerAnimation.PauseCurrentAnimation();
-                }
+            _player.IsClimbing = true;
+            _player.Rb.linearVelocity = Vector2.zero;
 
-                if (_player.IsClimbing && _player.IsGrounded && _player.IsHorizontalMoving)
-                {
-                    Debug.Log("Player want to movement");
-                    _player.IsClimbing = false;
-                    _player.PlayerAnimation.SetClimbing(false);
-                    _player.PlayerAnimation.StartCurrentAnimation();
+            _player.Rb.bodyType = RigidbodyType2D.Kinematic;
 
-                }
-
-                // Stop climb
-                if (_player.IsClimbing && GameInputManager.Instance.PlayerJumpAction.WasPressedThisFrame())
-                {
-                    Debug.Log("Player Stop climbing");
-                    _player.IsClimbing = false;
-                    _player.PlayerAnimation.SetClimbing(false);
-                    _player.PlayerAnimation.StartCurrentAnimation();
-                    _player.Rb.linearVelocity = Vector2.zero;
-                }
-            }
-
-
-
-
+            _player.PlayerAnimation.SetTriggerClimbUp();
         }
-        else
-        {
-            _player.IsClimbing = false;
-            _player.PlayerAnimation.SetClimbing(false);
-            _player.PlayerAnimation.StartCurrentAnimation();
+    }
+    public void FinishClimb()
+    {
+        _player.IsClimbing = false;
+        _player.Rb.bodyType = RigidbodyType2D.Dynamic;
 
-        }
+        Vector2 climbPosition= new Vector2(transform.position.x + _player.DirectionX * _climbOffset.x, transform.position.y + _climbOffset.y);
 
+
+        _player.SetPosition(climbPosition);
+
+    }
+
+    public void CheckLedge()
+    {
+        CanClimb = false;
+        if (_player.IsGrounded || _player.IsClimbing) return;
+
+        Vector2 origin = (Vector2)_ledgeCheckPoint.position;
+        RaycastHit2D isLedgeHit = Physics2D.Raycast(origin, Vector2.right * _player.DirectionX, _distanceCheck, _player.WallLayerMask);
+
+        CanClimb = _playerWallJumping.CanWallSlide && !isLedgeHit  ;
     }
 
 

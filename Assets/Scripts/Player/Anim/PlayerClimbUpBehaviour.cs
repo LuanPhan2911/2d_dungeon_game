@@ -1,8 +1,8 @@
-using Unity.VisualScripting;
-using UnityEngine;
-using static UnityEditor.Experimental.GraphView.GraphView;
 
-public class PlayerTurnAroundBehaviour : StateMachineBehaviour
+using UnityEngine;
+
+
+public class PlayerClimUpBehavior : StateMachineBehaviour
 {
     // OnStateEnter is called when a transition starts and the state machine starts to evaluate this state
     //override public void OnStateEnter(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
@@ -19,10 +19,9 @@ public class PlayerTurnAroundBehaviour : StateMachineBehaviour
     // OnStateExit is called when a transition ends and the state machine finishes evaluating this state
     override public void OnStateExit(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
     {
-        Player player = animator.GetComponent<Player>();
-        player.IsTurning = false;
-
-        player.SpriteRenderer.flipX = !player.IsFacingRight;
+       
+        animator.GetComponent<PlayerClimbing>().FinishClimb();
+        
     }
 
     // OnStateMove is called right after Animator.OnAnimatorMove()

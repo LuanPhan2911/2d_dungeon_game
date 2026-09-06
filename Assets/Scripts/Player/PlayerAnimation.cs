@@ -16,18 +16,17 @@ public class PlayerAnimation : MonoBehaviour
 
     const string IS_GROUNDED = "IsGrounded";
     const string IS_DASHING = "IsDashing";
+    const string IS_CROUCHING = "IsCrouching";
 
     const string IS_CROUCH_WALKING = "IsCrouchWalking";
 
     // trigger parameter 
 
- 
 
-    const string START_CROUCH= "StartCrouch";
-
-    const string END_CROUCH = "EndCrouch";
 
     const string TURN = "Turn";
+
+    const string CLIMB_UP = "ClimbUp";
 
     private Player _player;
 
@@ -51,6 +50,7 @@ public class PlayerAnimation : MonoBehaviour
         SetSliding(_player.IsWallSliding);
         SetCrouchWalking(_player.IsCrouchWalking);
         SetDashing(_player.IsDashing);
+        SetCrouching(_player.IsCrouching);
     }
 
     private float GetHorizontalValue()
@@ -86,13 +86,9 @@ public class PlayerAnimation : MonoBehaviour
         _animator.SetBool(IS_GROUNDED, isGrounded);
     }
 
-    public void SetTriggerStartCrouch()
+    public void SetCrouching(bool isCrouching)
     {
-        _animator.SetTrigger(START_CROUCH);
-    }
-    public void SetTriggerEndCrouch()
-    {
-        _animator.SetTrigger(END_CROUCH);
+        _animator.SetBool(IS_CROUCHING, isCrouching);
     }
    
     public void SetSwimming(bool isSwimming)
@@ -108,7 +104,7 @@ public class PlayerAnimation : MonoBehaviour
     {
         _animator.speed = 1f;
     }
-    public void SetTriggerTurnAround()
+    public void SetTriggerTurn()
     {
         _animator.SetTrigger(TURN);
     }
@@ -117,7 +113,10 @@ public class PlayerAnimation : MonoBehaviour
     {
         _animator.SetBool(IS_DASHING, isDashing);
     }
-    
+    public void SetTriggerClimbUp()
+    {
+        _animator.SetTrigger(CLIMB_UP);
+    }
     private float GetVerticalValue()
     {
         float vertical = 0;
