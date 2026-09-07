@@ -78,7 +78,7 @@ public class PlayerAnimation : MonoBehaviour
     }
     public void SetAttackCombo(int comboStep)
     {
-        _animator.SetInteger(ATTACK_COMBO, comboStep);
+        _animator.SetFloat(ATTACK_COMBO, comboStep);
     }
     public void SetHorizontal(float horizontal)
     {

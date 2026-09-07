@@ -1,7 +1,6 @@
 using System;
 using UnityEngine;
-using UnityEngine.InputSystem;
-using static UnityEditor.Experimental.GraphView.GraphView;
+
 
 public partial class Player : MonoBehaviour
 {
@@ -22,13 +21,19 @@ public partial class Player : MonoBehaviour
     public float HorizontalInput;
     public float VerticalInput;
 
-   
+
+    public int LastHorizontalInput = 1;
+
+
+
+
 
 
 
     [Header("Player State")]
 
     public bool IsFacingRight = true;
+    public int FacingDirection = 1;
     public bool IsGrounded;
     public bool IsFall;
     public bool IsClimbing;
@@ -48,7 +53,7 @@ public partial class Player : MonoBehaviour
 
     public bool IsHorizontalMoving => Mathf.Abs(HorizontalInput) > 0.1f;
     public bool IsVerticalMoving => Mathf.Abs(VerticalInput) > 0.1f;
-    public int DirectionX = 1;
+ 
     public bool IsStopAction => (IsClimbing || IsDashing || IsTurning);
 
 
@@ -161,10 +166,10 @@ public partial class Player : MonoBehaviour
     {
         if (IsRightMove)
         {
-            DirectionX = 1;
+            LastHorizontalInput = 1;
         }else if (IsLeftMove)
         {
-            DirectionX = -1;
+            LastHorizontalInput = -1;
         }
     }
     private void UpdateInput()

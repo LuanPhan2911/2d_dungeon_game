@@ -20,7 +20,7 @@ public class PlayerClimbing : MonoBehaviour
         Gizmos.color = Color.green;
 
         Vector3 from = _ledgeCheckPoint.position;
-        int direction = _player != null ? _player.DirectionX : 1;
+        int direction = _player != null ? _player.LastHorizontalInput : 1;
         Vector3 to = from + Vector3.right * direction * _distanceCheck ;
 
         Gizmos.DrawLine( from, to );
@@ -60,7 +60,7 @@ public class PlayerClimbing : MonoBehaviour
         _player.IsClimbing = false;
         _player.Rb.bodyType = RigidbodyType2D.Dynamic;
 
-        Vector2 climbPosition= new Vector2(transform.position.x + _player.DirectionX * _climbOffset.x, transform.position.y + _climbOffset.y);
+        Vector2 climbPosition= new Vector2(transform.position.x + _player.LastHorizontalInput * _climbOffset.x, transform.position.y + _climbOffset.y);
 
 
         _player.SetPosition(climbPosition);
@@ -73,7 +73,7 @@ public class PlayerClimbing : MonoBehaviour
         if (_player.IsGrounded || _player.IsClimbing) return;
 
         Vector2 origin = (Vector2)_ledgeCheckPoint.position;
-        RaycastHit2D isLedgeHit = Physics2D.Raycast(origin, Vector2.right * _player.DirectionX, _distanceCheck, _player.WallLayerMask);
+        RaycastHit2D isLedgeHit = Physics2D.Raycast(origin, Vector2.right * _player.LastHorizontalInput, _distanceCheck, _player.WallLayerMask);
 
         CanClimb = _playerWallJumping.CanWallSlide && !isLedgeHit  ;
     }

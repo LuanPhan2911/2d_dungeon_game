@@ -85,7 +85,11 @@ public class PlayerDashing : MonoBehaviour
         float originalGravityScale = _player.Rb.gravityScale;
         _player.Rb.gravityScale = 0f;
 
-        int direction = _player.IsWallSliding ? -_player.DirectionX : _player.DirectionX;
+        int direction = _player.IsWallSliding ? _player.FacingDirection : _player.LastHorizontalInput;
+
+        bool isFacingRight = direction == 1;
+
+        _player.PlayerSprite.SetFacingRight(isFacingRight);
 
         _player.Rb.linearVelocity = new Vector2(direction * _dashVelocityX, 0f);
 

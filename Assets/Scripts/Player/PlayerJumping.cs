@@ -45,6 +45,11 @@ public class PlayerJumping : MonoBehaviour
    
     public void HandleJump()
     {
+
+
+
+       
+
         if (_player.IsCrouching || _player.IsStopAction) return;
 
 
@@ -58,7 +63,6 @@ public class PlayerJumping : MonoBehaviour
             _coyoteTimeCounter -= Time.deltaTime;
         }
 
-
         // 2. JUMP BUFFER LOGIC
         if (GameInputManager.Instance.PlayerJumpAction.WasPressedThisFrame())
         {
@@ -66,8 +70,10 @@ public class PlayerJumping : MonoBehaviour
         }
         else
         {
-            _jumpBufferCounter-= Time.deltaTime;
+            _jumpBufferCounter -= Time.deltaTime;
         }
+
+
 
         // 3. EXECUTE JUMP
         if (_coyoteTimeCounter >0f && _jumpBufferCounter>0f)
@@ -117,7 +123,7 @@ public class PlayerJumping : MonoBehaviour
         // if player is run, execute special jump with higher height and distance
         if (_player.IsRunning)
         {
-            _player.Rb.linearVelocity = new Vector2(_runJumpVelocity.x * _player.DirectionX, _runJumpVelocity.y);
+            _player.Rb.linearVelocity = new Vector2(_runJumpVelocity.x * _player.FacingDirection, _runJumpVelocity.y);
         }
         else
         {

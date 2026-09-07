@@ -9,11 +9,14 @@ public class PlayerAttack : MonoBehaviour
     
 
     [SerializeField] private float _comboResetTime = 1.5f;
-    [SerializeField] private int _maxComboStep = 4;
+    [SerializeField] private int _jumpComboStep = 4;
+    [SerializeField] private int _groundComboStep = 2;
+    [SerializeField] private int _crouchComboStep = 1;
 
-    [SerializeField] private int _crouchAttackStep = 4;
+
 
     private float _lastClickTime;
+    private int _currentComboStep;
 
 
     private Player _player;
@@ -26,7 +29,12 @@ public class PlayerAttack : MonoBehaviour
 
     public void HandleAttack()
     {
-        if (_player.IsWallSliding  || _player.IsStopAction) return;
+        if (_player.IsWallSliding  || _player.IsStopAction)
+        {
+            _player.IsAttacking = false;
+            ResetCombo();
+            return;
+        }
 
         if(Time.time - _lastClickTime > _comboResetTime && !_player.IsAttacking)
         {
@@ -46,17 +54,33 @@ public class PlayerAttack : MonoBehaviour
     private void Attack()
     {
         _player.IsAttacking = true;
+        _player.Rb.linearVelocity = new Vector2(0, _player.Rb.linearVelocityY);
 
+        
+
+        int maxComboStep;
         if (_player.IsCrouching)
         {
-            ComboStep = _crouchAttackStep;
+            maxComboStep = _crouchComboStep;
+        }
+        else if (_player.IsGrounded)
+        {
+            maxComboStep = _groundComboStep;
         }
         else
         {
-            ComboStep = ComboStep==_maxComboStep ? 1: ComboStep +1;
+            maxComboStep = _jumpComboStep;
         }
-        
-      
+        if(_currentComboStep != maxComboStep)
+        {
+            ResetCombo();
+        }
+
+        _currentComboStep= maxComboStep;
+
+
+        ComboStep = ComboStep == maxComboStep ? 1 : ComboStep + 1;
+
 
         _player.PlayerAnimation.SetTriggerAttack();
         _player.PlayerAnimation.SetAttackCombo(ComboStep);
@@ -70,8 +94,5 @@ public class PlayerAttack : MonoBehaviour
     private void ResetCombo()
     {
         ComboStep = 0;
-
-        _player.PlayerAnimation.SetAttackCombo(0);
-
     }
 }

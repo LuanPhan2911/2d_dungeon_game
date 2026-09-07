@@ -23,7 +23,7 @@ public class PlayerSprite : MonoBehaviour
     public void UpdateSprite()
 
     {
-        if ( _player.IsWallSliding || _player.IsWallJumping|| _player.IsStopAction) return;
+        if ( _player.IsWallSliding || _player.IsWallJumping || _player.IsAttacking|| _player.IsStopAction) return;
         // 2 case:
         // grounded: 
 
@@ -40,6 +40,7 @@ public class PlayerSprite : MonoBehaviour
     public void SetFacingRight(bool isFacingRight)
     {
         _player.IsFacingRight = isFacingRight;
+        _player.FacingDirection= isFacingRight ? 1 : -1;
         _player.SpriteRenderer.flipX = !isFacingRight;
 
     }

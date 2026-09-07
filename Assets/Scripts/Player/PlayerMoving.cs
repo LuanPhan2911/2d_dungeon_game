@@ -17,7 +17,7 @@ public class PlayerMoving : MonoBehaviour
     }
     public void HandleMoving()
     {
-        if(_player.IsWallJumping|| _player.IsStopAction)
+        if(_player.IsWallJumping|| _player.IsStopAction || _player.IsAttacking)
         {
             return;
         }

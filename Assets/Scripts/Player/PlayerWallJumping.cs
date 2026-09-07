@@ -7,10 +7,6 @@ public class PlayerWallJumping : MonoBehaviour
 
     public bool CanWallSlide = false;
 
-    public int _wallJumpDirection;
-
-
-
     [SerializeField]  private Vector2 _wallJumpVelocity = new Vector2(6, 10);
 
     [SerializeField] private float _slidingVelocityY = 1f;
@@ -86,7 +82,7 @@ public class PlayerWallJumping : MonoBehaviour
         {
 
             _player.IsWallJumping = true;
-            _player.Rb.linearVelocity = new Vector2(_wallJumpDirection * _wallJumpVelocity.x, _wallJumpVelocity.y); ;
+            _player.Rb.linearVelocity = new Vector2(_player.FacingDirection * _wallJumpVelocity.x, _wallJumpVelocity.y); ;
             
             _coyoteTimeCounter = 0f;
             _jumpBufferCounter = 0f;
@@ -117,7 +113,7 @@ public class PlayerWallJumping : MonoBehaviour
     {
         Gizmos.color = Color.blue;
         Vector3 from = _wallCheckPoint.position;
-        int direction = _player != null ? _player.DirectionX : 1;
+        int direction = _player != null ? _player.LastHorizontalInput : 1;
         Vector3 to = from + Vector3.right * direction * _distanceCheck;
 
         Gizmos.DrawLine(from, to);
@@ -147,9 +143,8 @@ public class PlayerWallJumping : MonoBehaviour
                 // first time touch wall
 
                 _clingCounter = _clingWallDuration;
-                bool isFacingRight = _player.DirectionX == -1;
+                bool isFacingRight = _player.LastHorizontalInput == -1;
                 _player.PlayerSprite.SetFacingRight(isFacingRight);
-                _wallJumpDirection = -_player.DirectionX;
                 _player.IsWallSliding = true;
             }
 
@@ -191,7 +186,7 @@ public class PlayerWallJumping : MonoBehaviour
     {
        
         Vector2 origin = (Vector2)_wallCheckPoint.position;
-        CanWallSlide = Physics2D.Raycast(origin, Vector2.right * _player.DirectionX, _distanceCheck, _player.WallLayerMask);
+        CanWallSlide = Physics2D.Raycast(origin, Vector2.right * _player.LastHorizontalInput, _distanceCheck, _player.WallLayerMask);
 
     }
 }
