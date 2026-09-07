@@ -4,35 +4,23 @@ using UnityEngine;
 
 public partial class Player : MonoBehaviour
 {
-    // Start is called once before the first execution of Update after the MonoBehaviour is created
-
-
     public const string PLAYER_TAG = "Player";
     public const string PLAYER_MASK = "Player";
 
-
+    [Header("Player Velocity")]
     public PlayerVelocity WalkVelocity;
     public PlayerVelocity RunVelocity;
-
     public PlayerVelocity CrouchWalkVelocity;
     public PlayerVelocity CurrentVelocity;
 
     [Header("Player Input")]
     public float HorizontalInput;
     public float VerticalInput;
-
-
-    public int LastHorizontalInput = 1;
-
+    public int LastHorizontalInput  = 1;
 
     [Header("Play Stats")]
-
-    public int Strength = 1;
-
-
-
-
-
+    public int Damage = 1;
+    public float InvincibilityDuration =1.5f;
 
 
     [Header("Player State")]
@@ -47,30 +35,23 @@ public partial class Player : MonoBehaviour
     public bool IsCrouching;
     public bool IsCrouchWalking;
     public bool IsRunning;
-
     public bool IsTurning;
-
     public bool IsDashing;
-
     public bool IsAttacking;
-
-
+    public bool IsInvincible;
 
     public bool IsHorizontalMoving => Mathf.Abs(HorizontalInput) > 0.1f;
     public bool IsVerticalMoving => Mathf.Abs(VerticalInput) > 0.1f;
- 
     public bool IsStopAction => (IsClimbing || IsDashing || IsTurning);
-
-
     public bool IsLeftMove => HorizontalInput < 0f;
     public bool IsRightMove => HorizontalInput > 0f;
+
     [Header("Gravity")]  
-    public float FallGravityMuliplier = 3.5f;
-    public float LowJumpMultiplier = 2f;
-  
+    [SerializeField] private  float _fallGravityMuliplier = 3.5f;
+    [SerializeField]  private float _lowJumpMultiplier = 2f;
+
     [Header("Mask")]
     public LayerMask GroundLayerMask;
-    public LayerMask WaterLayerMask;
     public LayerMask WallLayerMask;
     public LayerMask EnemyLayerMask;
 
@@ -78,12 +59,6 @@ public partial class Player : MonoBehaviour
     public SpriteRenderer SpriteRenderer { get; private set; }
     public Rigidbody2D Rb { get; private set; }
     public PlayerSprite PlayerSprite { get; private set; }
-
-   
-    [SerializeField] private AudioClip _hurtSound;
-
-    private KnockbackReceiver _knockbackReceiver;
-    private DamageFlash _damageFlash;
     private PlayerData _playerData;
     private PlayerJumping _playerJumping;
     private PlayerMoving _playerMoving;
@@ -93,13 +68,9 @@ public partial class Player : MonoBehaviour
     private PlayerClimbing _playerClimbing;
     private PlayerAttack _playerAttack;
 
-    public int Coin { get => _playerData.Coin; private set => _playerData.Coin = value; }
-    public int Health { get => _playerData.Health; private set => _playerData.Health = value; }
-
-    public static event EventHandler<int> OnCoinChanged;
-    public static event EventHandler<int> OnHealthChanged;
-
-
+    public int Coin { get => _playerData.Coin;  set => _playerData.Coin = value; }
+    public int Health { get => _playerData.Health;  set => _playerData.Health = value; }
+  
     private void Awake()
     {
         Rb = GetComponent<Rigidbody2D>();
@@ -107,32 +78,19 @@ public partial class Player : MonoBehaviour
         PlayerAnimation = GetComponent<PlayerAnimation>();
         PlayerSprite = GetComponent<PlayerSprite>();
 
-        _knockbackReceiver = GetComponent<KnockbackReceiver>();
-        _damageFlash = GetComponent<DamageFlash>();
         _playerJumping = GetComponent<PlayerJumping>();
         _playerMoving = GetComponent<PlayerMoving>();
         _playerWallJumping = GetComponent<PlayerWallJumping>();
         _playerCrouching = GetComponent<PlayerCrouching>();
         _playerDashing = GetComponent<PlayerDashing>();
         _playerClimbing = GetComponent<PlayerClimbing>();
-
         _playerAttack = GetComponent<PlayerAttack>();
-
-
-
     }
-
 
     private void Start()
     {
         _playerData = GameManager.Instance.PlayerData;
-
-        // Update the UI with the current coin count at the start of the game
-        OnCoinChanged?.Invoke(this, Coin);
-        OnHealthChanged?.Invoke(this, Health);
-
     }
-   
     private void Update()
     {
         if (GameManager.Instance.IsGamePaused) return;
@@ -140,21 +98,14 @@ public partial class Player : MonoBehaviour
         UpdateDirection();
         UpdateInput();
 
-
-
         _playerClimbing.HandleClimbing();
-
         _playerAttack.HandleAttack();
-
         _playerDashing.HandleDashing();
         _playerCrouching.HandleCrouching();
         _playerJumping.HandleJump();
         _playerWallJumping.HandleWallSlide();
         _playerWallJumping.HandleWallJump();
-      
         _playerMoving.HandleMoving();
-
-
     }
     private void LateUpdate()
     {
@@ -189,47 +140,14 @@ public partial class Player : MonoBehaviour
     {
        if(Rb.linearVelocityY < 0)
         {
-            Rb.linearVelocity += Vector2.up * Physics2D.gravity.y * (FallGravityMuliplier - 1) * Time.deltaTime;
+            Rb.linearVelocity += Vector2.up * Physics2D.gravity.y * (_fallGravityMuliplier - 1) * Time.deltaTime;
         }else if(Rb.linearVelocityY >0 && !GameInputManager.Instance.PlayerJumpAction.IsPressed())
         {
-            Rb.linearVelocity += Vector2.up * Physics2D.gravity.y * (LowJumpMultiplier - 1) * Time.deltaTime;
+            Rb.linearVelocity += Vector2.up * Physics2D.gravity.y * (_lowJumpMultiplier - 1) * Time.deltaTime;
         }
 
     }
     
-
-  
-    public void AddCoin()
-    {
-        Coin++;
-        OnCoinChanged?.Invoke(this, Coin);
-    }
-    public void TakeDamage()
-    {
-        Health--;
-        AudioManager.Instance.Play(_hurtSound, transform.position);
-        OnHealthChanged?.Invoke(this, Health);
-        _damageFlash.Flash();
-        if (Health <= 0)
-        {
-            // Handle player death (e.g., reload the scene, show game over screen, etc.)
-
-            SceneLoader.LoadScene(SceneLoader.Scene.MainMenu);
-
-        }
-    }
-    public void TakeKnockback(Vector2 direction)
-    {
-        _knockbackReceiver.Knockback(direction);
-
-    }
-    public void Bounce(Vector2 normal, float force)
-    {
-        Rb.linearVelocity = Vector2.zero;
-
-        Rb.AddForce(normal * force, ForceMode2D.Impulse);
-    }
-
     public void SetPosition(Vector2 position)
     {
         transform.position= position; 

@@ -19,14 +19,12 @@ public class PlayerPanelUI : MonoBehaviour
 
     private void OnEnable()
     {
-        Player.OnCoinChanged += UpdateScoreText;
-        Player.OnHealthChanged += UpdateHealthUI;
+       
     }
 
     private void OnDisable()
     {
-        Player.OnCoinChanged -= UpdateScoreText;
-        Player.OnHealthChanged -= UpdateHealthUI;
+       
     }
 
     private void UpdateHealthUI(object sender, int health)

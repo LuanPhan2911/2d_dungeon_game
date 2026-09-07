@@ -111,9 +111,11 @@ public class PlayerAttack : MonoBehaviour
 
         foreach(Collider2D hit in hitEnemies)
         {
+
             if(hit.TryGetComponent(out IDamagable damagable))
             {
-                damagable.TakeDamage(_player.Strength);
+                Vector2 knockbackDirection = new Vector2(hit.transform.position.x - transform.position.x, 0).normalized;
+                damagable.TakeDamage(_player.Damage, knockbackDirection);
             }
         }
 

@@ -5,14 +5,16 @@ public class DamageFlash : MonoBehaviour
 
 
 
-    [SerializeField] private float _flashDuration = 0.2f;
-
-    private Material _flashMaterial;
-
+   
+    
     [SerializeField] private Color _flashColor = Color.white;
 
+    [SerializeField] private float _pingPongFlashSpeed = 5f;
+
     private SpriteRenderer _spriteRenderer;
-    private Coroutine _flashCoroutin;
+    private Coroutine _flashCorountine;
+    private Coroutine _pingPongFlashCorountine;
+    private Material _flashMaterial;
 
 
     private const string FLASH_COLOR_PROPERTY = "_FlashColor";
@@ -24,17 +26,28 @@ public class DamageFlash : MonoBehaviour
         _flashMaterial = _spriteRenderer.material;
     }
 
-    public void Flash()
+    
+
+    public void Flash(float duration)
     {
-        if (_flashCoroutin != null)
+        if (_flashCorountine != null)
         {
-            StopCoroutine(_flashCoroutin);
+            StopCoroutine(_flashCorountine);
 
         }
-        _flashCoroutin = StartCoroutine(FlashCoroutine());
+        _flashCorountine = StartCoroutine(FlashCoroutine(duration));
+    }
+    public void PingPongFlash(float duration)
+    {
+        if (_pingPongFlashCorountine != null)
+        {
+            StopCoroutine(_pingPongFlashCorountine);
+
+        }
+        _pingPongFlashCorountine = StartCoroutine(PingPongFlashCoroutine(duration));
     }
 
-    private System.Collections.IEnumerator FlashCoroutine()
+    private System.Collections.IEnumerator FlashCoroutine(float duration)
     {
 
         float elapsedTime = 0f;
@@ -42,16 +55,37 @@ public class DamageFlash : MonoBehaviour
         // set the flash color to the material
         _flashMaterial.SetColor(FLASH_COLOR_PROPERTY, _flashColor);
 
-        while (elapsedTime < _flashDuration)
+        while (elapsedTime < duration)
         {
             elapsedTime += Time.deltaTime;
-            float flashAmount = Mathf.Lerp(1f, 0f, elapsedTime / _flashDuration);
+            float flashAmount = Mathf.Lerp(1f, 0f, elapsedTime / duration);
 
             // set the flash amount to the material
             _flashMaterial.SetFloat(FLASH_AMOUNT_PROPERTY, flashAmount);
 
             yield return null;
         }
+        _flashMaterial.SetFloat(FLASH_AMOUNT_PROPERTY, 0);
+    }
+    private System.Collections.IEnumerator PingPongFlashCoroutine(float duration)
+    {
+
+        float elapsedTime = 0f;
+
+        // set the flash color to the material
+        _flashMaterial.SetColor(FLASH_COLOR_PROPERTY, _flashColor);
+
+        while (elapsedTime < duration)
+        {
+            elapsedTime += Time.deltaTime;
+            float flashAmount = Mathf.PingPong(Time.time * _pingPongFlashSpeed, 1);
+
+            // set the flash amount to the material
+            _flashMaterial.SetFloat(FLASH_AMOUNT_PROPERTY, flashAmount);
+
+            yield return null;
+        }
+        _flashMaterial.SetFloat(FLASH_AMOUNT_PROPERTY, 0);
     }
 
 

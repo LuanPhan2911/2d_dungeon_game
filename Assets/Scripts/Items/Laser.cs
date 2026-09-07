@@ -49,7 +49,7 @@ public class Laser : MonoBehaviour
 
             if (hit.collider.TryGetComponent(out IDamagable takeDamage))
             {
-                takeDamage.TakeDamage(1);
+                //takeDamage.TakeDamage(1);
 
             }
           

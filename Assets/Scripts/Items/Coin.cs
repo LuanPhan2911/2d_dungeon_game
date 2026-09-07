@@ -10,7 +10,7 @@ public class Coin : MonoBehaviour
         if (collision.TryGetComponent(out Player player))
         {
             // Add coin to player's score
-            player.AddCoin();
+         
             // Destroy the coin object
             gameObject.SetActive(false);
 

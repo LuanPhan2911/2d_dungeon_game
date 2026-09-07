@@ -1,6 +1,7 @@
 using UnityEngine;
 
-public class Brick : MonoBehaviour, IDamagable
+public class Brick : MonoBehaviour
+
 {
 
     [SerializeField] private ParticleSystem _brickBreakParticle;
