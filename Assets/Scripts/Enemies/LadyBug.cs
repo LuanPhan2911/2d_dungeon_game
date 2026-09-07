@@ -1,10 +1,6 @@
 using UnityEngine;
 
-public class LadyBug : MonoBehaviour, ITakeLaserDamagable
+public class LadyBug : BaseEnemy
 {
-    public void TakeLaserDamage()
-    {
-
-        Destroy(gameObject);
-    }
+    
 }

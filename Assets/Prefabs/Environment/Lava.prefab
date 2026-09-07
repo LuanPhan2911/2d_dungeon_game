@@ -193,7 +193,6 @@ GameObject:
   - component: {fileID: 8277641426449499735}
   - component: {fileID: 3750448377593000939}
   - component: {fileID: 5571674096293293417}
-  - component: {fileID: 6761718512335563396}
   - component: {fileID: 8860781700882696694}
   m_Layer: 4
   m_Name: Lava
@@ -232,9 +231,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::WaterParalax
   _paralaxSpeed: 0.5
-  _topTransform: {fileID: 6958658294841643013}
-  _bottomTransform: {fileID: 11362588189253143}
-  _boxCollider2d: {fileID: 5571674096293293417}
+  _maxDistanceMoving: 1
 --- !u!61 &5571674096293293417
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -281,18 +278,6 @@ BoxCollider2D:
   m_AutoTiling: 0
   m_Size: {x: 10, y: 1}
   m_EdgeRadius: 0
---- !u!114 &6761718512335563396
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8579462495743482222}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: e35ce5088b158a842b369501baf44b7b, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::Spikes
 --- !u!114 &8860781700882696694
 MonoBehaviour:
   m_ObjectHideFlags: 0

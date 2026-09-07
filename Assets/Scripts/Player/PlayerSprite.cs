@@ -41,7 +41,10 @@ public class PlayerSprite : MonoBehaviour
     {
         _player.IsFacingRight = isFacingRight;
         _player.FacingDirection= isFacingRight ? 1 : -1;
-        _player.SpriteRenderer.flipX = !isFacingRight;
+        Vector3 scale = _player.transform.localScale;
+        scale.x = _player.FacingDirection;
+
+        transform.localScale = scale;
 
     }
 

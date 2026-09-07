@@ -25,6 +25,11 @@ public partial class Player : MonoBehaviour
     public int LastHorizontalInput = 1;
 
 
+    [Header("Play Stats")]
+
+    public int Strength = 1;
+
+
 
 
 
@@ -67,6 +72,7 @@ public partial class Player : MonoBehaviour
     public LayerMask GroundLayerMask;
     public LayerMask WaterLayerMask;
     public LayerMask WallLayerMask;
+    public LayerMask EnemyLayerMask;
 
     public PlayerAnimation PlayerAnimation { get; private set; }
     public SpriteRenderer SpriteRenderer { get; private set; }

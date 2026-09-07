@@ -16,7 +16,6 @@ GameObject:
   - component: {fileID: 4991712921389980262}
   - component: {fileID: 3433611659608644017}
   - component: {fileID: 3975838676848842463}
-  - component: {fileID: 3131524813970042036}
   m_Layer: 0
   m_Name: Frog
   m_TagString: Untagged
@@ -85,7 +84,7 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_GlobalIlluminationMeshLod: 0
   m_SortingLayerID: -1321839643
-  m_SortingLayer: 3
+  m_SortingLayer: 2
   m_SortingOrder: 0
   m_MaskInteraction: 0
   m_Sprite: {fileID: 5158404753353345565, guid: 7b42890a9b0059344a2dd71951148ccc, type: 3}
@@ -341,16 +340,3 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
---- !u!114 &3131524813970042036
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3149363392696182416}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: e35ce5088b158a842b369501baf44b7b, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::Spikes
-  _ignoreDamageFromTop: 0

@@ -47,9 +47,9 @@ public class Laser : MonoBehaviour
             _burst.Show();
             _burst.SetLocalPosition(transform.InverseTransformPoint(endPoint));
 
-            if (hit.collider.TryGetComponent(out ITakeLaserDamagable takeDamage))
+            if (hit.collider.TryGetComponent(out IDamagable takeDamage))
             {
-                takeDamage.TakeLaserDamage();
+                takeDamage.TakeDamage(1);
 
             }
           

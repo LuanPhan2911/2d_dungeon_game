@@ -8,10 +8,16 @@ public class PlayerAttack : MonoBehaviour
 
     
 
-    [SerializeField] private float _comboResetTime = 1.5f;
+    [SerializeField] private float _comboResetTime = 0.8f;
     [SerializeField] private int _jumpComboStep = 4;
     [SerializeField] private int _groundComboStep = 2;
     [SerializeField] private int _crouchComboStep = 1;
+
+    [SerializeField] private Transform _attackPoint;
+
+    [SerializeField] private Vector2 _attackOffset;
+
+    [SerializeField] private float _attackRange;
 
 
 
@@ -26,7 +32,16 @@ public class PlayerAttack : MonoBehaviour
         _player = GetComponent<Player>();
     }
 
+    private void OnDrawGizmos()
+    {
+        Gizmos.color = Color.blue;
 
+        int direction = _player != null ? _player.FacingDirection : 1;
+
+        Vector3 center = new Vector3(transform.position.x + _attackOffset.x * direction, 
+            transform.position.y + _attackOffset.y, transform.position.z);
+        Gizmos.DrawWireSphere(center, _attackRange);
+    }
     public void HandleAttack()
     {
         if (_player.IsWallSliding  || _player.IsStopAction)
@@ -85,6 +100,23 @@ public class PlayerAttack : MonoBehaviour
         _player.PlayerAnimation.SetTriggerAttack();
         _player.PlayerAnimation.SetAttackCombo(ComboStep);
         
+    }
+
+    public void PerformHitDetection()
+    {
+        Vector3 center = new Vector3(transform.position.x + _attackOffset.x * _player.FacingDirection,
+           transform.position.y + _attackOffset.y, transform.position.z);
+
+        Collider2D[] hitEnemies = Physics2D.OverlapCircleAll(center, _attackRange, _player.EnemyLayerMask);
+
+        foreach(Collider2D hit in hitEnemies)
+        {
+            if(hit.TryGetComponent(out IDamagable damagable))
+            {
+                damagable.TakeDamage(_player.Strength);
+            }
+        }
+
     }
     public void FinishAttack()
     {

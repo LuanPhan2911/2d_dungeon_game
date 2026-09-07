@@ -14,10 +14,8 @@ GameObject:
   - component: {fileID: 4991080758809187824}
   - component: {fileID: 8471899705784018051}
   - component: {fileID: 2657151589075227332}
-  - component: {fileID: 6306645059893718986}
-  - component: {fileID: 2688046289888961534}
-  - component: {fileID: 7741274526898645158}
-  m_Layer: 0
+  - component: {fileID: 1184407686150581443}
+  m_Layer: 10
   m_Name: LadyBug
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -85,7 +83,7 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_GlobalIlluminationMeshLod: 0
   m_SortingLayerID: -1321839643
-  m_SortingLayer: 3
+  m_SortingLayer: 2
   m_SortingOrder: 0
   m_MaskInteraction: 0
   m_Sprite: {fileID: -179998687317359159, guid: 0a64821fd07fc8a46b644f5d02c6f246, type: 3}
@@ -207,7 +205,7 @@ MonoBehaviour:
   _groundCheckDistance: 0.5
   _wallCheckDistance: 0.1
   offsetX: 0.5
---- !u!114 &6306645059893718986
+--- !u!114 &1184407686150581443
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -219,30 +217,4 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 43c458f71a21a564d86b13604210e48f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::LadyBug
---- !u!114 &2688046289888961534
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5066878221719370572}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: e35ce5088b158a842b369501baf44b7b, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::Spikes
-  _ignoreDamageFromTop: 1
---- !u!114 &7741274526898645158
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5066878221719370572}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: cd1bf57ebffc3dd479e07fcd259727f2, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::BouncePlayer
-  _onlyOnTop: 1
-  force: 5
+  _maxHp: 3
