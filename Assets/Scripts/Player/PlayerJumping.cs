@@ -3,27 +3,14 @@ using UnityEngine;
 
 public class PlayerJumping : MonoBehaviour
 {
-
-    [SerializeField] private float _jumpVelocityY = 8f;
-
-    [SerializeField] private Vector2 _runJumpVelocity = new Vector2(8, 10);
-
+   
     [SerializeField] private AudioClip _jumpSound;
 
     [Header("Ground Check")]
-    [SerializeField] private Transform _groundCheckTransform;
-    [SerializeField] private Vector2 _groundCheckSize = new Vector2(1, 0.2f);
+    [SerializeField] private Transform _groundCheckPoint;
+    [SerializeField] private Vector2 _groundCheckSize = new Vector2(0.3f, 0.03f);
 
 
-    [Header("Juice Mechanics")]
-    // Grace period to jump after walking off a ledge(in seconds)
-    [SerializeField]  private float _coyoteTime = 0.15f;
-
-    [SerializeField] private float _jumpBufferTime = 0.15f; 
-    private float _coyoteTimeCounter;
-
-      // How early a player can press jump before landing (in seconds)
-    private float _jumpBufferCounter;
 
 
 
@@ -39,97 +26,69 @@ public class PlayerJumping : MonoBehaviour
     {
         Gizmos.color = Color.red;
 
-        Gizmos.DrawWireCube(_groundCheckTransform.position, _groundCheckSize);
+        Gizmos.DrawWireCube(_groundCheckPoint.position, _groundCheckSize);
     }
 
    
     public void HandleJump()
     {
 
-
-
-       
-
-        if (_player.IsCrouching || _player.IsStopAction) return;
-
-
-        // 1. COYOTE TIME LOGIC
-        if (_player.IsGrounded)
+        if (_player.IsJumping && _player. Rb.linearVelocityY < 0)
         {
-            _coyoteTimeCounter = _coyoteTime;
-        }
-        else
-        {
-            _coyoteTimeCounter -= Time.deltaTime;
-        }
-
-        // 2. JUMP BUFFER LOGIC
-        if (GameInputManager.Instance.PlayerJumpAction.WasPressedThisFrame())
-        {
-            _jumpBufferCounter = _jumpBufferTime;
-        }
-        else
-        {
-            _jumpBufferCounter -= Time.deltaTime;
+           _player. IsFalling = true;
+           _player. IsJumping = false;
         }
 
 
-
-        // 3. EXECUTE JUMP
-        if (_coyoteTimeCounter >0f && _jumpBufferCounter>0f)
+        if (CanJump() && _player.LastPressJumpTime > 0)
         {
-
-
+            _player.IsJumping = true;
+            _player.IsWallJumping = false;
+            _player.IsJumpCut = false;
+            _player.IsFalling = false;
+           
             ExecuteJump();
-             _coyoteTimeCounter = 0f;
-            _jumpBufferCounter = 0f;
-
+          
             AudioManager.Instance.Play(_jumpSound, transform.position);
         }
 
-        //4. Jump with variable height
-
-        if (GameInputManager.Instance.PlayerJumpAction.WasReleasedThisFrame() && _player.Rb.linearVelocityY >0)
-        {
-            _player.Rb.linearVelocity = new Vector2(_player.Rb.linearVelocityX, _player.Rb.linearVelocityY* 0.5f);
-            _coyoteTimeCounter = 0f;
-        }
+       
     }
 
     public void CheckGround()
-    {
-        LayerMask groundMask = _player.GroundLayerMask;
-
-        Collider2D collider = Physics2D.OverlapBox(_groundCheckTransform.position, _groundCheckSize, 0f, groundMask);
-
-        bool isHit = collider != null && !collider.isTrigger;
-
-       
-        if (isHit )
+    {   if (_player.IsDashing || _player.IsJumping) return;
+         
+         if( Physics2D.OverlapBox(_groundCheckPoint.position, _groundCheckSize, 0f, _player.GroundLayerMask) )
         {
-            _player.IsGrounded = true;
+          _player.  LastOnGroundTime = _player.Data.coyoteTime;
         }
-        else
-        {
-            _player.IsGrounded = false;
-        }
-       
-
     }
 
 
     private void ExecuteJump()
     {
-        // if player is run, execute special jump with higher height and distance
-        if (_player.IsRunning)
+        _player.LastPressJumpTime = 0;
+        _player.LastOnGroundTime = 0;
+
+        #region Perform Jump
+
+        float force = _player.Data.jumpForce;
+
+        if(_player.Rb.linearVelocityY < 0)
         {
-            _player.Rb.linearVelocity = new Vector2(_runJumpVelocity.x * _player.FacingDirection, _runJumpVelocity.y);
+            force -= _player.Rb.linearVelocityY;
         }
-        else
-        {
-            // normal jump
-            _player.Rb.linearVelocity = new Vector2(_player.Rb.linearVelocityX, _jumpVelocityY);
-        }
+        _player.Rb.AddForce(force * Vector2.up, ForceMode2D.Impulse);
+        #endregion
+    }
+
+    private bool CanJump()
+    {
+        return _player.LastOnGroundTime > 0 && !_player.IsJumping ;
+    }
+    public bool CanJumpCut()
+    {
+        return _player.IsJumping && _player.Rb.linearVelocityY > 0;
     }
 
 

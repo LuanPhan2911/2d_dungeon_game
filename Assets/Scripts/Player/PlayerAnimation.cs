@@ -6,20 +6,21 @@ public class PlayerAnimation : MonoBehaviour
 {
 
 
-    private Animator _animator;
+   [SerializeField] private Animator _animator;
+
+    
+    
+
 
     const string HORIZONTAL = "Horizontal";
-    const string VERTICAL = "Vertical";
-    const string IS_CLIMBING = "IsClimbing";
-    const string IS_SWIMMING = "IsSwimming";
-    const string IS_SLIDING = "IsSliding";
+    const string IS_FALLING = "IsFalling";
 
-    const string IS_GROUNDED = "IsGrounded";
+    const string IS_WALL_SLIDING = "IsWallSliding";
+    const string IS_JUMPING = "IsJumping";
     const string IS_DASHING = "IsDashing";
     const string IS_CROUCHING = "IsCrouching";
 
     const string IS_CROUCH_WALKING = "IsCrouchWalking";
-
 
     const string ATTACK_COMBO = "AttackCombo";
 
@@ -38,39 +39,24 @@ public class PlayerAnimation : MonoBehaviour
 
     private void Awake()
     {
-        _animator = GetComponent<Animator>();
+       
         _player = GetComponent<Player>();
     }
 
     public void UpdateAnimation()
     {
-        float horizontal = GetHorizontalValue();
-        float vertical = GetVerticalValue();
-
-
+        float horizontal = Mathf.Abs(_player.HorizontalInput);
+       
         SetHorizontal(horizontal);
-        SetVertical(vertical);
-
-        SetGrounded(_player.IsGrounded);
-        SetSliding(_player.IsWallSliding);
+        SetFalling(_player.IsFalling);
+        SetJumping(_player.IsJumping || _player.IsWallJumping);
+        SetWallSliding(_player.IsWallSliding);
         SetCrouchWalking(_player.IsCrouchWalking);
         SetDashing(_player.IsDashing);
         SetCrouching(_player.IsCrouching);
     }
 
-    private float GetHorizontalValue()
-    {
-        float horizontal = 0;
-        if (_player.IsRunning && _player.IsHorizontalMoving)
-        {
-            horizontal = 2f;
-        }
-        else
-        {
-            horizontal = Mathf.Abs(_player.HorizontalInput);
-        }
-        return horizontal;
-    }
+    
 
     public void SetTriggerAttack()
     {
@@ -84,19 +70,16 @@ public class PlayerAnimation : MonoBehaviour
     {
         _animator.SetFloat(HORIZONTAL, Mathf.Abs(horizontal));
     }
-    public void SetClimbing(bool isClimbing)
+  
+    public void SetFalling(bool isFalling)
     {
-        _animator.SetBool(IS_CLIMBING, isClimbing);
-    }
-    public void SetVertical(float vertical)
-    {
-        _animator.SetFloat (VERTICAL, vertical);
+        _animator.SetBool(IS_FALLING, isFalling);
     }
    
 
-    public void SetGrounded(bool isGrounded)
+    public void SetJumping(bool isJumping)
     {
-        _animator.SetBool(IS_GROUNDED, isGrounded);
+        _animator.SetBool(IS_JUMPING, isJumping);
     }
 
     public void SetCrouching(bool isCrouching)
@@ -104,10 +87,7 @@ public class PlayerAnimation : MonoBehaviour
         _animator.SetBool(IS_CROUCHING, isCrouching);
     }
    
-    public void SetSwimming(bool isSwimming)
-    {
-        _animator.SetBool(IS_SWIMMING, isSwimming);
-    }
+ 
 
     public void PauseCurrentAnimation()
     {
@@ -130,24 +110,9 @@ public class PlayerAnimation : MonoBehaviour
     {
         _animator.SetTrigger(CLIMB_UP);
     }
-    private float GetVerticalValue()
+    public void SetWallSliding(bool isSliding)
     {
-        float vertical = 0;
-
-        if (_player.Rb.linearVelocityY > 0)
-        {
-            vertical = 1;
-        }
-        else if (_player.Rb.linearVelocityY < 0)
-        {
-            vertical = -1;
-        }
-        return vertical;
-    }
-   
-    public void SetSliding(bool isSliding)
-    {
-        _animator.SetBool(IS_SLIDING, isSliding);
+        _animator.SetBool(IS_WALL_SLIDING, isSliding);
     }
 
     public void SetCrouchWalking(bool isCrouchWalking)

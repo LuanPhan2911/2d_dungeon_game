@@ -5,38 +5,22 @@ using UnityEngine;
 public class PlayerWallJumping : MonoBehaviour
 {
 
-    public bool CanWallSlide = false;
-
-    [SerializeField]  private Vector2 _wallJumpVelocity = new Vector2(6, 10);
-
-    [SerializeField] private float _slidingVelocityY = 1f;
-
-    [SerializeField] private Transform _wallCheckPoint;
-
-    [SerializeField] private float _distanceCheck = 0.4f;
 
 
-
-    [Header("Juice Mechanics")]
-    // Grace period to jump after walking off a ledge(in seconds)
-    [SerializeField] private float _coyoteTime = 0.15f;
-
-    [SerializeField] private float _jumpBufferTime = 0.15f;
-
-    [SerializeField] private float _wallJumpTime = 0.2f;
-
-    [SerializeField] private float _clingWallDuration = 0.2f;
-    private float _coyoteTimeCounter;
-
-    // How early a player can press jump before landing (in seconds)
-    private float _jumpBufferCounter;
-
-    private float _wallJumpTimeCounter;
+    [SerializeField] private Transform _leftWallCheckPoint;
+    [SerializeField] private Transform _rightWallCheckPoint;
 
 
-    private bool _wasTouchWallLastFrame;
+    [SerializeField] private Vector2 _wallCheckSize= new Vector2(0.03f, 0.3f);
 
-    private float _clingCounter;
+
+    private int _lastWallJumpDirection;
+
+
+
+    private float _wallJumpStartTime;
+  
+ 
 
     private Player _player;
     private void Awake()
@@ -47,146 +31,140 @@ public class PlayerWallJumping : MonoBehaviour
 
     public void HandleWallJump()
     {
-        if (_player.IsStopAction) return;
 
-        // 1. COYOTE TIME LOGIC
-        if (_player.IsWallSliding)
+        if (_player. IsWallJumping && Time.time - _wallJumpStartTime > _player.Data.wallJumpTime)
         {
-            _coyoteTimeCounter = _coyoteTime;
-        }
-        else
-        {
-            _coyoteTimeCounter -= Time.deltaTime;
+          _player.IsWallJumping = false;
+            _player.IsFalling = true;
         }
 
-
-        // 2. JUMP BUFFER LOGIC
-        if (GameInputManager.Instance.PlayerJumpAction.WasPressedThisFrame())
+        if(CanWallJump() && _player.LastPressJumpTime > 0)
         {
-          
-            _jumpBufferCounter = _jumpBufferTime;
-            
-            _wallJumpTimeCounter = _wallJumpTime;
-           
-        }
-        else
-        {
-
-            _jumpBufferCounter -= Time.deltaTime;
-        }
-
-       
-     
-        // 3. EXECUTE JUMP
-        if (_coyoteTimeCounter > 0f && _jumpBufferCounter > 0f )
-        {
-
             _player.IsWallJumping = true;
-            _player.Rb.linearVelocity = new Vector2(_player.FacingDirection * _wallJumpVelocity.x, _wallJumpVelocity.y); ;
-            
-            _coyoteTimeCounter = 0f;
-            _jumpBufferCounter = 0f;
+            _player.IsJumping = false;
+            _player.IsJumpCut = false;
+            _player.IsFalling = false;
 
-        }
+            _wallJumpStartTime = Time.time;
 
-        if (_player.IsWallJumping)
-        {
-            _wallJumpTimeCounter -= Time.deltaTime;
-            if (_wallJumpTimeCounter < 0)
-            {
-                _player.IsWallJumping = false;
-                _wallJumpTimeCounter = 0f;
-            }
+            _lastWallJumpDirection= _player.LastOnRightWallTime >0 ? -1: 1;
+
+            ExecuteWallJump();
         }
 
 
-        if (GameInputManager.Instance.PlayerJumpAction.WasReleasedThisFrame())
-        {
-
-            _coyoteTimeCounter = 0f;
-            _wallJumpTimeCounter = 0f;
-            _player.IsWallJumping = false;
-        }
     }
 
     private void OnDrawGizmos()
     {
         Gizmos.color = Color.blue;
-        Vector3 from = _wallCheckPoint.position;
-        int direction = _player != null ? _player.LastHorizontalInput : 1;
-        Vector3 to = from + Vector3.right * direction * _distanceCheck;
 
-        Gizmos.DrawLine(from, to);
+
+        Gizmos.DrawWireCube(_leftWallCheckPoint.position, _wallCheckSize);
+        Gizmos.DrawWireCube(_rightWallCheckPoint.position, _wallCheckSize);
 
 
 
     }
 
-    public void HandleWallSlide()
+    private void ExecuteWallJump()
     {
-        if (_player.IsGrounded || _player.IsCrouching || _player.IsWallJumping || _player.IsStopAction)
+        _player.LastOnRightWallTime = 0;
+        _player.LastPressJumpTime = 0;
+        _player.LastOnLeftWallTime = 0;
+        _player.LastOnRightWallTime = 0;
+
+        #region Perform Wall Jump
+        Vector2 force = new Vector2(_player.Data.wallJumpForce.x, _player.Data.wallJumpForce.y);
+
+        force.x *= _lastWallJumpDirection;
+
+        if(Mathf.Sign(_player.Rb.linearVelocityX)!= Mathf.Sign(force.x))
         {
-            _clingCounter = 0f;
-            _player.IsWallSliding = false;
-            _wasTouchWallLastFrame = false;
-            return;
+            force.x -= _player.Rb.linearVelocityX;
         }
-        
+        if (_player.Rb.linearVelocityY < 0)
+        {
+            force.y-= _player.Rb.linearVelocityY;
+        }
 
+        _player.Rb.AddForce(force, ForceMode2D.Impulse);
 
+        #endregion
+    }
 
-        if (CanWallSlide && _player.IsHorizontalMoving  )
+    public void CheckWallSlide()
+    {
+        if (CanWallSlide() && 
+            ((_player.LastOnLeftWallTime>0 && _player.IsLeftMove) || (_player.LastOnRightWallTime>0 && _player.IsRightMove)))
         {
 
-            if (!_wasTouchWallLastFrame)
-            {
-                // first time touch wall
-
-                _clingCounter = _clingWallDuration;
-                bool isFacingRight = _player.LastHorizontalInput == -1;
-                _player.PlayerSprite.SetFacingRight(isFacingRight);
-                _player.IsWallSliding = true;
-            }
-
-
-
-            if (_clingCounter > 0f)
-            {
-                _clingCounter -= Time.deltaTime;
-
-                // reset velocity y, prevent slide up when cling
-                _player.Rb.linearVelocity = new Vector2(_player.Rb.linearVelocityX, 0f);
-             
-            }
-            else
-            {
-               // slide down
-                _player.Rb.linearVelocity = new Vector2(_player.Rb.linearVelocityX, 
-                    Mathf.Clamp(_player.Rb.linearVelocityY, -_slidingVelocityY, float.MaxValue));
-               
-            }
-
-
-            _wasTouchWallLastFrame = CanWallSlide;
+            _player.IsFalling = false;
+            _player.IsWallSliding = true;
         }
         else
         {
             _player.IsWallSliding = false;
-            _clingCounter = 0f;
-            _wasTouchWallLastFrame = false;
-
+        }
+    }
+    public void HandleSlide()
+    {
+        
+        if(_player.Rb.linearVelocityY > 0)
+        {
+            _player.Rb.AddForce(-_player.Rb.linearVelocityY * Vector2.up, ForceMode2D.Impulse );
         }
 
-       
+        float speedDiff = _player.Data.slideSpeed - _player.Rb.linearVelocityY;
 
-     
+        float movement = speedDiff * _player.Data.slideAccel;
+
+        movement = Mathf.Clamp(movement, -Mathf.Abs(speedDiff) * (1 / Time.fixedDeltaTime), Mathf.Abs(speedDiff) * (1 / Time.fixedDeltaTime));
+
+        _player.Rb.AddForce(movement * Vector2.up, ForceMode2D.Force );
+
     }
 
     public void CheckWall()
     {
-       
-        Vector2 origin = (Vector2)_wallCheckPoint.position;
-        CanWallSlide = Physics2D.Raycast(origin, Vector2.right * _player.LastHorizontalInput, _distanceCheck, _player.WallLayerMask);
+        if (_player.IsDashing || _player.IsJumping || _player.IsWallJumping) return;
 
+        if ((CheckBox(_rightWallCheckPoint.position) && _player.IsFacingRight) ||
+          (CheckBox(_leftWallCheckPoint.position) && !_player.IsFacingRight))
+        {
+           _player. LastOnRightWallTime = _player.Data.coyoteTime;
+        }
+
+        if ((CheckBox(_rightWallCheckPoint.position) && !_player.IsFacingRight) ||
+            (CheckBox(_leftWallCheckPoint.position) && _player.IsFacingRight))
+        {
+          _player.  LastOnLeftWallTime = _player.Data.coyoteTime;
+        }
+      
+
+       _player. LastOnWallTime = Mathf.Max(_player. LastOnLeftWallTime, _player. LastOnRightWallTime);
+
+    }
+
+    private bool CheckBox(Vector2 position)
+    {
+        return Physics2D.OverlapBox(position, _wallCheckSize, 0f, _player.WallLayerMask);
+    }
+
+    private bool CanWallSlide()
+    {
+        return _player. LastOnWallTime > 0 && _player.LastOnGroundTime<=0 && 
+            !_player.IsJumping && !_player.IsWallJumping && !_player.IsDashing ;
+    }
+
+    public bool CanWallJumpCut()
+    {
+        return _player.IsWallJumping && _player.Rb.linearVelocityY > 0;
+    }
+
+    private bool CanWallJump()
+    {
+        return _player.LastOnWallTime > 0 && _player.LastOnGroundTime <= 0  &&
+            !_player.IsWallJumping ;
     }
 }

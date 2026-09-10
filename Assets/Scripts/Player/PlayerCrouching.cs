@@ -12,7 +12,7 @@ public class PlayerCrouching : MonoBehaviour
 
     public void HandleCrouching()
     {
-        if (!_player.IsGrounded|| _player.IsStopAction)
+        if (!_player.IsJumping|| _player.IsStopAction)
         {
             _player.IsCrouching = false;
             return;

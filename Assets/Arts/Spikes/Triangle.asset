@@ -10,10 +10,10 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 13312, guid: 0000000000000000e000000000000000, type: 0}
-  m_Name: grassCenter_0
+  m_Name: Triangle
   m_EditorClassIdentifier: UnityEngine.dll::UnityEngine.Tilemaps.Tile
-  m_Sprite: {fileID: 1025098624757503153, guid: c862a42bbeee79c4da9989665f19f77b, type: 3}
-  m_Color: {r: 0.86415094, g: 0.86415094, b: 0.86415094, a: 1}
+  m_Sprite: {fileID: 7482667652216324306, guid: df6f3a6b95147a74da65d7b313bc6065, type: 3}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_Transform:
     e00: 1
     e01: 0

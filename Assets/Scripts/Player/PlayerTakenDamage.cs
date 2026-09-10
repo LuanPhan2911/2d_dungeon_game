@@ -19,36 +19,36 @@ public class PlayerTakenDamage : MonoBehaviour
     }
     public void TakeDamage(int damage)
     {
-        if (_player.IsInvincible) return;
+        //if (_player.IsInvincible) return;
 
 
-      _player.Health= _player.Health - damage;
+      //_player.Health= _player.Health - damage;
       
-        if (_player.Health <= 0)
-        {
-            // Handle player death (e.g., reload the scene, show game over screen, etc.)
+      //  if (_player.Health <= 0)
+      //  {
+      //      // Handle player death (e.g., reload the scene, show game over screen, etc.)
 
-            //SceneLoader.LoadScene(SceneLoader.Scene.MainMenu);
-            Debug.Log("Died!!!");
+      //      //SceneLoader.LoadScene(SceneLoader.Scene.MainMenu);
+      //      Debug.Log("Died!!!");
 
-            return;
+      //      return;
 
-        }
+      //  }
        
 
-        StartCoroutine(TakeDamageCorountine());
+        //StartCoroutine(TakeDamageCorountine());
 
 
     }
 
-    private IEnumerator TakeDamageCorountine()
-    {
-        _player.IsInvincible = true;
-        AudioManager.Instance.Play(_hurtSound, transform.position);
-        _damageFlash.PingPongFlash(_player.InvincibilityDuration);
+    //private IEnumerator TakeDamageCorountine()
+    //{
+        //_player.IsInvincible = true;
+        //AudioManager.Instance.Play(_hurtSound, transform.position);
+        //_damageFlash.PingPongFlash(_player.InvincibilityDuration);
 
-        yield return new WaitForSeconds(_player.InvincibilityDuration);
+        //yield return new WaitForSeconds(_player.InvincibilityDuration);
 
-        _player.IsInvincible = false;
-    }
+        //_player.IsInvincible = false;
+    //}
 }

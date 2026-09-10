@@ -11,7 +11,7 @@ public class DamageFlash : MonoBehaviour
 
     [SerializeField] private float _pingPongFlashSpeed = 5f;
 
-    private SpriteRenderer _spriteRenderer;
+    [SerializeField]  private SpriteRenderer _spriteRenderer;
     private Coroutine _flashCorountine;
     private Coroutine _pingPongFlashCorountine;
     private Material _flashMaterial;
@@ -21,8 +21,6 @@ public class DamageFlash : MonoBehaviour
     private const string FLASH_AMOUNT_PROPERTY = "_FlashAmount";
     private void Awake()
     {
-        _spriteRenderer = GetComponent<SpriteRenderer>();
-
         _flashMaterial = _spriteRenderer.material;
     }
 

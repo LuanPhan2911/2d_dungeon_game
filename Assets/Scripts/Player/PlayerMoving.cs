@@ -15,18 +15,35 @@ public class PlayerMoving : MonoBehaviour
     {
         _player = GetComponent<Player>();
     }
-    public void HandleMoving()
+    public void HandleMoving(float lerpAmount = 1)
     {
-        if(_player.IsWallJumping|| _player.IsStopAction || _player.IsAttacking)
+        if( _player.IsStopAction || _player.IsAttacking)
         {
             return;
         }
 
-        UpdateVelocity();
+        //UpdateVelocity();
+        float targetSpeed = _player.HorizontalInput * _player.Data.runMaxSpeed;
 
-        float horizontalVelocity = _player.CurrentVelocity.HorizontalVelocity;
-        _player.Rb.linearVelocity = new Vector2(_player.HorizontalInput * horizontalVelocity, 
-            _player.Rb.linearVelocityY);
+        targetSpeed = Mathf.Lerp(_player.Rb.linearVelocityX, targetSpeed, lerpAmount);
+        float accelRate;
+        if (_player.IsJumping)
+        {
+            accelRate = (Mathf.Abs(targetSpeed) > 0.01f) ? _player.Data.runAccelAmount : _player.Data.runDeccelAmount;
+        }
+        else
+        {
+            accelRate = (Mathf.Abs(targetSpeed) > 0.01f) ? _player.Data.runAccelAmount * _player.Data.accelInAir :
+                _player.Data.runDeccelAmount * _player.Data.deccelInAir;
+        }
+
+
+
+        float speedDiff = targetSpeed - _player.Rb.linearVelocityX;
+
+        float movement = speedDiff * accelRate;
+
+        _player.Rb.AddForce(movement * Vector2.right, ForceMode2D.Force);
 
 
 
@@ -41,34 +58,9 @@ public class PlayerMoving : MonoBehaviour
     {
         if (_player.IsCrouching || !_player.IsHorizontalMoving) return;
 
-        if (_player.IsRunning)
+        if (_footStepCoroutine == null)
         {
-            // TODO: Play running sound
-        }
-        else
-        {
-            if (_footStepCoroutine == null)
-            {
-                _footStepCoroutine = StartCoroutine(PlayFootStepCoroutine());
-            }
-        }
-    }
-
-
-    private void UpdateVelocity()
-    {
-    
-        if (_player.IsCrouching)
-        {
-            _player.CurrentVelocity = _player.CrouchWalkVelocity;
-
-        } else if (_player.IsRunning)
-        {
-            _player.CurrentVelocity = _player.RunVelocity;
-        }
-        else
-        {
-            _player.CurrentVelocity = _player.WalkVelocity;
+            _footStepCoroutine = StartCoroutine(PlayFootStepCoroutine());
         }
     }
 

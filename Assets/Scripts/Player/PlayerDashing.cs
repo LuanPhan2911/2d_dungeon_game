@@ -53,27 +53,10 @@ public class PlayerDashing : MonoBehaviour
 
         // after dash if continue press dash button, player sprint
 
-        HandleRun();
+        
     }
 
-    private void HandleRun()
-    {
-        if (!_player.IsGrounded)
-        {
-            _player.IsRunning = false;
-            return;
-        }
-        if (GameInputManager.Instance.PlayerRunAction.IsPressed() && _player.IsHorizontalMoving)
-        {
-            _player.IsRunning = true;
-
-            TriggerTurn();
-        }
-        else
-        {
-            _player.IsRunning = false;
-        }
-    }
+   
 
     private IEnumerator Dash()
     {
@@ -85,19 +68,19 @@ public class PlayerDashing : MonoBehaviour
         float originalGravityScale = _player.Rb.gravityScale;
         _player.Rb.gravityScale = 0f;
 
-        int direction = _player.IsWallSliding ? _player.FacingDirection : _player.LastHorizontalInput;
+        //int direction = _player.IsWallSliding ? _player.FacingDirection : _player.LastHorizontalInput;
 
-        bool isFacingRight = direction == 1;
+        //bool isFacingRight = direction == 1;
 
-        _player.PlayerSprite.SetFacingRight(isFacingRight);
+        //_player.PlayerSprite.SetFacingRight(isFacingRight);
 
-        _player.Rb.linearVelocity = new Vector2(direction * _dashVelocityX, 0f);
+        //_player.Rb.linearVelocity = new Vector2(direction * _dashVelocityX, 0f);
 
         _dashFX.PlayDashFX(true);
 
         yield return new WaitForSeconds(_dashDuration);
 
-        _player.Rb.gravityScale= originalGravityScale;
+        _player.Rb.gravityScale = originalGravityScale;
 
 
         _player.IsDashing = false;
@@ -112,7 +95,7 @@ public class PlayerDashing : MonoBehaviour
 
     private void ResetDash()
     {
-        if (_player.IsGrounded || _player.IsWallSliding)
+        if (_player.IsJumping || _player.IsWallSliding)
         {
             CanResetDash = true;
         }

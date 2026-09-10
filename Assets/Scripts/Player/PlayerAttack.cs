@@ -34,13 +34,7 @@ public class PlayerAttack : MonoBehaviour
 
     private void OnDrawGizmos()
     {
-        Gizmos.color = Color.blue;
-
-        int direction = _player != null ? _player.FacingDirection : 1;
-
-        Vector3 center = new Vector3(transform.position.x + _attackOffset.x * direction, 
-            transform.position.y + _attackOffset.y, transform.position.z);
-        Gizmos.DrawWireSphere(center, _attackRange);
+       
     }
     public void HandleAttack()
     {
@@ -78,7 +72,7 @@ public class PlayerAttack : MonoBehaviour
         {
             maxComboStep = _crouchComboStep;
         }
-        else if (_player.IsGrounded)
+        else if (_player.IsJumping)
         {
             maxComboStep = _groundComboStep;
         }
@@ -104,20 +98,20 @@ public class PlayerAttack : MonoBehaviour
 
     public void PerformHitDetection()
     {
-        Vector3 center = new Vector3(transform.position.x + _attackOffset.x * _player.FacingDirection,
-           transform.position.y + _attackOffset.y, transform.position.z);
+        //Vector3 center = new Vector3(transform.position.x + _attackOffset.x * _player.FacingDirection,
+        //   transform.position.y + _attackOffset.y, transform.position.z);
 
-        Collider2D[] hitEnemies = Physics2D.OverlapCircleAll(center, _attackRange, _player.EnemyLayerMask);
+        //Collider2D[] hitEnemies = Physics2D.OverlapCircleAll(center, _attackRange, _player.EnemyLayerMask);
 
-        foreach(Collider2D hit in hitEnemies)
-        {
+        //foreach(Collider2D hit in hitEnemies)
+        //{
 
-            if(hit.TryGetComponent(out IDamagable damagable))
-            {
-                Vector2 knockbackDirection = new Vector2(hit.transform.position.x - transform.position.x, 0).normalized;
-                damagable.TakeDamage(_player.Damage, knockbackDirection);
-            }
-        }
+            //if(hit.TryGetComponent(out IDamagable damagable))
+            //{
+            //    Vector2 knockbackDirection = new Vector2(hit.transform.position.x - transform.position.x, 0).normalized;
+            //    damagable.TakeDamage(_player.Damage, knockbackDirection);
+            //}
+        //}
 
     }
     public void FinishAttack()
