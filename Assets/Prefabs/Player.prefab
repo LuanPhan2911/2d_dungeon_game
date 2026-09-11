@@ -1,36 +1,5 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
---- !u!1 &573183389118185140
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 2181562372236550846}
-  m_Layer: 7
-  m_Name: LeftWallCheckPoint
-  m_TagString: Untagged
-  m_Icon: {fileID: 1206586993520771344, guid: 0000000000000000d000000000000000, type: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &2181562372236550846
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 573183389118185140}
-  serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -0.387, y: 0.6, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children: []
-  m_Father: {fileID: 7057404644842753421}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &934581891402125277
 GameObject:
   m_ObjectHideFlags: 0
@@ -665,7 +634,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 8902876242943277303}
-  - {fileID: 2181562372236550846}
+  - {fileID: 1036559177709290302}
   - {fileID: 8544421526318563109}
   m_Father: {fileID: 3212656722255811958}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -712,9 +681,9 @@ GameObject:
   - component: {fileID: 1467170012286953218}
   - component: {fileID: 9098956518259760309}
   - component: {fileID: 5676948285274127503}
-  - component: {fileID: 7650296304056022202}
   - component: {fileID: 3610167816305384861}
   - component: {fileID: 666775707453186409}
+  - component: {fileID: 6018911243575386500}
   m_Layer: 7
   m_Name: Player
   m_TagString: Player
@@ -813,51 +782,6 @@ AudioListener:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 5087166927145310186}
   m_Enabled: 1
---- !u!114 &7650296304056022202
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5087166927145310186}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 489cfd8e36569f247ab0b83542dcd52e, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::Player
-  WalkVelocity: {fileID: 11400000, guid: 2ee8f40dbf900b74eb23cd41d94adcb2, type: 2}
-  RunVelocity: {fileID: 11400000, guid: 61a8c3e549d6c0a4183085dda362bbd7, type: 2}
-  CrouchWalkVelocity: {fileID: 11400000, guid: 030cfe82baa6c504bb6fb370d7a5554c, type: 2}
-  CurrentVelocity: {fileID: 11400000, guid: 2ee8f40dbf900b74eb23cd41d94adcb2, type: 2}
-  MovementData: {fileID: 11400000, guid: ca60778941745a945ad3e3df82d9e0f5, type: 2}
-  HorizontalInput: 0
-  VerticalInput: 0
-  LastHorizontalInput: 1
-  IsFacingRight: 1
-  FacingDirection: 1
-  IsGrounded: 0
-  IsFall: 0
-  IsClimbing: 0
-  IsWallSliding: 0
-  IsWallJumping: 0
-  IsCrouching: 0
-  IsCrouchWalking: 0
-  IsRunning: 0
-  IsTurning: 0
-  IsDashing: 0
-  IsAttacking: 0
-  IsInvincible: 0
-  _fallGravityMuliplier: 3.5
-  _lowJumpMultiplier: 2
-  GroundLayerMask:
-    serializedVersion: 2
-    m_Bits: 832
-  WallLayerMask:
-    serializedVersion: 2
-    m_Bits: 64
-  EnemyLayerMask:
-    serializedVersion: 2
-    m_Bits: 1024
 --- !u!114 &3610167816305384861
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -886,6 +810,30 @@ MonoBehaviour:
   _flashColor: {r: 1, g: 1, b: 1, a: 1}
   _pingPongFlashSpeed: 5
   _spriteRenderer: {fileID: 508249752885434750}
+--- !u!114 &6018911243575386500
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5087166927145310186}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 57f0df7a8080dec41a90bcbbb39cb45c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::PlayerMovement
+  Data: {fileID: 11400000, guid: ca60778941745a945ad3e3df82d9e0f5, type: 2}
+  GroundLayerMask:
+    serializedVersion: 2
+    m_Bits: 320
+  WallLayerMask:
+    serializedVersion: 2
+    m_Bits: 64
+  _groundCheckPoint: {fileID: 8902876242943277303}
+  _groundCheckSize: {x: 0.3, y: 0.03}
+  _leftWallCheckPoint: {fileID: 1036559177709290302}
+  _rightWallCheckPoint: {fileID: 8544421526318563109}
+  _wallCheckSize: {x: 0.03, y: 0.3}
 --- !u!1 &6181084499320103871
 GameObject:
   m_ObjectHideFlags: 0
@@ -1154,6 +1102,37 @@ MonoBehaviour:
   - {fileID: 4204529695739883361}
   - {fileID: 784531754047068759}
   - {fileID: 7923185361865460034}
+--- !u!1 &7706208634982246410
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1036559177709290302}
+  m_Layer: 7
+  m_Name: LeftWallCheckPoint
+  m_TagString: Untagged
+  m_Icon: {fileID: 6519382022992737161, guid: 0000000000000000d000000000000000, type: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1036559177709290302
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7706208634982246410}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: -0.4, y: 0.6, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 7057404644842753421}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &8883614851166088412
 GameObject:
   m_ObjectHideFlags: 0

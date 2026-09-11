@@ -26,7 +26,7 @@ public class House : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        if (collision.TryGetComponent(out Player player))
+        if (collision.TryGetComponent(out PlayerMovement player))
         {
             _isOpen = true;
             _playerInput = player.GetComponent<PlayerInput>();

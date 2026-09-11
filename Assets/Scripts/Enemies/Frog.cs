@@ -103,7 +103,7 @@ public class Frog : MonoBehaviour
             Vector2.zero, 0f, LayerMask.GetMask("Player"));
 
 
-        if (hit.collider != null && hit.collider.TryGetComponent(out Player player))
+        if (hit.collider != null && hit.collider.TryGetComponent(out PlayerMovement player))
         {
             Vector2 direction = player.transform.position - transform.position;
 

@@ -18,9 +18,6 @@ public class PlayerAnimation : MonoBehaviour
     const string IS_WALL_SLIDING = "IsWallSliding";
     const string IS_JUMPING = "IsJumping";
     const string IS_DASHING = "IsDashing";
-    const string IS_CROUCHING = "IsCrouching";
-
-    const string IS_CROUCH_WALKING = "IsCrouchWalking";
 
     const string ATTACK_COMBO = "AttackCombo";
 
@@ -34,13 +31,13 @@ public class PlayerAnimation : MonoBehaviour
 
     const string CLIMB_UP = "ClimbUp";
 
-    private Player _player;
+    private PlayerMovement _player;
 
 
     private void Awake()
     {
        
-        _player = GetComponent<Player>();
+        _player = GetComponent<PlayerMovement>();
     }
 
     public void UpdateAnimation()
@@ -51,9 +48,8 @@ public class PlayerAnimation : MonoBehaviour
         SetFalling(_player.IsFalling);
         SetJumping(_player.IsJumping || _player.IsWallJumping);
         SetWallSliding(_player.IsWallSliding);
-        SetCrouchWalking(_player.IsCrouchWalking);
         SetDashing(_player.IsDashing);
-        SetCrouching(_player.IsCrouching);
+       
     }
 
     
@@ -82,13 +78,6 @@ public class PlayerAnimation : MonoBehaviour
         _animator.SetBool(IS_JUMPING, isJumping);
     }
 
-    public void SetCrouching(bool isCrouching)
-    {
-        _animator.SetBool(IS_CROUCHING, isCrouching);
-    }
-   
- 
-
     public void PauseCurrentAnimation()
     {
         _animator.speed = 0f;
@@ -115,8 +104,5 @@ public class PlayerAnimation : MonoBehaviour
         _animator.SetBool(IS_WALL_SLIDING, isSliding);
     }
 
-    public void SetCrouchWalking(bool isCrouchWalking)
-    {
-        _animator.SetBool(IS_CROUCH_WALKING, isCrouchWalking);
-    }
+  
 }

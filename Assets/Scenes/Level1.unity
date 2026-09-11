@@ -697,11 +697,6 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 1ad4413df4c019f48b5727bb29d719b4, type: 3}
---- !u!1 &352291404 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 5087166927145310186, guid: 523e1f14885f3df4cbcde949cdf98e38, type: 3}
-  m_PrefabInstance: {fileID: 7685517063792763008}
-  m_PrefabAsset: {fileID: 0}
 --- !u!1 &385480588
 GameObject:
   m_ObjectHideFlags: 0
@@ -1302,11 +1297,6 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 689712094}
   m_CullTransparentMesh: 1
---- !u!4 &748437688 stripped
-Transform:
-  m_CorrespondingSourceObject: {fileID: 8902876242943277303, guid: 523e1f14885f3df4cbcde949cdf98e38, type: 3}
-  m_PrefabInstance: {fileID: 7685517063792763008}
-  m_PrefabAsset: {fileID: 0}
 --- !u!1 &864281156
 GameObject:
   m_ObjectHideFlags: 0
@@ -1575,11 +1565,6 @@ Tilemap:
     e31: 0
     e32: 0
     e33: 1
---- !u!4 &926315767 stripped
-Transform:
-  m_CorrespondingSourceObject: {fileID: 8544421526318563109, guid: 523e1f14885f3df4cbcde949cdf98e38, type: 3}
-  m_PrefabInstance: {fileID: 7685517063792763008}
-  m_PrefabAsset: {fileID: 0}
 --- !u!1 &934647830
 GameObject:
   m_ObjectHideFlags: 0
@@ -1891,37 +1876,6 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!1 &1042191031
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 1042191032}
-  m_Layer: 7
-  m_Name: LeftWallCheckPoint
-  m_TagString: Untagged
-  m_Icon: {fileID: 6519382022992737161, guid: 0000000000000000d000000000000000, type: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &1042191032
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1042191031}
-  serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -0.4, y: 0.6, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children: []
-  m_Father: {fileID: 2052172220}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1066512605
 GameObject:
@@ -3746,11 +3700,6 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!4 &2052172220 stripped
-Transform:
-  m_CorrespondingSourceObject: {fileID: 7057404644842753421, guid: 523e1f14885f3df4cbcde949cdf98e38, type: 3}
-  m_PrefabInstance: {fileID: 7685517063792763008}
-  m_PrefabAsset: {fileID: 0}
 --- !u!1 &2099818367
 GameObject:
   m_ObjectHideFlags: 0
@@ -15549,27 +15498,14 @@ PrefabInstance:
       propertyPath: m_Name
       value: Player
       objectReference: {fileID: 0}
-    - target: {fileID: 7650296304056022202, guid: 523e1f14885f3df4cbcde949cdf98e38, type: 3}
-      propertyPath: Data
-      value: 
-      objectReference: {fileID: 11400000, guid: ca60778941745a945ad3e3df82d9e0f5, type: 2}
+    - target: {fileID: 6018911243575386500, guid: 523e1f14885f3df4cbcde949cdf98e38, type: 3}
+      propertyPath: m_Enabled
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
-    m_RemovedGameObjects:
-    - {fileID: 573183389118185140, guid: 523e1f14885f3df4cbcde949cdf98e38, type: 3}
-    m_AddedGameObjects:
-    - targetCorrespondingSourceObject: {fileID: 7057404644842753421, guid: 523e1f14885f3df4cbcde949cdf98e38, type: 3}
-      insertIndex: -1
-      addedObject: {fileID: 1042191032}
-    m_AddedComponents:
-    - targetCorrespondingSourceObject: {fileID: 5087166927145310186, guid: 523e1f14885f3df4cbcde949cdf98e38, type: 3}
-      insertIndex: -1
-      addedObject: {fileID: 7956069889846286630}
-    - targetCorrespondingSourceObject: {fileID: 5087166927145310186, guid: 523e1f14885f3df4cbcde949cdf98e38, type: 3}
-      insertIndex: -1
-      addedObject: {fileID: 7956069889846286629}
-    - targetCorrespondingSourceObject: {fileID: 5087166927145310186, guid: 523e1f14885f3df4cbcde949cdf98e38, type: 3}
-      insertIndex: -1
-      addedObject: {fileID: 7956069889846286637}
+    m_RemovedGameObjects: []
+    m_AddedGameObjects: []
+    m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 523e1f14885f3df4cbcde949cdf98e38, type: 3}
 --- !u!1 &7754546055962689265
 GameObject:
@@ -15728,53 +15664,6 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 3212656722255811958, guid: 523e1f14885f3df4cbcde949cdf98e38, type: 3}
   m_PrefabInstance: {fileID: 7685517063792763008}
   m_PrefabAsset: {fileID: 0}
---- !u!114 &7956069889846286629
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 352291404}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 1d599fc8a77e0454b984af1767e700c9, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::PlayerJumping
-  _jumpSound: {fileID: 8300000, guid: 5028d8b23801dcd4fb28e768e74b94dc, type: 3}
-  _groundCheckPoint: {fileID: 748437688}
-  _groundCheckSize: {x: 0.3, y: 0.03}
---- !u!114 &7956069889846286630
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 352291404}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 34e68386912c68d44b25d013a1d3e2ae, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::PlayerMoving
-  _walkingSounds:
-  - {fileID: 8300000, guid: 0a19e9fa9dd8b424caa13076abcef443, type: 3}
-  - {fileID: 8300000, guid: b7b578dde5c779543919703a2ee61f4c, type: 3}
-  - {fileID: 8300000, guid: ac79731fe8bef594e8b2623577642067, type: 3}
-  - {fileID: 8300000, guid: cb46e59d3768eaf4c840a09abe1cc528, type: 3}
---- !u!114 &7956069889846286637
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 352291404}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 08593f41195f8e34096f0ca3a0c7f7bd, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::PlayerWallJumping
-  _leftWallCheckPoint: {fileID: 1042191032}
-  _rightWallCheckPoint: {fileID: 926315767}
-  _wallCheckSize: {x: 0.03, y: 0.3}
 --- !u!1 &8044859023848327084
 GameObject:
   m_ObjectHideFlags: 0

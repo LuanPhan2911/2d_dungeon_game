@@ -9,7 +9,7 @@ public class PickupItem : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        if (collision.TryGetComponent(out Player player))
+        if (collision.TryGetComponent(out PlayerMovement player))
         {
 
             InventoryManager.Instance.AddItem(_itemData);

@@ -6,6 +6,8 @@ public class PlayerAttack : MonoBehaviour
 
     public int ComboStep = 0;
 
+    public bool IsAttacking;
+
     
 
     [SerializeField] private float _comboResetTime = 0.8f;
@@ -25,11 +27,16 @@ public class PlayerAttack : MonoBehaviour
     private int _currentComboStep;
 
 
-    private Player _player;
+    private PlayerMovement _player;
+
+    private Rigidbody2D _rb;
+    private PlayerAnimation _playerAnimation;
 
     private void Awake()
     {
-        _player = GetComponent<Player>();
+        _player = GetComponent<PlayerMovement>();
+        _rb = GetComponent<Rigidbody2D>();
+        _playerAnimation = GetComponent<PlayerAnimation>();
     }
 
     private void OnDrawGizmos()
@@ -38,14 +45,14 @@ public class PlayerAttack : MonoBehaviour
     }
     public void HandleAttack()
     {
-        if (_player.IsWallSliding  || _player.IsStopAction)
+        if (_player.IsWallSliding  )
         {
-            _player.IsAttacking = false;
+            IsAttacking = false;
             ResetCombo();
             return;
         }
 
-        if(Time.time - _lastClickTime > _comboResetTime && !_player.IsAttacking)
+        if(Time.time - _lastClickTime > _comboResetTime && !IsAttacking)
         {
             ResetCombo();
         }
@@ -54,7 +61,7 @@ public class PlayerAttack : MonoBehaviour
         {
             _lastClickTime= Time.time;
 
-            if (!_player.IsAttacking)
+            if (!IsAttacking)
             {
                 Attack();
             }
@@ -62,17 +69,14 @@ public class PlayerAttack : MonoBehaviour
     }
     private void Attack()
     {
-        _player.IsAttacking = true;
-        _player.Rb.linearVelocity = new Vector2(0, _player.Rb.linearVelocityY);
+        IsAttacking = true;
+        _rb.linearVelocity = new Vector2(0, _rb.linearVelocityY);
 
-        
+
 
         int maxComboStep;
-        if (_player.IsCrouching)
-        {
-            maxComboStep = _crouchComboStep;
-        }
-        else if (_player.IsJumping)
+       
+        if (_player.IsJumping)
         {
             maxComboStep = _groundComboStep;
         }
@@ -91,8 +95,8 @@ public class PlayerAttack : MonoBehaviour
         ComboStep = ComboStep == maxComboStep ? 1 : ComboStep + 1;
 
 
-        _player.PlayerAnimation.SetTriggerAttack();
-        _player.PlayerAnimation.SetAttackCombo(ComboStep);
+        _playerAnimation.SetTriggerAttack();
+        _playerAnimation.SetAttackCombo(ComboStep);
         
     }
 
@@ -116,7 +120,7 @@ public class PlayerAttack : MonoBehaviour
     }
     public void FinishAttack()
     {
-        _player.IsAttacking = false; 
+        IsAttacking = false; 
     }
 
     private void ResetCombo()

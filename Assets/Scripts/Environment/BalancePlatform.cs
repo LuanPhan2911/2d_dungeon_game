@@ -40,7 +40,7 @@ public class BalancePlatform : MonoBehaviour
 
     private void OnCollisionEnter2D(Collision2D collision)
     {
-        if(collision.collider.TryGetComponent(out Player player))
+        if(collision.collider.TryGetComponent(out PlayerMovement player))
         {
             IsPlayerOnTop = true;
           
@@ -49,7 +49,7 @@ public class BalancePlatform : MonoBehaviour
 
     private void OnCollisionExit2D(Collision2D collision)
     {
-        if (collision.collider.TryGetComponent(out Player player))
+        if (collision.collider.TryGetComponent(out PlayerMovement player))
         {
             IsPlayerOnTop = false;
             

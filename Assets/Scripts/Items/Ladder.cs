@@ -8,7 +8,7 @@ public class Ladder : MonoBehaviour
 
     [SerializeField] private InteractUI _interactUI;
 
-    private Player _player;
+    private PlayerMovement _player;
 
    
     private void OnTriggerEnter2D(Collider2D playerCollider)

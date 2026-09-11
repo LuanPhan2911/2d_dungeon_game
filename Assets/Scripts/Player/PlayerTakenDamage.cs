@@ -7,14 +7,14 @@ public class PlayerTakenDamage : MonoBehaviour
     [SerializeField] private AudioClip _hurtSound;
 
 
-    private Player _player;
+    private PlayerMovement _player;
     private DamageFlash _damageFlash;
 
    
 
     private void Awake()
     {
-        _player = GetComponent<Player>();
+        _player = GetComponent<PlayerMovement>();
         _damageFlash = GetComponent<DamageFlash>();
     }
     public void TakeDamage(int damage)

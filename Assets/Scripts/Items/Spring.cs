@@ -21,7 +21,7 @@ public class Spring : MonoBehaviour
 
     private void OnCollisionEnter2D(Collision2D collision)
     {
-        if (collision.collider.TryGetComponent(out Player player))
+        if (collision.collider.TryGetComponent(out PlayerMovement player))
         {
             _spriteRenderer.sprite = _sprungSprite;
             _audioSource.Play();

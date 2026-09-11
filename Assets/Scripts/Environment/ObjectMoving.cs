@@ -51,7 +51,7 @@ public class ObjectMoving : MonoBehaviour
     private void OnCollisionEnter2D(Collision2D collision)
     {
         if(!CanStanding) return;
-        if (collision.collider.TryGetComponent(out Player player))
+        if (collision.collider.TryGetComponent(out PlayerMovement player))
         {
             player.transform.SetParent(transform);
         }
@@ -59,7 +59,7 @@ public class ObjectMoving : MonoBehaviour
     private void OnCollisionExit2D(Collision2D collision)
     {
         if(!CanStanding) return;
-        if (collision.collider.TryGetComponent(out Player player))
+        if (collision.collider.TryGetComponent(out PlayerMovement player))
         {
             player.transform.SetParent(null);
         }

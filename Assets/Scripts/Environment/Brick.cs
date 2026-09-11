@@ -19,7 +19,7 @@ public class Brick : MonoBehaviour
     }
     private void OnCollisionEnter2D(Collision2D collision)
     {
-        if (collision.collider.TryGetComponent(out Player player))
+        if (collision.collider.TryGetComponent(out PlayerMovement player))
         {
 
             Vector2 nornal = collision.contacts[0].normal;
