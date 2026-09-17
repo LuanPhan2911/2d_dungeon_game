@@ -101,7 +101,10 @@ public partial class PlayerMovement : MonoBehaviour
             if (CanJumpCut()|| CanWallJumpCut())
             {
                 IsJumpCut = true;
+                IsJumping = false;
+                IsWallJumping = false;
             }
+            
             
 
         }
@@ -115,10 +118,10 @@ public partial class PlayerMovement : MonoBehaviour
 
         #region Wall Check & Ground Check
 
-        if(!IsDashing && !IsJumping)
+        if(!IsDashing )
         {
 
-            if (Physics2D.OverlapBox(_groundCheckPoint.position, _groundCheckSize, 0f, GroundLayerMask))
+            if (Physics2D.OverlapBox(_groundCheckPoint.position, _groundCheckSize, 0f, GroundLayerMask) && !IsJumping)
             {
                LastOnGroundTime = Data.coyoteTime;
             }
@@ -144,6 +147,23 @@ public partial class PlayerMovement : MonoBehaviour
 
         #endregion
 
+        #region Fall Check
+        if(!IsJumping && !IsWallJumping && _rb.linearVelocityY < 0)
+        {
+            IsFalling = true;
+        }
+
+
+
+        if (!IsJumping && !IsWallJumping &&LastOnGroundTime > 0 )
+        {
+            IsJumpCut = false;
+            IsFalling = false;
+
+        }
+
+        #endregion
+
         #region Jump Check
 
         if (IsJumping && _rb.linearVelocityY < 0)
@@ -154,17 +174,7 @@ public partial class PlayerMovement : MonoBehaviour
         if (IsWallJumping && Time.time - _wallJumpStartTime > Data.wallJumpTime)
         {
             IsWallJumping = false;
-            IsFalling = true;
         }
-
-
-        if (LastOnGroundTime > 0 && !IsJumping && !IsWallJumping)
-        {
-            IsJumpCut = false;
-            IsFalling = false;
-           
-        }
-
         #endregion
 
 
@@ -328,18 +338,18 @@ public partial class PlayerMovement : MonoBehaviour
     {
         if (IsWallSliding|| IsDashing)
         {
-            IsFalling = false;
+            
             SetGravityScale(0);
         }
         else if (IsJumpCut)
         {
-            IsFalling = true;
+           
             SetGravityScale(Data.gravityScale * Data.jumpCutGravityMult);
             _rb.linearVelocity = new Vector2(_rb.linearVelocityX, Mathf.Max(_rb.linearVelocityY, -Data.maxFallSpeed));
         }
-        else if(!IsWallSliding &&  _rb.linearVelocityY < 0)
+        else if( _rb.linearVelocityY < 0)
         {
-            IsFalling = true;
+           
             //Higher gravity if falling
             SetGravityScale(Data.gravityScale * Data.fallGravityMult);
             //Caps maximum fall speed, so when falling over large distances we don't accelerate to insanely high speeds

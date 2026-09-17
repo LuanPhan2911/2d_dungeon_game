@@ -6,11 +6,7 @@ public class PlayerAnimation : MonoBehaviour
 {
 
 
-   [SerializeField] private Animator _animator;
-
-    
-    
-
+  
 
     const string HORIZONTAL = "Horizontal";
     const string IS_FALLING = "IsFalling";
@@ -19,49 +15,49 @@ public class PlayerAnimation : MonoBehaviour
     const string IS_JUMPING = "IsJumping";
     const string IS_DASHING = "IsDashing";
 
-    const string ATTACK_COMBO = "AttackCombo";
-
- 
-
     // trigger parameter 
 
-    const string ATTACK = "Attack";
-
-    const string TURN = "Turn";
-
-    const string CLIMB_UP = "ClimbUp";
-
-    private PlayerMovement _player;
+    const string HORIZONTAL_ATTACK = "HorizontalAttack";
+    const string UPWARD_ATTACK = "UpwardAttack";
+    const string DOWNWARD_ATTACK = "DownwardAttack";
+    private PlayerMovement _playerMovement;
+    private Animator _animator;
 
 
     private void Awake()
     {
        
-        _player = GetComponent<PlayerMovement>();
+        _playerMovement = GetComponent<PlayerMovement>();
+        _animator = GetComponent<Animator>();
     }
 
     public void UpdateAnimation()
     {
-        float horizontal = Mathf.Abs(_player.HorizontalInput);
+        float horizontal = Mathf.Abs(_playerMovement.HorizontalInput);
        
         SetHorizontal(horizontal);
-        SetFalling(_player.IsFalling);
-        SetJumping(_player.IsJumping || _player.IsWallJumping);
-        SetWallSliding(_player.IsWallSliding);
-        SetDashing(_player.IsDashing);
+        SetFalling(_playerMovement.IsFalling);
+        SetJumping(_playerMovement.IsJumping || _playerMovement.IsWallJumping);
+        SetWallSliding(_playerMovement.IsWallSliding);
+        SetDashing(_playerMovement.IsDashing);
        
     }
 
     
 
-    public void SetTriggerAttack()
+    public void SetTriggeHorizontalrAttack()
     {
-        _animator.SetTrigger(ATTACK);
+        _animator.SetTrigger(HORIZONTAL_ATTACK);
     }
-    public void SetAttackCombo(int comboStep)
+    public void SetTriggerUpwardAttack()
     {
-        _animator.SetFloat(ATTACK_COMBO, comboStep);
+        _animator.SetTrigger(UPWARD_ATTACK);
     }
+    public void SetTriggerDownwardAttack()
+    {
+        _animator.SetTrigger(DOWNWARD_ATTACK);
+    }
+   
     public void SetHorizontal(float horizontal)
     {
         _animator.SetFloat(HORIZONTAL, Mathf.Abs(horizontal));
@@ -78,27 +74,11 @@ public class PlayerAnimation : MonoBehaviour
         _animator.SetBool(IS_JUMPING, isJumping);
     }
 
-    public void PauseCurrentAnimation()
-    {
-        _animator.speed = 0f;
-    }
-    public void StartCurrentAnimation()
-    {
-        _animator.speed = 1f;
-    }
-    public void SetTriggerTurn()
-    {
-        _animator.SetTrigger(TURN);
-    }
-
     public void SetDashing(bool isDashing)
     {
         _animator.SetBool(IS_DASHING, isDashing);
     }
-    public void SetTriggerClimbUp()
-    {
-        _animator.SetTrigger(CLIMB_UP);
-    }
+   
     public void SetWallSliding(bool isSliding)
     {
         _animator.SetBool(IS_WALL_SLIDING, isSliding);
