@@ -17,14 +17,6 @@ public class PlayerMovementData : ScriptableObject
 
     [Header("Run")]
     public float runMaxSpeed; //Target speed we want the player to reach.
-    public float runAcceleration; //The speed at which our player accelerates to max speed, can be set to runMaxSpeed for instant acceleration down to 0 for none at all
-    [HideInInspector] public float runAccelAmount; //The actual force (multiplied with speedDiff) applied to the player.
-    public float runDecceleration; //The speed at which our player decelerates from their current speed, can be set to runMaxSpeed for instant deceleration down to 0 for none at all
-    [HideInInspector] public float runDeccelAmount; //Actual force (multiplied with speedDiff) applied to the player .
-    [Space(5)]
-    [Range(0f, 1)] public float accelInAir; //Multipliers applied to acceleration rate when airborne.
-    [Range(0f, 1)] public float deccelInAir;
-    [Space(5)]
 
     [Space(20)]
 
@@ -35,24 +27,19 @@ public class PlayerMovementData : ScriptableObject
 
     [Header("Both Jumps")]
     public float jumpCutGravityMult; //Multiplier to increase gravity if the player releases thje jump button while still jumping
-    [Range(0f, 1)] public float jumpHangGravityMult; //Reduces gravity while close to the apex (desired max height) of the jump
-    public float jumpHangTimeThreshold; //Speeds (close to 0) where the player will experience extra "jump hang". The player's velocity.y is closest to 0 at the jump's apex (think of the gradient of a parabola or quadratic function)
-    [Space(0.5f)]
-    public float jumpHangAccelerationMult;
-    public float jumpHangMaxSpeedMult;
+
 
     [Header("Wall Jump")]
     public Vector2 wallJumpForce; //The actual force (this time set by us) applied to the player when wall jumping.
     [Space(5)]
     [Range(0f, 1f)] public float wallJumpRunLerp; //Reduces the effect of player's movement while wall jumping.
     [Range(0f, 1.5f)] public float wallJumpTime; //Time after wall jumping the player's movement is slowed for.
-    public bool doTurnOnWallJump; //Player will rotate to face wall jumping direction
 
     [Space(20)]
 
     [Header("Slide")]
     public float slideSpeed;
-    public float slideAccel;
+ 
 
     [Header("Assists")]
     [Range(0.01f, 0.5f)] public float coyoteTime; //Grace period after falling off a platform, where you can still jump
@@ -78,17 +65,9 @@ public class PlayerMovementData : ScriptableObject
 
         //Calculate the rigidbody's gravity scale (ie: gravity strength relative to unity's gravity value, see project settings/Physics2D)
         gravityScale = gravityStrength / Physics2D.gravity.y;
-
-        //Calculate are run acceleration & deceleration forces using formula: amount = ((1 / Time.fixedDeltaTime) * acceleration) / runMaxSpeed
-        runAccelAmount = (50 * runAcceleration) / runMaxSpeed;
-        runDeccelAmount = (50 * runDecceleration) / runMaxSpeed;
-
         //Calculate jumpForce using the formula (initialJumpVelocity = gravity * timeToJumpApex)
         jumpForce = Mathf.Abs(gravityStrength) * jumpTimeToApex;
 
-        #region Variable Ranges
-        runAcceleration = Mathf.Clamp(runAcceleration, 0.01f, runMaxSpeed);
-        runDecceleration = Mathf.Clamp(runDecceleration, 0.01f, runMaxSpeed);
-        #endregion
+       
     }
 }

@@ -98,10 +98,11 @@ public partial class PlayerMovement : MonoBehaviour
 
         if (GameInputManager.Instance.PlayerJumpAction.WasReleasedThisFrame())
         {
-            if (CanJumpCut())
+            if (CanJumpCut()|| CanWallJumpCut())
             {
                 IsJumpCut = true;
             }
+            
 
         }
         if (GameInputManager.Instance.PlayerRunAction.WasPressedThisFrame())
@@ -161,6 +162,7 @@ public partial class PlayerMovement : MonoBehaviour
         {
             IsJumpCut = false;
             IsFalling = false;
+           
         }
 
         #endregion
@@ -176,7 +178,7 @@ public partial class PlayerMovement : MonoBehaviour
                IsJumping = true;
                IsWallJumping = false;
                IsJumpCut = false;
-               IsFalling = false;
+              
 
                 ExecuteJump();
 
@@ -187,8 +189,7 @@ public partial class PlayerMovement : MonoBehaviour
                     IsWallJumping = true;
                     IsJumping = false;
                     IsJumpCut = false;
-                    IsFalling = false;
-
+          
                     _wallJumpStartTime = Time.time;
 
                     _lastWallJumpDirection = LastOnRightWallTime > 0 ? -1 : 1;
@@ -327,6 +328,7 @@ public partial class PlayerMovement : MonoBehaviour
     {
         if (IsWallSliding|| IsDashing)
         {
+            IsFalling = false;
             SetGravityScale(0);
         }
         else if (IsJumpCut)
@@ -335,10 +337,7 @@ public partial class PlayerMovement : MonoBehaviour
             SetGravityScale(Data.gravityScale * Data.jumpCutGravityMult);
             _rb.linearVelocity = new Vector2(_rb.linearVelocityX, Mathf.Max(_rb.linearVelocityY, -Data.maxFallSpeed));
         }
-        else if((IsJumping || IsWallJumping || IsFalling) && Mathf.Abs(_rb.linearVelocityY) < Data.jumpHangTimeThreshold)
-        {
-            SetGravityScale(Data.gravityScale * Data.jumpHangGravityMult);
-        }else if(_rb.linearVelocityY < 0)
+        else if(!IsWallSliding &&  _rb.linearVelocityY < 0)
         {
             IsFalling = true;
             //Higher gravity if falling
@@ -360,33 +359,14 @@ public partial class PlayerMovement : MonoBehaviour
 
         
         float targetSpeed = HorizontalInput * Data.runMaxSpeed;
-
         targetSpeed = Mathf.Lerp(_rb.linearVelocityX, targetSpeed, lerpAmount);
-        float accelRate;
-        if (!IsJumping)
-        {
-            accelRate = (Mathf.Abs(targetSpeed) > 0.01f) ? Data.runAccelAmount : Data.runDeccelAmount;
-        }
-        else
-        {
-            accelRate = (Mathf.Abs(targetSpeed) > 0.01f) ? Data.runAccelAmount * Data.accelInAir :
-                Data.runDeccelAmount * Data.deccelInAir;
-        }
-
-        if ((IsJumping || IsWallJumping || IsFalling) &&
-            Mathf.Abs(_rb.linearVelocityY) < Data.jumpHangTimeThreshold)
-        {
-            accelRate *= Data.jumpHangAccelerationMult;
-            targetSpeed *= Data.jumpHangMaxSpeedMult;
-        }
-
-
-
+        float accelRate =50;
+  
         float speedDiff = targetSpeed - _rb.linearVelocityX;
 
         float movement = speedDiff * accelRate;
 
-        _rb.AddForce(movement * Vector2.right, ForceMode2D.Force);
+        _rb.AddForce(movement* Vector2.right, ForceMode2D.Force);
 
 
 
@@ -402,6 +382,10 @@ public partial class PlayerMovement : MonoBehaviour
     private bool CanJumpCut()
     {
         return IsJumping && _rb.linearVelocityY > 0;
+    }
+    private bool CanWallJumpCut()
+    {
+        return IsWallJumping && _rb.linearVelocityY > 0;
     }
 
     private void ExecuteJump()
@@ -471,9 +455,11 @@ public partial class PlayerMovement : MonoBehaviour
 
         float speedDiff = Data.slideSpeed - _rb.linearVelocityY;
 
-        float movement = speedDiff * Data.slideAccel;
+        float slideAccel = 50;
 
-        movement = Mathf.Clamp(movement, -Mathf.Abs(speedDiff) * (1 / Time.fixedDeltaTime), Mathf.Abs(speedDiff) * (1 / Time.fixedDeltaTime));
+        float movement = speedDiff * slideAccel;
+
+        movement = Mathf.Clamp(movement, -Mathf.Abs(speedDiff) * slideAccel, Mathf.Abs(speedDiff) * slideAccel);
 
         _rb.AddForce(movement * Vector2.up, ForceMode2D.Force);
 
