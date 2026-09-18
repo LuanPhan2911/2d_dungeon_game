@@ -22,6 +22,8 @@ public partial class PlayerMovement : MonoBehaviour
     public bool IsWallJumping { get; private set; }
     public bool IsDashing { get; private set; }
 
+    public bool IsRecoiling { get; private set; }
+    
 
     public bool IsHorizontalMoving => Mathf.Abs(HorizontalInput) > 0.1f;
     public bool IsVerticalMoving => Mathf.Abs(VerticalInput) > 0.1f;
@@ -56,6 +58,8 @@ public partial class PlayerMovement : MonoBehaviour
 
     private int _dashLeft;
     private bool _isDashCooldown;
+
+    [SerializeField] private PlayerDashFX _dashFX;
 
     private void Awake()
     {
@@ -221,6 +225,7 @@ public partial class PlayerMovement : MonoBehaviour
         if (CanDash() && LastPressDashTime > 0)
         {
             Vector2 dashDir;
+          
             if (IsHorizontalMoving && !IsWallSliding)
             {
                 dashDir = HorizontalInput * Vector2.right;
@@ -261,16 +266,10 @@ public partial class PlayerMovement : MonoBehaviour
     private void FixedUpdate()
     {
 
-        if (!IsDashing)
+        if (CanMove())
         {
-            if (IsWallJumping)
-            {
-                HandleRun(Data.wallJumpRunLerp);
-            }
-            else
-            {
-                HandleRun();
-            }
+           
+            HandleMove();
         }
 
 
@@ -363,26 +362,16 @@ public partial class PlayerMovement : MonoBehaviour
     }
 
 
-    private void HandleRun(float lerpAmount = 1)
+    private void HandleMove()
     {
-       
 
+        float lerpAmount = IsWallJumping ? Data.wallJumpMoveLerp : 1;
         
-        float targetSpeed = HorizontalInput * Data.runMaxSpeed;
+        float targetSpeed = HorizontalInput * Data.maxMoveSpeed;
         targetSpeed = Mathf.Lerp(_rb.linearVelocityX, targetSpeed, lerpAmount);
-        float accelRate =50;
-  
-        float speedDiff = targetSpeed - _rb.linearVelocityX;
-
-        float movement = speedDiff * accelRate;
-
-        _rb.AddForce(movement* Vector2.right, ForceMode2D.Force);
 
 
-
-
-
-
+        _rb.linearVelocity = new Vector2(targetSpeed, _rb.linearVelocityY);
     }
 
     private bool CanJump()
@@ -463,31 +452,48 @@ public partial class PlayerMovement : MonoBehaviour
             _rb.AddForce(-_rb.linearVelocityY * Vector2.up, ForceMode2D.Impulse);
         }
 
-        float speedDiff = Data.slideSpeed - _rb.linearVelocityY;
 
-        float slideAccel = 50;
+        
+        _rb.linearVelocity = new Vector2(_rb.linearVelocityX, -Data.slideSpeed);
 
-        float movement = speedDiff * slideAccel;
+    }
+    public void HandlePogo()
+    {
 
-        movement = Mathf.Clamp(movement, -Mathf.Abs(speedDiff) * slideAccel, Mathf.Abs(speedDiff) * slideAccel);
+        IsJumpCut = false;
+        RefillDash();
+        if(_rb.linearVelocityY < 0)
+        {
+            _rb.AddForce(-_rb.linearVelocityY * Vector2.up, ForceMode2D.Impulse);
+        }
+       
 
-        _rb.AddForce(movement * Vector2.up, ForceMode2D.Force);
-
+        _rb.AddForce(Vector2.up * Data.pogoForce, ForceMode2D.Impulse);
     }
 
     private bool CanDash()
     {
         if (!IsDashing && _dashLeft < Data.dashAmount && LastOnGroundTime > 0 && !_isDashCooldown)
         {
-            StartCoroutine(RefillDash());
+            StartCoroutine(StartRefillDash());
         }
 
 
         return _dashLeft > 0;
     }
+
+    private void RefillDash()
+    {
+        _dashLeft = Mathf.Min(Data.dashAmount, _dashLeft + 1);
+    }
+    private bool CanMove()
+    {
+        return !IsDashing && !IsRecoiling;
+    }
     private IEnumerator StartDash(Vector2 dashDir)
     {
         LastPressDashTime = 0;
+        _dashFX.PlayDashFX(true);
 
         float startTime = Time.time;
         _dashLeft--;
@@ -501,26 +507,33 @@ public partial class PlayerMovement : MonoBehaviour
         }
 
         IsDashing = false;
+        _dashFX.PlayDashFX(false);
     }
 
-    private IEnumerator RefillDash()
+    private IEnumerator StartRefillDash()
     {
         _isDashCooldown = true;
         yield return new WaitForSeconds(Data.dashCooldownTime);
         _isDashCooldown = false;
-        _dashLeft = Mathf.Min(Data.dashAmount, _dashLeft + 1);
+        RefillDash();
     }
 
+
+    public IEnumerator StartRecoil(Vector2 direction)
+    {
+        IsRecoiling = true;
+        _rb.AddForce(-_rb.linearVelocityX * Vector2.right, ForceMode2D.Impulse);
+
+        _rb.AddForce(direction * Data.recoilForce, ForceMode2D.Impulse);
+        yield return new WaitForSeconds(Data.recoilDuration);
+        IsRecoiling = false;
+
+    }
     private void OnDrawGizmos()
     {
-        Gizmos.color = Color.red;
-
-        Gizmos.DrawWireCube(_groundCheckPoint.position, _groundCheckSize);
-
-
         Gizmos.color = Color.blue;
 
-
+        Gizmos.DrawWireCube(_groundCheckPoint.position, _groundCheckSize);
         Gizmos.DrawWireCube(_leftWallCheckPoint.position, _wallCheckSize);
         Gizmos.DrawWireCube(_rightWallCheckPoint.position, _wallCheckSize);
     }

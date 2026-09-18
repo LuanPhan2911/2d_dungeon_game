@@ -45,7 +45,7 @@ public class PlayerAnimation : MonoBehaviour
 
     
 
-    public void SetTriggeHorizontalrAttack()
+    public void SetTriggeHorizontalAttack()
     {
         _animator.SetTrigger(HORIZONTAL_ATTACK);
     }

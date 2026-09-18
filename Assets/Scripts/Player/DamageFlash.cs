@@ -33,6 +33,7 @@ public class DamageFlash : MonoBehaviour
             StopCoroutine(_flashCorountine);
 
         }
+      
         _flashCorountine = StartCoroutine(FlashCoroutine(duration));
     }
     public void PingPongFlash(float duration)
@@ -53,6 +54,8 @@ public class DamageFlash : MonoBehaviour
         // set the flash color to the material
         _flashMaterial.SetColor(FLASH_COLOR_PROPERTY, _flashColor);
 
+        
+
         while (elapsedTime < duration)
         {
             elapsedTime += Time.deltaTime;
@@ -60,6 +63,7 @@ public class DamageFlash : MonoBehaviour
 
             // set the flash amount to the material
             _flashMaterial.SetFloat(FLASH_AMOUNT_PROPERTY, flashAmount);
+           
 
             yield return null;
         }

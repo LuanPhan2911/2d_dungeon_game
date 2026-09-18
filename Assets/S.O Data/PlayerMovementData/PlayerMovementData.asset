@@ -14,17 +14,17 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::PlayerMovementData
   gravityStrength: -40
   gravityScale: 4.0774717
-  fallGravityMult: 2
+  fallGravityMult: 1.5
   maxFallSpeed: 18
-  runMaxSpeed: 8
+  maxMoveSpeed: 8
   jumpHeight: 5
   jumpTimeToApex: 0.5
   jumpForce: 20
-  jumpCutGravityMult: 3.5
+  jumpCutGravityMult: 2.5
   wallJumpForce: {x: 10, y: 18}
-  wallJumpRunLerp: 0.1
+  wallJumpMoveLerp: 0.05
   wallJumpTime: 0.3
-  slideSpeed: -2
+  slideSpeed: 2
   coyoteTime: 0.2
   jumpInputBufferTime: 0.2
   dashAmount: 1

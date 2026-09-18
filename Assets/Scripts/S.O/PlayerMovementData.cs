@@ -1,3 +1,4 @@
+using System.ComponentModel.Design;
 using UnityEngine;
 
 [CreateAssetMenu(fileName = "Player Movement Data", menuName = "Scriptable Objects/Player Movement Data")]
@@ -16,7 +17,7 @@ public class PlayerMovementData : ScriptableObject
     [Space(20)]
 
     [Header("Run")]
-    public float runMaxSpeed; //Target speed we want the player to reach.
+    public float maxMoveSpeed; //Target speed we want the player to reach.
 
     [Space(20)]
 
@@ -32,7 +33,7 @@ public class PlayerMovementData : ScriptableObject
     [Header("Wall Jump")]
     public Vector2 wallJumpForce; //The actual force (this time set by us) applied to the player when wall jumping.
     [Space(5)]
-    [Range(0f, 1f)] public float wallJumpRunLerp; //Reduces the effect of player's movement while wall jumping.
+    [Range(0f, 1f)] public float wallJumpMoveLerp; //Reduces the effect of player's movement while wall jumping.
     [Range(0f, 1.5f)] public float wallJumpTime; //Time after wall jumping the player's movement is slowed for.
 
     [Space(20)]
@@ -55,6 +56,13 @@ public class PlayerMovementData : ScriptableObject
     public float dashCooldownTime;
     [Space(5)]
     [Range(0.01f, 0.5f)] public float dashInputBufferTime;
+
+
+    [Header("Recoil, Pogo")]
+
+    public float recoilForce = 7.5f;
+    public float pogoForce = 15f;
+    public float recoilDuration = 0.15f;
 
 
     //Unity Callback, called when the inspector updates

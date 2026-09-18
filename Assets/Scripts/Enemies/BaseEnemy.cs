@@ -1,29 +1,34 @@
+using System.Collections;
 using UnityEngine;
 
 
 [RequireComponent(typeof(DamageFlash))]
-[RequireComponent(typeof(KnockbackReceiver))]
-public class BaseEnemy : MonoBehaviour, IDamagable
+[RequireComponent(typeof(Rigidbody2D))]
+public class BaseEnemy : MonoBehaviour, IDamageable
 {
 
 
+    public bool CanRecoil;
+
+    public bool IsRecoiling { get; private set;  }
     [SerializeField] private int _maxHp;
-    [SerializeField] private float _knockbackForce = 2f;
-    [SerializeField] private float _knockbackDuration = 0.2f;
+    [SerializeField] private float _recoilForce = 2f;
+    [SerializeField] private float _recoilDuration = 0.2f;
     [SerializeField] private float _flashDuration = 0.2f;
-    [SerializeField] private int _touchPlayerDamage = 1;
 
+
+
+   
     private DamageFlash _damageFlash;
+    private Rigidbody2D _rb;
 
-    private KnockbackReceiver _knockbackReceiver;
-    private EnemyGroundMoving _enemyGroundMoving;
+   
 
 
     private void Awake()
     {
         _damageFlash = GetComponent<DamageFlash>();
-        _knockbackReceiver = GetComponent<KnockbackReceiver>();
-        _enemyGroundMoving = GetComponent<EnemyGroundMoving>();
+        _rb=GetComponent<Rigidbody2D>();
     }
     private int _Hp;
 
@@ -32,14 +37,7 @@ public class BaseEnemy : MonoBehaviour, IDamagable
         _Hp = _maxHp;
     }
 
-    private void Update()
-    {
-        if (!_knockbackReceiver.IsKnockbacked)
-        {
-
-            _enemyGroundMoving.Move();
-        }
-    }
+   
 
     public virtual void Death()
     {
@@ -47,30 +45,35 @@ public class BaseEnemy : MonoBehaviour, IDamagable
     }
 
 
-     public void TakeDamage(int damage, Vector2 knockbackDirection)
+     public void TakeDamage(int damage, Vector2 recoilDirection)
     {
         _Hp -= damage;
-        _damageFlash.PingPongFlash(_flashDuration);
-        _knockbackReceiver.Knockback(knockbackDirection, _knockbackForce, _knockbackDuration);
+        _damageFlash.Flash(_flashDuration);
 
+        if (CanRecoil)
+        {
+            StartCoroutine(StartRecoil(recoilDirection));
+        }
         if (_Hp <= 0)
         {
             Death();
         }
     }
-  
-    private void OnCollisionStay2D(Collision2D collision)
+
+    private IEnumerator StartRecoil(Vector2 direction)
     {
 
+        IsRecoiling = true;
 
-        if (collision.collider.TryGetComponent(out PlayerTakenDamage playerTakenDamage))
-        {
+        _rb.linearVelocity = Vector2.zero;
+        _rb.AddForce(direction *  _recoilForce, ForceMode2D.Impulse);
 
+        yield return new WaitForSeconds(_recoilDuration);
 
-
-            playerTakenDamage.TakeDamage(_touchPlayerDamage);
-        }
+        IsRecoiling = false;
     }
+  
+   
 
 
 }
