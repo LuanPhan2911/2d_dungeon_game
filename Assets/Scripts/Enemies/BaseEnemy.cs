@@ -17,6 +17,10 @@ public class BaseEnemy : MonoBehaviour, IDamageable
     [SerializeField] private float _recoilDuration = 0.2f;
     [SerializeField] private float _flashDuration = 0.2f;
 
+    [SerializeField] private DamageTextUI _damageTextPrefab;
+
+    [SerializeField] private Transform _canvasParent;
+
 
 
     private int _currentHealth;
@@ -57,6 +61,12 @@ public class BaseEnemy : MonoBehaviour, IDamageable
         OnHealthChange?.Invoke(healthRatio);
 
         _damageFlash.Flash(_flashDuration);
+
+        // spawn damage text
+      
+        DamageTextUI damageTextUI = Instantiate(_damageTextPrefab, _canvasParent);
+
+        damageTextUI.SetText(damage);
 
         if (CanRecoil)
         {

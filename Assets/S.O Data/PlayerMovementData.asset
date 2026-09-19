@@ -28,10 +28,10 @@ MonoBehaviour:
   coyoteTime: 0.2
   jumpInputBufferTime: 0.2
   dashAmount: 1
-  dashSpeed: 15
+  dashSpeed: 20
   dashTime: 0.2
   dashCooldownTime: 0.5
   dashInputBufferTime: 0.2
   recoilForce: 7.5
-  pogoForce: 15
+  pogoForce: 20
   recoilDuration: 0.15
