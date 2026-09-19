@@ -1,5 +1,7 @@
 using System.Collections;
+
 using UnityEngine;
+
 
 public class PlayerAttack : MonoBehaviour
 {
@@ -22,15 +24,21 @@ public class PlayerAttack : MonoBehaviour
     private int _currentDamage;
     private int _currentSwordLevel=1;
 
-    
+    private float _currentAttackSpeedMultiplier = 1f;
+    private float _attackTimer;
+
+
+
+
 
 
 
 
     public bool IsRecoiling { get; private set; }
+    public float LastPressAttackTimer { get; private set;  }
 
 
-    private float _attackTimer;
+  
 
 
 
@@ -77,7 +85,15 @@ public class PlayerAttack : MonoBehaviour
     {
 
         _attackTimer += Time.deltaTime;
-        if (CanAttack() && GameInputManager.Instance.PlayerAttackAction.WasPressedThisFrame() )
+        LastPressAttackTimer -= Time.deltaTime;
+
+        if ( GameInputManager.Instance.PlayerAttackAction.WasPressedThisFrame() )
+        {
+            LastPressAttackTimer = _data.attackInputBuffer;
+        }
+
+
+        if ((CanAttack()))
         {
             Attack();
         }
@@ -85,45 +101,52 @@ public class PlayerAttack : MonoBehaviour
 
     private bool CanAttack()
     {
-        return _attackTimer > _data.attackCooldown && !_playerMovement.IsRecoiling && !_playerMovement.IsDashing
+        float attackCoolDown = _data.baseAttackCooldown / _currentAttackSpeedMultiplier;
+
+        return LastPressAttackTimer>0&& _attackTimer > attackCoolDown && 
+            !_playerMovement.IsRecoiling && !_playerMovement.IsDashing
             && !_playerMovement.IsWallSliding;
     }
 
    
     private void Attack()
     {
+        LastPressAttackTimer = 0f;
         _attackTimer = 0;
 
         float verticalInput = GameInputManager.Instance.GetVerticalInput();
+
+        Vector2 attackDirection;
+
         if (verticalInput > 0)
         {
-            PerformAttack(_upAttackPoint.position, _verticalAttackSize, Vector2.up);
+            attackDirection = Vector2.up;
+            ScanAndDamage(_upAttackPoint.position, _verticalAttackSize, attackDirection);
             _playerAnimation.SetTriggerUpwardAttack();
         }
         else if (verticalInput < 0 && _playerMovement.LastOnGroundTime <= 0)
         {
-            PerformAttack(_downAttackPoint.position, _verticalAttackSize, Vector2.down);
+            attackDirection = Vector2.down;
+            StartCoroutine(DownAttackClingerCoroutine(_downAttackPoint.position, _verticalAttackSize));
 
             _playerAnimation.SetTriggerDownwardAttack();
         }
         else
         {
-            PerformAttack(_sideAttackPoint.position, _horizontalAttackSize, Vector2.right);
+            attackDirection = Vector2.right;
+            ScanAndDamage(_sideAttackPoint.position, _horizontalAttackSize, attackDirection);
             // horizontal attack
             _playerAnimation.SetTriggeHorizontalAttack();
         
         }
-       
-        
+        _slashFX.Show(attackDirection);
+        StartCoroutine(EndSlash());
+
+
     }
 
-    private void PerformAttack(Vector3 position, Vector2 size, Vector2 direction)
+    private bool ScanAndDamage(Vector3 position, Vector2 size, Vector2 direction)
     {
-        // 1. Show Animation
-
-        _slashFX.Show(direction);
-
-
         Collider2D[] hitEnemies = Physics2D.OverlapBoxAll(position, size, 0, _enemyMask);
 
         Vector2 enemyRecoilDirection = direction;
@@ -144,14 +167,29 @@ public class PlayerAttack : MonoBehaviour
 
            
             ApplyRecoil(direction);
+            return true;
            
         }
+        return false;
 
-        StartCoroutine(EndSlash());
-
+      
 
     }
-
+   
+    private IEnumerator DownAttackClingerCoroutine(Vector3 position, Vector2 size)
+    {
+        float elapse = 0;
+        while(elapse < _data.downAttackDuration)
+        {
+            elapse += Time.deltaTime;
+            if(ScanAndDamage(position, size, Vector2.down))
+            {
+                yield break;
+            }
+            
+        }
+        yield return null;
+    }
     private IEnumerator EndSlash()
     {
         yield return new WaitForSeconds(_data.attackDuration);
