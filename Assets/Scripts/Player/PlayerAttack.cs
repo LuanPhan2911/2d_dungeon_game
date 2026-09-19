@@ -3,12 +3,6 @@ using UnityEngine;
 
 public class PlayerAttack : MonoBehaviour
 {
-
-
-
-    [SerializeField] private float _attackSpeed = 2f;
-
-
     [SerializeField] private Transform _upAttackPoint;
     [SerializeField] private Transform _downAttackPoint;
     [SerializeField] private Transform _sideAttackPoint;
@@ -19,14 +13,16 @@ public class PlayerAttack : MonoBehaviour
     [SerializeField] private PlayerSlashFX _slashFX;
 
 
-
-    [SerializeField] private float _attackCooldown = 0.3f;
-    [SerializeField] private float _attackDuration = 0.1f;
-
+    [SerializeField] private PlayerWeaponData _data;
     [SerializeField] private LayerMask _enemyMask;
 
 
 
+
+    private int _currentDamage;
+    private int _currentSwordLevel=1;
+
+    
 
 
 
@@ -51,6 +47,31 @@ public class PlayerAttack : MonoBehaviour
 
         
     }
+    private void Start()
+    {
+        UpdateCurrentDamage();
+    }
+    private void UpdateCurrentDamage()
+    {
+        switch (_currentSwordLevel)
+        {
+            case 1:
+                _currentDamage= _data.level1Damage;
+                break;
+            case 2:
+                _currentDamage= _data.level2Damage;
+                break;
+            case 3:
+                _currentDamage= _data.level3Damage;
+                break;
+            default:
+                _currentDamage = 1;
+                Debug.Log("Unknown Sword Level");
+                break;
+
+
+        }
+    }
 
     private void Update()
     {
@@ -58,15 +79,13 @@ public class PlayerAttack : MonoBehaviour
         _attackTimer += Time.deltaTime;
         if (CanAttack() && GameInputManager.Instance.PlayerAttackAction.WasPressedThisFrame() )
         {
-            Debug.Log("Attack");
-
             Attack();
         }
     }
 
     private bool CanAttack()
     {
-        return _attackTimer > _attackCooldown && !_playerMovement.IsRecoiling && !_playerMovement.IsDashing
+        return _attackTimer > _data.attackCooldown && !_playerMovement.IsRecoiling && !_playerMovement.IsDashing
             && !_playerMovement.IsWallSliding;
     }
 
@@ -119,7 +138,7 @@ public class PlayerAttack : MonoBehaviour
             {
                 if(hit.TryGetComponent(out IDamageable damageable))
                 {
-                    damageable.TakeDamage(1, enemyRecoilDirection);
+                    damageable.TakeDamage(_currentDamage, enemyRecoilDirection);
                 }
             }
 
@@ -135,7 +154,7 @@ public class PlayerAttack : MonoBehaviour
 
     private IEnumerator EndSlash()
     {
-        yield return new WaitForSeconds(_attackDuration);
+        yield return new WaitForSeconds(_data.attackDuration);
         _slashFX.Hide();
     }
 
@@ -149,7 +168,9 @@ public class PlayerAttack : MonoBehaviour
         }else if(direction == Vector2.up)
         {
             // stop move up
-        }else
+            _playerMovement.HandleStopJump();
+        }
+        else
         {
             // recoil
             Vector2 recoilDirection = _playerMovement.IsFacingRight ? Vector2.left : Vector2.right;

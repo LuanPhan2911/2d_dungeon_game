@@ -17,14 +17,20 @@ public class DamageFlash : MonoBehaviour
     private Material _flashMaterial;
 
 
-    private const string FLASH_COLOR_PROPERTY = "_FlashColor";
-    private const string FLASH_AMOUNT_PROPERTY = "_FlashAmount";
+ 
+
+    private static readonly int FlashColorId = Shader.PropertyToID("_FlashColor");
+    private static readonly int FlashAmountId = Shader.PropertyToID("_FlashAmount");
+ 
     private void Awake()
     {
         _flashMaterial = _spriteRenderer.material;
     }
 
-    
+    private void Start()
+    {
+        _flashMaterial.SetColor(FlashColorId, _flashColor);
+    }
 
     public void Flash(float duration)
     {
@@ -52,7 +58,7 @@ public class DamageFlash : MonoBehaviour
         float elapsedTime = 0f;
 
         // set the flash color to the material
-        _flashMaterial.SetColor(FLASH_COLOR_PROPERTY, _flashColor);
+        _flashMaterial.SetColor(FlashColorId, _flashColor);
 
         
 
@@ -62,12 +68,12 @@ public class DamageFlash : MonoBehaviour
             float flashAmount = Mathf.Lerp(1f, 0f, elapsedTime / duration);
 
             // set the flash amount to the material
-            _flashMaterial.SetFloat(FLASH_AMOUNT_PROPERTY, flashAmount);
+            _flashMaterial.SetFloat(FlashAmountId, flashAmount);
            
 
             yield return null;
         }
-        _flashMaterial.SetFloat(FLASH_AMOUNT_PROPERTY, 0);
+        _flashMaterial.SetFloat(FlashAmountId, 0);
     }
     private System.Collections.IEnumerator PingPongFlashCoroutine(float duration)
     {
@@ -75,7 +81,7 @@ public class DamageFlash : MonoBehaviour
         float elapsedTime = 0f;
 
         // set the flash color to the material
-        _flashMaterial.SetColor(FLASH_COLOR_PROPERTY, _flashColor);
+        _flashMaterial.SetColor(FlashColorId, _flashColor);
 
         while (elapsedTime < duration)
         {
@@ -83,11 +89,11 @@ public class DamageFlash : MonoBehaviour
             float flashAmount = Mathf.PingPong(Time.time * _pingPongFlashSpeed, 1);
 
             // set the flash amount to the material
-            _flashMaterial.SetFloat(FLASH_AMOUNT_PROPERTY, flashAmount);
+            _flashMaterial.SetFloat(FlashAmountId, flashAmount);
 
             yield return null;
         }
-        _flashMaterial.SetFloat(FLASH_AMOUNT_PROPERTY, 0);
+        _flashMaterial.SetFloat(FlashAmountId, 0);
     }
 
 

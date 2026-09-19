@@ -6,7 +6,7 @@ using UnityEngine;
 
 public partial class PlayerMovement : MonoBehaviour
 {
-    public PlayerMovementData Data;
+
 
     [Header("Player Input")]
     public float HorizontalInput { get; private set; }
@@ -49,6 +49,9 @@ public partial class PlayerMovement : MonoBehaviour
     [SerializeField] private Transform _rightWallCheckPoint;
     [SerializeField] private Vector2 _wallCheckSize = new Vector2(0.03f, 0.3f);
 
+
+    [SerializeField] private PlayerMovementData _data;
+
     private PlayerAnimation _playerAnimation;
     private Rigidbody2D _rb;
 
@@ -69,7 +72,7 @@ public partial class PlayerMovement : MonoBehaviour
 
     private void Start()
     {
-        SetGravityScale(Data.gravityScale);
+        SetGravityScale(_data.gravityScale);
         IsFacingRight = true;
         LastHorizontalInput = 1;
     }
@@ -96,7 +99,7 @@ public partial class PlayerMovement : MonoBehaviour
 
         if (GameInputManager.Instance.PlayerJumpAction.WasPressedThisFrame())
         {
-            LastPressJumpTime = Data.jumpInputBufferTime;
+            LastPressJumpTime = _data.jumpInputBufferTime;
         }
 
 
@@ -114,7 +117,7 @@ public partial class PlayerMovement : MonoBehaviour
         }
         if (GameInputManager.Instance.PlayerRunAction.WasPressedThisFrame())
         {
-            LastPressDashTime = Data.dashInputBufferTime;
+            LastPressDashTime = _data.dashInputBufferTime;
         }
         #endregion
 
@@ -127,7 +130,7 @@ public partial class PlayerMovement : MonoBehaviour
 
             if (Physics2D.OverlapBox(_groundCheckPoint.position, _groundCheckSize, 0f, GroundLayerMask) && !IsJumping)
             {
-               LastOnGroundTime = Data.coyoteTime;
+               LastOnGroundTime = _data.coyoteTime;
             }
 
 
@@ -135,12 +138,12 @@ public partial class PlayerMovement : MonoBehaviour
             {
                 if ((CheckWall(_rightWallCheckPoint.position) && IsFacingRight) ||(CheckWall(_leftWallCheckPoint.position) && !IsFacingRight))
                 {
-                   LastOnRightWallTime = Data.coyoteTime;
+                   LastOnRightWallTime = _data.coyoteTime;
                 }
 
                 if ((CheckWall(_rightWallCheckPoint.position) && !IsFacingRight) ||(CheckWall(_leftWallCheckPoint.position) && IsFacingRight))
                 {
-                    LastOnLeftWallTime = Data.coyoteTime;
+                    LastOnLeftWallTime = _data.coyoteTime;
                 }
 
 
@@ -175,7 +178,7 @@ public partial class PlayerMovement : MonoBehaviour
             IsJumping = false;
         }
 
-        if (IsWallJumping && Time.time - _wallJumpStartTime > Data.wallJumpTime)
+        if (IsWallJumping && Time.time - _wallJumpStartTime > _data.wallJumpTime)
         {
             IsWallJumping = false;
         }
@@ -343,20 +346,20 @@ public partial class PlayerMovement : MonoBehaviour
         else if (IsJumpCut)
         {
            
-            SetGravityScale(Data.gravityScale * Data.jumpCutGravityMult);
-            _rb.linearVelocity = new Vector2(_rb.linearVelocityX, Mathf.Max(_rb.linearVelocityY, -Data.maxFallSpeed));
+            SetGravityScale(_data.gravityScale * _data.jumpCutGravityMult);
+            _rb.linearVelocity = new Vector2(_rb.linearVelocityX, Mathf.Max(_rb.linearVelocityY, -_data.maxFallSpeed));
         }
         else if( _rb.linearVelocityY < 0)
         {
            
             //Higher gravity if falling
-            SetGravityScale(Data.gravityScale * Data.fallGravityMult);
+            SetGravityScale(_data.gravityScale * _data.fallGravityMult);
             //Caps maximum fall speed, so when falling over large distances we don't accelerate to insanely high speeds
-            _rb.linearVelocity = new Vector2(_rb.linearVelocityX, Mathf.Max(_rb.linearVelocityY, -Data.maxFallSpeed));
+            _rb.linearVelocity = new Vector2(_rb.linearVelocityX, Mathf.Max(_rb.linearVelocityY, -_data.maxFallSpeed));
         }
         else
         {
-            SetGravityScale(Data.gravityScale);
+            SetGravityScale(_data.gravityScale);
         }
 
     }
@@ -365,9 +368,9 @@ public partial class PlayerMovement : MonoBehaviour
     private void HandleMove()
     {
 
-        float lerpAmount = IsWallJumping ? Data.wallJumpMoveLerp : 1;
+        float lerpAmount = IsWallJumping ? _data.wallJumpMoveLerp : 1;
         
-        float targetSpeed = HorizontalInput * Data.maxMoveSpeed;
+        float targetSpeed = HorizontalInput * _data.maxMoveSpeed;
         targetSpeed = Mathf.Lerp(_rb.linearVelocityX, targetSpeed, lerpAmount);
 
 
@@ -394,7 +397,7 @@ public partial class PlayerMovement : MonoBehaviour
 
         #region Perform Jump
 
-        float force = Data.jumpForce;
+        float force = _data.jumpForce;
 
         if (_rb.linearVelocityY < 0)
         {
@@ -424,7 +427,7 @@ public partial class PlayerMovement : MonoBehaviour
        LastOnRightWallTime = 0;
 
         #region Perform Wall Jump
-        Vector2 force = new Vector2(Data.wallJumpForce.x, Data.wallJumpForce.y);
+        Vector2 force = new Vector2(_data.wallJumpForce.x, _data.wallJumpForce.y);
 
         force.x *= _lastWallJumpDirection;
 
@@ -454,7 +457,7 @@ public partial class PlayerMovement : MonoBehaviour
 
 
         
-        _rb.linearVelocity = new Vector2(_rb.linearVelocityX, -Data.slideSpeed);
+        _rb.linearVelocity = new Vector2(_rb.linearVelocityX, -_data.slideSpeed);
 
     }
     public void HandlePogo()
@@ -468,12 +471,20 @@ public partial class PlayerMovement : MonoBehaviour
         }
        
 
-        _rb.AddForce(Vector2.up * Data.pogoForce, ForceMode2D.Impulse);
+        _rb.AddForce(Vector2.up * _data.pogoForce, ForceMode2D.Impulse);
+    }
+    public void HandleStopJump()
+    {
+        IsJumpCut = false;
+        if (_rb.linearVelocityY > 0)
+        {
+            _rb.AddForce(-_rb.linearVelocityY * Vector2.up, ForceMode2D.Impulse);
+        }
     }
 
     private bool CanDash()
     {
-        if (!IsDashing && _dashLeft < Data.dashAmount && LastOnGroundTime > 0 && !_isDashCooldown)
+        if (!IsDashing && _dashLeft < _data.dashAmount && LastOnGroundTime > 0 && !_isDashCooldown)
         {
             StartCoroutine(StartRefillDash());
         }
@@ -484,7 +495,7 @@ public partial class PlayerMovement : MonoBehaviour
 
     private void RefillDash()
     {
-        _dashLeft = Mathf.Min(Data.dashAmount, _dashLeft + 1);
+        _dashLeft = Mathf.Min(_data.dashAmount, _dashLeft + 1);
     }
     private bool CanMove()
     {
@@ -499,9 +510,9 @@ public partial class PlayerMovement : MonoBehaviour
         _dashLeft--;
         IsDashing = true;
 
-        while (Time.time - startTime < Data.dashTime)
+        while (Time.time - startTime < _data.dashTime)
         {
-            _rb.linearVelocity = dashDir.normalized *Data.dashSpeed;
+            _rb.linearVelocity = dashDir.normalized *_data.dashSpeed;
 
             yield return null;
         }
@@ -513,7 +524,7 @@ public partial class PlayerMovement : MonoBehaviour
     private IEnumerator StartRefillDash()
     {
         _isDashCooldown = true;
-        yield return new WaitForSeconds(Data.dashCooldownTime);
+        yield return new WaitForSeconds(_data.dashCooldownTime);
         _isDashCooldown = false;
         RefillDash();
     }
@@ -524,8 +535,8 @@ public partial class PlayerMovement : MonoBehaviour
         IsRecoiling = true;
         _rb.AddForce(-_rb.linearVelocityX * Vector2.right, ForceMode2D.Impulse);
 
-        _rb.AddForce(direction * Data.recoilForce, ForceMode2D.Impulse);
-        yield return new WaitForSeconds(Data.recoilDuration);
+        _rb.AddForce(direction * _data.recoilForce, ForceMode2D.Impulse);
+        yield return new WaitForSeconds(_data.recoilDuration);
         IsRecoiling = false;
 
     }

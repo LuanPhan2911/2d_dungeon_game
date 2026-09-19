@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using UnityEngine;
 
@@ -11,16 +12,19 @@ public class BaseEnemy : MonoBehaviour, IDamageable
     public bool CanRecoil;
 
     public bool IsRecoiling { get; private set;  }
-    [SerializeField] private int _maxHp;
+    [SerializeField] private int _maxHealth=100;
     [SerializeField] private float _recoilForce = 2f;
     [SerializeField] private float _recoilDuration = 0.2f;
     [SerializeField] private float _flashDuration = 0.2f;
 
 
 
-   
+    private int _currentHealth;
     private DamageFlash _damageFlash;
     private Rigidbody2D _rb;
+
+
+    public event Action<float> OnHealthChange;
 
    
 
@@ -30,11 +34,11 @@ public class BaseEnemy : MonoBehaviour, IDamageable
         _damageFlash = GetComponent<DamageFlash>();
         _rb=GetComponent<Rigidbody2D>();
     }
-    private int _Hp;
+
 
     private void Start()
     {
-        _Hp = _maxHp;
+        _currentHealth = _maxHealth;
     }
 
    
@@ -47,14 +51,18 @@ public class BaseEnemy : MonoBehaviour, IDamageable
 
      public void TakeDamage(int damage, Vector2 recoilDirection)
     {
-        _Hp -= damage;
+        _currentHealth -= damage;
+        float healthRatio = Math.Clamp((float)_currentHealth / _maxHealth, 0, _maxHealth);
+
+        OnHealthChange?.Invoke(healthRatio);
+
         _damageFlash.Flash(_flashDuration);
 
         if (CanRecoil)
         {
             StartCoroutine(StartRecoil(recoilDirection));
         }
-        if (_Hp <= 0)
+        if (_currentHealth <= 0)
         {
             Death();
         }

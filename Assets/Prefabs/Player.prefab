@@ -865,7 +865,6 @@ GameObject:
   - component: {fileID: 114067171588200336}
   - component: {fileID: 5676948285274127503}
   - component: {fileID: 3610167816305384861}
-  - component: {fileID: 666775707453186409}
   - component: {fileID: 6018911243575386500}
   - component: {fileID: 6271476450232353595}
   m_Layer: 7
@@ -1009,21 +1008,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0fd389ea37417544e9817298543153c9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::PlayerAnimation
---- !u!114 &666775707453186409
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5087166927145310186}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 75c55ffef9fb9af459fafb44cc767a09, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::DamageFlash
-  _flashColor: {r: 1, g: 1, b: 1, a: 1}
-  _pingPongFlashSpeed: 5
-  _spriteRenderer: {fileID: 508249752885434750}
 --- !u!114 &6018911243575386500
 MonoBehaviour:
   m_ObjectHideFlags: 0
