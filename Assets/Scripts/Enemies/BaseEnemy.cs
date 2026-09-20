@@ -53,9 +53,9 @@ public class BaseEnemy : MonoBehaviour, IDamageable
     }
 
 
-     public void TakeDamage(int damage, Vector2 recoilDirection)
+     public void TakeDamage(Damage damage, Vector2 recoilDirection)
     {
-        _currentHealth -= damage;
+        _currentHealth -= damage.amount;
         float healthRatio = Math.Clamp((float)_currentHealth / _maxHealth, 0, _maxHealth);
 
         OnHealthChange?.Invoke(healthRatio);

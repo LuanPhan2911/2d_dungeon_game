@@ -20,3 +20,19 @@ MonoBehaviour:
   level3Damage: 19
   attackInputBuffer: 0.2
   buffAttackSpeedMultiplier: 1.5
+  baseCritRate: 0.1
+  baseCritDamge: 2
+  critRateIncreasement: 0.05
+  elementalTypes:
+  - typeName: Physic
+    elementalColor: {r: 1, g: 1, b: 1, a: 1}
+  - typeName: Steel
+    elementalColor: {r: 0.9952855, g: 1, b: 0, a: 1}
+  - typeName: Grass
+    elementalColor: {r: 0, g: 1, b: 0.016802788, a: 1}
+  - typeName: Water
+    elementalColor: {r: 0, g: 0.47368574, b: 1, a: 1}
+  - typeName: Fire
+    elementalColor: {r: 1, g: 0, b: 0, a: 1}
+  - typeName: Ground
+    elementalColor: {r: 0.23773581, g: 0.23381092, b: 0.22203627, a: 1}

@@ -20,28 +20,27 @@ public class PlayerAttack : MonoBehaviour
     [SerializeField] private LayerMask _enemyMask;
 
 
-
-
-    private int _currentDamage;
-    private int _currentSwordLevel=1;
-
-    private float _currentAttackSpeedMultiplier = 1f;
+    [Header("Sword Settting")]
+   [SerializeField] private int _swordLevel=1;
+    private float _attackSpeedMultiplier = 1f;
     private float _attackTimer;
 
 
+    [Header("Element Type")]
+   [SerializeField] private int _elementalTypeIndex = 0;
 
 
+
+    private float _currentCritRate;
+    private float _currentCritDamage;
+
+   
 
 
 
 
     public bool IsRecoiling { get; private set; }
     public float LastPressAttackTimer { get; private set;  }
-
-
-  
-
-
 
 
     private PlayerAnimation _playerAnimation;
@@ -58,30 +57,36 @@ public class PlayerAttack : MonoBehaviour
     }
     private void Start()
     {
-        UpdateCurrentDamage();
+        _currentCritRate = _data.baseCritRate;
+        _currentCritDamage = _data.baseCritDamge;
     }
-    private void UpdateCurrentDamage()
+
+    public ElementalType GetElemetalType(int elementalIndex)
     {
-        switch (_currentSwordLevel)
+        if (elementalIndex >= _data.elementalTypes.Length || elementalIndex < 0) return null;
+        return _data.elementalTypes[elementalIndex];
+    }
+    private int GetSwordDamage(int swordLevel)
+    {
+        switch (swordLevel)
         {
             case 1:
-                _currentDamage= _data.level1Damage;
-                break;
+               return _data.level1Damage;
+                
             case 2:
-                _currentDamage= _data.level2Damage;
-                break;
+                return _data.level2Damage;
+               
             case 3:
-                _currentDamage= _data.level3Damage;
-                break;
+                return _data.level3Damage;
+               
             default:
-                _currentDamage = 1;
                 Debug.Log("Unknown Sword Level");
-                break;
-
-
+                return 1;
         }
     }
 
+
+  
     private void Update()
     {
 
@@ -102,7 +107,7 @@ public class PlayerAttack : MonoBehaviour
 
     private bool CanAttack()
     {
-        float attackCoolDown = _data.baseAttackCooldown / _currentAttackSpeedMultiplier;
+        float attackCoolDown = _data.baseAttackCooldown / _attackSpeedMultiplier;
 
         return LastPressAttackTimer>0&& _attackTimer > attackCoolDown && 
             !_playerMovement.IsRecoiling && !_playerMovement.IsDashing
@@ -157,12 +162,41 @@ public class PlayerAttack : MonoBehaviour
         }
         if (hitEnemies.Length > 0)
         {
+           
+
+            #region Crit rate
+            bool isCritStrike = Random.value <= _currentCritRate;
+
+            int damageAmount = GetSwordDamage(_swordLevel);
+            if (isCritStrike)
+            {
+                damageAmount = Mathf.RoundToInt(damageAmount * _currentCritDamage);
+                _currentCritRate = _data.baseCritRate;
+                HitStopManager.Instance.TriggerHitStop(_data.critHitStopDuration, _data.hitStopTimeScale);
+            }
+            else
+            {
+                _currentCritRate =Mathf.Clamp(_currentCritRate+ _data.critRateIncreasement, 0, 1);
+                HitStopManager.Instance.TriggerHitStop(_data.hitStopDuration, _data.hitStopTimeScale);
+            }
+
+
+            #endregion
+
             // 2. Damge to enemy
-            foreach(Collider2D hit in hitEnemies)
+            foreach (Collider2D hit in hitEnemies)
             {
                 if(hit.TryGetComponent(out IDamageable damageable))
                 {
-                    damageable.TakeDamage(_currentDamage, enemyRecoilDirection);
+                    
+                    ElementalType elementalType = GetElemetalType(_elementalTypeIndex);
+                  
+                    damageable.TakeDamage(new Damage
+                    {
+                        amount= damageAmount,
+                        elementalType= elementalType,
+                        isCrit=isCritStrike
+                    }, enemyRecoilDirection);
                 }
             }
 
@@ -196,6 +230,7 @@ public class PlayerAttack : MonoBehaviour
         yield return new WaitForSeconds(_data.attackDuration);
         _slashFX.Hide();
     }
+   
 
     private void ApplyRecoil(Vector2 direction)
     {

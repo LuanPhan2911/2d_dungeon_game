@@ -10,18 +10,21 @@ public class DamageTextUI : MonoBehaviour
 
     [SerializeField] private float _fadeoutSpeed = 5f;
 
-    [SerializeField] private float _fontSizeNormal = 64;
-    [SerializeField] private float _fontSizeCrit = 96;
+    [SerializeField] private float _normalDamageSize = 64;
+    [SerializeField] private float _critDamageSize = 128;
 
 
     private Color _textColor;
 
  
-    public void SetText(int damgeAmount)
+    public void SetText(Damage damage)
     {
 
-        _textMesh.text = damgeAmount.ToString();
-        _textMesh.fontSize = _fontSizeNormal;
+        _textMesh.text = damage.amount.ToString();
+        _textMesh.fontSize = damage.isCrit ? _critDamageSize: _normalDamageSize;
+        //_textMesh.color = new Color(damageColor.r, damageColor.g, damageColor.b, damageColor.a);
+        _textMesh.color = damage.elementalType.elementalColor;
+
         _textColor = _textMesh.color;
 
         
