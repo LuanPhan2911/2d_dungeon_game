@@ -2,15 +2,15 @@ using UnityEngine;
 
 public class SlashFX : MonoBehaviour
 {
-    // Start is called once before the first execution of Update after the MonoBehaviour is created
-    void Start()
+    private SpriteRenderer _spriteRenderer;
+
+    private void Awake()
     {
-        
+        _spriteRenderer = GetComponent<SpriteRenderer>();
     }
 
-    // Update is called once per frame
-    void Update()
+    public void SetColor(Color color)
     {
-        
+        _spriteRenderer.color = color;
     }
 }

@@ -26,7 +26,7 @@ public class PlayerAttack : MonoBehaviour
 
 
     [Header("Element Type")]
-   [SerializeField] private int _elementalTypeIndex = 0;
+   [SerializeField] private int _elementIndex = 0;
 
 
 
@@ -57,13 +57,13 @@ public class PlayerAttack : MonoBehaviour
     private void Start()
     {
         _currentCritRate = _data.baseCritRate;
-        _currentCritDamage = _data.baseCritDamge;
+        _currentCritDamage = _data.baseCritDamage;
     }
 
-    public ElementalType GetElemetalType(int elementalIndex)
+    public ElementData GetElement(int elementIndex)
     {
-        if (elementalIndex >= _data.elementalTypes.Length || elementalIndex < 0) return null;
-        return _data.elementalTypes[elementalIndex];
+        if (elementIndex >= _data.elements.Length || elementIndex < 0) return null;
+        return _data.elements[elementIndex];
     }
     private int GetSwordDamage(int swordLevel)
     {
@@ -166,10 +166,10 @@ public class PlayerAttack : MonoBehaviour
             #region Crit rate
             bool isCritStrike = Random.value <= _currentCritRate;
 
-            int damageAmount = GetSwordDamage(_swordLevel);
+            float damageAmount = GetSwordDamage(_swordLevel);
             if (isCritStrike)
             {
-                damageAmount = Mathf.RoundToInt(damageAmount * _currentCritDamage);
+                damageAmount *= GetCritDamageMultiplier();
                 _currentCritRate = _data.baseCritRate;
                 HitStopManager.Instance.TriggerHitStop(_data.critHitStopDuration, _data.hitStopTimeScale);
             }
@@ -188,12 +188,12 @@ public class PlayerAttack : MonoBehaviour
                 if(hit.TryGetComponent(out IDamageable damageable))
                 {
                     
-                    ElementalType elementalType = GetElemetalType(_elementalTypeIndex);
+                    ElementData element = GetElement(_elementIndex);
                   
                     damageable.TakeDamage(new Damage
                     {
                         amount= damageAmount,
-                        elementalType= elementalType,
+                        element= element,
                         isCrit=isCritStrike
                     }, enemyRecoilDirection);
                 }
@@ -208,6 +208,10 @@ public class PlayerAttack : MonoBehaviour
 
       
 
+    }
+    private float GetCritDamageMultiplier()
+    {
+        return 1 + _data.baseCritDamage;
     }
    
     private IEnumerator DownAttackClingerCoroutine(Vector3 position, Vector2 size)
@@ -274,6 +278,12 @@ public class PlayerAttack : MonoBehaviour
        
 
         GameObject slashFx = Instantiate(_slashFxPrefab, parent);
+
+        ElementData element = GetElement(_elementIndex);
+        if (element != null)
+        {
+            slashFx.GetComponent<SlashFX>().SetColor(element.color);
+        }
         slashFx.transform.rotation = rotation;
 
     }

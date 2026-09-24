@@ -23,26 +23,26 @@ public class PlayerWeaponData : ScriptableObject
 
 
     public float baseCritRate = 0.1f;
-    public float baseCritDamge = 2f;
+    public float baseCritDamage = 0.5f;
 
     public float critRateIncreasement = 0.05f;
 
 
-    public ElementalType[] elementalTypes;
+    public ElementData[] elements;
 
 }
 
-[Serializable]
-public class ElementalType
-{
-    public string typeName;
-    public Color elementalColor;
 
+[Serializable]
+public class ElementalResistance
+{
+    public ElementData element;
+    public float resistance=0.1f;
 }
 public class Damage
 {
-    public int amount { get; set; }
-    public ElementalType elementalType { get; set; }
+    public float amount { get; set; }
+    public ElementData element { get; set; }
     public bool isCrit { get; set; }
 
    

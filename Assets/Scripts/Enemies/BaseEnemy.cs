@@ -12,18 +12,14 @@ public class BaseEnemy : MonoBehaviour, IDamageable
     public bool CanRecoil;
 
     public bool IsRecoiling { get; private set;  }
-    [SerializeField] private int _maxHealth=100;
-    [SerializeField] private float _recoilForce = 2f;
-    [SerializeField] private float _recoilDuration = 0.2f;
-    [SerializeField] private float _flashDuration = 0.2f;
-
     [SerializeField] private DamageTextUI _damageTextPrefab;
-
     [SerializeField] private Transform _canvasParent;
 
 
 
-    private int _currentHealth;
+    private float _currentHealth;
+
+    [SerializeField] private EnemyData _data;
     private DamageFlash _damageFlash;
     private Rigidbody2D _rb;
 
@@ -42,7 +38,7 @@ public class BaseEnemy : MonoBehaviour, IDamageable
 
     private void Start()
     {
-        _currentHealth = _maxHealth;
+        _currentHealth = _data.maxHealth ;
     }
 
    
@@ -55,12 +51,19 @@ public class BaseEnemy : MonoBehaviour, IDamageable
 
      public void TakeDamage(Damage damage, Vector2 recoilDirection)
     {
+
+       
+        
+        damage.amount *= GetResistanceMultiplier(damage.element);
+    
+    
+
         _currentHealth -= damage.amount;
-        float healthRatio = Math.Clamp((float)_currentHealth / _maxHealth, 0, _maxHealth);
+        float healthRatio = Math.Clamp(_currentHealth / _data.maxHealth, 0, _data.maxHealth);
 
         OnHealthChange?.Invoke(healthRatio);
 
-        _damageFlash.Flash(_flashDuration);
+        _damageFlash.Flash(_data.flashDuration);
 
         // spawn damage text
       
@@ -84,11 +87,29 @@ public class BaseEnemy : MonoBehaviour, IDamageable
         IsRecoiling = true;
 
         _rb.linearVelocity = Vector2.zero;
-        _rb.AddForce(direction *  _recoilForce, ForceMode2D.Impulse);
+        _rb.AddForce(direction *  _data.recoilForce, ForceMode2D.Impulse);
 
-        yield return new WaitForSeconds(_recoilDuration);
+        yield return new WaitForSeconds(_data.recoilDuration);
 
         IsRecoiling = false;
+    }
+
+    public float GetResistanceMultiplier(ElementData element)
+    {
+        float multiplier = 1;
+        ElementalResistance[] resistances = _data.resistances;
+        for (int i = 0; i < resistances.Length; i++)
+        {
+            if (resistances[i].element== element)
+            {
+                multiplier = 1 - resistances[i].resistance;
+                break;
+            }
+        }
+
+
+
+        return multiplier;
     }
   
    

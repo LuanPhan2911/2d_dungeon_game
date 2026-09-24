@@ -1,0 +1,37 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 07187215504c3a54393bab05a697a34d, type: 3}
+  m_Name: SteelSlime
+  m_EditorClassIdentifier: Assembly-CSharp::EnemyData
+  maxHealth: 0
+  CanRecoil: 0
+  recoilForce: 0
+  recoilDuration: 0
+  flashDuration: 0
+  physicResistance:
+    element: {fileID: 0}
+    resistance: 0.1
+  steelResistance:
+    element: {fileID: 0}
+    resistance: 0.1
+  grassResistance:
+    element: {fileID: 0}
+    resistance: 0.1
+  waterResistance:
+    element: {fileID: 0}
+    resistance: 0.1
+  fireResistance:
+    element: {fileID: 0}
+    resistance: 0.1
+  groundResisatance:
+    element: {fileID: 0}
+    resistance: 0.1

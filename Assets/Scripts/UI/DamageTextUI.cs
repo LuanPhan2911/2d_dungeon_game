@@ -20,10 +20,10 @@ public class DamageTextUI : MonoBehaviour
     public void SetText(Damage damage)
     {
 
-        _textMesh.text = damage.amount.ToString();
+        _textMesh.text = Mathf.RoundToInt(damage.amount).ToString();
         _textMesh.fontSize = damage.isCrit ? _critDamageSize: _normalDamageSize;
-        //_textMesh.color = new Color(damageColor.r, damageColor.g, damageColor.b, damageColor.a);
-        _textMesh.color = damage.elementalType.elementalColor;
+     
+        _textMesh.color = damage.element.color;
 
         _textColor = _textMesh.color;
 
