@@ -13,7 +13,6 @@ public class PlayerAttack : MonoBehaviour
     [SerializeField] private Vector2 _horizontalAttackSize = new Vector2(1.5f, 1);
     [SerializeField] private Vector2 _verticalAttackSize = new Vector2(1, 1.5f);
 
-    [SerializeField] private PlayerSlashFX _slashFX;
 
 
     [SerializeField] private PlayerWeaponData _data;
@@ -35,10 +34,6 @@ public class PlayerAttack : MonoBehaviour
     private float _currentCritDamage;
 
    
-
-
-
-
     public bool IsRecoiling { get; private set; }
     public float LastPressAttackTimer { get; private set;  }
 
@@ -46,6 +41,10 @@ public class PlayerAttack : MonoBehaviour
     private PlayerAnimation _playerAnimation;
 
     private PlayerMovement _playerMovement;
+
+    [Header("FX")]
+    [SerializeField] private GameObject _slashFxPrefab;
+
 
     private void Awake()
     {
@@ -145,8 +144,8 @@ public class PlayerAttack : MonoBehaviour
             _playerAnimation.SetTriggeHorizontalAttack();
         
         }
-        _slashFX.Show(attackDirection);
-        StartCoroutine(EndSlash());
+        SpawnSlashVFX(attackDirection);
+       
 
 
     }
@@ -225,11 +224,7 @@ public class PlayerAttack : MonoBehaviour
         }
         yield return null;
     }
-    private IEnumerator EndSlash()
-    {
-        yield return new WaitForSeconds(_data.attackDuration);
-        _slashFX.Hide();
-    }
+    
    
 
     private void ApplyRecoil(Vector2 direction)
@@ -252,8 +247,36 @@ public class PlayerAttack : MonoBehaviour
         }
 
     }
-   
-  
+
+    private void SpawnSlashVFX(Vector2 direction )
+    {
+
+        Transform parent = null;
+        bool isFacingRight = _playerMovement.IsFacingRight;
+        Quaternion rotation = Quaternion.identity;
+        if (direction == Vector2.up)
+        {
+            rotation = Quaternion.Euler(0, 0, isFacingRight ? 90 : -90);
+            parent = _upAttackPoint;
+        }
+        else if (direction == Vector2.down)
+        {
+            parent = _downAttackPoint;
+            rotation = Quaternion.Euler(0, 0, isFacingRight ? -90 : 90);
+
+        }
+        else
+        {
+            parent = _sideAttackPoint;
+           
+        }
+
+       
+
+        GameObject slashFx = Instantiate(_slashFxPrefab, parent);
+        slashFx.transform.rotation = rotation;
+
+    }
 
     private void OnDrawGizmos()
     {

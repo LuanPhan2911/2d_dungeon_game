@@ -12,9 +12,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0b56cb9ffee71cb4db0508a0bfe48f98, type: 3}
   m_Name: PlayerWeaponData
   m_EditorClassIdentifier: Assembly-CSharp::PlayerWeaponData
-  baseAttackCooldown: 0.3
-  attackDuration: 0.1
+  baseAttackCooldown: 0.4
   downAttackDuration: 0.1
+  hitStopDuration: 0.05
+  critHitStopDuration: 0.12
+  hitStopTimeScale: 0.02
   level1Damage: 9
   level2Damage: 14
   level3Damage: 19

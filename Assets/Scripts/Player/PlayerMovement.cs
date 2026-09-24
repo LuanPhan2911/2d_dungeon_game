@@ -62,7 +62,7 @@ public partial class PlayerMovement : MonoBehaviour
     private int _dashLeft;
     private bool _isDashCooldown;
 
-    [SerializeField] private PlayerDashFX _dashFX;
+    [SerializeField] private DashFX _dashFX;
 
     private void Awake()
     {

@@ -4,8 +4,7 @@ using UnityEngine;
 [CreateAssetMenu(fileName = "PlayerWeaponData", menuName = "Scriptable Objects/PlayerWeaponData")]
 public class PlayerWeaponData : ScriptableObject
 {
-    public float baseAttackCooldown=0.3f;
-    public float attackDuration=0.1f;
+    public float baseAttackCooldown=0.4f;
     public float downAttackDuration = 0.05f;
     public float hitStopDuration = 0.05f;
     public float critHitStopDuration = 0.12f;
