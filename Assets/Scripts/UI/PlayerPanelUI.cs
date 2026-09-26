@@ -2,48 +2,37 @@
 using UnityEngine;
 using UnityEngine.UI;
 
+
 public class PlayerPanelUI : MonoBehaviour
 {
 
+    [SerializeField] private Image _energyImage;
+    [SerializeField] private Image _healthImage;
 
-    [SerializeField] private TMP_Text _scoreText;
-
-    [SerializeField] private Sprite _redHeartSprite;
-    [SerializeField] private Sprite _emptyHeartSprite;
-
-
-    [SerializeField] private Image[] _heartImaged;
-
+   
 
 
 
     private void OnEnable()
     {
-       
+        PlayerHealth.Instance.OnHealthChanged +=UpdateHealthUI;
+        PlayerHealth.Instance.OnEnergyChanged +=UpdateEnergyUI;
     }
 
     private void OnDisable()
     {
-       
+        PlayerHealth.Instance.OnHealthChanged -= UpdateHealthUI;
+        PlayerHealth.Instance.OnEnergyChanged -= UpdateEnergyUI;
     }
 
-    private void UpdateHealthUI(object sender, int health)
+    private void UpdateHealthUI( float ratio)
     {
-        for (int i = 0; i < _heartImaged.Length; i++)
-        {
-            if (i < health)
-            {
-                _heartImaged[i].sprite = _redHeartSprite;
-            }
-            else
-            {
-                _heartImaged[i].sprite = _emptyHeartSprite;
-            }
-        }
+        _healthImage.fillAmount = ratio;
+    }
+    private void UpdateEnergyUI( float ratio)
+    {
+        _energyImage.fillAmount = ratio;
     }
 
-    private void UpdateScoreText(object sender, int coin)
-    {
-        _scoreText.text = $"{coin}";
-    }
+   
 }

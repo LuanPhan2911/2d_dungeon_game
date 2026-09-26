@@ -23,18 +23,12 @@ MonoBehaviour:
   attackInputBuffer: 0.2
   buffAttackSpeedMultiplier: 1.5
   baseCritRate: 0.1
-  baseCritDamge: 2
+  baseCritDamage: 0.5
   critRateIncreasement: 0.05
-  elementalTypes:
-  - name: Physic
-    color: {r: 1, g: 1, b: 1, a: 1}
-  - name: Steel
-    color: {r: 1, g: 0.9797771, b: 0, a: 1}
-  - name: Grass
-    color: {r: 0.045994043, g: 1, b: 0, a: 1}
-  - name: Water
-    color: {r: 0, g: 0.41807008, b: 1, a: 1}
-  - name: Fire
-    color: {r: 1, g: 0, b: 0, a: 1}
-  - name: Ground
-    color: {r: 0.335849, g: 0.335849, b: 0.335849, a: 1}
+  elements:
+  - {fileID: 11400000, guid: fa41908be5b89654d95054a0484eb7d8, type: 2}
+  - {fileID: 11400000, guid: 0fda099d69e02a14796aa32fe827c589, type: 2}
+  - {fileID: 11400000, guid: db1905687a944cc4aa7e5287c2cc606a, type: 2}
+  - {fileID: 11400000, guid: cfb9b5ebcdf62a842af790accf5fe130, type: 2}
+  - {fileID: 11400000, guid: 5f9787651436ec04fac44ee1fce84e5d, type: 2}
+  - {fileID: 11400000, guid: 900a6a60b4ab0844d865b09c7e9b785f, type: 2}

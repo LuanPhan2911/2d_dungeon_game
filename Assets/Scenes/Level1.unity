@@ -2298,12 +2298,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::BaseEnemy
   CanRecoil: 1
-  _maxHealth: 200
-  _recoilForce: 5
-  _recoilDuration: 0.1
-  _flashDuration: 0.2
   _damageTextPrefab: {fileID: 1487051802927294602, guid: 1354b2960d56cea4c8df6c2267a21e03, type: 3}
   _canvasParent: {fileID: 759728018}
+  _data: {fileID: 11400000, guid: 557431c153a8e0942b489e4c4812654a, type: 2}
 --- !u!50 &1213848564
 Rigidbody2D:
   serializedVersion: 5
@@ -21202,6 +21199,10 @@ PrefabInstance:
     - target: {fileID: 5087166927145310186, guid: 523e1f14885f3df4cbcde949cdf98e38, type: 3}
       propertyPath: m_Name
       value: Player
+      objectReference: {fileID: 0}
+    - target: {fileID: 6271476450232353595, guid: 523e1f14885f3df4cbcde949cdf98e38, type: 3}
+      propertyPath: _elementIndex
+      value: 4
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []

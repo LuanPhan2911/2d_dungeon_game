@@ -13,4 +13,4 @@ MonoBehaviour:
   m_Name: WaterElement
   m_EditorClassIdentifier: Assembly-CSharp::ElementData
   elementName: Physic
-  color: {r: 1, g: 1, b: 1, a: 1}
+  color: {r: 0, g: 0.49438763, b: 1, a: 1}

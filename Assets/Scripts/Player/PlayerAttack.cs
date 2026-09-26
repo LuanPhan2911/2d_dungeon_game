@@ -109,8 +109,7 @@ public class PlayerAttack : MonoBehaviour
         float attackCoolDown = _data.baseAttackCooldown / _attackSpeedMultiplier;
 
         return LastPressAttackTimer>0&& _attackTimer > attackCoolDown && 
-            !_playerMovement.IsRecoiling && !_playerMovement.IsDashing
-            && !_playerMovement.IsWallSliding;
+            !_playerMovement.IsRecoiling && !_playerMovement.IsDashing;
     }
 
    
@@ -171,12 +170,12 @@ public class PlayerAttack : MonoBehaviour
             {
                 damageAmount *= GetCritDamageMultiplier();
                 _currentCritRate = _data.baseCritRate;
-                HitStopManager.Instance.TriggerHitStop(_data.critHitStopDuration, _data.hitStopTimeScale);
+               
             }
             else
             {
                 _currentCritRate =Mathf.Clamp(_currentCritRate+ _data.critRateIncreasement, 0, 1);
-                HitStopManager.Instance.TriggerHitStop(_data.hitStopDuration, _data.hitStopTimeScale);
+               
             }
 
 
@@ -200,7 +199,7 @@ public class PlayerAttack : MonoBehaviour
             }
 
            
-            ApplyRecoil(direction);
+          
             return true;
            
         }

@@ -12,26 +12,21 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 07187215504c3a54393bab05a697a34d, type: 3}
   m_Name: SteelSlime
   m_EditorClassIdentifier: Assembly-CSharp::EnemyData
-  maxHealth: 0
-  CanRecoil: 0
-  recoilForce: 0
-  recoilDuration: 0
-  flashDuration: 0
-  physicResistance:
-    element: {fileID: 0}
+  maxHealth: 200
+  CanRecoil: 1
+  recoilForce: 5
+  recoilDuration: 0.1
+  flashDuration: 0.2
+  resistances:
+  - element: {fileID: 11400000, guid: fa41908be5b89654d95054a0484eb7d8, type: 2}
     resistance: 0.1
-  steelResistance:
-    element: {fileID: 0}
+  - element: {fileID: 11400000, guid: 0fda099d69e02a14796aa32fe827c589, type: 2}
+    resistance: 0.25
+  - element: {fileID: 11400000, guid: db1905687a944cc4aa7e5287c2cc606a, type: 2}
+    resistance: 0.5
+  - element: {fileID: 11400000, guid: cfb9b5ebcdf62a842af790accf5fe130, type: 2}
     resistance: 0.1
-  grassResistance:
-    element: {fileID: 0}
-    resistance: 0.1
-  waterResistance:
-    element: {fileID: 0}
-    resistance: 0.1
-  fireResistance:
-    element: {fileID: 0}
-    resistance: 0.1
-  groundResisatance:
-    element: {fileID: 0}
+  - element: {fileID: 11400000, guid: 5f9787651436ec04fac44ee1fce84e5d, type: 2}
+    resistance: -0.5
+  - element: {fileID: 11400000, guid: 900a6a60b4ab0844d865b09c7e9b785f, type: 2}
     resistance: 0.1

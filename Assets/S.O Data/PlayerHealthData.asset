@@ -9,8 +9,8 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 9014d7a81b4d677478e8a5f66712b28c, type: 3}
-  m_Name: GroundElement
-  m_EditorClassIdentifier: Assembly-CSharp::ElementData
-  elementName: Physic
-  color: {r: 0.509434, g: 0.43995076, b: 0.33737984, a: 1}
+  m_Script: {fileID: 11500000, guid: 48c3a3a42b2a7be4cbd33feb1e974ffe, type: 3}
+  m_Name: PlayerHealthData
+  m_EditorClassIdentifier: Assembly-CSharp::PlayerHealthData
+  baseHealth: 100
+  baseEnergy: 30

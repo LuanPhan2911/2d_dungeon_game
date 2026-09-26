@@ -13,4 +13,4 @@ MonoBehaviour:
   m_Name: GrassElement
   m_EditorClassIdentifier: Assembly-CSharp::ElementData
   elementName: Physic
-  color: {r: 1, g: 1, b: 1, a: 1}
+  color: {r: 0.25852156, g: 1, b: 0, a: 1}
