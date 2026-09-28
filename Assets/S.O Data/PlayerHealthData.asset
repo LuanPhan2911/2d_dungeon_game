@@ -13,4 +13,11 @@ MonoBehaviour:
   m_Name: PlayerHealthData
   m_EditorClassIdentifier: Assembly-CSharp::PlayerHealthData
   baseHealth: 100
-  baseEnergy: 30
+  baseEnergy: 40
+  gainingEnergyFromNormalAttack: 1
+  poisonousDuration: 3
+  poisionousDamage: 5
+  poisonousDamagePerSecond: 1
+  burningDuration: 3
+  burningDamage: 2
+  burningDamagePerSecond: 0.5

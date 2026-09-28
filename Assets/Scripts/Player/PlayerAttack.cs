@@ -31,7 +31,7 @@ public class PlayerAttack : MonoBehaviour
 
 
     private float _currentCritRate;
-    private float _currentCritDamage;
+   
 
    
     public bool IsRecoiling { get; private set; }
@@ -41,6 +41,7 @@ public class PlayerAttack : MonoBehaviour
     private PlayerAnimation _playerAnimation;
 
     private PlayerMovement _playerMovement;
+    private PlayerHealth _playerHealth;
 
     [Header("FX")]
     [SerializeField] private GameObject _slashFxPrefab;
@@ -51,13 +52,13 @@ public class PlayerAttack : MonoBehaviour
         
         _playerAnimation = GetComponent<PlayerAnimation>();
         _playerMovement = GetComponent<PlayerMovement>();
+        _playerHealth = GetComponent<PlayerHealth>();
 
         
     }
     private void Start()
     {
         _currentCritRate = _data.baseCritRate;
-        _currentCritDamage = _data.baseCritDamage;
     }
 
     public ElementData GetElement(int elementIndex)
@@ -65,7 +66,7 @@ public class PlayerAttack : MonoBehaviour
         if (elementIndex >= _data.elements.Length || elementIndex < 0) return null;
         return _data.elements[elementIndex];
     }
-    private int GetSwordDamage(int swordLevel)
+    private int GetDamage(int swordLevel)
     {
         switch (swordLevel)
         {
@@ -165,7 +166,7 @@ public class PlayerAttack : MonoBehaviour
             #region Crit rate
             bool isCritStrike = Random.value <= _currentCritRate;
 
-            float damageAmount = GetSwordDamage(_swordLevel);
+            float damageAmount = GetDamage(_swordLevel);
             if (isCritStrike)
             {
                 damageAmount *= GetCritDamageMultiplier();
@@ -178,6 +179,12 @@ public class PlayerAttack : MonoBehaviour
                
             }
 
+
+            #endregion
+
+            #region Energy
+
+            _playerHealth.GainEnergyFromNormalAttack();
 
             #endregion
 

@@ -1,5 +1,6 @@
 using System;
 using UnityEngine;
+using UnityEngine.Experimental.GlobalIllumination;
 
 public class PlayerHealth : MonoBehaviour
 {
@@ -10,6 +11,10 @@ public class PlayerHealth : MonoBehaviour
 
     public event Action<float> OnHealthChanged;
     public event Action<float> OnEnergyChanged;
+
+
+    public float HealthRatio => _health / GetMaxHealth();
+    public float EnergyRatio => _energy / GetMaxEnergy();
 
 
     private void Awake()
@@ -36,12 +41,12 @@ public class PlayerHealth : MonoBehaviour
         _energy = 0f;
 
 
-        OnHealthChanged?.Invoke(_health);
-        OnEnergyChanged?.Invoke(_energy);
+        OnHealthChanged?.Invoke(HealthRatio);
+        OnEnergyChanged?.Invoke(EnergyRatio) ;
     }
 
 
-    public void ChangeHealth(float amount)
+    private void ChangeHealth(float amount)
     {
         _health = Mathf.Clamp(_health + amount, 0f, GetMaxHealth());
 
@@ -50,24 +55,23 @@ public class PlayerHealth : MonoBehaviour
             Debug.Log("player die");
         }
 
-        float ratio = _health / GetMaxHealth();
+      
 
 
-        OnHealthChanged?.Invoke(ratio);
+        OnHealthChanged?.Invoke(HealthRatio);
     }
 
-    public void ChangeEnergy(float amount)
+    private void ChangeEnergy(float amount)
     {
         _energy = Mathf.Clamp(_energy + amount, 0f, GetMaxEnergy());
-
-        
-
-        float ratio = _health / GetMaxEnergy();
-
-
-        OnEnergyChanged?.Invoke(ratio);
+        OnEnergyChanged?.Invoke(EnergyRatio);
     }
 
-    // Update is called once per frame
+    public void GainEnergyFromNormalAttack()
+    {
+        ChangeEnergy(_data.gainingEnergyFromNormalAttack);
+    }
+
+
   
 }

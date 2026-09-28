@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 07187215504c3a54393bab05a697a34d, type: 3}
   m_Name: SteelSlime
   m_EditorClassIdentifier: Assembly-CSharp::EnemyData
-  maxHealth: 200
+  maxHealth: 2000
   CanRecoil: 1
   recoilForce: 5
   recoilDuration: 0.1

@@ -5,7 +5,10 @@ public class PlayerHealthData : ScriptableObject
 {
     public float baseHealth=100f;
     public float baseEnergy = 30f;
-    public float energyRecharge = 1f;
+
+
+
+    public float gainingEnergyFromNormalAttack = 1f;
 
 
 
