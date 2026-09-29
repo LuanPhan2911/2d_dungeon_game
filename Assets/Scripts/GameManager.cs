@@ -21,7 +21,7 @@ public class GameManager : MonoBehaviour
 
     private void Start()
     {
-        HideCursor();
+        //HideCursor();
     }
 
 
@@ -52,7 +52,7 @@ public class GameManager : MonoBehaviour
     {
         IsGamePaused = false;
         Time.timeScale = 1f;
-        HideCursor();
+        //HideCursor();
         GameInputManager.Instance.PlayerActions.Enable();
         OnGamePauseChanged?.Invoke(this, EventArgs.Empty);
     }

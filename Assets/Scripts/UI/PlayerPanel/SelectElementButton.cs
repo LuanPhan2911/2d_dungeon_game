@@ -9,29 +9,15 @@ public class SelectElementButton : MonoBehaviour
     [SerializeField] private Image _image;
     [SerializeField] private TextMeshProUGUI _textMesh;
 
-    private ElementData _data;
+    private ElementData _elementData;
 
-    private void Start()
-    {
-        _button.onClick.AddListener(() =>
-        {
-            if(PlayerAttack.Instance.SelectedElement== _data)
-            {
-                return;
-            }
-            PlayerAttack.Instance.SetSelectedElement(_data);
-        });
-    }
-
-    private void OnDestroy()
-    {
-        _button.onClick.RemoveAllListeners();
-    }
+    
+   
 
 
     public void SetElement(ElementData data, int positionNumber)
     {
-        _data = data;
+        _elementData = data;
         _image.color = data.color;
         _textMesh.text = $"{positionNumber}";
 

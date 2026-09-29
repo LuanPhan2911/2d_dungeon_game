@@ -24,39 +24,6 @@ public class PlayerAttack : MonoBehaviour
     [Header("Sword Settting")]
    [SerializeField] private int _swordLevel=1;
     private float _attackSpeedMultiplier = 1f;
-  
-
-
-    [Header("Element")]
-
-
-    public ElementData[] Elements;
-    public ElementData SelectedElement { get; private set; }
-    public ElementData GetElementDamage()
-    {
-        if(SelectedElement==null || !IsInfusedElementToWeapon)
-        {
-            return _defaultElement;
-        }
-        return SelectedElement;
-    }
-
-    public void SetSelectedElement(ElementData element)
-    {
-        SelectedElement = element;
-        _elementChangeTimer = _data.elementChangeCooldown;
-        _infusedElementToWeaponTimer = 0f;
-        OnElementChanged?.Invoke();
-    }
-    public event Action OnElementChanged;
-    public bool IsElementChangeCooldown => _elementChangeTimer > 0f;
-    private float _elementChangeTimer;
-
-
-
-
-   
-
    
     public bool IsRecoiling { get; private set; }
 
@@ -166,7 +133,7 @@ public class PlayerAttack : MonoBehaviour
         _elementalSkillTimer = Mathf.Max(_elementalSkillTimer - Time.deltaTime, 0f);
         _burstSkillTimer = Mathf.Max(_burstSkillTimer - Time.deltaTime, 0f);
         _infusedElementToWeaponTimer = Mathf.Max(_infusedElementToWeaponTimer - Time.deltaTime, 0f);
-        _elementChangeTimer = Mathf.Max(_elementChangeTimer - Time.deltaTime, 0f);
+    
 
 
         _lastPressAttackTimer = Mathf.Max(_lastPressAttackTimer - Time.deltaTime, 0f);
@@ -215,6 +182,11 @@ public class PlayerAttack : MonoBehaviour
             BurstSkillAttack();
         }
        
+    }
+
+    public void StopInfuseElementToWeapon()
+    {
+        _infusedElementToWeaponTimer = 0f;
     }
   
 
@@ -341,7 +313,7 @@ public class PlayerAttack : MonoBehaviour
                     damageable.TakeDamage(new Damage
                     {
                         amount= damageAmount,
-                        element= GetElementDamage(),
+                        element= PlayerElement.Instance.GetElementDamage(),
                         isCrit=isCritStrike
                     }, enemyRecoilDirection);
                 }
@@ -427,7 +399,7 @@ public class PlayerAttack : MonoBehaviour
 
         GameObject slashFx = Instantiate(_slashFxPrefab, parent);
 
-        ElementData elementDamage = GetElementDamage();
+        ElementData elementDamage = PlayerElement.Instance.GetElementDamage();
        
         slashFx.GetComponent<SlashFX>().SetColor(elementDamage.color);
         

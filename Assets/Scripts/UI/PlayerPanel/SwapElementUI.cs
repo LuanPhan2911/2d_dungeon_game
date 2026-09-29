@@ -1,6 +1,6 @@
 using UnityEngine;
 
-public class SelectElementUI : MonoBehaviour
+public class SwapElementUI : MonoBehaviour
 {
 
 
@@ -18,7 +18,7 @@ public class SelectElementUI : MonoBehaviour
         {
             if(child.TryGetComponent(out SelectElementButton button))
             {
-                button.SetInteract(!PlayerAttack.Instance.IsElementChangeCooldown);
+                button.SetInteract(!PlayerElement.Instance.IsElementSwapCooldown);
             }
 
         }
@@ -32,7 +32,7 @@ public class SelectElementUI : MonoBehaviour
 
         }
         int pos = 1;
-        foreach(ElementData data in PlayerAttack.Instance.Elements)
+        foreach(ElementData data in PlayerElement.Instance.Elements)
         {
            SelectElementButton button= Instantiate(_elementButtonPrefab, transform);
 
