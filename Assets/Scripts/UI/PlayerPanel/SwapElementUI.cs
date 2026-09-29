@@ -32,11 +32,11 @@ public class SwapElementUI : MonoBehaviour
 
         }
         int pos = 1;
-        foreach(ElementData data in PlayerElement.Instance.Elements)
+        foreach(PlayerElementData playerElementData in PlayerElement.Instance.PlayerElementData)
         {
            SelectElementButton button= Instantiate(_elementButtonPrefab, transform);
 
-            button.SetElement(data, pos);
+            button.SetElement(playerElementData, pos);
             pos++;
 
         }

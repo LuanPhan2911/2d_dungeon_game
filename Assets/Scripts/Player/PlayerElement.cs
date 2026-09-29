@@ -8,25 +8,12 @@ public class PlayerElement : MonoBehaviour
 
     [Header("Element")]
     [SerializeField] private float _elementSwapCooldown = 0.5f;
-    [SerializeField] private ElementData _defaultElement;
-    public ElementData[] Elements;
-    public ElementData CurrentElement { get; private set; }
-    public ElementData GetElementDamage()
-    {
-        if (CurrentElement == null || !PlayerAttack.Instance.IsInfusedElementToWeapon)
-        {
-            return _defaultElement;
-        }
-        return CurrentElement;
-    }
+    [SerializeField] private ElementData _physicElementType;
+    public PlayerElementData[] PlayerElementData;
 
-    public void SetCurrentElement(ElementData element)
-    {
-        CurrentElement = element;
-        _elementSwapTimer = _elementSwapCooldown;
-        PlayerAttack.Instance.StopInfuseElementToWeapon();
-        OnElementSwapped?.Invoke();
-    }
+    public PlayerElementData CurrentPlayerElement { get; private set; }
+    public ElementData CurrentElementType => CurrentPlayerElement.element;
+   
 
     public event Action OnElementSwapped;
     public bool IsElementSwapCooldown => _elementSwapTimer > 0f;
@@ -61,13 +48,31 @@ public class PlayerElement : MonoBehaviour
 
         
     }
+    public ElementData GetElementDamage()
+    {
+        if (CurrentPlayerElement == null || !PlayerSkill.Instance.IsInfusedElementToWeapon)
+        {
+            return _physicElementType;
+        }
+        return CurrentElementType;
+    }
 
+    public void SetCurrentPlayerElement(PlayerElementData playerElement)
+    {
+        CurrentPlayerElement = playerElement;
+        _elementSwapTimer = _elementSwapCooldown;
+        PlayerSkill.Instance.StopInfuseElementToWeapon();
+        OnElementSwapped?.Invoke();
+    }
     private void SwapElement(int elementIndex)
     {
-        if (Elements.Length <= elementIndex) return;
-        ElementData element = Elements[elementIndex];
-        if (CurrentElement == element) return;
-        SetCurrentElement(element);
+        if (PlayerElementData.Length <= elementIndex) return;
+        PlayerElementData playerElement = PlayerElementData[elementIndex];
+
+        if (CurrentPlayerElement == playerElement) return;
+
+
+        SetCurrentPlayerElement(playerElement);
     }
 
 

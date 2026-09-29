@@ -5,20 +5,6 @@ using UnityEngine;
 public class PlayerAttackData : ScriptableObject
 {
     public float baseAttackCooldown=0.4f;
-    public float downAttackDuration = 0.05f;
-
-    public float elementChangeCooldown = 0.5f;
-
-    [Header("Elemental Skill")]
-    public float baseElementalSkillCooldown = 10f;
-    public float baseElementalSkillDamage = 20f;
-
-
-
-    [Header("Burst Skill")]
-    public float baseBurstSkillCooldown = 20f;
-    public float infusedElementToWeaponDuration = 8.5f;
-    public float burstSkillPressedThreshhold = 0.5f;
 
     public int level1Damage=9;
     public int level2Damage=14;
@@ -36,8 +22,6 @@ public class PlayerAttackData : ScriptableObject
 
     public float critRateIncreasement = 0.05f;
 
-
-    public ElementData[] elements;
 
 }
 

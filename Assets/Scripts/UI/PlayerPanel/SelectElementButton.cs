@@ -9,16 +9,12 @@ public class SelectElementButton : MonoBehaviour
     [SerializeField] private Image _image;
     [SerializeField] private TextMeshProUGUI _textMesh;
 
-    private ElementData _elementData;
+ 
 
-    
-   
-
-
-    public void SetElement(ElementData data, int positionNumber)
+    public void SetElement(PlayerElementData data, int positionNumber)
     {
-        _elementData = data;
-        _image.color = data.color;
+     
+        _image.color = data.element.color;
         _textMesh.text = $"{positionNumber}";
 
         
