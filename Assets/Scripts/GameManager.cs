@@ -19,20 +19,41 @@ public class GameManager : MonoBehaviour
     public event EventHandler OnGamePauseChanged;
 
 
-   
+    private void Start()
+    {
+        HideCursor();
+    }
+
+
+    private void HideCursor()
+    {
+        Cursor.lockState = CursorLockMode.Locked;
+        Cursor.visible = false;
+    }
+    private void ShowCursor()
+    {
+        Cursor.lockState = CursorLockMode.None;
+        Cursor.visible = true;
+    }
 
 
 
     public void Pause()
     {
+       
         IsGamePaused= true;
         Time.timeScale= 0;
+        ShowCursor();
+        GameInputManager.Instance.PlayerActions.Disable();
         OnGamePauseChanged?.Invoke(this, EventArgs.Empty);
+    
     }
     public void Unpause()
     {
         IsGamePaused = false;
         Time.timeScale = 1f;
+        HideCursor();
+        GameInputManager.Instance.PlayerActions.Enable();
         OnGamePauseChanged?.Invoke(this, EventArgs.Empty);
     }
 

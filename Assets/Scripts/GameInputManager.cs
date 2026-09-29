@@ -1,5 +1,4 @@
-using System.Collections.Generic;
-using Unity.VisualScripting;
+
 using UnityEngine;
 using UnityEngine.InputSystem;
 using static UnityEngine.InputSystem.InputActionRebindingExtensions;
@@ -10,21 +9,15 @@ public class GameInputManager : MonoBehaviour
 
 
     private InputSystem_Actions _inputActions;
-    public InputAction PlayerMoveAction;
-    public InputAction PlayerJumpAction;
-
-    public InputAction PlayerRunAction;
-    public InputAction PlayerAttackAction;
-
-    public InputAction PlayerElementalSkill;
-    public InputAction PlayerBurstSkill;
-    public InputAction UIPauseAction;
 
     public enum PlayerBindingAction
     {
       LeftBinding, RightBinding, UpBinding, DownBinding,
       JumpedBinding,
     }
+
+    public InputSystem_Actions.PlayerActions PlayerActions => _inputActions.Player;
+    public InputSystem_Actions.UIActions UIActions => _inputActions.UI;
 
     public  const int UpBindingIndex = 1;
     public const int DownBindingIndex = 2;
@@ -38,7 +31,7 @@ public class GameInputManager : MonoBehaviour
 
 
     public event System.Action OnRebindStarted;
-   public event System.Action OnRebindCompleted;
+    public event System.Action OnRebindCompleted;
 
 
     private void Awake()
@@ -57,44 +50,23 @@ public class GameInputManager : MonoBehaviour
             _inputActions.LoadBindingOverridesFromJson(PlayerPrefs.GetString(PLAYER_PREFS_BINDINGS));
         }
 
+        PlayerActions.Enable();
 
-
-        PlayerMoveAction = _inputActions.Player.Move;
-        PlayerJumpAction = _inputActions.Player.Jump;
-      
-        PlayerRunAction= _inputActions.Player.Run;
-        PlayerAttackAction= _inputActions.Player.Attack;
-
-        PlayerElementalSkill=_inputActions.Player.ElementalSkill;
-        PlayerBurstSkill = _inputActions.Player.BurstSkill;
-        
-
-        // UI
-        UIPauseAction = _inputActions.UI.Pause;
-
-
-        PlayerMoveAction.Enable();
-        PlayerJumpAction.Enable();
-        PlayerRunAction.Enable();
-        PlayerAttackAction.Enable();
-
-        PlayerElementalSkill.Enable();
-        PlayerBurstSkill.Enable();
-
-
-        UIPauseAction.Enable();
-
-
+        UIActions.Enable(); 
     }
+
+
+   
+    
 
     private void Start()
     {
-        UIPauseAction.performed += PauseAction_Performed;
+        UIActions.Pause.performed += PauseAction_Performed;
 
     }
     private void OnDestroy()
     {
-        UIPauseAction.performed -= PauseAction_Performed;
+        UIActions.Pause.performed -= PauseAction_Performed;
         _inputActions.Dispose();
     }
 
@@ -103,28 +75,28 @@ public class GameInputManager : MonoBehaviour
 
     public float GetHorizontalInput()
     {
-        return PlayerMoveAction.ReadValue<Vector2>().x;
+        return PlayerActions.Move.ReadValue<Vector2>().x;
     }
     public float GetVerticalInput()
     {
-        return PlayerMoveAction.ReadValue<Vector2>().y;
+        return PlayerActions.Move.ReadValue<Vector2>().y;
     }
 
     public bool IsUpPressed()
     {
-        return PlayerMoveAction.ReadValue<Vector2>().y > 0;
+        return PlayerActions.Move.ReadValue<Vector2>().y > 0;
     }
     public bool IsDownPressed()
     {
-        return PlayerMoveAction.ReadValue<Vector2>().y < 0;
+        return PlayerActions.Move.ReadValue<Vector2>().y < 0;
     }
     public bool IsLeftPressed()
     {
-        return PlayerMoveAction.ReadValue<Vector2>().x < 0;
+        return PlayerActions.Move.ReadValue<Vector2>().x < 0;
     }
     public bool IsRightPressed()
     {
-        return PlayerMoveAction.ReadValue<Vector2>().x > 0;
+        return PlayerActions.Move.ReadValue<Vector2>().x > 0;
     }
 
     
@@ -148,23 +120,23 @@ public class GameInputManager : MonoBehaviour
         switch (bindingAction)
         {
             case PlayerBindingAction.LeftBinding:
-                actionToRebind = PlayerMoveAction;
+                actionToRebind = PlayerActions.Move;
                 bindingIndex = LeftBindingIndex;
                 break;
             case PlayerBindingAction.RightBinding:
-                actionToRebind = PlayerMoveAction;
+                actionToRebind = PlayerActions.Move;
                 bindingIndex = RightBindingIndex;
                 break;
             case PlayerBindingAction.UpBinding:
-                actionToRebind = PlayerMoveAction;
+                actionToRebind = PlayerActions.Move;
                 bindingIndex = UpBindingIndex;
                 break;
             case PlayerBindingAction.DownBinding:
-                actionToRebind = PlayerMoveAction;
+                actionToRebind = PlayerActions.Move;
                 bindingIndex = DownBindingIndex;
                 break;
             case PlayerBindingAction.JumpedBinding:
-                actionToRebind = PlayerJumpAction;
+                actionToRebind = PlayerActions.Jump;
                 bindingIndex = 0; // Assuming Jump has only one binding
                 break;
             default:
@@ -241,15 +213,15 @@ public class GameInputManager : MonoBehaviour
         switch (action)
         {
             case PlayerBindingAction.LeftBinding:
-                return GetBindingDisplayString(PlayerMoveAction, LeftBindingIndex);
+                return GetBindingDisplayString(PlayerActions.Move, LeftBindingIndex);
             case PlayerBindingAction.RightBinding:
-                return GetBindingDisplayString(PlayerMoveAction, RightBindingIndex);
+                return GetBindingDisplayString(PlayerActions.Move, RightBindingIndex);
             case PlayerBindingAction.UpBinding:
-                return GetBindingDisplayString(PlayerMoveAction, UpBindingIndex);
+                return GetBindingDisplayString(PlayerActions.Move, UpBindingIndex);
             case PlayerBindingAction.DownBinding:
-                return GetBindingDisplayString(PlayerMoveAction, DownBindingIndex);
+                return GetBindingDisplayString(PlayerActions.Move, DownBindingIndex);
             case PlayerBindingAction.JumpedBinding:
-                return GetBindingDisplayString(PlayerJumpAction, 0); // Assuming Jump has only one binding
+                return GetBindingDisplayString(PlayerActions.Jump, 0); // Assuming Jump has only one binding
             default:
                 Debug.LogError($"Unknown binding action: {action}");
                 return string.Empty;

@@ -113,16 +113,6 @@ public partial class @InputSystem_Actions: IInputActionCollection2, IDisposable
                     ""priority"": 0
                 },
                 {
-                    ""name"": ""CrouchWalk"",
-                    ""type"": ""Button"",
-                    ""id"": ""63ff62e6-8afb-4618-bb1f-6de6205c3b23"",
-                    ""expectedControlType"": """",
-                    ""processors"": """",
-                    ""interactions"": """",
-                    ""initialStateCheck"": false,
-                    ""priority"": 0
-                },
-                {
                     ""name"": ""Run"",
                     ""type"": ""Button"",
                     ""id"": ""d4909f20-e7bf-40fc-83c0-b90c96bcc585"",
@@ -156,6 +146,36 @@ public partial class @InputSystem_Actions: IInputActionCollection2, IDisposable
                     ""name"": ""BurstSkill"",
                     ""type"": ""Button"",
                     ""id"": ""0ac2d191-ec0e-422a-b9ba-bd6c216a3e6b"",
+                    ""expectedControlType"": """",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false,
+                    ""priority"": 0
+                },
+                {
+                    ""name"": ""SwapElement1"",
+                    ""type"": ""Button"",
+                    ""id"": ""196172fe-19de-440c-af14-3fbbaeec8ca6"",
+                    ""expectedControlType"": """",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false,
+                    ""priority"": 0
+                },
+                {
+                    ""name"": ""SwapElement2"",
+                    ""type"": ""Button"",
+                    ""id"": ""4b0e5293-bd6e-4afd-9a66-a68d52dcae3e"",
+                    ""expectedControlType"": """",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false,
+                    ""priority"": 0
+                },
+                {
+                    ""name"": ""SwapElement3"",
+                    ""type"": ""Button"",
+                    ""id"": ""6c59965d-3cd7-4348-afff-8dad4ee1a8ca"",
                     ""expectedControlType"": """",
                     ""processors"": """",
                     ""interactions"": """",
@@ -232,12 +252,34 @@ public partial class @InputSystem_Actions: IInputActionCollection2, IDisposable
                 },
                 {
                     ""name"": """",
-                    ""id"": ""9ff062ac-66a5-4c69-966c-62828f81371a"",
-                    ""path"": ""<Keyboard>/leftShift"",
+                    ""id"": ""07c27810-22dc-4f96-8b91-f03bcb75d836"",
+                    ""path"": ""<Keyboard>/1"",
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": """",
-                    ""action"": ""CrouchWalk"",
+                    ""action"": ""SwapElement1"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""3b47795a-6dba-4af0-87bb-c0723c48b4f3"",
+                    ""path"": ""<Keyboard>/2"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""SwapElement2"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""f6aa71ac-df67-4ed1-aa82-18fd00c61980"",
+                    ""path"": ""<Keyboard>/3"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""SwapElement3"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
                 },
@@ -384,11 +426,13 @@ public partial class @InputSystem_Actions: IInputActionCollection2, IDisposable
         m_Player = asset.FindActionMap("Player", throwIfNotFound: true);
         m_Player_Move = m_Player.FindAction("Move", throwIfNotFound: true);
         m_Player_Jump = m_Player.FindAction("Jump", throwIfNotFound: true);
-        m_Player_CrouchWalk = m_Player.FindAction("CrouchWalk", throwIfNotFound: true);
         m_Player_Run = m_Player.FindAction("Run", throwIfNotFound: true);
         m_Player_Attack = m_Player.FindAction("Attack", throwIfNotFound: true);
         m_Player_ElementalSkill = m_Player.FindAction("ElementalSkill", throwIfNotFound: true);
         m_Player_BurstSkill = m_Player.FindAction("BurstSkill", throwIfNotFound: true);
+        m_Player_SwapElement1 = m_Player.FindAction("SwapElement1", throwIfNotFound: true);
+        m_Player_SwapElement2 = m_Player.FindAction("SwapElement2", throwIfNotFound: true);
+        m_Player_SwapElement3 = m_Player.FindAction("SwapElement3", throwIfNotFound: true);
         // UI
         m_UI = asset.FindActionMap("UI", throwIfNotFound: true);
         m_UI_Pause = m_UI.FindAction("Pause", throwIfNotFound: true);
@@ -475,11 +519,13 @@ public partial class @InputSystem_Actions: IInputActionCollection2, IDisposable
     private List<IPlayerActions> m_PlayerActionsCallbackInterfaces = new List<IPlayerActions>();
     private readonly InputAction m_Player_Move;
     private readonly InputAction m_Player_Jump;
-    private readonly InputAction m_Player_CrouchWalk;
     private readonly InputAction m_Player_Run;
     private readonly InputAction m_Player_Attack;
     private readonly InputAction m_Player_ElementalSkill;
     private readonly InputAction m_Player_BurstSkill;
+    private readonly InputAction m_Player_SwapElement1;
+    private readonly InputAction m_Player_SwapElement2;
+    private readonly InputAction m_Player_SwapElement3;
     /// <summary>
     /// Provides access to input actions defined in input action map "Player".
     /// </summary>
@@ -500,10 +546,6 @@ public partial class @InputSystem_Actions: IInputActionCollection2, IDisposable
         /// </summary>
         public InputAction @Jump => m_Wrapper.m_Player_Jump;
         /// <summary>
-        /// Provides access to the underlying input action "Player/CrouchWalk".
-        /// </summary>
-        public InputAction @CrouchWalk => m_Wrapper.m_Player_CrouchWalk;
-        /// <summary>
         /// Provides access to the underlying input action "Player/Run".
         /// </summary>
         public InputAction @Run => m_Wrapper.m_Player_Run;
@@ -519,6 +561,18 @@ public partial class @InputSystem_Actions: IInputActionCollection2, IDisposable
         /// Provides access to the underlying input action "Player/BurstSkill".
         /// </summary>
         public InputAction @BurstSkill => m_Wrapper.m_Player_BurstSkill;
+        /// <summary>
+        /// Provides access to the underlying input action "Player/SwapElement1".
+        /// </summary>
+        public InputAction @SwapElement1 => m_Wrapper.m_Player_SwapElement1;
+        /// <summary>
+        /// Provides access to the underlying input action "Player/SwapElement2".
+        /// </summary>
+        public InputAction @SwapElement2 => m_Wrapper.m_Player_SwapElement2;
+        /// <summary>
+        /// Provides access to the underlying input action "Player/SwapElement3".
+        /// </summary>
+        public InputAction @SwapElement3 => m_Wrapper.m_Player_SwapElement3;
         /// <summary>
         /// Provides access to the underlying input action map instance.
         /// </summary>
@@ -551,9 +605,6 @@ public partial class @InputSystem_Actions: IInputActionCollection2, IDisposable
             @Jump.started += instance.OnJump;
             @Jump.performed += instance.OnJump;
             @Jump.canceled += instance.OnJump;
-            @CrouchWalk.started += instance.OnCrouchWalk;
-            @CrouchWalk.performed += instance.OnCrouchWalk;
-            @CrouchWalk.canceled += instance.OnCrouchWalk;
             @Run.started += instance.OnRun;
             @Run.performed += instance.OnRun;
             @Run.canceled += instance.OnRun;
@@ -566,6 +617,15 @@ public partial class @InputSystem_Actions: IInputActionCollection2, IDisposable
             @BurstSkill.started += instance.OnBurstSkill;
             @BurstSkill.performed += instance.OnBurstSkill;
             @BurstSkill.canceled += instance.OnBurstSkill;
+            @SwapElement1.started += instance.OnSwapElement1;
+            @SwapElement1.performed += instance.OnSwapElement1;
+            @SwapElement1.canceled += instance.OnSwapElement1;
+            @SwapElement2.started += instance.OnSwapElement2;
+            @SwapElement2.performed += instance.OnSwapElement2;
+            @SwapElement2.canceled += instance.OnSwapElement2;
+            @SwapElement3.started += instance.OnSwapElement3;
+            @SwapElement3.performed += instance.OnSwapElement3;
+            @SwapElement3.canceled += instance.OnSwapElement3;
         }
 
         /// <summary>
@@ -583,9 +643,6 @@ public partial class @InputSystem_Actions: IInputActionCollection2, IDisposable
             @Jump.started -= instance.OnJump;
             @Jump.performed -= instance.OnJump;
             @Jump.canceled -= instance.OnJump;
-            @CrouchWalk.started -= instance.OnCrouchWalk;
-            @CrouchWalk.performed -= instance.OnCrouchWalk;
-            @CrouchWalk.canceled -= instance.OnCrouchWalk;
             @Run.started -= instance.OnRun;
             @Run.performed -= instance.OnRun;
             @Run.canceled -= instance.OnRun;
@@ -598,6 +655,15 @@ public partial class @InputSystem_Actions: IInputActionCollection2, IDisposable
             @BurstSkill.started -= instance.OnBurstSkill;
             @BurstSkill.performed -= instance.OnBurstSkill;
             @BurstSkill.canceled -= instance.OnBurstSkill;
+            @SwapElement1.started -= instance.OnSwapElement1;
+            @SwapElement1.performed -= instance.OnSwapElement1;
+            @SwapElement1.canceled -= instance.OnSwapElement1;
+            @SwapElement2.started -= instance.OnSwapElement2;
+            @SwapElement2.performed -= instance.OnSwapElement2;
+            @SwapElement2.canceled -= instance.OnSwapElement2;
+            @SwapElement3.started -= instance.OnSwapElement3;
+            @SwapElement3.performed -= instance.OnSwapElement3;
+            @SwapElement3.canceled -= instance.OnSwapElement3;
         }
 
         /// <summary>
@@ -814,13 +880,6 @@ public partial class @InputSystem_Actions: IInputActionCollection2, IDisposable
         /// <seealso cref="UnityEngine.InputSystem.InputAction.canceled" />
         void OnJump(InputAction.CallbackContext context);
         /// <summary>
-        /// Method invoked when associated input action "CrouchWalk" is either <see cref="UnityEngine.InputSystem.InputAction.started" />, <see cref="UnityEngine.InputSystem.InputAction.performed" /> or <see cref="UnityEngine.InputSystem.InputAction.canceled" />.
-        /// </summary>
-        /// <seealso cref="UnityEngine.InputSystem.InputAction.started" />
-        /// <seealso cref="UnityEngine.InputSystem.InputAction.performed" />
-        /// <seealso cref="UnityEngine.InputSystem.InputAction.canceled" />
-        void OnCrouchWalk(InputAction.CallbackContext context);
-        /// <summary>
         /// Method invoked when associated input action "Run" is either <see cref="UnityEngine.InputSystem.InputAction.started" />, <see cref="UnityEngine.InputSystem.InputAction.performed" /> or <see cref="UnityEngine.InputSystem.InputAction.canceled" />.
         /// </summary>
         /// <seealso cref="UnityEngine.InputSystem.InputAction.started" />
@@ -848,6 +907,27 @@ public partial class @InputSystem_Actions: IInputActionCollection2, IDisposable
         /// <seealso cref="UnityEngine.InputSystem.InputAction.performed" />
         /// <seealso cref="UnityEngine.InputSystem.InputAction.canceled" />
         void OnBurstSkill(InputAction.CallbackContext context);
+        /// <summary>
+        /// Method invoked when associated input action "SwapElement1" is either <see cref="UnityEngine.InputSystem.InputAction.started" />, <see cref="UnityEngine.InputSystem.InputAction.performed" /> or <see cref="UnityEngine.InputSystem.InputAction.canceled" />.
+        /// </summary>
+        /// <seealso cref="UnityEngine.InputSystem.InputAction.started" />
+        /// <seealso cref="UnityEngine.InputSystem.InputAction.performed" />
+        /// <seealso cref="UnityEngine.InputSystem.InputAction.canceled" />
+        void OnSwapElement1(InputAction.CallbackContext context);
+        /// <summary>
+        /// Method invoked when associated input action "SwapElement2" is either <see cref="UnityEngine.InputSystem.InputAction.started" />, <see cref="UnityEngine.InputSystem.InputAction.performed" /> or <see cref="UnityEngine.InputSystem.InputAction.canceled" />.
+        /// </summary>
+        /// <seealso cref="UnityEngine.InputSystem.InputAction.started" />
+        /// <seealso cref="UnityEngine.InputSystem.InputAction.performed" />
+        /// <seealso cref="UnityEngine.InputSystem.InputAction.canceled" />
+        void OnSwapElement2(InputAction.CallbackContext context);
+        /// <summary>
+        /// Method invoked when associated input action "SwapElement3" is either <see cref="UnityEngine.InputSystem.InputAction.started" />, <see cref="UnityEngine.InputSystem.InputAction.performed" /> or <see cref="UnityEngine.InputSystem.InputAction.canceled" />.
+        /// </summary>
+        /// <seealso cref="UnityEngine.InputSystem.InputAction.started" />
+        /// <seealso cref="UnityEngine.InputSystem.InputAction.performed" />
+        /// <seealso cref="UnityEngine.InputSystem.InputAction.canceled" />
+        void OnSwapElement3(InputAction.CallbackContext context);
     }
     /// <summary>
     /// Interface to implement callback methods for all input action callbacks associated with input actions defined by "UI" which allows adding and removing callbacks.

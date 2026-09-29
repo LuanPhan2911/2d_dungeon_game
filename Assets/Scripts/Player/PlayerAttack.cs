@@ -175,22 +175,22 @@ public class PlayerAttack : MonoBehaviour
 
 
         #region Input 
-        if ( GameInputManager.Instance.PlayerAttackAction.WasPressedThisFrame() )
+        if ( GameInputManager.Instance.PlayerActions.Attack.WasPressedThisFrame() )
         {
             _lastPressAttackTimer = _data.attackInputBuffer;
         }
-        if (GameInputManager.Instance.PlayerElementalSkill.WasPressedThisFrame())
+        if (GameInputManager.Instance.PlayerActions.ElementalSkill.WasPressedThisFrame())
         {
             _lastPressElementalSkillTimer = _data.attackInputBuffer;
         }
 
-        if (GameInputManager.Instance.PlayerBurstSkill.WasPressedThisFrame())
+        if (GameInputManager.Instance.PlayerActions.BurstSkill.WasPressedThisFrame())
         {
             _lastPressBurstSkillTimer = _data.attackInputBuffer;
             _burstSkillPressTimer = 0f;
             _isBurstSkillHolding = false;
         }
-        if (GameInputManager.Instance.PlayerBurstSkill.IsPressed())
+        if (GameInputManager.Instance.PlayerActions.BurstSkill.IsPressed())
         {
             _burstSkillPressTimer += Time.deltaTime;
             if(_burstSkillPressTimer> _data.burstSkillPressedThreshhold && !_isBurstSkillHolding)

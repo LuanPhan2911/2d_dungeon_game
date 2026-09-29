@@ -20,7 +20,7 @@ public class InteractObject : MonoBehaviour
     {
         if (CanInteract )
         {
-            if(GameInputManager.Instance.PlayerMoveAction.WasPressedThisFrame() &&
+            if(GameInputManager.Instance.PlayerActions.Move.WasPressedThisFrame() &&
                 GameInputManager.Instance.IsUpPressed())
             {
                 if (InventoryManager.Instance.HasItem(_needItemData))

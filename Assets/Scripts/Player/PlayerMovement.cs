@@ -97,13 +97,13 @@ public partial class PlayerMovement : MonoBehaviour
         HandleInput();
         CheckDirectionToFace();
 
-        if (GameInputManager.Instance.PlayerJumpAction.WasPressedThisFrame())
+        if (GameInputManager.Instance.PlayerActions.Jump.WasPressedThisFrame())
         {
             LastPressJumpTime = _data.jumpInputBufferTime;
         }
 
 
-        if (GameInputManager.Instance.PlayerJumpAction.WasReleasedThisFrame())
+        if (GameInputManager.Instance.PlayerActions.Jump.WasReleasedThisFrame())
         {
             if (CanJumpCut()|| CanWallJumpCut())
             {
@@ -115,7 +115,7 @@ public partial class PlayerMovement : MonoBehaviour
             
 
         }
-        if (GameInputManager.Instance.PlayerRunAction.WasPressedThisFrame())
+        if (GameInputManager.Instance.PlayerActions.Run.WasPressedThisFrame())
         {
             LastPressDashTime = _data.dashInputBufferTime;
         }

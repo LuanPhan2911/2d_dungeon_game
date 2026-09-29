@@ -46,7 +46,7 @@ public class Switch : MonoBehaviour
 
         if (CanInteract && _delayCounter <= 0)
         {
-            if (GameInputManager.Instance.PlayerMoveAction.WasPressedThisFrame() &&
+            if (GameInputManager.Instance.PlayerActions.Move.WasPressedThisFrame() &&
                 GameInputManager.Instance.IsUpPressed())
             {
                 _delayCounter = _delayTime;

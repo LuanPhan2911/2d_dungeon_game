@@ -27,16 +27,6 @@
                     "priority": 0
                 },
                 {
-                    "name": "CrouchWalk",
-                    "type": "Button",
-                    "id": "63ff62e6-8afb-4618-bb1f-6de6205c3b23",
-                    "expectedControlType": "",
-                    "processors": "",
-                    "interactions": "",
-                    "initialStateCheck": false,
-                    "priority": 0
-                },
-                {
                     "name": "Run",
                     "type": "Button",
                     "id": "d4909f20-e7bf-40fc-83c0-b90c96bcc585",
@@ -70,6 +60,36 @@
                     "name": "BurstSkill",
                     "type": "Button",
                     "id": "0ac2d191-ec0e-422a-b9ba-bd6c216a3e6b",
+                    "expectedControlType": "",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false,
+                    "priority": 0
+                },
+                {
+                    "name": "SwapElement1",
+                    "type": "Button",
+                    "id": "196172fe-19de-440c-af14-3fbbaeec8ca6",
+                    "expectedControlType": "",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false,
+                    "priority": 0
+                },
+                {
+                    "name": "SwapElement2",
+                    "type": "Button",
+                    "id": "4b0e5293-bd6e-4afd-9a66-a68d52dcae3e",
+                    "expectedControlType": "",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false,
+                    "priority": 0
+                },
+                {
+                    "name": "SwapElement3",
+                    "type": "Button",
+                    "id": "6c59965d-3cd7-4348-afff-8dad4ee1a8ca",
                     "expectedControlType": "",
                     "processors": "",
                     "interactions": "",
@@ -146,12 +166,34 @@
                 },
                 {
                     "name": "",
-                    "id": "9ff062ac-66a5-4c69-966c-62828f81371a",
-                    "path": "<Keyboard>/leftShift",
+                    "id": "07c27810-22dc-4f96-8b91-f03bcb75d836",
+                    "path": "<Keyboard>/1",
                     "interactions": "",
                     "processors": "",
                     "groups": "",
-                    "action": "CrouchWalk",
+                    "action": "SwapElement1",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "3b47795a-6dba-4af0-87bb-c0723c48b4f3",
+                    "path": "<Keyboard>/2",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "SwapElement2",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "f6aa71ac-df67-4ed1-aa82-18fd00c61980",
+                    "path": "<Keyboard>/3",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "SwapElement3",
                     "isComposite": false,
                     "isPartOfComposite": false
                 },
