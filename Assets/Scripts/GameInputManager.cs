@@ -13,11 +13,11 @@ public class GameInputManager : MonoBehaviour
     public InputAction PlayerMoveAction;
     public InputAction PlayerJumpAction;
 
-    public InputAction PlayerCrouchAction;
-
     public InputAction PlayerRunAction;
     public InputAction PlayerAttackAction;
 
+    public InputAction PlayerElementalSkill;
+    public InputAction PlayerBurstSkill;
     public InputAction UIPauseAction;
 
     public enum PlayerBindingAction
@@ -61,19 +61,29 @@ public class GameInputManager : MonoBehaviour
 
         PlayerMoveAction = _inputActions.Player.Move;
         PlayerJumpAction = _inputActions.Player.Jump;
-        PlayerCrouchAction = _inputActions.Player.CrouchWalk;
+      
         PlayerRunAction= _inputActions.Player.Run;
         PlayerAttackAction= _inputActions.Player.Attack;
+
+        PlayerElementalSkill=_inputActions.Player.ElementalSkill;
+        PlayerBurstSkill = _inputActions.Player.BurstSkill;
+        
+
         // UI
         UIPauseAction = _inputActions.UI.Pause;
 
 
         PlayerMoveAction.Enable();
         PlayerJumpAction.Enable();
-        PlayerCrouchAction.Enable();
         PlayerRunAction.Enable();
         PlayerAttackAction.Enable();
+
+        PlayerElementalSkill.Enable();
+        PlayerBurstSkill.Enable();
+
+
         UIPauseAction.Enable();
+
 
     }
 

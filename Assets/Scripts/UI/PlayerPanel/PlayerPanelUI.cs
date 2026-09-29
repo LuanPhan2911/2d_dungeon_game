@@ -9,10 +9,17 @@ public class PlayerPanelUI : MonoBehaviour
     [SerializeField] private Image _energyImage;
     [SerializeField] private Image _healthImage;
 
+
+
+
+
+    
+
     private void Start()
     {
         PlayerHealth.Instance.OnHealthChanged +=UpdateHealthUI;
         PlayerHealth.Instance.OnEnergyChanged +=UpdateEnergyUI;
+
     }
 
    
@@ -27,5 +34,11 @@ public class PlayerPanelUI : MonoBehaviour
         _energyImage.fillAmount = ratio;
     }
 
-   
+    private void UpdateElementalSkillUI(float cooldown)
+    {
+
+    }
+
+
+
 }

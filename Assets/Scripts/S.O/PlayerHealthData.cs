@@ -4,11 +4,13 @@ using UnityEngine;
 public class PlayerHealthData : ScriptableObject
 {
     public float baseHealth=100f;
-    public float baseEnergy = 30f;
+    public float baseEnergy = 40f;
+    public float energyNeedForBurstSkill = 40f;
 
 
 
     public float gainingEnergyFromNormalAttack = 1f;
+    public float gainingEnergyFromElementalSkill = 15f;
 
 
 

@@ -71,7 +71,19 @@ public class PlayerHealth : MonoBehaviour
     {
         ChangeEnergy(_data.gainingEnergyFromNormalAttack);
     }
+    public void GainEnergyFormElementalSKill()
+    {
+        ChangeEnergy(_data.gainingEnergyFromElementalSkill);
+    }
 
+    public bool IsEnoughEnergyToUseBurstSkill()
+    {
+        return _energy >= _data.energyNeedForBurstSkill;
+    }
 
+    public void UseEnergyForBurstSkill()
+    {
+        ChangeEnergy(-_data.energyNeedForBurstSkill);
+    }
   
 }

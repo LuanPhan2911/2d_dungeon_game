@@ -141,6 +141,26 @@ public partial class @InputSystem_Actions: IInputActionCollection2, IDisposable
                     ""interactions"": """",
                     ""initialStateCheck"": false,
                     ""priority"": 0
+                },
+                {
+                    ""name"": ""ElementalSkill"",
+                    ""type"": ""Button"",
+                    ""id"": ""d77e887e-d9fc-4300-9ea9-9b5e0ff09eba"",
+                    ""expectedControlType"": """",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false,
+                    ""priority"": 0
+                },
+                {
+                    ""name"": ""BurstSkill"",
+                    ""type"": ""Button"",
+                    ""id"": ""0ac2d191-ec0e-422a-b9ba-bd6c216a3e6b"",
+                    ""expectedControlType"": """",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false,
+                    ""priority"": 0
                 }
             ],
             ""bindings"": [
@@ -240,6 +260,28 @@ public partial class @InputSystem_Actions: IInputActionCollection2, IDisposable
                     ""processors"": """",
                     ""groups"": """",
                     ""action"": ""Attack"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""e7fea889-804b-47da-8a45-90bdfd13c266"",
+                    ""path"": ""<Keyboard>/e"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""ElementalSkill"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""a1a4ef01-e315-4291-8591-e643e7c894b0"",
+                    ""path"": ""<Keyboard>/q"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""BurstSkill"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
                 }
@@ -345,6 +387,8 @@ public partial class @InputSystem_Actions: IInputActionCollection2, IDisposable
         m_Player_CrouchWalk = m_Player.FindAction("CrouchWalk", throwIfNotFound: true);
         m_Player_Run = m_Player.FindAction("Run", throwIfNotFound: true);
         m_Player_Attack = m_Player.FindAction("Attack", throwIfNotFound: true);
+        m_Player_ElementalSkill = m_Player.FindAction("ElementalSkill", throwIfNotFound: true);
+        m_Player_BurstSkill = m_Player.FindAction("BurstSkill", throwIfNotFound: true);
         // UI
         m_UI = asset.FindActionMap("UI", throwIfNotFound: true);
         m_UI_Pause = m_UI.FindAction("Pause", throwIfNotFound: true);
@@ -434,6 +478,8 @@ public partial class @InputSystem_Actions: IInputActionCollection2, IDisposable
     private readonly InputAction m_Player_CrouchWalk;
     private readonly InputAction m_Player_Run;
     private readonly InputAction m_Player_Attack;
+    private readonly InputAction m_Player_ElementalSkill;
+    private readonly InputAction m_Player_BurstSkill;
     /// <summary>
     /// Provides access to input actions defined in input action map "Player".
     /// </summary>
@@ -465,6 +511,14 @@ public partial class @InputSystem_Actions: IInputActionCollection2, IDisposable
         /// Provides access to the underlying input action "Player/Attack".
         /// </summary>
         public InputAction @Attack => m_Wrapper.m_Player_Attack;
+        /// <summary>
+        /// Provides access to the underlying input action "Player/ElementalSkill".
+        /// </summary>
+        public InputAction @ElementalSkill => m_Wrapper.m_Player_ElementalSkill;
+        /// <summary>
+        /// Provides access to the underlying input action "Player/BurstSkill".
+        /// </summary>
+        public InputAction @BurstSkill => m_Wrapper.m_Player_BurstSkill;
         /// <summary>
         /// Provides access to the underlying input action map instance.
         /// </summary>
@@ -506,6 +560,12 @@ public partial class @InputSystem_Actions: IInputActionCollection2, IDisposable
             @Attack.started += instance.OnAttack;
             @Attack.performed += instance.OnAttack;
             @Attack.canceled += instance.OnAttack;
+            @ElementalSkill.started += instance.OnElementalSkill;
+            @ElementalSkill.performed += instance.OnElementalSkill;
+            @ElementalSkill.canceled += instance.OnElementalSkill;
+            @BurstSkill.started += instance.OnBurstSkill;
+            @BurstSkill.performed += instance.OnBurstSkill;
+            @BurstSkill.canceled += instance.OnBurstSkill;
         }
 
         /// <summary>
@@ -532,6 +592,12 @@ public partial class @InputSystem_Actions: IInputActionCollection2, IDisposable
             @Attack.started -= instance.OnAttack;
             @Attack.performed -= instance.OnAttack;
             @Attack.canceled -= instance.OnAttack;
+            @ElementalSkill.started -= instance.OnElementalSkill;
+            @ElementalSkill.performed -= instance.OnElementalSkill;
+            @ElementalSkill.canceled -= instance.OnElementalSkill;
+            @BurstSkill.started -= instance.OnBurstSkill;
+            @BurstSkill.performed -= instance.OnBurstSkill;
+            @BurstSkill.canceled -= instance.OnBurstSkill;
         }
 
         /// <summary>
@@ -768,6 +834,20 @@ public partial class @InputSystem_Actions: IInputActionCollection2, IDisposable
         /// <seealso cref="UnityEngine.InputSystem.InputAction.performed" />
         /// <seealso cref="UnityEngine.InputSystem.InputAction.canceled" />
         void OnAttack(InputAction.CallbackContext context);
+        /// <summary>
+        /// Method invoked when associated input action "ElementalSkill" is either <see cref="UnityEngine.InputSystem.InputAction.started" />, <see cref="UnityEngine.InputSystem.InputAction.performed" /> or <see cref="UnityEngine.InputSystem.InputAction.canceled" />.
+        /// </summary>
+        /// <seealso cref="UnityEngine.InputSystem.InputAction.started" />
+        /// <seealso cref="UnityEngine.InputSystem.InputAction.performed" />
+        /// <seealso cref="UnityEngine.InputSystem.InputAction.canceled" />
+        void OnElementalSkill(InputAction.CallbackContext context);
+        /// <summary>
+        /// Method invoked when associated input action "BurstSkill" is either <see cref="UnityEngine.InputSystem.InputAction.started" />, <see cref="UnityEngine.InputSystem.InputAction.performed" /> or <see cref="UnityEngine.InputSystem.InputAction.canceled" />.
+        /// </summary>
+        /// <seealso cref="UnityEngine.InputSystem.InputAction.started" />
+        /// <seealso cref="UnityEngine.InputSystem.InputAction.performed" />
+        /// <seealso cref="UnityEngine.InputSystem.InputAction.canceled" />
+        void OnBurstSkill(InputAction.CallbackContext context);
     }
     /// <summary>
     /// Interface to implement callback methods for all input action callbacks associated with input actions defined by "UI" which allows adding and removing callbacks.

@@ -1,15 +1,24 @@
 using System;
 using UnityEngine;
 
-[CreateAssetMenu(fileName = "PlayerWeaponData", menuName = "Scriptable Objects/PlayerWeaponData")]
-public class PlayerWeaponData : ScriptableObject
+[CreateAssetMenu(fileName = "PlayerAttackData", menuName = "Scriptable Objects/PlayerAttackData")]
+public class PlayerAttackData : ScriptableObject
 {
     public float baseAttackCooldown=0.4f;
     public float downAttackDuration = 0.05f;
-    public float hitStopDuration = 0.05f;
-    public float critHitStopDuration = 0.12f;
-    public float hitStopTimeScale = 0.02f;
 
+    public float elementChangeCooldown = 0.5f;
+
+    [Header("Elemental Skill")]
+    public float baseElementalSkillCooldown = 10f;
+    public float baseElementalSkillDamage = 20f;
+
+
+
+    [Header("Burst Skill")]
+    public float baseBurstSkillCooldown = 20f;
+    public float infusedElementToWeaponDuration = 8.5f;
+    public float burstSkillPressedThreshhold = 0.5f;
 
     public int level1Damage=9;
     public int level2Damage=14;

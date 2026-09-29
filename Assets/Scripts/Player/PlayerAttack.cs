@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 
 using UnityEngine;
@@ -15,27 +16,99 @@ public class PlayerAttack : MonoBehaviour
 
 
 
-    [SerializeField] private PlayerWeaponData _data;
+    [SerializeField] private PlayerAttackData _data;
+    [SerializeField] private ElementData _defaultElement;
     [SerializeField] private LayerMask _enemyMask;
 
 
     [Header("Sword Settting")]
    [SerializeField] private int _swordLevel=1;
     private float _attackSpeedMultiplier = 1f;
-    private float _attackTimer;
+  
 
 
-    [Header("Element Type")]
-   [SerializeField] private int _elementIndex = 0;
+    [Header("Element")]
+
+
+    public ElementData[] Elements;
+    public ElementData SelectedElement { get; private set; }
+    public ElementData GetElementDamage()
+    {
+        if(SelectedElement==null || !IsInfusedElementToWeapon)
+        {
+            return _defaultElement;
+        }
+        return SelectedElement;
+    }
+
+    public void SetSelectedElement(ElementData element)
+    {
+        SelectedElement = element;
+        _elementChangeTimer = _data.elementChangeCooldown;
+        _infusedElementToWeaponTimer = 0f;
+        OnElementChanged?.Invoke();
+    }
+    public event Action OnElementChanged;
+    public bool IsElementChangeCooldown => _elementChangeTimer > 0f;
+    private float _elementChangeTimer;
 
 
 
-    private float _currentCritRate;
+
    
 
    
     public bool IsRecoiling { get; private set; }
-    public float LastPressAttackTimer { get; private set;  }
+
+    #region Normal Attack
+
+    public bool IsAttackCooldown => _attackTimer > 0f;
+
+    #endregion
+
+    #region Elemental Skill
+    private float _elementalSkillTimer;
+    public bool IsElementalSkillCooldown => _elementalSkillTimer > 0f;
+    public float ElementalSkillDuration =>  _elementalSkillTimer> 1f ? 
+        Mathf.Round(_elementalSkillTimer):  Mathf.Floor(_elementalSkillTimer * 10f) / 10f;
+    public float ElementalSKillRatio => _elementalSkillTimer / _data.baseElementalSkillCooldown;
+
+
+
+ 
+
+    #endregion
+
+
+    #region Burst Skill
+
+    private float _burstSkillTimer;
+    private float _infusedElementToWeaponTimer;
+    public bool IsBurstSkillCooldown => _burstSkillTimer > 0f;
+    public bool IsInfusedElementToWeapon=> _infusedElementToWeaponTimer>0f;
+
+    private float _burstSkillPressTimer;
+    private bool _isBurstSkillHolding;
+    #endregion
+
+
+
+    #region Timer
+    private float _lastPressAttackTimer;
+    private float _lastPressElementalSkillTimer;
+    private float _lastPressBurstSkillTimer;
+
+    #endregion
+
+    private float _currentCritRate;
+    private float _attackTimer;
+
+
+
+
+
+
+
 
 
     private PlayerAnimation _playerAnimation;
@@ -47,8 +120,12 @@ public class PlayerAttack : MonoBehaviour
     [SerializeField] private GameObject _slashFxPrefab;
 
 
+    public static PlayerAttack Instance { get; private set;  }
+
+
     private void Awake()
     {
+        Instance = this;
         
         _playerAnimation = GetComponent<PlayerAnimation>();
         _playerMovement = GetComponent<PlayerMovement>();
@@ -61,11 +138,6 @@ public class PlayerAttack : MonoBehaviour
         _currentCritRate = _data.baseCritRate;
     }
 
-    public ElementData GetElement(int elementIndex)
-    {
-        if (elementIndex >= _data.elements.Length || elementIndex < 0) return null;
-        return _data.elements[elementIndex];
-    }
     private int GetDamage(int swordLevel)
     {
         switch (swordLevel)
@@ -90,34 +162,104 @@ public class PlayerAttack : MonoBehaviour
     private void Update()
     {
 
-        _attackTimer += Time.deltaTime;
-        LastPressAttackTimer -= Time.deltaTime;
+        _attackTimer = Mathf.Max(_attackTimer - Time.deltaTime, 0f);
+        _elementalSkillTimer = Mathf.Max(_elementalSkillTimer - Time.deltaTime, 0f);
+        _burstSkillTimer = Mathf.Max(_burstSkillTimer - Time.deltaTime, 0f);
+        _infusedElementToWeaponTimer = Mathf.Max(_infusedElementToWeaponTimer - Time.deltaTime, 0f);
+        _elementChangeTimer = Mathf.Max(_elementChangeTimer - Time.deltaTime, 0f);
 
+
+        _lastPressAttackTimer = Mathf.Max(_lastPressAttackTimer - Time.deltaTime, 0f);
+        _lastPressElementalSkillTimer = Mathf.Max(_lastPressElementalSkillTimer - Time.deltaTime, 0f);
+        _lastPressBurstSkillTimer = Mathf.Max(_lastPressBurstSkillTimer - Time.deltaTime, 0f);
+
+
+        #region Input 
         if ( GameInputManager.Instance.PlayerAttackAction.WasPressedThisFrame() )
         {
-            LastPressAttackTimer = _data.attackInputBuffer;
+            _lastPressAttackTimer = _data.attackInputBuffer;
         }
-
-
-        if ((CanAttack()))
+        if (GameInputManager.Instance.PlayerElementalSkill.WasPressedThisFrame())
         {
-            Attack();
+            _lastPressElementalSkillTimer = _data.attackInputBuffer;
         }
-    }
 
-    private bool CanAttack()
+        if (GameInputManager.Instance.PlayerBurstSkill.WasPressedThisFrame())
+        {
+            _lastPressBurstSkillTimer = _data.attackInputBuffer;
+            _burstSkillPressTimer = 0f;
+            _isBurstSkillHolding = false;
+        }
+        if (GameInputManager.Instance.PlayerBurstSkill.IsPressed())
+        {
+            _burstSkillPressTimer += Time.deltaTime;
+            if(_burstSkillPressTimer> _data.burstSkillPressedThreshhold && !_isBurstSkillHolding)
+            {
+                InfuseElementToWeapon();
+            }
+        }
+       
+
+        #endregion
+
+        if (CanUseElementalSkill())
+        {
+            ElementalSkillAttack();
+        }
+        if ((CanNormalAttack()))
+        {
+            NormalAttack();
+        }
+        if (CanUseBurstSkill())
+        {
+            BurstSkillAttack();
+        }
+       
+    }
+  
+
+    private bool CanNormalAttack()
     {
         float attackCoolDown = _data.baseAttackCooldown / _attackSpeedMultiplier;
 
-        return LastPressAttackTimer>0&& _attackTimer > attackCoolDown && 
-            !_playerMovement.IsRecoiling && !_playerMovement.IsDashing;
+        return _lastPressAttackTimer>0f && !IsAttackCooldown && !_playerMovement.IsDashing;
+    }
+    private bool CanUseElementalSkill()
+    {
+        return _lastPressElementalSkillTimer > 0f && !IsElementalSkillCooldown;
+    }
+    private bool CanUseBurstSkill()
+    {
+        return _lastPressBurstSkillTimer > 0f && _playerHealth.IsEnoughEnergyToUseBurstSkill() && !IsBurstSkillCooldown;
     }
 
-   
-    private void Attack()
+    private void ElementalSkillAttack()
     {
-        LastPressAttackTimer = 0f;
-        _attackTimer = 0;
+        _elementalSkillTimer = _data.baseElementalSkillCooldown;
+      
+        Debug.Log("Elemental Skill");
+
+        _playerHealth.GainEnergyFormElementalSKill();
+
+    }
+    private void BurstSkillAttack()
+    {
+        _burstSkillTimer = _data.baseBurstSkillCooldown;
+
+        _playerHealth.UseEnergyForBurstSkill();
+        Debug.Log("Burst Skill");
+    }
+    private void InfuseElementToWeapon()
+    {
+        _infusedElementToWeaponTimer = _data.infusedElementToWeaponDuration;
+        _isBurstSkillHolding = true;
+    }
+
+
+    private void NormalAttack()
+    {
+        _lastPressAttackTimer = 0f;
+        _attackTimer = _data.baseAttackCooldown;
 
         float verticalInput = GameInputManager.Instance.GetVerticalInput();
 
@@ -164,7 +306,7 @@ public class PlayerAttack : MonoBehaviour
            
 
             #region Crit rate
-            bool isCritStrike = Random.value <= _currentCritRate;
+            bool isCritStrike = UnityEngine.Random.value <= _currentCritRate;
 
             float damageAmount = GetDamage(_swordLevel);
             if (isCritStrike)
@@ -194,12 +336,12 @@ public class PlayerAttack : MonoBehaviour
                 if(hit.TryGetComponent(out IDamageable damageable))
                 {
                     
-                    ElementData element = GetElement(_elementIndex);
+                   
                   
                     damageable.TakeDamage(new Damage
                     {
                         amount= damageAmount,
-                        element= element,
+                        element= GetElementDamage(),
                         isCrit=isCritStrike
                     }, enemyRecoilDirection);
                 }
@@ -285,11 +427,10 @@ public class PlayerAttack : MonoBehaviour
 
         GameObject slashFx = Instantiate(_slashFxPrefab, parent);
 
-        ElementData element = GetElement(_elementIndex);
-        if (element != null)
-        {
-            slashFx.GetComponent<SlashFX>().SetColor(element.color);
-        }
+        ElementData elementDamage = GetElementDamage();
+       
+        slashFx.GetComponent<SlashFX>().SetColor(elementDamage.color);
+        
         slashFx.transform.rotation = rotation;
 
     }

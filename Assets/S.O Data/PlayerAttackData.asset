@@ -10,13 +10,15 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 0b56cb9ffee71cb4db0508a0bfe48f98, type: 3}
-  m_Name: PlayerWeaponData
+  m_Name: PlayerAttackData
   m_EditorClassIdentifier: Assembly-CSharp::PlayerWeaponData
-  baseAttackCooldown: 0.4
+  baseAttackCooldown: 0.5
   downAttackDuration: 0.1
-  hitStopDuration: 0.05
-  critHitStopDuration: 0.12
-  hitStopTimeScale: 0.02
+  baseElementalSkillCooldown: 10
+  baseElementalSkillDamage: 20
+  elementalSkillPressedThreshhold: 0.5
+  baseBurstSkillCooldown: 20
+  infusedElementToWeaponDuration: 8.5
   level1Damage: 9
   level2Damage: 14
   level3Damage: 19
@@ -26,7 +28,6 @@ MonoBehaviour:
   baseCritDamage: 0.5
   critRateIncreasement: 0.05
   elements:
-  - {fileID: 11400000, guid: fa41908be5b89654d95054a0484eb7d8, type: 2}
   - {fileID: 11400000, guid: 0fda099d69e02a14796aa32fe827c589, type: 2}
   - {fileID: 11400000, guid: db1905687a944cc4aa7e5287c2cc606a, type: 2}
   - {fileID: 11400000, guid: cfb9b5ebcdf62a842af790accf5fe130, type: 2}
