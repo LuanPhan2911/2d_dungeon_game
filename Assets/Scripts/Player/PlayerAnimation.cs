@@ -10,8 +10,6 @@ public class PlayerAnimation : MonoBehaviour
 
     const string HORIZONTAL = "Horizontal";
     const string IS_FALLING = "IsFalling";
-
-    const string IS_WALL_SLIDING = "IsWallSliding";
     const string IS_JUMPING = "IsJumping";
     const string IS_DASHING = "IsDashing";
 
@@ -37,8 +35,7 @@ public class PlayerAnimation : MonoBehaviour
        
         SetHorizontal(horizontal);
         SetFalling(_playerMovement.IsFalling);
-        SetJumping(_playerMovement.IsJumping || _playerMovement.IsWallJumping);
-        SetWallSliding(_playerMovement.IsWallSliding);
+        SetJumping(_playerMovement.IsJumping );
         SetDashing(_playerMovement.IsDashing);
        
     }
@@ -79,10 +76,6 @@ public class PlayerAnimation : MonoBehaviour
         _animator.SetBool(IS_DASHING, isDashing);
     }
    
-    public void SetWallSliding(bool isSliding)
-    {
-        _animator.SetBool(IS_WALL_SLIDING, isSliding);
-    }
 
   
 }

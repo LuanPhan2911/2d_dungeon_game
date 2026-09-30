@@ -9,6 +9,7 @@ public class PlayerMovementSO : ScriptableObject
     [HideInInspector] public float gravityScale; //Strength of the player's gravity as a multiplier of gravity (set in ProjectSettings/Physics2D).
                                                  //Also the value the player's rigidbody2D.gravityScale is set to.
     [Space(5)]
+    public float plungingGravityMult; // Plunge Attack
     public float fallGravityMult; //Multiplier to the player's gravityScale when falling.
     public float maxFallSpeed; //Maximum fall speed (terminal velocity) of the player when falling.
     [Space(5)]
@@ -29,18 +30,7 @@ public class PlayerMovementSO : ScriptableObject
     [Header("Both Jumps")]
     public float jumpCutGravityMult; //Multiplier to increase gravity if the player releases thje jump button while still jumping
 
-
-    [Header("Wall Jump")]
-    public Vector2 wallJumpForce; //The actual force (this time set by us) applied to the player when wall jumping.
-    [Space(5)]
-    [Range(0f, 1f)] public float wallJumpMoveLerp; //Reduces the effect of player's movement while wall jumping.
-    [Range(0f, 1.5f)] public float wallJumpTime; //Time after wall jumping the player's movement is slowed for.
-
     [Space(20)]
-
-    [Header("Slide")]
-    public float slideSpeed;
- 
 
     [Header("Assists")]
     [Range(0.01f, 0.5f)] public float coyoteTime; //Grace period after falling off a platform, where you can still jump
@@ -56,14 +46,6 @@ public class PlayerMovementSO : ScriptableObject
     public float dashCooldownTime;
     [Space(5)]
     [Range(0.01f, 0.5f)] public float dashInputBufferTime;
-
-
-    [Header("Recoil, Pogo")]
-
-    public float recoilForce = 7.5f;
-    public float pogoForce = 15f;
-    public float recoilDuration = 0.15f;
-
 
     //Unity Callback, called when the inspector updates
     private void OnValidate()

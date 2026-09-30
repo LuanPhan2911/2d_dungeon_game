@@ -12,9 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 60ab16bdbc400df4faca895e37c2104c, type: 3}
   m_Name: Water Player Element
   m_EditorClassIdentifier: Assembly-CSharp::PlayerElementWaterSO
-  element: {fileID: 0}
-  elementalSkillCooldown: 10
-  elementalSkillDamage: 20
+  element: {fileID: 11400000, guid: cfb9b5ebcdf62a842af790accf5fe130, type: 2}
   infusedElementToWeaponDuration: 8.5
   burstSkillPressedThreshhold: 0.5
   burstCooldown: 20

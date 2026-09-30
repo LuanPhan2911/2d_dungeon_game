@@ -634,8 +634,6 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 8902876242943277303}
-  - {fileID: 1036559177709290302}
-  - {fileID: 8544421526318563109}
   m_Father: {fileID: 3212656722255811958}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &4207924008978736327
@@ -648,7 +646,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4897149217227177274}
   m_Layer: 7
-  m_Name: DownAttackPoint
+  m_Name: PlungeAttackPoint
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -663,7 +661,7 @@ Transform:
   m_GameObject: {fileID: 4207924008978736327}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: -2.26, z: 0}
+  m_LocalPosition: {x: 0, y: -1.06, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -683,9 +681,10 @@ GameObject:
   - component: {fileID: 114067171588200336}
   - component: {fileID: 5676948285274127503}
   - component: {fileID: 3610167816305384861}
-  - component: {fileID: 6018911243575386500}
+  - component: {fileID: 5033102710396620486}
   - component: {fileID: 6271476450232353595}
   - component: {fileID: 3024244117808424973}
+  - component: {fileID: 3735642507340127294}
   m_Layer: 7
   m_Name: Player
   m_TagString: Player
@@ -827,7 +826,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0fd389ea37417544e9817298543153c9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::PlayerAnimation
---- !u!114 &6018911243575386500
+--- !u!114 &5033102710396620486
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -839,19 +838,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 57f0df7a8080dec41a90bcbbb39cb45c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::PlayerMovement
+  IsPlunging: 0
   GroundLayerMask:
     serializedVersion: 2
     m_Bits: 320
-  WallLayerMask:
-    serializedVersion: 2
-    m_Bits: 64
   _groundCheckPoint: {fileID: 8902876242943277303}
-  _groundCheckSize: {x: 0.75, y: 0.1}
-  _leftWallCheckPoint: {fileID: 1036559177709290302}
-  _rightWallCheckPoint: {fileID: 8544421526318563109}
-  _wallCheckSize: {x: 0.1, y: 0.75}
-  _data: {fileID: 11400000, guid: ca60778941745a945ad3e3df82d9e0f5, type: 2}
-  _dashFX: {fileID: 3610509746731027631}
+  _groundCheckSize: {x: -1.72, y: 0.5}
+  _data: {fileID: 0}
+  _dashFX: {fileID: 0}
 --- !u!114 &6271476450232353595
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -865,16 +859,16 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::PlayerAttack
   _upAttackPoint: {fileID: 150460061881457603}
-  _downAttackPoint: {fileID: 4897149217227177274}
+  _plungeAttackPoint: {fileID: 4897149217227177274}
   _sideAttackPoint: {fileID: 6804395437131085507}
-  _horizontalAttackSize: {x: 2.5, y: 1.5}
-  _verticalAttackSize: {x: 1.5, y: 2.5}
+  _horizontalAttackSize: {x: 2.5, y: 2}
+  _upAttackSize: {x: 2, y: 2.5}
+  _plungeAttackSize: {x: 3, y: 1}
   _data: {fileID: 11400000, guid: 7d05cae83a42e5e439308ad505130e3f, type: 2}
   _enemyMask:
     serializedVersion: 2
-    m_Bits: 1088
+    m_Bits: 1024
   _swordLevel: 1
-  _elementIndex: 4
   _slashFxPrefab: {fileID: 134317312105848395, guid: fd115bff5e43681499674b1bc94213cd, type: 3}
 --- !u!114 &3024244117808424973
 MonoBehaviour:
@@ -889,6 +883,29 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::PlayerHealth
   _data: {fileID: 11400000, guid: 79e2963b548cdac48af76b43c54fe63c, type: 2}
+--- !u!114 &3735642507340127294
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5087166927145310186}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7ff906682cb03804bb4b0e20c896dea7, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::PlayerElement
+  _elementSwapCooldown: 0.5
+  _elementalSkillCooldown: 5
+  _elementalSkillDamage: 20
+  _physicElementType: {fileID: 11400000, guid: fa41908be5b89654d95054a0484eb7d8, type: 2}
+  ElementArray:
+  - PlayerElementSO: {fileID: 11400000, guid: 3d44151c6000a69419073cbefc0805aa, type: 2}
+    burstSkillTimer: 0
+  - PlayerElementSO: {fileID: 11400000, guid: 076837a4ddcb06947864914692b19c4e, type: 2}
+    burstSkillTimer: 0
+  - PlayerElementSO: {fileID: 11400000, guid: 0b2240dbf9849fb4d9cfd932a830e79b, type: 2}
+    burstSkillTimer: 0
 --- !u!1 &5115880837169066816
 GameObject:
   m_ObjectHideFlags: 0
@@ -914,7 +931,7 @@ Transform:
   m_GameObject: {fileID: 5115880837169066816}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 1.89, y: 0, z: 0}
+  m_LocalPosition: {x: 1.49, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -945,7 +962,7 @@ Transform:
   m_GameObject: {fileID: 6181084499320103871}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: -1.002, z: 0}
+  m_LocalPosition: {x: 0, y: -1.108, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -976,7 +993,7 @@ Transform:
   m_GameObject: {fileID: 6339977188617197146}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 2.25, z: 0}
+  m_LocalPosition: {x: 0, y: 1.86, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -1133,37 +1150,6 @@ TrailRenderer:
   m_Autodestruct: 0
   m_Emitting: 0
   m_ApplyActiveColorSpace: 1
---- !u!1 &7570505055498087223
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 8544421526318563109}
-  m_Layer: 7
-  m_Name: RightWallCheckPoint
-  m_TagString: Untagged
-  m_Icon: {fileID: 2488908585195742037, guid: 0000000000000000d000000000000000, type: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &8544421526318563109
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7570505055498087223}
-  serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0.51, y: 0.083, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children: []
-  m_Father: {fileID: 7057404644842753421}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &7689769224940823212
 GameObject:
   m_ObjectHideFlags: 0
@@ -1219,37 +1205,6 @@ MonoBehaviour:
   - {fileID: 4204529695739883361}
   - {fileID: 784531754047068759}
   - {fileID: 7923185361865460034}
---- !u!1 &7706208634982246410
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 1036559177709290302}
-  m_Layer: 7
-  m_Name: LeftWallCheckPoint
-  m_TagString: Untagged
-  m_Icon: {fileID: 6519382022992737161, guid: 0000000000000000d000000000000000, type: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &1036559177709290302
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7706208634982246410}
-  serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -0.502, y: 0.061, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children: []
-  m_Father: {fileID: 7057404644842753421}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &8871464399219957405
 GameObject:
   m_ObjectHideFlags: 0
@@ -1280,8 +1235,8 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 150460061881457603}
-  - {fileID: 4897149217227177274}
   - {fileID: 6804395437131085507}
+  - {fileID: 4897149217227177274}
   m_Father: {fileID: 3212656722255811958}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &8883614851166088412

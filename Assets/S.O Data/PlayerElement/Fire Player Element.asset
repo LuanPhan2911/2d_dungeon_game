@@ -12,9 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 444f9ec37ada7e54d8d0a92ed4d6d96a, type: 3}
   m_Name: Fire Player Element
   m_EditorClassIdentifier: Assembly-CSharp::PlayerElementFireSO
-  element: {fileID: 0}
-  elementalSkillCooldown: 10
-  elementalSkillDamage: 20
+  element: {fileID: 11400000, guid: 5f9787651436ec04fac44ee1fce84e5d, type: 2}
   infusedElementToWeaponDuration: 8.5
   burstSkillPressedThreshhold: 0.5
   burstCooldown: 20

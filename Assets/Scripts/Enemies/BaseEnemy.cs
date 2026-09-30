@@ -49,7 +49,7 @@ public class BaseEnemy : MonoBehaviour, IDamageable
     }
 
 
-     public void TakeDamage(Damage damage, Vector2 recoilDirection)
+     public void TakeDamage(Damage damage)
     {
 
        
@@ -71,10 +71,6 @@ public class BaseEnemy : MonoBehaviour, IDamageable
 
         damageTextUI.SetText(damage);
 
-        if (CanRecoil)
-        {
-            StartCoroutine(StartRecoil(recoilDirection));
-        }
         if (_currentHealth <= 0)
         {
             Death();

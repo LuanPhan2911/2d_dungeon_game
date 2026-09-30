@@ -8,11 +8,12 @@ using UnityEngine;
 public class PlayerAttack : MonoBehaviour
 {
     [SerializeField] private Transform _upAttackPoint;
-    [SerializeField] private Transform _downAttackPoint;
+    [SerializeField] private Transform _plungeAttackPoint;
     [SerializeField] private Transform _sideAttackPoint;
 
-    [SerializeField] private Vector2 _horizontalAttackSize = new Vector2(1.5f, 1);
-    [SerializeField] private Vector2 _verticalAttackSize = new Vector2(1, 1.5f);
+    [SerializeField] private Vector2 _horizontalAttackSize ;
+    [SerializeField] private Vector2 _upAttackSize ;
+    [SerializeField] private Vector2 _plungeAttackSize;
 
 
 
@@ -24,7 +25,6 @@ public class PlayerAttack : MonoBehaviour
    [SerializeField] private int _swordLevel=1;
     private float _attackSpeedMultiplier = 1f;
    
-    public bool IsRecoiling { get; private set; }
 
     #region Normal Attack
 
@@ -96,61 +96,76 @@ public class PlayerAttack : MonoBehaviour
         {
             _lastPressAttackTimer = _data.attackInputBuffer;
         }
-        if ((CanNormalAttack()))
+        if ((CanAttack()))
         {
-            NormalAttack();
-        } 
+            Attack();
+        }
+
+
+        if (PlayerMovement.Instance.IsPlunging && PlayerMovement.Instance.IsGrounded)
+        {
+            PlayerMovement.Instance.IsPlunging = false ;
+            ScanAndDamage(_plungeAttackPoint.position, _plungeAttackSize);
+        }
     }
-    private bool CanNormalAttack()
+    private bool CanAttack()
     {
         float attackCoolDown = _data.baseAttackCooldown / _attackSpeedMultiplier;
 
         return _lastPressAttackTimer>0f && !IsAttackCooldown && !_playerMovement.IsDashing;
     }
-    private void NormalAttack()
+    private void Attack()
     {
         _lastPressAttackTimer = 0f;
         _attackTimer = _data.baseAttackCooldown;
 
-        float verticalInput = GameInputManager.Instance.GetVerticalInput();
 
-        Vector2 attackDirection;
+        bool isUpPressed = GameInputManager.Instance.IsUpPressed();
+        bool isDownPressed = GameInputManager.Instance.IsDownPressed();
 
-        if (verticalInput > 0)
+        if (isUpPressed)
         {
-            attackDirection = Vector2.up;
-            ScanAndDamage(_upAttackPoint.position, _verticalAttackSize, attackDirection);
-         
+           
+            ScanAndDamage(_upAttackPoint.position, _upAttackSize);
+            SpawnSlashVFX(Vector2.up);
+
         }
-        else if (verticalInput < 0 && _playerMovement.LastOnGroundTime <= 0)
+        else if (isDownPressed && !PlayerMovement.Instance.IsGrounded)
         {
-            attackDirection = Vector2.down;
-            // TODO: Plunge Attack
+            Debug.Log("Plunge Attack");
+            StartPlungeAttack();
             
         }
         else
         {
-            attackDirection = Vector2.right;
-            ScanAndDamage(_sideAttackPoint.position, _horizontalAttackSize, attackDirection);
-            // horizontal attack
-            
         
+            ScanAndDamage(_sideAttackPoint.position, _horizontalAttackSize);
+            SpawnSlashVFX(Vector2.right);
+            // horizontal attack
+
+
         }
-        SpawnSlashVFX(attackDirection);
+
+       
+       
        
 
 
     }
 
-    private bool ScanAndDamage(Vector3 position, Vector2 size, Vector2 direction)
+    private void StartPlungeAttack()
+    {
+        PlayerMovement.Instance.IsPlunging = true;
+    }
+ 
+
+    private bool ScanAndDamage(Vector3 position, Vector2 size)
     {
         Collider2D[] hitEnemies = Physics2D.OverlapBoxAll(position, size, 0, _enemyMask);
 
-        Vector2 enemyRecoilDirection = direction;
-        if(direction== Vector2.right)
-        {
-            enemyRecoilDirection = _playerMovement.IsFacingRight ? Vector2.right : Vector2.left;
-        }
+        
+
+       
         if (hitEnemies.Length > 0)
         {
            
@@ -193,7 +208,7 @@ public class PlayerAttack : MonoBehaviour
                         amount= damageAmount,
                         element= PlayerElement.Instance.GetElementTypeDamage(),
                         isCrit=isCritStrike
-                    }, enemyRecoilDirection);
+                    });
                 }
             }
 
@@ -222,17 +237,12 @@ public class PlayerAttack : MonoBehaviour
             rotation = Quaternion.Euler(0, 0, isFacingRight ? 90 : -90);
             parent = _upAttackPoint;
         }
-        else if (direction == Vector2.down)
-        {
-            parent = _downAttackPoint;
-            rotation = Quaternion.Euler(0, 0, isFacingRight ? -90 : 90);
-
-        }
-        else
+        else if (direction == Vector2.right)
         {
             parent = _sideAttackPoint;
-           
+
         }
+      
 
        
 
@@ -249,9 +259,10 @@ public class PlayerAttack : MonoBehaviour
     private void OnDrawGizmos()
     {
         Gizmos.color = Color.red;
-
-        Gizmos.DrawWireCube(_upAttackPoint.position, _verticalAttackSize);
-        Gizmos.DrawWireCube(_downAttackPoint.position, _verticalAttackSize);
         Gizmos.DrawWireCube(_sideAttackPoint.position, _horizontalAttackSize);
+
+        Gizmos.DrawWireCube(_upAttackPoint.position, _upAttackSize);
+        Gizmos.DrawWireCube(_plungeAttackPoint.position, _plungeAttackSize);
+
     }
 }

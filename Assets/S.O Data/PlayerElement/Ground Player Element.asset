@@ -12,9 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2caa3c59724d5c947802f7a294425afb, type: 3}
   m_Name: Ground Player Element
   m_EditorClassIdentifier: Assembly-CSharp::PlayerElementGroundSO
-  element: {fileID: 0}
-  elementalSkillCooldown: 10
-  elementalSkillDamage: 20
+  element: {fileID: 11400000, guid: 900a6a60b4ab0844d865b09c7e9b785f, type: 2}
   infusedElementToWeaponDuration: 8.5
   burstSkillPressedThreshhold: 0.5
   burstCooldown: 20

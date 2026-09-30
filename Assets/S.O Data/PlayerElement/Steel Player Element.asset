@@ -12,9 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c0bf03e93a630194babfef6272c6e3d1, type: 3}
   m_Name: Steel Player Element
   m_EditorClassIdentifier: Assembly-CSharp::PlayerElementSteelSO
-  element: {fileID: 0}
-  elementalSkillCooldown: 10
-  elementalSkillDamage: 20
+  element: {fileID: 11400000, guid: 0fda099d69e02a14796aa32fe827c589, type: 2}
   infusedElementToWeaponDuration: 8.5
   burstSkillPressedThreshhold: 0.5
   burstCooldown: 20
