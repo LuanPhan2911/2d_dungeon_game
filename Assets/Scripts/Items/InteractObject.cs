@@ -5,7 +5,7 @@ using UnityEngine.InputSystem;
 
 public class InteractObject : MonoBehaviour
 {
-    [SerializeField] private ItemData _needItemData;
+    [SerializeField] private ItemSO _needItemData;
 
     [SerializeField] private InteractUI _interactUI;
 

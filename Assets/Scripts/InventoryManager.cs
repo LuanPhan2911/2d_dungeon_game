@@ -4,10 +4,10 @@ using UnityEngine;
 [System.Serializable]
 public class InventoryItem
 {
-    public ItemData data;
+    public ItemSO data;
     public int amount;
 
-    public InventoryItem(ItemData item, int amount)
+    public InventoryItem(ItemSO item, int amount)
     {
         data = item;
         this.amount = amount;
@@ -33,7 +33,7 @@ public class InventoryManager : MonoBehaviour
     [SerializeField] private List<InventoryItem> _inventoryItemList = new List<InventoryItem>();
 
 
-    public bool AddItem(ItemData itemData, int amount = 1)
+    public bool AddItem(ItemSO itemData, int amount = 1)
     {
         if (itemData.isStackable)
         {
@@ -50,7 +50,7 @@ public class InventoryManager : MonoBehaviour
         return true;
     }
 
-    public bool HasItem(ItemData itemData, int amount = 1)
+    public bool HasItem(ItemSO itemData, int amount = 1)
     {
         InventoryItem exisitingItem = _inventoryItemList.Find(el => el.data == itemData);
 
@@ -59,7 +59,7 @@ public class InventoryManager : MonoBehaviour
 
         return exisitingItem.amount >= amount;
     }
-    public bool RemoveItem(ItemData itemData, int amount = 1)
+    public bool RemoveItem(ItemSO itemData, int amount = 1)
     {
         InventoryItem exisitingItem = _inventoryItemList.Find(el => el.data == itemData);
 

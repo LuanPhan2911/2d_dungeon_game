@@ -5,18 +5,19 @@ using UnityEngine.Experimental.GlobalIllumination;
 public class PlayerHealth : MonoBehaviour
 {
 
-    [SerializeField] private PlayerHealthData _data;
+    [SerializeField] private PlayerHealthSO _data;
 
     public static PlayerHealth Instance { get; private set;  }
 
-    public event Action<float> OnHealthChanged;
-    public event Action<float> OnEnergyChanged;
+    public event Action OnHealthChanged;
+    public event Action OnEnergyChanged;
 
 
     public float HealthRatio => _health / GetMaxHealth();
     public float EnergyRatio => _energy / GetMaxEnergy();
 
     public float CurrentEnergy => _energy;
+    public float CurrentHealth => _health;
 
 
     private void Awake()
@@ -41,10 +42,15 @@ public class PlayerHealth : MonoBehaviour
     {
         _health = GetMaxHealth();
         _energy = 0f;
+    }
 
-
-        OnHealthChanged?.Invoke(HealthRatio);
-        OnEnergyChanged?.Invoke(EnergyRatio) ;
+    public string GetHealthText()
+    {
+        return $"{_health}/{GetMaxHealth()}";
+    }
+    public string GetEnergyText()
+    {
+        return $"{_energy}/{GetMaxEnergy()}";
     }
 
 
@@ -60,13 +66,13 @@ public class PlayerHealth : MonoBehaviour
       
 
 
-        OnHealthChanged?.Invoke(HealthRatio);
+        OnHealthChanged?.Invoke();
     }
 
     private void ChangeEnergy(float amount)
     {
         _energy = Mathf.Clamp(_energy + amount, 0f, GetMaxEnergy());
-        OnEnergyChanged?.Invoke(EnergyRatio);
+        OnEnergyChanged?.Invoke();
     }
 
     public void GainEnergyFromNormalAttack()

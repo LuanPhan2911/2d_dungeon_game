@@ -1,4 +1,5 @@
 using UnityEngine;
+using static PlayerElement;
 
 public class SwapElementUI : MonoBehaviour
 {
@@ -32,11 +33,11 @@ public class SwapElementUI : MonoBehaviour
 
         }
         int pos = 1;
-        foreach(PlayerElementData playerElementData in PlayerElement.Instance.PlayerElementArray)
+        foreach (PlayerElementData playerElementData in PlayerElement.Instance.ElementArray)
         {
-           SelectElementButton button= Instantiate(_elementButtonPrefab, transform);
+            SelectElementButton button = Instantiate(_elementButtonPrefab, transform);
 
-            button.SetElement(playerElementData, pos);
+            button.SetElement(playerElementData.PlayerElementSO, pos);
             pos++;
 
         }

@@ -11,7 +11,7 @@ public class SelectElementButton : MonoBehaviour
 
  
 
-    public void SetElement(PlayerElementData data, int positionNumber)
+    public void SetElement(PlayerElementSO data, int positionNumber)
     {
      
         _image.color = data.element.color;

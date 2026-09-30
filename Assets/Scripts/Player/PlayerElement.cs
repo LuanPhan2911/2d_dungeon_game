@@ -13,23 +13,71 @@ public class PlayerElement : MonoBehaviour
 
     [Header("Element")]
     [SerializeField] private float _elementSwapCooldown = 0.5f;
-    [SerializeField] private ElementData _physicElementType;
-    public PlayerElementData[] PlayerElementArray;
+    [SerializeField] private float _elementalSkillCooldown = 5f;
+    [SerializeField] private float _elementalSkillDamage = 20f;
+    [SerializeField] private ElementSO _physicElementType;
+
+    [Serializable]
+    public class PlayerElementData
+    {
+        public PlayerElementSO PlayerElementSO;
+       [HideInInspector] public float burstSkillTimer;
+    }
+
+    public PlayerElementData[] ElementArray;
 
 
-    public event Action OnPlayerElementArrayChanged;
+    public event Action OnElementArrayChanged;
 
+    #region Active
+    public int ActiveIndex => _activeIndex;
+    
+    public bool HasActive => _activeIndex != NONE_PLAYER_ELEMENT_INDEX;
+    public PlayerElementData ActiveElement => ElementArray[_activeIndex];
 
-    public PlayerElementData ActivePlayerElement => PlayerElementArray[_activePlayerElementIndex];
-    public int ActivePlayerElementIndex => _activePlayerElementIndex;
-    public bool HasActivePlayerElement => _activePlayerElementIndex != NONE_PLAYER_ELEMENT_INDEX;
-    public ElementData ActiveElementType => ActivePlayerElement.element;
-   
+    public ElementSO ActiveElementType => ActiveElement.PlayerElementSO.element;
+    public PlayerElementSO ActiveElementSO => ActiveElement.PlayerElementSO;
+    private float ActiveBurstSkillTimer => ActiveElement.burstSkillTimer;
+
+    #endregion
+
     public event Action OnElementSwapped;
 
     public bool IsElementSwapCooldown => _elementSwapTimer > 0f;
     private float _elementSwapTimer;
-    private int _activePlayerElementIndex = NONE_PLAYER_ELEMENT_INDEX;
+    private int _activeIndex = NONE_PLAYER_ELEMENT_INDEX;
+
+
+
+    #region Elemental Skill
+    private float _elementalSkillTimer;
+    public bool IsElementalSkillCooldown => _elementalSkillTimer > 0f;
+    public float ElementalSkillDuration => _elementalSkillTimer > 1f ?
+        Mathf.Round(_elementalSkillTimer) : _elementalSkillTimer.OneDecimal();
+    public float ElementalSkillRatio => _elementalSkillTimer / _elementalSkillCooldown;
+
+    #endregion
+
+
+    #region Burst Skill
+
+ 
+
+    private float _infusedElementToWeaponTimer;
+    public bool IsBurstSkillCooldown => ActiveBurstSkillTimer > 0f;
+    public float BurstSkillDuration => ActiveBurstSkillTimer > 1f ?
+                Mathf.Round(ActiveBurstSkillTimer) : ActiveBurstSkillTimer.OneDecimal();
+    public float BurstSkillRatio => ActiveBurstSkillTimer / ActiveElementSO.burstCooldown;
+    public bool IsInfusedElementToWeapon => _infusedElementToWeaponTimer > 0f;
+
+    private float _burstSkillPressTimer;
+    private bool _isBurstSkillHolding;
+    #endregion
+
+
+    private float _lastPressElementalSkillTimer;
+    private float _lastPressBurstSkillTimer;
+
 
 
 
@@ -42,11 +90,13 @@ public class PlayerElement : MonoBehaviour
     private void Start()
     {
       
-        OnPlayerElementArrayChanged?.Invoke();
+     
     }
     private void Update()
     {
         _elementSwapTimer = Mathf.Max(0, _elementSwapTimer - Time.deltaTime);
+        _elementalSkillTimer = Mathf.Max(_elementalSkillTimer - Time.deltaTime, 0f);
+        _infusedElementToWeaponTimer = Mathf.Max(_infusedElementToWeaponTimer - Time.deltaTime, 0f);
 
         if (!IsElementSwapCooldown)
         {
@@ -64,27 +114,115 @@ public class PlayerElement : MonoBehaviour
             }
         }
 
-        
+
+
+        if (HasActive)
+        {
+            for (int i = 0; i < ElementArray.Length; i++)
+            {
+                float timer = ElementArray[i].burstSkillTimer;
+                ElementArray[i].burstSkillTimer =Mathf.Max(timer - Time.deltaTime, 0f);
+            }
+
+
+            _lastPressElementalSkillTimer = Mathf.Max(_lastPressElementalSkillTimer - Time.deltaTime, 0f);
+            _lastPressBurstSkillTimer = Mathf.Max(_lastPressBurstSkillTimer - Time.deltaTime, 0f);
+
+
+
+            if (GameInputManager.Instance.PlayerActions.ElementalSkill.WasPressedThisFrame())
+            {
+                _lastPressElementalSkillTimer = ActiveElementSO.skillInputBuffer;
+            }
+
+            if (GameInputManager.Instance.PlayerActions.BurstSkill.WasPressedThisFrame())
+            {
+                _lastPressBurstSkillTimer = ActiveElementSO.skillInputBuffer;
+                _burstSkillPressTimer = 0f;
+                _isBurstSkillHolding = false;
+            }
+            if (GameInputManager.Instance.PlayerActions.BurstSkill.IsPressed())
+            {
+                _burstSkillPressTimer += Time.deltaTime;
+                if (_burstSkillPressTimer > ActiveElementSO.burstSkillPressedThreshhold && !_isBurstSkillHolding)
+                {
+                    InfuseElementToWeapon();
+                }
+            }
+
+            if (CanUseElementalSkill())
+            {
+                ElementalSkillAttack();
+            }
+            if (CanUseBurstSkill())
+            {
+                BurstSkillAttack();
+            }
+        }
+
+      
+
+      
+
     }
-    public ElementData GetElementTypeDamage()
+    public ElementSO GetElementTypeDamage()
     {
-        if (_activePlayerElementIndex!= -1 || !PlayerSkill.Instance.IsInfusedElementToWeapon)
+        
+    
+        if (!HasActive|| !IsInfusedElementToWeapon)
         {
             return _physicElementType;
         }
+       
         return ActiveElementType;
     }
     public void SetActivePlayerElement(int index)
     {
-        if (index < 0 || index >= PlayerElementArray.Length) return;
+        if (index < 0 || index >= ElementArray.Length) return;
 
-        if (index == _activePlayerElementIndex) return;
+        if (index == _activeIndex) return;
 
 
-        _activePlayerElementIndex = index;
+        _activeIndex = index;
         _elementSwapTimer = _elementSwapCooldown;
-        PlayerSkill.Instance.StopInfuseElementToWeapon();
+        StopInfuseElementToWeapon();
         OnElementSwapped?.Invoke();
 
-    } 
+    }
+
+    public void StopInfuseElementToWeapon()
+    {
+        _infusedElementToWeaponTimer = 0f;
+    }
+    private bool CanUseElementalSkill()
+    {
+        return _lastPressElementalSkillTimer > 0f && !IsElementalSkillCooldown;
+    }
+    private bool CanUseBurstSkill()
+    {
+        return _lastPressBurstSkillTimer > 0f && PlayerHealth.Instance.CurrentEnergy >= ActiveElementSO.burstEnergy &&
+            !IsBurstSkillCooldown;
+    }
+
+    private void ElementalSkillAttack()
+    {
+        _elementalSkillTimer = _elementalSkillCooldown;
+
+        Debug.Log("Elemental Skill");
+
+        PlayerHealth.Instance.GainEnergyFormElementalSKill();
+
+    }
+    private void BurstSkillAttack()
+    {
+
+        ElementArray[ActiveIndex].burstSkillTimer = ActiveElementSO.burstCooldown;
+        PlayerHealth.Instance.UseEnergyForBurstSkill();
+        Debug.Log("Burst Skill");
+    }
+    private void InfuseElementToWeapon()
+    {
+        _infusedElementToWeaponTimer = ActiveElementSO.infusedElementToWeaponDuration;
+        _isBurstSkillHolding = true;
+    }
 }

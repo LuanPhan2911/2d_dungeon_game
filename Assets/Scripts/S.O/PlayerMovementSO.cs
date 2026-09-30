@@ -1,8 +1,8 @@
 using System.ComponentModel.Design;
 using UnityEngine;
 
-[CreateAssetMenu(fileName = "Player Movement Data", menuName = "Scriptable Objects/Player Movement Data")]
-public class PlayerMovementData : ScriptableObject
+[CreateAssetMenu(fileName = "Player Movement", menuName = "Scriptable Objects/Player Movement")]
+public class PlayerMovementSO : ScriptableObject
 {
     [Header("Gravity")]
     [HideInInspector] public float gravityStrength; //Downwards force (gravity) needed for the desired jumpHeight and jumpTimeToApex.

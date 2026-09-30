@@ -9,15 +9,15 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 0}
-  m_Name: WaterPlayerElementData
-  m_EditorClassIdentifier: Assembly-CSharp::WaterPlayerElementData
-  element: {fileID: 11400000, guid: cfb9b5ebcdf62a842af790accf5fe130, type: 2}
-  baseElementalSkillCooldown: 10
-  baseElementalSkillDamage: 20
+  m_Script: {fileID: 11500000, guid: 60ab16bdbc400df4faca895e37c2104c, type: 3}
+  m_Name: Water Player Element
+  m_EditorClassIdentifier: Assembly-CSharp::PlayerElementWaterSO
+  element: {fileID: 0}
+  elementalSkillCooldown: 10
+  elementalSkillDamage: 20
   infusedElementToWeaponDuration: 8.5
   burstSkillPressedThreshhold: 0.5
-  burstCooldown: 30
+  burstCooldown: 20
   burstEnergy: 40
   skillInputBuffer: 0.2
   healthHealRate: 0.2

@@ -1323,6 +1323,7 @@ GameObject:
   m_Component:
   - component: {fileID: 412938187}
   - component: {fileID: 412938188}
+  - component: {fileID: 412938189}
   m_Layer: 5
   m_Name: BurstSkill
   m_TagString: Untagged
@@ -1360,6 +1361,21 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 412938186}
   m_CullTransparentMesh: 1
+--- !u!114 &412938189
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 412938186}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 338b3043eccdcfb4099344541467a422, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::BurstSkillUI
+  _activeImage: {fileID: 1389764141}
+  _backgroundImage: {fileID: 63620184}
+  _cooldownText: {fileID: 1150092041}
 --- !u!1 &419472172 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 5087166927145310186, guid: 523e1f14885f3df4cbcde949cdf98e38, type: 3}
@@ -22182,7 +22198,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::PlayerElement
   _elementSwapCooldown: 0.5
   _physicElementType: {fileID: 11400000, guid: fa41908be5b89654d95054a0484eb7d8, type: 2}
-  PlayerElementData:
+  PlayerElementArray:
   - {fileID: 11400000, guid: b69e2a5fa690b7548aad8abb1d58986d, type: 2}
   - {fileID: 11400000, guid: 3e4ddfcc0c46f574ab8d48abca89ba94, type: 2}
   - {fileID: 11400000, guid: 333dc8f8809a25f48a9ea0b157757661, type: 2}

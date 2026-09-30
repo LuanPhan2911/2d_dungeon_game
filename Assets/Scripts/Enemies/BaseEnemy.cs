@@ -19,7 +19,7 @@ public class BaseEnemy : MonoBehaviour, IDamageable
 
     private float _currentHealth;
 
-    [SerializeField] private EnemyData _data;
+    [SerializeField] private EnemySO _data;
     private DamageFlash _damageFlash;
     private Rigidbody2D _rb;
 
@@ -94,7 +94,7 @@ public class BaseEnemy : MonoBehaviour, IDamageable
         IsRecoiling = false;
     }
 
-    public float GetResistanceMultiplier(ElementData element)
+    public float GetResistanceMultiplier(ElementSO element)
     {
         float multiplier = 1;
         ElementalResistance[] resistances = _data.resistances;

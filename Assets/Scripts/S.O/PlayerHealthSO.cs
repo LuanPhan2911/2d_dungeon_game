@@ -1,7 +1,7 @@
 using UnityEngine;
 
-[CreateAssetMenu(fileName = "PlayerHealthData", menuName = "Scriptable Objects/PlayerHealthData")]
-public class PlayerHealthData : ScriptableObject
+[CreateAssetMenu(fileName = "Player Health", menuName = "Scriptable Objects/Player Health")]
+public class PlayerHealthSO : ScriptableObject
 {
     public float baseHealth=100f;
     public float baseEnergy = 40f;

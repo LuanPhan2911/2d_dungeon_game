@@ -9,16 +9,16 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 0}
-  m_Name: FirePlayerElementData
-  m_EditorClassIdentifier: Assembly-CSharp::FirePlayerElementData
-  element: {fileID: 11400000, guid: 5f9787651436ec04fac44ee1fce84e5d, type: 2}
-  baseElementalSkillCooldown: 10
-  baseElementalSkillDamage: 20
+  m_Script: {fileID: 11500000, guid: 6006b6c75220afa4c89bdde535564bfb, type: 3}
+  m_Name: Grass Player Element
+  m_EditorClassIdentifier: Assembly-CSharp::PlayerElementGrassSO
+  element: {fileID: 0}
+  elementalSkillCooldown: 10
+  elementalSkillDamage: 20
   infusedElementToWeaponDuration: 8.5
   burstSkillPressedThreshhold: 0.5
-  burstCooldown: 12
-  burstEnergy: 30
+  burstCooldown: 20
+  burstEnergy: 40
   skillInputBuffer: 0.2
-  damage: 40
-  burningEffectBonusDamageRate: 0.2
+  damage: 10
+  elementalResistanceReductionRate: 0.4

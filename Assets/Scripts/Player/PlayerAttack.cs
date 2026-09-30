@@ -16,7 +16,7 @@ public class PlayerAttack : MonoBehaviour
 
 
 
-    [SerializeField] private PlayerAttackData _data;
+    [SerializeField] private PlayerAttackSO _data;
     [SerializeField] private LayerMask _enemyMask;
 
 
@@ -238,7 +238,7 @@ public class PlayerAttack : MonoBehaviour
 
         GameObject slashFx = Instantiate(_slashFxPrefab, parent);
 
-        ElementData elementDamage = PlayerElement.Instance.GetElementTypeDamage();
+        ElementSO elementDamage = PlayerElement.Instance.GetElementTypeDamage();
        
         slashFx.GetComponent<SlashFX>().SetColor(elementDamage.color);
         

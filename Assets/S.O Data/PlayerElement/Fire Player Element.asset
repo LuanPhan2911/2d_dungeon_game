@@ -9,17 +9,16 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 0}
-  m_Name: SteelPlayerElementData
-  m_EditorClassIdentifier: Assembly-CSharp::SteelPlayerElementData
-  element: {fileID: 11400000, guid: 0fda099d69e02a14796aa32fe827c589, type: 2}
-  baseElementalSkillCooldown: 10
-  baseElementalSkillDamage: 20
+  m_Script: {fileID: 11500000, guid: 444f9ec37ada7e54d8d0a92ed4d6d96a, type: 3}
+  m_Name: Fire Player Element
+  m_EditorClassIdentifier: Assembly-CSharp::PlayerElementFireSO
+  element: {fileID: 0}
+  elementalSkillCooldown: 10
+  elementalSkillDamage: 20
   infusedElementToWeaponDuration: 8.5
   burstSkillPressedThreshhold: 0.5
   burstCooldown: 20
-  burstEnergy: 30
+  burstEnergy: 40
   skillInputBuffer: 0.2
   damage: 40
-  damageCounterRate: 0.2
-  damageReductionRate: 0.2
+  burningEffectBonusDamageRate: 0.2

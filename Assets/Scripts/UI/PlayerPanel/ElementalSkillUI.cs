@@ -14,7 +14,7 @@ public class ElementalSkillUI : MonoBehaviour
     {
         PlayerElement.Instance.OnElementSwapped += ElementSwap;
 
-        if (!PlayerElement.Instance.HasActivePlayerElement)
+        if (!PlayerElement.Instance.HasActive)
         {
             Hide();
         }
@@ -28,19 +28,19 @@ public class ElementalSkillUI : MonoBehaviour
 
     private void Update()
     {
-        if (!PlayerElement.Instance.HasActivePlayerElement) return;
+        if (!PlayerElement.Instance.HasActive) return;
 
-        if (PlayerSkill.Instance.IsElementalSkillCooldown)
+        if (PlayerElement.Instance.IsElementalSkillCooldown)
         {
             _activeImage.gameObject.SetActive(true);
             _cooldownText.gameObject.SetActive(true);
-            _activeImage.fillAmount = PlayerSkill.Instance.ElementalSkillRatio;
-            if(_currentDuration!= PlayerSkill.Instance.ElementalSkillDuration)
+            _activeImage.fillAmount = PlayerElement.Instance.ElementalSkillRatio;
+            if (_currentDuration != PlayerElement.Instance.ElementalSkillDuration)
             {
-                _cooldownText.text = $"{PlayerSkill.Instance.ElementalSkillDuration}";
-               
+                _cooldownText.text = $"{PlayerElement.Instance.ElementalSkillDuration}";
+
             }
-            _currentDuration = PlayerSkill.Instance.ElementalSkillDuration;
+            _currentDuration = PlayerElement.Instance.ElementalSkillDuration;
         }
         else
         {

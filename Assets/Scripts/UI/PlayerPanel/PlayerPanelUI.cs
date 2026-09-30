@@ -6,8 +6,9 @@ using UnityEngine.UI;
 public class PlayerPanelUI : MonoBehaviour
 {
 
-    [SerializeField] private Image _energyImage;
-    [SerializeField] private Image _healthImage;
+
+    [SerializeField] private StatBarUI _healthBar;
+    [SerializeField] private StatBarUI _energyBar;
 
 
 
@@ -17,6 +18,9 @@ public class PlayerPanelUI : MonoBehaviour
 
     private void Start()
     {
+        UpdateHealthUI();
+        UpdateEnergyUI();
+
         PlayerHealth.Instance.OnHealthChanged +=UpdateHealthUI;
         PlayerHealth.Instance.OnEnergyChanged +=UpdateEnergyUI;
 
@@ -24,21 +28,18 @@ public class PlayerPanelUI : MonoBehaviour
 
    
 
-    private void UpdateHealthUI( float ratio)
+    private void UpdateHealthUI()
     {
-        
-        _healthImage.fillAmount = ratio;
+        _healthBar.SetImageFill(PlayerHealth.Instance.HealthRatio);
+        _healthBar.SetText(PlayerHealth.Instance.GetHealthText());
     }
-    private void UpdateEnergyUI( float ratio)
+    private void UpdateEnergyUI()
     {
-        _energyImage.fillAmount = ratio;
-    }
-
-    private void UpdateElementalSkillUI(float cooldown)
-    {
-
+        _energyBar.SetImageFill(PlayerHealth.Instance.EnergyRatio);
+        _energyBar.SetText(PlayerHealth.Instance.GetEnergyText());
     }
 
+  
 
 
 }

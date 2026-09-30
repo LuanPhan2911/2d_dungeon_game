@@ -1,8 +1,8 @@
 using System;
 using UnityEngine;
 
-[CreateAssetMenu(fileName = "PlayerAttackData", menuName = "Scriptable Objects/PlayerAttackData")]
-public class PlayerAttackData : ScriptableObject
+[CreateAssetMenu(fileName = "Player Attack", menuName = "Scriptable Objects/Player Attack")]
+public class PlayerAttackSO : ScriptableObject
 {
     public float baseAttackCooldown=0.4f;
 
@@ -29,13 +29,13 @@ public class PlayerAttackData : ScriptableObject
 [Serializable]
 public class ElementalResistance
 {
-    public ElementData element;
+    public ElementSO element;
     public float resistance=0.1f;
 }
 public class Damage
 {
     public float amount { get; set; }
-    public ElementData element { get; set; }
+    public ElementSO element { get; set; }
     public bool isCrit { get; set; }
 
    

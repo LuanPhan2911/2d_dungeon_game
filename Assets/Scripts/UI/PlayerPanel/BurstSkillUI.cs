@@ -18,7 +18,7 @@ public class BurstSkillUI : MonoBehaviour
     
       
 
-        if (!PlayerElement.Instance.HasActivePlayerElement)
+        if (!PlayerElement.Instance.HasActive)
         {
             Hide();
         }
@@ -26,20 +26,20 @@ public class BurstSkillUI : MonoBehaviour
     private void Update()
 
     {
-        if (!PlayerElement.Instance.HasActivePlayerElement) return;
+        if (!PlayerElement.Instance.HasActive) return;
 
 
-        if (PlayerSkill.Instance.IsBurstSkillCooldown)
+        if (PlayerElement.Instance.IsBurstSkillCooldown)
         {
             _activeImage.gameObject.SetActive(true);
             _cooldownText.gameObject.SetActive(true);
-            _activeImage.fillAmount = PlayerSkill.Instance.BurstSkillRatio;
-            if (_currentDuration != PlayerSkill.Instance.BurstSkillDuration)
+            _activeImage.fillAmount = PlayerElement.Instance.BurstSkillRatio;
+            if (_currentDuration != PlayerElement.Instance.BurstSkillDuration)
             {
-                _cooldownText.text = $"{PlayerSkill.Instance.BurstSkillDuration}";
+                _cooldownText.text = $"{PlayerElement.Instance.BurstSkillDuration}";
 
             }
-            _currentDuration = PlayerSkill.Instance.BurstSkillDuration;
+            _currentDuration = PlayerElement.Instance.BurstSkillDuration;
         }
         else
         {

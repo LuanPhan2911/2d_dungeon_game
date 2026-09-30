@@ -50,7 +50,7 @@ public partial class PlayerMovement : MonoBehaviour
     [SerializeField] private Vector2 _wallCheckSize = new Vector2(0.03f, 0.3f);
 
 
-    [SerializeField] private PlayerMovementData _data;
+    [SerializeField] private PlayerMovementSO _data;
 
     private PlayerAnimation _playerAnimation;
     private Rigidbody2D _rb;
