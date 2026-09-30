@@ -1,4 +1,5 @@
 using UnityEngine;
+using UnityEngine.Rendering;
 
 public class PlayerSkill : MonoBehaviour
 {
@@ -6,23 +7,31 @@ public class PlayerSkill : MonoBehaviour
 
 
     public static PlayerSkill Instance { get ; private set; }
-    public PlayerElementData Data => PlayerElement.Instance.CurrentPlayerElement;
+    public PlayerElementData ActivePlayerElement => PlayerElement.Instance.ActivePlayerElement;
+    public int ActivePlayerElementIndex => PlayerElement.Instance.ActivePlayerElementIndex;
 
     #region Elemental Skill
     private float _elementalSkillTimer;
     public bool IsElementalSkillCooldown => _elementalSkillTimer > 0f;
     public float ElementalSkillDuration => _elementalSkillTimer > 1f ?
-        Mathf.Round(_elementalSkillTimer) : Mathf.Floor(_elementalSkillTimer * 10f) / 10f;
-    public float ElementalSkillRatio => _elementalSkillTimer / Data.baseElementalSkillCooldown;
+        Mathf.Round(_elementalSkillTimer) : _elementalSkillTimer.OneDecimal();
+    public float ElementalSkillRatio => _elementalSkillTimer / ActivePlayerElement.baseElementalSkillCooldown;
 
     #endregion
 
 
     #region Burst Skill
 
-    private float _burstSkillTimer;
+    private float ActiveBurstSkillTimer => _burstSkillTimers[ActivePlayerElementIndex];
+    private float[] _burstSkillTimers;
+
+
+    
     private float _infusedElementToWeaponTimer;
-    public bool IsBurstSkillCooldown => _burstSkillTimer > 0f;
+    public bool IsBurstSkillCooldown => ActiveBurstSkillTimer > 0f;
+    public float BurstSkillDuration => ActiveBurstSkillTimer > 1f ?
+                Mathf.Round(ActiveBurstSkillTimer) : ActiveBurstSkillTimer.OneDecimal();
+    public float BurstSkillRatio => ActiveBurstSkillTimer / ActivePlayerElement.burstCooldown;
     public bool IsInfusedElementToWeapon => _infusedElementToWeaponTimer > 0f;
 
     private float _burstSkillPressTimer;
@@ -38,15 +47,25 @@ public class PlayerSkill : MonoBehaviour
     {
         Instance = this;
     }
+    private void Start()
+    {
+        _burstSkillTimers = new float[PlayerElement.Instance.PlayerElementArray.Length];
+
+    }
+
 
 
     private void Update()
     {
-        if (!Data) return;
+        if (!PlayerElement.Instance.HasActivePlayerElement) return;
 
         _elementalSkillTimer = Mathf.Max(_elementalSkillTimer - Time.deltaTime, 0f);
-        _burstSkillTimer = Mathf.Max(_burstSkillTimer - Time.deltaTime, 0f);
         _infusedElementToWeaponTimer = Mathf.Max(_infusedElementToWeaponTimer - Time.deltaTime, 0f);
+
+        for(int i=0; i< _burstSkillTimers.Length; i++)
+        {
+            _burstSkillTimers[i] = Mathf.Max(_burstSkillTimers[i] - Time.deltaTime, 0f);
+        }
 
 
         _lastPressElementalSkillTimer = Mathf.Max(_lastPressElementalSkillTimer - Time.deltaTime, 0f);
@@ -56,19 +75,19 @@ public class PlayerSkill : MonoBehaviour
 
         if (GameInputManager.Instance.PlayerActions.ElementalSkill.WasPressedThisFrame())
         {
-            _lastPressElementalSkillTimer = Data.skillInputBuffer;
+            _lastPressElementalSkillTimer = ActivePlayerElement.skillInputBuffer;
         }
 
         if (GameInputManager.Instance.PlayerActions.BurstSkill.WasPressedThisFrame())
         {
-            _lastPressBurstSkillTimer = Data.skillInputBuffer;
+            _lastPressBurstSkillTimer = ActivePlayerElement.skillInputBuffer;
             _burstSkillPressTimer = 0f;
             _isBurstSkillHolding = false;
         }
         if (GameInputManager.Instance.PlayerActions.BurstSkill.IsPressed())
         {
             _burstSkillPressTimer += Time.deltaTime;
-            if (_burstSkillPressTimer > Data.burstSkillPressedThreshhold && !_isBurstSkillHolding)
+            if (_burstSkillPressTimer > ActivePlayerElement.burstSkillPressedThreshhold && !_isBurstSkillHolding)
             {
                 InfuseElementToWeapon();
             }
@@ -94,13 +113,13 @@ public class PlayerSkill : MonoBehaviour
     }
     private bool CanUseBurstSkill()
     {
-        return _lastPressBurstSkillTimer > 0f && PlayerHealth.Instance.IsEnoughEnergyToUseBurstSkill() && 
+        return _lastPressBurstSkillTimer > 0f && PlayerHealth.Instance.CurrentEnergy>= ActivePlayerElement.burstEnergy && 
             !IsBurstSkillCooldown;
     }
 
     private void ElementalSkillAttack()
     {
-        _elementalSkillTimer = Data.baseElementalSkillCooldown;
+        _elementalSkillTimer = ActivePlayerElement.baseElementalSkillCooldown;
 
         Debug.Log("Elemental Skill");
 
@@ -109,14 +128,14 @@ public class PlayerSkill : MonoBehaviour
     }
     private void BurstSkillAttack()
     {
-      
 
+        _burstSkillTimers[ActivePlayerElementIndex] = ActivePlayerElement.burstCooldown;
         PlayerHealth.Instance.UseEnergyForBurstSkill();
         Debug.Log("Burst Skill");
     }
     private void InfuseElementToWeapon()
     {
-        _infusedElementToWeaponTimer = Data.infusedElementToWeaponDuration;
+        _infusedElementToWeaponTimer = ActivePlayerElement.infusedElementToWeaponDuration;
         _isBurstSkillHolding = true;
     }
 }

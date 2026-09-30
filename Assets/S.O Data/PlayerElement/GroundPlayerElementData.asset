@@ -12,7 +12,13 @@ MonoBehaviour:
   m_Script: {fileID: 0}
   m_Name: GroundPlayerElementData
   m_EditorClassIdentifier: Assembly-CSharp::GroundPlayerElementData
-  element: {fileID: 0}
-  burstCooldown: 0
+  element: {fileID: 11400000, guid: 900a6a60b4ab0844d865b09c7e9b785f, type: 2}
+  baseElementalSkillCooldown: 10
+  baseElementalSkillDamage: 20
+  infusedElementToWeaponDuration: 8.5
+  burstSkillPressedThreshhold: 0.5
+  burstCooldown: 20
+  burstEnergy: 40
+  skillInputBuffer: 0.2
   shieldRate: 0.2
   debuffEffectIncreasementRate: 0.5

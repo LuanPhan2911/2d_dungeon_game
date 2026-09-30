@@ -191,7 +191,7 @@ public class PlayerAttack : MonoBehaviour
                     damageable.TakeDamage(new Damage
                     {
                         amount= damageAmount,
-                        element= PlayerElement.Instance.GetElementDamage(),
+                        element= PlayerElement.Instance.GetElementTypeDamage(),
                         isCrit=isCritStrike
                     }, enemyRecoilDirection);
                 }
@@ -238,7 +238,7 @@ public class PlayerAttack : MonoBehaviour
 
         GameObject slashFx = Instantiate(_slashFxPrefab, parent);
 
-        ElementData elementDamage = PlayerElement.Instance.GetElementDamage();
+        ElementData elementDamage = PlayerElement.Instance.GetElementTypeDamage();
        
         slashFx.GetComponent<SlashFX>().SetColor(elementDamage.color);
         

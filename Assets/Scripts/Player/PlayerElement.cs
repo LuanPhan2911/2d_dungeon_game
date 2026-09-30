@@ -4,28 +4,46 @@ using UnityEngine;
 public class PlayerElement : MonoBehaviour
 {
 
+    public static PlayerElement Instance { get; private set; }
 
+    const int NONE_PLAYER_ELEMENT_INDEX = -1;
+    const int FIRST_PLAYER_ELEMENT_INDEX = 0;
+    const int SECOND_PLAYER_ELEMENT_INDEX = 1;
+    const int THURD_PLAYER_ELEMENT_INDEX = 2;
 
     [Header("Element")]
     [SerializeField] private float _elementSwapCooldown = 0.5f;
     [SerializeField] private ElementData _physicElementType;
-    public PlayerElementData[] PlayerElementData;
+    public PlayerElementData[] PlayerElementArray;
 
-    public PlayerElementData CurrentPlayerElement { get; private set; }
-    public ElementData CurrentElementType => CurrentPlayerElement.element;
+
+    public event Action OnPlayerElementArrayChanged;
+
+
+    public PlayerElementData ActivePlayerElement => PlayerElementArray[_activePlayerElementIndex];
+    public int ActivePlayerElementIndex => _activePlayerElementIndex;
+    public bool HasActivePlayerElement => _activePlayerElementIndex != NONE_PLAYER_ELEMENT_INDEX;
+    public ElementData ActiveElementType => ActivePlayerElement.element;
    
-
     public event Action OnElementSwapped;
+
     public bool IsElementSwapCooldown => _elementSwapTimer > 0f;
     private float _elementSwapTimer;
+    private int _activePlayerElementIndex = NONE_PLAYER_ELEMENT_INDEX;
 
-    public static PlayerElement Instance { get; private set; }
+
 
     private void Awake()
     {
         Instance = this;
-    }
+       
 
+    }
+    private void Start()
+    {
+      
+        OnPlayerElementArrayChanged?.Invoke();
+    }
     private void Update()
     {
         _elementSwapTimer = Mathf.Max(0, _elementSwapTimer - Time.deltaTime);
@@ -34,48 +52,39 @@ public class PlayerElement : MonoBehaviour
         {
             if (GameInputManager.Instance.PlayerActions.SwapElement1.WasPressedThisFrame())
             {
-                SwapElement(0);
+                SetActivePlayerElement(FIRST_PLAYER_ELEMENT_INDEX);
             }
             if (GameInputManager.Instance.PlayerActions.SwapElement2.WasPressedThisFrame())
             {
-                SwapElement(1);
+                SetActivePlayerElement(SECOND_PLAYER_ELEMENT_INDEX);
             }
             if (GameInputManager.Instance.PlayerActions.SwapElement3.WasPressedThisFrame())
             {
-                SwapElement(2);
+                SetActivePlayerElement(THURD_PLAYER_ELEMENT_INDEX);
             }
         }
 
         
     }
-    public ElementData GetElementDamage()
+    public ElementData GetElementTypeDamage()
     {
-        if (CurrentPlayerElement == null || !PlayerSkill.Instance.IsInfusedElementToWeapon)
+        if (_activePlayerElementIndex!= -1 || !PlayerSkill.Instance.IsInfusedElementToWeapon)
         {
             return _physicElementType;
         }
-        return CurrentElementType;
+        return ActiveElementType;
     }
-
-    public void SetCurrentPlayerElement(PlayerElementData playerElement)
+    public void SetActivePlayerElement(int index)
     {
-        CurrentPlayerElement = playerElement;
+        if (index < 0 || index >= PlayerElementArray.Length) return;
+
+        if (index == _activePlayerElementIndex) return;
+
+
+        _activePlayerElementIndex = index;
         _elementSwapTimer = _elementSwapCooldown;
         PlayerSkill.Instance.StopInfuseElementToWeapon();
         OnElementSwapped?.Invoke();
-    }
-    private void SwapElement(int elementIndex)
-    {
-        if (PlayerElementData.Length <= elementIndex) return;
-        PlayerElementData playerElement = PlayerElementData[elementIndex];
 
-        if (CurrentPlayerElement == playerElement) return;
-
-
-        SetCurrentPlayerElement(playerElement);
-    }
-
-
-
-    
+    } 
 }

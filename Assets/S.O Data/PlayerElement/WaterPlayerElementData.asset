@@ -12,6 +12,12 @@ MonoBehaviour:
   m_Script: {fileID: 0}
   m_Name: WaterPlayerElementData
   m_EditorClassIdentifier: Assembly-CSharp::WaterPlayerElementData
-  element: {fileID: 0}
-  burstCooldown: 0
+  element: {fileID: 11400000, guid: cfb9b5ebcdf62a842af790accf5fe130, type: 2}
+  baseElementalSkillCooldown: 10
+  baseElementalSkillDamage: 20
+  infusedElementToWeaponDuration: 8.5
+  burstSkillPressedThreshhold: 0.5
+  burstCooldown: 30
+  burstEnergy: 40
+  skillInputBuffer: 0.2
   healthHealRate: 0.2

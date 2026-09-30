@@ -12,7 +12,13 @@ MonoBehaviour:
   m_Script: {fileID: 0}
   m_Name: GrassPlayerElementData
   m_EditorClassIdentifier: Assembly-CSharp::GrassPlayerElementData
-  element: {fileID: 0}
-  burstCooldown: 0
+  element: {fileID: 11400000, guid: db1905687a944cc4aa7e5287c2cc606a, type: 2}
+  baseElementalSkillCooldown: 10
+  baseElementalSkillDamage: 20
+  infusedElementToWeaponDuration: 8.5
+  burstSkillPressedThreshhold: 0.5
+  burstCooldown: 15
+  burstEnergy: 20
+  skillInputBuffer: 0.2
   damage: 10
   elementalResistanceReductionRate: 0.4

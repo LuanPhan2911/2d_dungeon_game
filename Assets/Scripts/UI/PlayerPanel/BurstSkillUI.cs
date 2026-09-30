@@ -2,45 +2,44 @@ using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class ElementalSkillUI : MonoBehaviour
+public class BurstSkillUI : MonoBehaviour
 {
     [SerializeField] private Image _activeImage;
     [SerializeField] private Image _backgroundImage;
     [SerializeField] private TextMeshProUGUI _cooldownText;
 
+
     private float _currentDuration;
+
 
     private void Start()
     {
         PlayerElement.Instance.OnElementSwapped += ElementSwap;
+    
+      
 
         if (!PlayerElement.Instance.HasActivePlayerElement)
         {
             Hide();
         }
     }
-    private void ElementSwap()
-    {
-        _backgroundImage.color = PlayerElement.Instance.ActiveElementType.color;
-        Show();
-    }
-
-
     private void Update()
+
     {
         if (!PlayerElement.Instance.HasActivePlayerElement) return;
 
-        if (PlayerSkill.Instance.IsElementalSkillCooldown)
+
+        if (PlayerSkill.Instance.IsBurstSkillCooldown)
         {
             _activeImage.gameObject.SetActive(true);
             _cooldownText.gameObject.SetActive(true);
-            _activeImage.fillAmount = PlayerSkill.Instance.ElementalSkillRatio;
-            if(_currentDuration!= PlayerSkill.Instance.ElementalSkillDuration)
+            _activeImage.fillAmount = PlayerSkill.Instance.BurstSkillRatio;
+            if (_currentDuration != PlayerSkill.Instance.BurstSkillDuration)
             {
-                _cooldownText.text = $"{PlayerSkill.Instance.ElementalSkillDuration}";
-               
+                _cooldownText.text = $"{PlayerSkill.Instance.BurstSkillDuration}";
+
             }
-            _currentDuration = PlayerSkill.Instance.ElementalSkillDuration;
+            _currentDuration = PlayerSkill.Instance.BurstSkillDuration;
         }
         else
         {
@@ -48,6 +47,13 @@ public class ElementalSkillUI : MonoBehaviour
             _cooldownText.gameObject.SetActive(false);
         }
     }
+
+    private void ElementSwap()
+    {
+        _backgroundImage.color = PlayerElement.Instance.ActiveElementType.color;
+        Show();
+    }
+
 
     private void Show()
     {
@@ -59,5 +65,4 @@ public class ElementalSkillUI : MonoBehaviour
         gameObject.SetActive(false);
     }
 
-    
 }

@@ -12,7 +12,13 @@ MonoBehaviour:
   m_Script: {fileID: 0}
   m_Name: FirePlayerElementData
   m_EditorClassIdentifier: Assembly-CSharp::FirePlayerElementData
-  element: {fileID: 0}
-  burstCooldown: 0
+  element: {fileID: 11400000, guid: 5f9787651436ec04fac44ee1fce84e5d, type: 2}
+  baseElementalSkillCooldown: 10
+  baseElementalSkillDamage: 20
+  infusedElementToWeaponDuration: 8.5
+  burstSkillPressedThreshhold: 0.5
+  burstCooldown: 12
+  burstEnergy: 30
+  skillInputBuffer: 0.2
   damage: 40
   burningEffectBonusDamageRate: 0.2

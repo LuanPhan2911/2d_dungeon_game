@@ -16,6 +16,8 @@ public class PlayerHealth : MonoBehaviour
     public float HealthRatio => _health / GetMaxHealth();
     public float EnergyRatio => _energy / GetMaxEnergy();
 
+    public float CurrentEnergy => _energy;
+
 
     private void Awake()
     {
