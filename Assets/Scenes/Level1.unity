@@ -119,6 +119,37 @@ NavMeshSettings:
     debug:
       m_Flags: 0
   m_NavMeshData: {fileID: 0}
+--- !u!1 &11094666
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 11094667}
+  m_Layer: 7
+  m_Name: ChargeAttackPoint
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &11094667
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 11094666}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 2.23, y: 0.06, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 57192727}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &17067205
 GameObject:
   m_ObjectHideFlags: 0
@@ -157,6 +188,11 @@ RectTransform:
   m_AnchoredPosition: {x: -200, y: 100}
   m_SizeDelta: {x: 400, y: 200}
   m_Pivot: {x: 0.5, y: 0.5}
+--- !u!4 &57192727 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 7593231882374846932, guid: 523e1f14885f3df4cbcde949cdf98e38, type: 3}
+  m_PrefabInstance: {fileID: 7685517063792763008}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &63620182
 GameObject:
   m_ObjectHideFlags: 0
@@ -22192,7 +22228,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4897149217227177274, guid: 523e1f14885f3df4cbcde949cdf98e38, type: 3}
       propertyPath: m_LocalPosition.y
-      value: -0.576
+      value: -0.48
       objectReference: {fileID: 0}
     - target: {fileID: 5033102710396620486, guid: 523e1f14885f3df4cbcde949cdf98e38, type: 3}
       propertyPath: _data
@@ -22215,16 +22251,35 @@ PrefabInstance:
       value: Player
       objectReference: {fileID: 0}
     - target: {fileID: 6271476450232353595, guid: 523e1f14885f3df4cbcde949cdf98e38, type: 3}
+      propertyPath: _chargeAttackPoint
+      value: 
+      objectReference: {fileID: 11094667}
+    - target: {fileID: 6271476450232353595, guid: 523e1f14885f3df4cbcde949cdf98e38, type: 3}
+      propertyPath: _chargeAttackSize.x
+      value: 4
+      objectReference: {fileID: 0}
+    - target: {fileID: 6271476450232353595, guid: 523e1f14885f3df4cbcde949cdf98e38, type: 3}
+      propertyPath: _chargeAttackSize.y
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 6271476450232353595, guid: 523e1f14885f3df4cbcde949cdf98e38, type: 3}
       propertyPath: _plungeAttackSize.y
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 6271476450232353595, guid: 523e1f14885f3df4cbcde949cdf98e38, type: 3}
+      propertyPath: _chargeSlashFxPrefab
+      value: 
+      objectReference: {fileID: 614633409195199339, guid: 30205a38c73ab0d4bb332dea2d5768e5, type: 3}
     - target: {fileID: 8902876242943277303, guid: 523e1f14885f3df4cbcde949cdf98e38, type: 3}
       propertyPath: m_LocalPosition.y
       value: -0.997
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
-    m_AddedGameObjects: []
+    m_AddedGameObjects:
+    - targetCorrespondingSourceObject: {fileID: 7593231882374846932, guid: 523e1f14885f3df4cbcde949cdf98e38, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 11094667}
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 523e1f14885f3df4cbcde949cdf98e38, type: 3}
 --- !u!82 &7751669744603835350

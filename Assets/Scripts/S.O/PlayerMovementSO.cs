@@ -20,6 +20,10 @@ public class PlayerMovementSO : ScriptableObject
     [Header("Run")]
     public float maxMoveSpeed; //Target speed we want the player to reach.
 
+    [Header("Sprint")]
+    public float maxSprintSpeed; //Target speed we want the player to reach while sprinting.
+    public float sprintStaminaCostPerSecond; //Stamina cost per second while sprinting.
+
     [Space(20)]
 
     [Header("Jump")]
@@ -39,13 +43,15 @@ public class PlayerMovementSO : ScriptableObject
     [Space(20)]
 
     [Header("Dash")]
-    public int dashAmount;
+    
     public float dashSpeed;
     public float dashTime;
     [Space(5)]
     public float dashCooldownTime;
     [Space(5)]
     [Range(0.01f, 0.5f)] public float dashInputBufferTime;
+
+    public float staminaCostPerDash=20f;
 
     //Unity Callback, called when the inspector updates
     private void OnValidate()

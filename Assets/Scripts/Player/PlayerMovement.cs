@@ -21,7 +21,24 @@ public partial class PlayerMovement : MonoBehaviour
     public bool IsFalling { get; private set; }
     public bool IsDashing { get; private set; }
 
+    public bool IsSprinting { get; private set; }
+
     public bool IsPlunging;
+    public bool IsFloating;
+
+    public float GetFallHeight()
+    {
+        RaycastHit2D hit= Physics2D.Raycast(_groundCheckPoint.position, Vector2.down, Mathf.Infinity, GroundLayerMask);
+
+        if (hit.collider != null)
+        {
+            return hit.distance;
+        }
+        else
+        {
+            return 0f;
+        }
+    }
     public bool IsGrounded => _lastOnGroundTimer > 0f;
  
 
@@ -37,6 +54,8 @@ public partial class PlayerMovement : MonoBehaviour
     private float _lastOnGroundTimer;
     private float _lastPressJumpTimer;
     private float _lastPressDashTimer;
+
+  
 
 
 
@@ -59,7 +78,6 @@ public partial class PlayerMovement : MonoBehaviour
 
 
 
-    private int _dashLeft;
     private bool _isDashCooldown;
 
     [SerializeField] private DashFX _dashFX;
@@ -113,6 +131,7 @@ public partial class PlayerMovement : MonoBehaviour
             
 
         }
+       
         if (GameInputManager.Instance.PlayerActions.Run.WasPressedThisFrame())
         {
             _lastPressDashTimer = _data.dashInputBufferTime;
@@ -190,7 +209,7 @@ public partial class PlayerMovement : MonoBehaviour
 
 
 
-        #region Handle Dash
+        #region Handle Dash & Sprint
 
         if (CanDash() && _lastPressDashTimer > 0)
         {
@@ -208,6 +227,19 @@ public partial class PlayerMovement : MonoBehaviour
             IsJumping = false;
             IsJumpCut = false;
             StartCoroutine(StartDash(dashDir));
+        }
+        else
+        {
+
+            if(CanSprint())
+            {
+                IsSprinting = true;
+                PlayerHealth.Instance.ConsumeStamina(_data.sprintStaminaCostPerSecond * Time.deltaTime);
+            }
+            else
+            {
+                IsSprinting = false;
+            }
         }
         #endregion
 
@@ -259,6 +291,7 @@ public partial class PlayerMovement : MonoBehaviour
         Turn(LastHorizontalInput);
     }
 
+    
 
     private void Turn(int facingDirection)
     {
@@ -273,7 +306,7 @@ public partial class PlayerMovement : MonoBehaviour
 
     private void HandleGravity()
     {
-        if ( IsDashing)
+        if ( IsDashing || IsFloating)
         {
             
             SetGravityScale(0);
@@ -307,7 +340,8 @@ public partial class PlayerMovement : MonoBehaviour
     private void HandleMove()
     {
         
-        float targetSpeed = HorizontalInput * _data.maxMoveSpeed;
+        float moveSpeed= IsSprinting ? _data.maxSprintSpeed: _data.maxMoveSpeed;
+        float targetSpeed = HorizontalInput * moveSpeed;
        
         _rb.linearVelocity = new Vector2(targetSpeed, _rb.linearVelocityY);
     }
@@ -341,31 +375,25 @@ public partial class PlayerMovement : MonoBehaviour
 
     private bool CanDash()
     {
-        if (!IsDashing && _dashLeft < _data.dashAmount && _lastOnGroundTimer > 0 && !_isDashCooldown)
-        {
-            StartCoroutine(StartRefillDash());
-        }
-
-
-        return _dashLeft > 0;
+        return !IsDashing && IsGrounded && !_isDashCooldown &&
+            PlayerHealth.Instance.CurrentStamina >= _data.staminaCostPerDash;
     }
 
-    private void RefillDash()
-    {
-        _dashLeft = Mathf.Min(_data.dashAmount, _dashLeft + 1);
-    }
+   
     private bool CanMove()
     {
-        return !IsDashing && !IsPlunging;
+        return !IsDashing && !IsPlunging && !IsFloating ;
     }
     private IEnumerator StartDash(Vector2 dashDir)
     {
         _lastPressDashTimer = 0;
+        _isDashCooldown = true;
         _dashFX.PlayDashFX(true);
 
         float startTime = Time.time;
-        _dashLeft--;
         IsDashing = true;
+
+        PlayerHealth.Instance.ConsumeStamina(_data.staminaCostPerDash);
 
         while (Time.time - startTime < _data.dashTime)
         {
@@ -376,16 +404,22 @@ public partial class PlayerMovement : MonoBehaviour
 
         IsDashing = false;
         _dashFX.PlayDashFX(false);
-    }
 
-    private IEnumerator StartRefillDash()
-    {
-        _isDashCooldown = true;
+        
         yield return new WaitForSeconds(_data.dashCooldownTime);
         _isDashCooldown = false;
-        RefillDash();
     }
 
+
+
+    private bool CanSprint()
+    {
+
+        return GameInputManager.Instance.PlayerActions.Run.IsPressed() && IsGrounded
+            && IsHorizontalMoving && !_isDashCooldown
+            && PlayerHealth.Instance.CurrentStamina >= _data.sprintStaminaCostPerSecond * Time.deltaTime;
+
+    }
 
 
     private void OnDrawGizmos()

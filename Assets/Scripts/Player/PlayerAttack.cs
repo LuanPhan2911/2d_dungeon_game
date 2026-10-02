@@ -10,10 +10,13 @@ public class PlayerAttack : MonoBehaviour
     [SerializeField] private Transform _upAttackPoint;
     [SerializeField] private Transform _plungeAttackPoint;
     [SerializeField] private Transform _sideAttackPoint;
+    [SerializeField] private Transform _chargeAttackPoint;
 
     [SerializeField] private Vector2 _horizontalAttackSize ;
     [SerializeField] private Vector2 _upAttackSize ;
     [SerializeField] private Vector2 _plungeAttackSize;
+
+    [SerializeField] private Vector2 _chargeAttackSize;
 
 
 
@@ -22,13 +25,12 @@ public class PlayerAttack : MonoBehaviour
 
 
     [Header("Sword Settting")]
-   [SerializeField] private int _swordLevel=1;
-    private float _attackSpeedMultiplier = 1f;
+
+
    
 
     #region Normal Attack
 
-    public bool IsAttackCooldown => _attackTimer > 0f;
 
     #endregion
 
@@ -40,14 +42,20 @@ public class PlayerAttack : MonoBehaviour
 
     private float _currentCritRate;
     private float _attackTimer;
+    private float _nextAttackTime;
+    private float _currentPlungeAttackDamage;
 
 
+    private bool _isCharging;
+    private float _chargeTimer;
 
-    private PlayerMovement _playerMovement;
+    private bool _isFullyCharged;
 
 
     [Header("FX")]
     [SerializeField] private GameObject _slashFxPrefab;
+    [SerializeField] private GameObject _chargeSlashFxPrefab;
+  
 
 
     public static PlayerAttack Instance { get; private set;  }
@@ -57,67 +65,91 @@ public class PlayerAttack : MonoBehaviour
     {
         Instance = this;
         
-   
-        _playerMovement = GetComponent<PlayerMovement>();     
+     
     }
     private void Start()
     {
         _currentCritRate = _data.baseCritRate;
     }
 
-    private int GetDamage(int swordLevel)
-    {
-        switch (swordLevel)
-        {
-            case 1:
-               return _data.level1Damage;
-                
-            case 2:
-                return _data.level2Damage;
-               
-            case 3:
-                return _data.level3Damage;
-               
-            default:
-                Debug.Log("Unknown Sword Level");
-                return 1;
-        }
-    }
+   
 
 
   
     private void Update()
     {
 
-        _attackTimer = Mathf.Max(_attackTimer - Time.deltaTime, 0f);
+
         _lastPressAttackTimer = Mathf.Max(_lastPressAttackTimer - Time.deltaTime, 0f);
 
         if ( GameInputManager.Instance.PlayerActions.Attack.WasPressedThisFrame() )
         {
             _lastPressAttackTimer = _data.attackInputBuffer;
+
+            _isCharging = true;
+            _chargeTimer = 0f;
+            _isFullyCharged = false;
         }
-        if ((CanAttack()))
+
+        if (GameInputManager.Instance.PlayerActions.Attack.IsPressed() && _isCharging)
         {
-            Attack();
+            _chargeTimer+=Time.deltaTime;
+            if(_chargeTimer>= _data.chargeAttackHoldTime && !_isFullyCharged)
+            {
+                _isFullyCharged = true;
+                Debug.Log("Fully Charged");
+            }
         }
+        if(GameInputManager.Instance.PlayerActions.Attack.WasReleasedThisFrame()&& _isCharging  )
+        {
+            _isCharging = false;
+            if (_isFullyCharged)
+            {
+                ExecuteChargeAttack();
+                _nextAttackTime= Time.time + _data.baseAttackRate;
+                _lastPressAttackTimer = 0f;
+
+
+            }
+           
+        }
+
+        if(Time.time >= _nextAttackTime && CanNormalAttack())
+        {
+            ExecuteNormalAttack();
+            _nextAttackTime = Time.time + _data.baseAttackRate;
+            _lastPressAttackTimer = 0f;
+            _isCharging = false;
+        }
+
+
 
 
         if (PlayerMovement.Instance.IsPlunging && PlayerMovement.Instance.IsGrounded)
         {
             PlayerMovement.Instance.IsPlunging = false ;
-            ScanAndDamage(_plungeAttackPoint.position, _plungeAttackSize);
+            ScanAndDamage(_plungeAttackPoint.position, _plungeAttackSize, _currentPlungeAttackDamage, DamageType.PlungeAttack);
         }
     }
-    private bool CanAttack()
-    {
-        float attackCoolDown = _data.baseAttackCooldown / _attackSpeedMultiplier;
 
-        return _lastPressAttackTimer>0f && !IsAttackCooldown && !_playerMovement.IsDashing;
+    private void ExecuteChargeAttack()
+    {
+        ScanAndDamage(_chargeAttackPoint.position, _chargeAttackSize, _data.baseChargeAttackDamage, DamageType.ChargeAttack);
+
+
+        SpawnChargeAttackSlashVFX();
     }
-    private void Attack()
+    private bool CanNormalAttack()
+    {
+   
+
+        return _lastPressAttackTimer>0f &&  !GameInputManager.Instance.PlayerActions.Attack.IsPressed() &&
+            !PlayerMovement.Instance.IsDashing &&! PlayerMovement.Instance.IsPlunging;
+    }
+    private void ExecuteNormalAttack()
     {
         _lastPressAttackTimer = 0f;
-        _attackTimer = _data.baseAttackCooldown;
+        _attackTimer = _data.baseAttackRate;
 
 
         bool isUpPressed = GameInputManager.Instance.IsUpPressed();
@@ -126,8 +158,8 @@ public class PlayerAttack : MonoBehaviour
         if (isUpPressed)
         {
            
-            ScanAndDamage(_upAttackPoint.position, _upAttackSize);
-            SpawnSlashVFX(Vector2.up);
+            ScanAndDamage(_upAttackPoint.position, _upAttackSize, _data.baseNormalAttackDamage, DamageType.NormalAttack);
+            SpawnNormalAttackSlashVFX(Vector2.up);
 
         }
         else if (isDownPressed && !PlayerMovement.Instance.IsGrounded)
@@ -139,8 +171,8 @@ public class PlayerAttack : MonoBehaviour
         else
         {
         
-            ScanAndDamage(_sideAttackPoint.position, _horizontalAttackSize);
-            SpawnSlashVFX(Vector2.right);
+            ScanAndDamage(_sideAttackPoint.position, _horizontalAttackSize, _data.baseNormalAttackDamage, DamageType.NormalAttack);
+            SpawnNormalAttackSlashVFX(Vector2.right);
             // horizontal attack
 
 
@@ -156,10 +188,21 @@ public class PlayerAttack : MonoBehaviour
     private void StartPlungeAttack()
     {
         PlayerMovement.Instance.IsPlunging = true;
+
+        float fallHeight = PlayerMovement.Instance.GetFallHeight();
+
+        if(fallHeight >= _data.highHeightThreshold)
+        {
+            _currentPlungeAttackDamage = _data.baseHighPlungeAttackDamage;
+        }
+        else
+        {
+            _currentPlungeAttackDamage = _data.baseLowPlungeAttackDamage;
+        }
     }
  
 
-    private bool ScanAndDamage(Vector3 position, Vector2 size)
+    private bool ScanAndDamage(Vector3 position, Vector2 size, float damageAmount, DamageType damageType)
     {
         Collider2D[] hitEnemies = Physics2D.OverlapBoxAll(position, size, 0, _enemyMask);
 
@@ -168,30 +211,39 @@ public class PlayerAttack : MonoBehaviour
        
         if (hitEnemies.Length > 0)
         {
-           
+
 
             #region Crit rate
             bool isCritStrike = UnityEngine.Random.value <= _currentCritRate;
 
-            float damageAmount = GetDamage(_swordLevel);
+
             if (isCritStrike)
             {
                 damageAmount *= GetCritDamageMultiplier();
                 _currentCritRate = _data.baseCritRate;
-               
+
             }
             else
             {
-                _currentCritRate =Mathf.Clamp(_currentCritRate+ _data.critRateIncreasement, 0, 1);
-               
+                _currentCritRate = Mathf.Clamp(_currentCritRate + _data.critRateIncreasement, 0, 1);
+
             }
 
 
             #endregion
 
+            Damage damage = new Damage
+            {
+                amount = damageAmount,
+                element = PlayerElement.Instance.GetElementTypeDamage(),
+                type = damageType,
+                isCrit = isCritStrike
+            };
+
+       
             #region Energy
 
-            PlayerHealth.Instance.GainEnergyFromNormalAttack();
+            PlayerHealth.Instance.GainEnergyFromAttack();
 
             #endregion
 
@@ -203,12 +255,7 @@ public class PlayerAttack : MonoBehaviour
                     
                    
                   
-                    damageable.TakeDamage(new Damage
-                    {
-                        amount= damageAmount,
-                        element= PlayerElement.Instance.GetElementTypeDamage(),
-                        isCrit=isCritStrike
-                    });
+                    damageable.TakeDamage(damage);
                 }
             }
 
@@ -226,34 +273,52 @@ public class PlayerAttack : MonoBehaviour
     {
         return 1 + _data.baseCritDamage;
     }
-    private void SpawnSlashVFX(Vector2 direction )
+    private void SpawnNormalAttackSlashVFX(Vector2 direction )
     {
 
-        Transform parent = null;
-        bool isFacingRight = _playerMovement.IsFacingRight;
-        Quaternion rotation = Quaternion.identity;
+
+      
+        bool isFacingRight = PlayerMovement.Instance.IsFacingRight;
+
+        GameObject slashFx = Instantiate(_slashFxPrefab );
+     
         if (direction == Vector2.up)
         {
-            rotation = Quaternion.Euler(0, 0, isFacingRight ? 90 : -90);
-            parent = _upAttackPoint;
+        
+            slashFx.transform.position= _upAttackPoint.position;
+            slashFx.transform.rotation = Quaternion.Euler(0, 0, 90f);
+            slashFx.transform.localScale = new Vector3(1, isFacingRight ? 1 : -1, 1);
+
         }
         else if (direction == Vector2.right)
         {
-            parent = _sideAttackPoint;
+            slashFx.transform.position = _sideAttackPoint.position;
+            slashFx.transform.localScale = new Vector3(isFacingRight ? 1 : -1, 1, 1);
+
+
 
         }
-      
-
        
-
-        GameObject slashFx = Instantiate(_slashFxPrefab, parent);
 
         ElementSO elementDamage = PlayerElement.Instance.GetElementTypeDamage();
        
         slashFx.GetComponent<SlashFX>().SetColor(elementDamage.color);
         
-        slashFx.transform.rotation = rotation;
+       
 
+    }
+    private void SpawnChargeAttackSlashVFX()
+    {
+        bool isFacingRight = PlayerMovement.Instance.IsFacingRight;
+        GameObject slashFx = Instantiate(_chargeSlashFxPrefab, _chargeAttackPoint.position, Quaternion.identity);
+
+
+        Vector3 scale= slashFx.transform.localScale;
+        slashFx.transform.localScale = new Vector3(isFacingRight ? scale.x : -scale.x, scale.y, scale.z);
+
+        ElementSO elementDamage = PlayerElement.Instance.GetElementTypeDamage();
+       
+        slashFx.GetComponent<SlashFX>().SetColor(elementDamage.color);
     }
 
     private void OnDrawGizmos()
@@ -262,7 +327,13 @@ public class PlayerAttack : MonoBehaviour
         Gizmos.DrawWireCube(_sideAttackPoint.position, _horizontalAttackSize);
 
         Gizmos.DrawWireCube(_upAttackPoint.position, _upAttackSize);
+
+        Gizmos.color = Color.green;
         Gizmos.DrawWireCube(_plungeAttackPoint.position, _plungeAttackSize);
+
+        Gizmos.color = Color.blue;
+
+        Gizmos.DrawWireCube(_chargeAttackPoint.position, _chargeAttackSize);
 
     }
 }

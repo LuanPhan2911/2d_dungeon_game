@@ -12,10 +12,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0b56cb9ffee71cb4db0508a0bfe48f98, type: 3}
   m_Name: PlayerAttack
   m_EditorClassIdentifier: Assembly-CSharp::PlayerWeaponData
-  baseAttackCooldown: 0.5
-  level1Damage: 9
-  level2Damage: 14
-  level3Damage: 19
+  baseAttackRate: 0.4
+  baseNormalAttackDamage: 10
+  baseChargeAttackDamage: 20
+  chargeAttackHoldTime: 1
+  chargeAttackStaminaCost: 20
+  baseLowPlungeAttackDamage: 12
+  baseHighPlungeAttackDamage: 18
+  highHeightThreshold: 4.5
   attackInputBuffer: 0.2
   buffAttackSpeedMultiplier: 1.5
   baseCritRate: 0.1

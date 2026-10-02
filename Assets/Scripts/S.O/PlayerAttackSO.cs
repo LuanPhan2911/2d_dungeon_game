@@ -4,11 +4,18 @@ using UnityEngine;
 [CreateAssetMenu(fileName = "Player Attack", menuName = "Scriptable Objects/Player Attack")]
 public class PlayerAttackSO : ScriptableObject
 {
-    public float baseAttackCooldown=0.4f;
+    public float baseAttackRate=0.4f;
 
-    public int level1Damage=9;
-    public int level2Damage=14;
-    public int level3Damage=19;
+    public float baseNormalAttackDamage = 10f;
+
+    public float baseChargeAttackDamage = 20f;
+    public float chargeAttackHoldTime = 1.5f;
+    public float chargeAttackStaminaCost = 20f;
+
+
+    public float baseLowPlungeAttackDamage = 12f;
+    public float baseHighPlungeAttackDamage = 18f;
+    public float highHeightThreshold = 4.5f;
 
     [Header("Input Buffer")]
     public float attackInputBuffer = 0.2f;
@@ -32,6 +39,15 @@ public class ElementalResistance
     public ElementSO element;
     public float resistance=0.1f;
 }
+
+public enum DamageType
+{
+    NormalAttack,
+    ChargeAttack,
+    PlungeAttack,
+    ElementalSkillAttack,
+    BurstAttack,
+}
 public class Damage
 {
     public float amount { get; set; }
@@ -39,4 +55,7 @@ public class Damage
     public bool isCrit { get; set; }
 
    
+    public DamageType type;
+
+
 }
