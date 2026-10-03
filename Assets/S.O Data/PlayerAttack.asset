@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0b56cb9ffee71cb4db0508a0bfe48f98, type: 3}
   m_Name: PlayerAttack
   m_EditorClassIdentifier: Assembly-CSharp::PlayerWeaponData
-  baseAttackRate: 0.4
+  baseAttackRate: 0.5
   baseNormalAttackDamage: 10
   baseChargeAttackDamage: 20
   chargeAttackHoldTime: 1

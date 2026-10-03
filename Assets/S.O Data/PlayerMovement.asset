@@ -18,14 +18,16 @@ MonoBehaviour:
   fallGravityMult: 1.5
   maxFallSpeed: 45
   maxMoveSpeed: 9.5
+  maxSprintSpeed: 15
+  sprintStaminaCostPerSecond: 10
   jumpHeight: 6.5
   jumpTimeToApex: 0.5
   jumpForce: 26
   jumpCutGravityMult: 2.5
   coyoteTime: 0.2
   jumpInputBufferTime: 0.2
-  dashAmount: 1
   dashSpeed: 20
   dashTime: 0.2
   dashCooldownTime: 0.5
   dashInputBufferTime: 0.2
+  staminaCostPerDash: 20

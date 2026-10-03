@@ -24,7 +24,7 @@ public partial class PlayerMovement : MonoBehaviour
     public bool IsSprinting { get; private set; }
 
     public bool IsPlunging;
-    public bool IsFloating;
+ 
 
     public float GetFallHeight()
     {
@@ -40,13 +40,13 @@ public partial class PlayerMovement : MonoBehaviour
         }
     }
     public bool IsGrounded => _lastOnGroundTimer > 0f;
- 
 
 
 
 
 
-    public bool IsHorizontalMoving => Mathf.Abs(HorizontalInput) > 0.1f;
+
+    public bool IsHorizontalMoving => HorizontalInput != 0f;
     public bool IsLeftMove => HorizontalInput < 0f;
     public bool IsRightMove => HorizontalInput > 0f;
 
@@ -79,6 +79,7 @@ public partial class PlayerMovement : MonoBehaviour
 
 
     private bool _isDashCooldown;
+    private bool _canSprintAfterDash;
 
     [SerializeField] private DashFX _dashFX;
 
@@ -101,7 +102,7 @@ public partial class PlayerMovement : MonoBehaviour
         if (GameManager.Instance.IsGamePaused) return;
 
         #region Timer
-        _lastPressJumpTimer =Mathf.Max(0, _lastPressJumpTimer-Time.deltaTime);
+        _lastPressJumpTimer = Mathf.Max(0, _lastPressJumpTimer - Time.deltaTime);
         _lastOnGroundTimer = Mathf.Max(0, _lastOnGroundTimer - Time.deltaTime);
         _lastPressDashTimer = Mathf.Max(0, _lastPressDashTimer - Time.deltaTime);
 
@@ -117,61 +118,50 @@ public partial class PlayerMovement : MonoBehaviour
         {
             _lastPressJumpTimer = _data.jumpInputBufferTime;
         }
-
-
         if (GameInputManager.Instance.PlayerActions.Jump.WasReleasedThisFrame())
         {
             if (CanJumpCut())
             {
                 IsJumpCut = true;
                 IsJumping = false;
-             
+
             }
-            
-            
+
+
 
         }
-       
+
         if (GameInputManager.Instance.PlayerActions.Run.WasPressedThisFrame())
         {
             _lastPressDashTimer = _data.dashInputBufferTime;
         }
+        if (GameInputManager.Instance.PlayerActions.Run.WasReleasedThisFrame())
+        {
+            _canSprintAfterDash = false;
+        }
         #endregion
-
-        
-
         #region  Ground Check
-
-        if(!IsDashing )
+        if (!IsDashing)
         {
 
             if (Physics2D.OverlapBox(_groundCheckPoint.position, _groundCheckSize, 0f, GroundLayerMask) && !IsJumping)
             {
-               _lastOnGroundTimer = _data.coyoteTime;
+                _lastOnGroundTimer = _data.coyoteTime;
             }
 
-
-   
         }
-
-
         #endregion
 
         #region Fall Check
-        if(!IsJumping  && _rb.linearVelocityY < 0)
+        if (!IsJumping && _rb.linearVelocityY < 0)
         {
             IsFalling = true;
         }
-
-
-
-        if (!IsJumping  && IsGrounded )
+        if (!IsJumping && IsGrounded)
         {
             IsJumpCut = false;
             IsFalling = false;
-
         }
-
         #endregion
 
         #region Jump Check
@@ -180,41 +170,28 @@ public partial class PlayerMovement : MonoBehaviour
         {
             IsJumping = false;
         }
-
-        
         #endregion
 
 
         #region Handle Jump
+        HandleJump();
+        #endregion
 
+        #region Handle Dash & Sprint
+        HandleDash();
 
-        if (!IsDashing)
-        {
-            if (CanJump() && _lastPressJumpTimer > 0)
-            {
-               IsJumping = true;
-               IsJumpCut = false;
-                ExecuteJump();
-
-
-            }
-     
-
-           
-        }
-
+        HandleSprint();
         #endregion
 
 
+    }
 
-
-
-        #region Handle Dash & Sprint
-
+    private void HandleDash()
+    {
         if (CanDash() && _lastPressDashTimer > 0)
         {
             Vector2 dashDir;
-          
+
             if (IsHorizontalMoving)
             {
                 dashDir = HorizontalInput * Vector2.right;
@@ -228,23 +205,35 @@ public partial class PlayerMovement : MonoBehaviour
             IsJumpCut = false;
             StartCoroutine(StartDash(dashDir));
         }
+       
+    }
+    private void HandleSprint()
+    {
+        if (CanSprint())
+        {
+            IsSprinting = true;
+            PlayerHealth.Instance.ConsumeStamina(_data.sprintStaminaCostPerSecond * Time.deltaTime);
+        }
         else
         {
+            _canSprintAfterDash = false;
+            IsSprinting = false;
+        }
+    }
 
-            if(CanSprint())
+    private void HandleJump()
+    {
+        if (!IsDashing)
+        {
+            if (CanJump() && _lastPressJumpTimer > 0)
             {
-                IsSprinting = true;
-                PlayerHealth.Instance.ConsumeStamina(_data.sprintStaminaCostPerSecond * Time.deltaTime);
-            }
-            else
-            {
-                IsSprinting = false;
+                IsJumping = true;
+                IsJumpCut = false;
+                ExecuteJump();
             }
         }
-        #endregion
-
-   
     }
+
     private void LateUpdate()
     {
        
@@ -306,7 +295,7 @@ public partial class PlayerMovement : MonoBehaviour
 
     private void HandleGravity()
     {
-        if ( IsDashing || IsFloating)
+        if ( IsDashing )
         {
             
             SetGravityScale(0);
@@ -382,7 +371,7 @@ public partial class PlayerMovement : MonoBehaviour
    
     private bool CanMove()
     {
-        return !IsDashing && !IsPlunging && !IsFloating ;
+        return !IsDashing && !IsPlunging ;
     }
     private IEnumerator StartDash(Vector2 dashDir)
     {
@@ -403,6 +392,7 @@ public partial class PlayerMovement : MonoBehaviour
         }
 
         IsDashing = false;
+        _canSprintAfterDash = true;
         _dashFX.PlayDashFX(false);
 
         
@@ -416,7 +406,7 @@ public partial class PlayerMovement : MonoBehaviour
     {
 
         return GameInputManager.Instance.PlayerActions.Run.IsPressed() && IsGrounded
-            && IsHorizontalMoving && !_isDashCooldown
+            && IsHorizontalMoving && _canSprintAfterDash
             && PlayerHealth.Instance.CurrentStamina >= _data.sprintStaminaCostPerSecond * Time.deltaTime;
 
     }

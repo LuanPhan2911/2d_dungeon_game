@@ -9,7 +9,7 @@ public class PlayerAttackSO : ScriptableObject
     public float baseNormalAttackDamage = 10f;
 
     public float baseChargeAttackDamage = 20f;
-    public float chargeAttackHoldTime = 1.5f;
+    public float chargeAttackHoldTime = 0.5f;
     public float chargeAttackStaminaCost = 20f;
 
 

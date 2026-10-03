@@ -7,6 +7,12 @@ using UnityEngine;
 
 public class PlayerAttack : MonoBehaviour
 {
+
+    public InputSystem_Actions.PlayerActions PlayerActions => GameInputManager.Instance.PlayerActions;
+    public PlayerMovement PMovement => PlayerMovement.Instance;
+    public PlayerElement PElement => PlayerElement.Instance;
+    public PlayerHealth PHealth => PlayerHealth.Instance;
+
     [SerializeField] private Transform _upAttackPoint;
     [SerializeField] private Transform _plungeAttackPoint;
     [SerializeField] private Transform _sideAttackPoint;
@@ -22,6 +28,8 @@ public class PlayerAttack : MonoBehaviour
 
     [SerializeField] private PlayerAttackSO _data;
     [SerializeField] private LayerMask _enemyMask;
+
+
 
 
     [Header("Sword Settting")]
@@ -41,15 +49,15 @@ public class PlayerAttack : MonoBehaviour
     #endregion
 
     private float _currentCritRate;
-    private float _attackTimer;
     private float _nextAttackTime;
     private float _currentPlungeAttackDamage;
 
 
-    private bool _isCharging;
-    private float _chargeTimer;
+    private float _chargedTimer;
+    private bool _hasChargedAttack;
+    private bool _isEnoughStaminaForChargeAttack = false;
+    private bool _isChargedOnGround = false;
 
-    private bool _isFullyCharged;
 
 
     [Header("FX")]
@@ -80,62 +88,78 @@ public class PlayerAttack : MonoBehaviour
     {
 
 
+        
         _lastPressAttackTimer = Mathf.Max(_lastPressAttackTimer - Time.deltaTime, 0f);
 
-        if ( GameInputManager.Instance.PlayerActions.Attack.WasPressedThisFrame() )
+        if ( PlayerActions.Attack.WasPressedThisFrame() )
         {
             _lastPressAttackTimer = _data.attackInputBuffer;
 
-            _isCharging = true;
-            _chargeTimer = 0f;
-            _isFullyCharged = false;
+            _chargedTimer = 0f;
+            _hasChargedAttack = false;
+            _isEnoughStaminaForChargeAttack= PHealth.CurrentStamina >= _data.chargeAttackStaminaCost;
+            _isChargedOnGround = PMovement.IsGrounded;
         }
 
-        if (GameInputManager.Instance.PlayerActions.Attack.IsPressed() && _isCharging)
+        if (PlayerActions.Attack.IsPressed()  
+            && _isEnoughStaminaForChargeAttack && _isChargedOnGround
+            && !GameInputManager.Instance.IsUpPressed()
+            )
         {
-            _chargeTimer+=Time.deltaTime;
-            if(_chargeTimer>= _data.chargeAttackHoldTime && !_isFullyCharged)
+            _chargedTimer += Time.deltaTime;
+            if (!PMovement.IsGrounded)
             {
-                _isFullyCharged = true;
-                Debug.Log("Fully Charged");
+                _isChargedOnGround = false;
             }
-        }
-        if(GameInputManager.Instance.PlayerActions.Attack.WasReleasedThisFrame()&& _isCharging  )
-        {
-            _isCharging = false;
-            if (_isFullyCharged)
+
+            if (CanChargedAttack())
             {
                 ExecuteChargeAttack();
-                _nextAttackTime= Time.time + _data.baseAttackRate;
+                _nextAttackTime = Time.time + _data.baseAttackRate;
                 _lastPressAttackTimer = 0f;
-
+                _hasChargedAttack = true;
+             
 
             }
-           
         }
 
-        if(Time.time >= _nextAttackTime && CanNormalAttack())
+        if (PlayerActions.Attack.WasReleasedThisFrame())
+        {
+            _chargedTimer = 0f;
+            _hasChargedAttack = false;
+            _isEnoughStaminaForChargeAttack = false;
+            _isChargedOnGround = false;
+        }
+
+
+        if ( CanNormalAttack())
         {
             ExecuteNormalAttack();
             _nextAttackTime = Time.time + _data.baseAttackRate;
             _lastPressAttackTimer = 0f;
-            _isCharging = false;
         }
 
 
 
 
-        if (PlayerMovement.Instance.IsPlunging && PlayerMovement.Instance.IsGrounded)
+        if (PMovement.IsPlunging && PMovement.IsGrounded)
         {
-            PlayerMovement.Instance.IsPlunging = false ;
+            PMovement.IsPlunging = false ;
             ScanAndDamage(_plungeAttackPoint.position, _plungeAttackSize, _currentPlungeAttackDamage, DamageType.PlungeAttack);
         }
+    }
+
+    private bool CanChargedAttack()
+    {
+        return _chargedTimer >= _data.chargeAttackHoldTime && !_hasChargedAttack
+            ;
     }
 
     private void ExecuteChargeAttack()
     {
         ScanAndDamage(_chargeAttackPoint.position, _chargeAttackSize, _data.baseChargeAttackDamage, DamageType.ChargeAttack);
 
+        PHealth.ConsumeStamina(_data.chargeAttackStaminaCost);
 
         SpawnChargeAttackSlashVFX();
     }
@@ -143,13 +167,13 @@ public class PlayerAttack : MonoBehaviour
     {
    
 
-        return _lastPressAttackTimer>0f &&  !GameInputManager.Instance.PlayerActions.Attack.IsPressed() &&
-            !PlayerMovement.Instance.IsDashing &&! PlayerMovement.Instance.IsPlunging;
+        return Time.time >= _nextAttackTime && _lastPressAttackTimer >0f &&  
+            !PMovement.IsDashing &&! PMovement.IsPlunging;
     }
     private void ExecuteNormalAttack()
     {
         _lastPressAttackTimer = 0f;
-        _attackTimer = _data.baseAttackRate;
+    
 
 
         bool isUpPressed = GameInputManager.Instance.IsUpPressed();
@@ -162,7 +186,7 @@ public class PlayerAttack : MonoBehaviour
             SpawnNormalAttackSlashVFX(Vector2.up);
 
         }
-        else if (isDownPressed && !PlayerMovement.Instance.IsGrounded)
+        else if (isDownPressed && !PMovement.IsGrounded)
         {
             Debug.Log("Plunge Attack");
             StartPlungeAttack();
@@ -187,9 +211,9 @@ public class PlayerAttack : MonoBehaviour
 
     private void StartPlungeAttack()
     {
-        PlayerMovement.Instance.IsPlunging = true;
+        PMovement.IsPlunging = true;
 
-        float fallHeight = PlayerMovement.Instance.GetFallHeight();
+        float fallHeight = PMovement.GetFallHeight();
 
         if(fallHeight >= _data.highHeightThreshold)
         {
@@ -235,7 +259,7 @@ public class PlayerAttack : MonoBehaviour
             Damage damage = new Damage
             {
                 amount = damageAmount,
-                element = PlayerElement.Instance.GetElementTypeDamage(),
+                element = PElement.GetElementTypeDamage(),
                 type = damageType,
                 isCrit = isCritStrike
             };
@@ -243,7 +267,7 @@ public class PlayerAttack : MonoBehaviour
        
             #region Energy
 
-            PlayerHealth.Instance.GainEnergyFromAttack();
+            PHealth.GainEnergyFromAttack();
 
             #endregion
 
@@ -278,7 +302,7 @@ public class PlayerAttack : MonoBehaviour
 
 
       
-        bool isFacingRight = PlayerMovement.Instance.IsFacingRight;
+        bool isFacingRight = PMovement.IsFacingRight;
 
         GameObject slashFx = Instantiate(_slashFxPrefab );
      
@@ -300,7 +324,7 @@ public class PlayerAttack : MonoBehaviour
         }
        
 
-        ElementSO elementDamage = PlayerElement.Instance.GetElementTypeDamage();
+        ElementSO elementDamage = PElement.GetElementTypeDamage();
        
         slashFx.GetComponent<SlashFX>().SetColor(elementDamage.color);
         
@@ -309,14 +333,14 @@ public class PlayerAttack : MonoBehaviour
     }
     private void SpawnChargeAttackSlashVFX()
     {
-        bool isFacingRight = PlayerMovement.Instance.IsFacingRight;
+        bool isFacingRight = PMovement.IsFacingRight;
         GameObject slashFx = Instantiate(_chargeSlashFxPrefab, _chargeAttackPoint.position, Quaternion.identity);
 
 
         Vector3 scale= slashFx.transform.localScale;
         slashFx.transform.localScale = new Vector3(isFacingRight ? scale.x : -scale.x, scale.y, scale.z);
 
-        ElementSO elementDamage = PlayerElement.Instance.GetElementTypeDamage();
+        ElementSO elementDamage = PElement.GetElementTypeDamage();
        
         slashFx.GetComponent<SlashFX>().SetColor(elementDamage.color);
     }
