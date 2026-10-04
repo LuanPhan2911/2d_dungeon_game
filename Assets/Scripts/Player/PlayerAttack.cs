@@ -1,5 +1,4 @@
-using System;
-using System.Collections;
+
 
 using UnityEngine;
 
@@ -13,13 +12,13 @@ public class PlayerAttack : MonoBehaviour
     public PlayerElement PElement => PlayerElement.Instance;
     public PlayerHealth PHealth => PlayerHealth.Instance;
 
-    [SerializeField] private Transform _upAttackPoint;
+
     [SerializeField] private Transform _plungeAttackPoint;
     [SerializeField] private Transform _sideAttackPoint;
     [SerializeField] private Transform _chargeAttackPoint;
 
     [SerializeField] private Vector2 _horizontalAttackSize ;
-    [SerializeField] private Vector2 _upAttackSize ;
+
     [SerializeField] private Vector2 _plungeAttackSize;
 
     [SerializeField] private Vector2 _chargeAttackSize;
@@ -103,7 +102,6 @@ public class PlayerAttack : MonoBehaviour
 
         if (PlayerActions.Attack.IsPressed()  
             && _isEnoughStaminaForChargeAttack && _isChargedOnGround
-            && !GameInputManager.Instance.IsUpPressed()
             )
         {
             _chargedTimer += Time.deltaTime;
@@ -179,14 +177,8 @@ public class PlayerAttack : MonoBehaviour
         bool isUpPressed = GameInputManager.Instance.IsUpPressed();
         bool isDownPressed = GameInputManager.Instance.IsDownPressed();
 
-        if (isUpPressed)
-        {
-           
-            ScanAndDamage(_upAttackPoint.position, _upAttackSize, _data.baseNormalAttackDamage, DamageType.NormalAttack);
-            SpawnNormalAttackSlashVFX(Vector2.up);
-
-        }
-        else if (isDownPressed && !PMovement.IsGrounded)
+       
+         if (isDownPressed && !PMovement.IsGrounded)
         {
             Debug.Log("Plunge Attack");
             StartPlungeAttack();
@@ -196,7 +188,7 @@ public class PlayerAttack : MonoBehaviour
         {
         
             ScanAndDamage(_sideAttackPoint.position, _horizontalAttackSize, _data.baseNormalAttackDamage, DamageType.NormalAttack);
-            SpawnNormalAttackSlashVFX(Vector2.right);
+            SpawnNormalAttackSlashVFX();
             // horizontal attack
 
 
@@ -297,7 +289,7 @@ public class PlayerAttack : MonoBehaviour
     {
         return 1 + _data.baseCritDamage;
     }
-    private void SpawnNormalAttackSlashVFX(Vector2 direction )
+    private void SpawnNormalAttackSlashVFX( )
     {
 
 
@@ -305,24 +297,10 @@ public class PlayerAttack : MonoBehaviour
         bool isFacingRight = PMovement.IsFacingRight;
 
         GameObject slashFx = Instantiate(_slashFxPrefab );
-     
-        if (direction == Vector2.up)
-        {
-        
-            slashFx.transform.position= _upAttackPoint.position;
-            slashFx.transform.rotation = Quaternion.Euler(0, 0, 90f);
-            slashFx.transform.localScale = new Vector3(1, isFacingRight ? 1 : -1, 1);
 
-        }
-        else if (direction == Vector2.right)
-        {
-            slashFx.transform.position = _sideAttackPoint.position;
-            slashFx.transform.localScale = new Vector3(isFacingRight ? 1 : -1, 1, 1);
+        slashFx.transform.position = _sideAttackPoint.position;
+        slashFx.transform.localScale = new Vector3(isFacingRight ? 1 : -1, 1, 1);
 
-
-
-        }
-       
 
         ElementSO elementDamage = PElement.GetElementTypeDamage();
        
@@ -350,7 +328,7 @@ public class PlayerAttack : MonoBehaviour
         Gizmos.color = Color.red;
         Gizmos.DrawWireCube(_sideAttackPoint.position, _horizontalAttackSize);
 
-        Gizmos.DrawWireCube(_upAttackPoint.position, _upAttackSize);
+       
 
         Gizmos.color = Color.green;
         Gizmos.DrawWireCube(_plungeAttackPoint.position, _plungeAttackSize);

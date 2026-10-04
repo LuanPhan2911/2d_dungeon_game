@@ -1,5 +1,36 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
+--- !u!1 &320037069910522690
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 7164408325059913138}
+  m_Layer: 7
+  m_Name: ChargeAttackPoint
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &7164408325059913138
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 320037069910522690}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 2.23, y: 0.06, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 7593231882374846932}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &934581891402125277
 GameObject:
   m_ObjectHideFlags: 0
@@ -661,7 +692,7 @@ Transform:
   m_GameObject: {fileID: 4207924008978736327}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: -1.06, z: 0}
+  m_LocalPosition: {x: 0, y: -0.48, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -843,9 +874,9 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 320
   _groundCheckPoint: {fileID: 8902876242943277303}
-  _groundCheckSize: {x: -1.72, y: 0.5}
-  _data: {fileID: 0}
-  _dashFX: {fileID: 0}
+  _groundCheckSize: {x: 0.5, y: 0.1}
+  _data: {fileID: 11400000, guid: ca60778941745a945ad3e3df82d9e0f5, type: 2}
+  _dashFX: {fileID: 3610509746731027631}
 --- !u!114 &6271476450232353595
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -858,18 +889,20 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 997096136fcf033499d75bf297abeac9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::PlayerAttack
-  _upAttackPoint: {fileID: 150460061881457603}
+  _upAttackPoint: {fileID: 0}
   _plungeAttackPoint: {fileID: 4897149217227177274}
   _sideAttackPoint: {fileID: 6804395437131085507}
+  _chargeAttackPoint: {fileID: 7164408325059913138}
   _horizontalAttackSize: {x: 2.5, y: 2}
   _upAttackSize: {x: 2, y: 2.5}
   _plungeAttackSize: {x: 3, y: 1}
+  _chargeAttackSize: {x: 4, y: 3}
   _data: {fileID: 11400000, guid: 7d05cae83a42e5e439308ad505130e3f, type: 2}
   _enemyMask:
     serializedVersion: 2
     m_Bits: 1024
-  _swordLevel: 1
   _slashFxPrefab: {fileID: 134317312105848395, guid: fd115bff5e43681499674b1bc94213cd, type: 3}
+  _chargeSlashFxPrefab: {fileID: 614633409195199339, guid: 30205a38c73ab0d4bb332dea2d5768e5, type: 3}
 --- !u!114 &3024244117808424973
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -962,42 +995,11 @@ Transform:
   m_GameObject: {fileID: 6181084499320103871}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: -1.108, z: 0}
+  m_LocalPosition: {x: 0, y: -0.997, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 7057404644842753421}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!1 &6339977188617197146
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 150460061881457603}
-  m_Layer: 7
-  m_Name: UpAttackPoint
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &150460061881457603
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6339977188617197146}
-  serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 1.86, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children: []
-  m_Father: {fileID: 7593231882374846932}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &7150843927563928946
 GameObject:
@@ -1234,9 +1236,9 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
-  - {fileID: 150460061881457603}
   - {fileID: 6804395437131085507}
   - {fileID: 4897149217227177274}
+  - {fileID: 7164408325059913138}
   m_Father: {fileID: 3212656722255811958}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &8883614851166088412
