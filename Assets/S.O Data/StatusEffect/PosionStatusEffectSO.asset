@@ -15,7 +15,7 @@ MonoBehaviour:
   effectName: 
   elementSO: {fileID: 11400000, guid: db1905687a944cc4aa7e5287c2cc606a, type: 2}
   type: 0
-  icon: {fileID: 0}
+  effectUIPrefab: {fileID: 4548392702050862670, guid: 8bc15896a4f8a3e4dae1fd0e2d55e438, type: 3}
   maxDuration: 5
   maxStacks: 5
   stackCooldown: 0.5

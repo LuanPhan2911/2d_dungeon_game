@@ -8,7 +8,7 @@ public class StatusEffectSO : ScriptableObject
     public string effectName;
     public ElementSO elementSO;
     public EffectType type;
-    public Sprite icon; // Dùng để hiển thị lên thanh UI sau này
+    public GameObject effectUIPrefab;
 
     [Header("Settings")]
     public float maxDuration = 3.0f;

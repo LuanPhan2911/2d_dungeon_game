@@ -1,3 +1,4 @@
+using NUnit.Framework.Internal;
 using System.Collections.Generic;
 
 using UnityEngine;
@@ -14,6 +15,7 @@ public class ActiveEffect
     public float lastStackAddedTime;
     public float decayTimer;
     public bool isDamageActive; 
+    public GameObject effectUIInstance; // Reference to the instantiated UI prefab
 
     public ActiveEffect(StatusEffectSO effectSO)
     {
@@ -26,7 +28,9 @@ public class ActiveEffect
 public class StatusEffectManager : MonoBehaviour
 {
 
-    [SerializeField] private float _stackDecayTime = 5f; 
+    [SerializeField] private float _decayStackTime = 5f;
+    [SerializeField] private GameObject _parentUIGameObject;
+
     // thời gian để giảm stack nếu không có stack mới được thêm vào
     private List<ActiveEffect> activeEffects = new List<ActiveEffect>();
 
@@ -55,6 +59,8 @@ public class StatusEffectManager : MonoBehaviour
         {
             existingEffect= new ActiveEffect(effectSO);
             activeEffects.Add(existingEffect);
+
+            existingEffect.effectUIInstance= Instantiate(effectSO.effectUIPrefab, _parentUIGameObject.transform);
         }
 
         float currentTime = Time.time;
@@ -66,7 +72,9 @@ public class StatusEffectManager : MonoBehaviour
             {
                 existingEffect.currentStacks++;
                 existingEffect.lastStackAddedTime = currentTime;
-                existingEffect.decayTimer = _stackDecayTime; // reset decay timer when a new stack is added
+                existingEffect.decayTimer = _decayStackTime; // reset decay timer when a new stack is added
+
+                UpdateStatusEffectUI(existingEffect);
 
             }
 
@@ -106,8 +114,8 @@ public class StatusEffectManager : MonoBehaviour
 
             if (effect.durationTimer <= 0f)
             {
-                effect.currentStacks = 0;
-                effect.isDamageActive = false;
+                effectsToRemove.Add(effect);
+                Destroy(effect.effectUIInstance);
 
             }
         }
@@ -119,18 +127,27 @@ public class StatusEffectManager : MonoBehaviour
                 if (effect.decayTimer <= 0f)
                 {
                     effect.currentStacks--;
-                    effect.decayTimer = _stackDecayTime;
+                    effect.decayTimer = _decayStackTime;
+                    UpdateStatusEffectUI(effect);
+
+
 
                     if (effect.currentStacks <= 0)
                     {
                         effectsToRemove.Add(effect);
+                        Destroy(effect.effectUIInstance);
                     }
 
                 }
             }
-        }                                                              
-
-       
+        }        
+    }
+    private void UpdateStatusEffectUI(ActiveEffect effect)
+    {
+        if (effect.effectUIInstance.TryGetComponent(out StatusEffectUI statusEffectUI))
+        {
+            statusEffectUI.SetFillAmount((float)effect.currentStacks / effect.effectSO.maxStacks);
+        }
     }
     private void ExecuteEffectAction(StatusEffectSO effectSO)
     {
