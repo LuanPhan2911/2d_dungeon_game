@@ -251,7 +251,7 @@ public class PlayerAttack : MonoBehaviour
             Damage damage = new Damage
             {
                 amount = damageAmount,
-                element = PElement.GetElementTypeDamage(),
+                elementSO = PElement.GetElementTypeDamage(),
                 type = damageType,
                 isCrit = isCritStrike
             };

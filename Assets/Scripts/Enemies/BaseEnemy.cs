@@ -9,7 +9,6 @@ public class BaseEnemy : MonoBehaviour, IDamageable
 {
 
 
-    public bool CanRecoil;
 
     public bool IsRecoiling { get; private set;  }
     [SerializeField] private DamageTextUI _damageTextPrefab;
@@ -19,9 +18,10 @@ public class BaseEnemy : MonoBehaviour, IDamageable
 
     private float _currentHealth;
 
-    [SerializeField] private EnemySO _data;
+    [SerializeField] private EnemySO _enemySO;
     private DamageFlash _damageFlash;
     private Rigidbody2D _rb;
+    private StatusEffectManager _effectManager;
 
 
     public event Action<float> OnHealthChange;
@@ -33,12 +33,13 @@ public class BaseEnemy : MonoBehaviour, IDamageable
     {
         _damageFlash = GetComponent<DamageFlash>();
         _rb=GetComponent<Rigidbody2D>();
+        _effectManager = GetComponent<StatusEffectManager>();
     }
 
 
     private void Start()
     {
-        _currentHealth = _data.maxHealth ;
+        _currentHealth = _enemySO.maxHealth ;
     }
 
    
@@ -54,19 +55,22 @@ public class BaseEnemy : MonoBehaviour, IDamageable
 
        
         
-        damage.amount *= GetResistanceMultiplier(damage.element);
+        damage.amount *= GetResistanceMultiplier(damage.elementSO);
     
     
 
         _currentHealth -= damage.amount;
-        float healthRatio = Math.Clamp(_currentHealth / _data.maxHealth, 0, _data.maxHealth);
+        float healthRatio = Math.Clamp(_currentHealth / _enemySO.maxHealth, 0, _enemySO.maxHealth);
 
         OnHealthChange?.Invoke(healthRatio);
 
-        _damageFlash.Flash(_data.flashDuration);
+        _damageFlash.Flash(_enemySO.flashDuration);
+
+        // apply effects
+        HandleEffect(damage);
 
         // spawn damage text
-      
+
         DamageTextUI damageTextUI = Instantiate(_damageTextPrefab, _canvasParent);
 
         damageTextUI.SetText(damage);
@@ -76,24 +80,21 @@ public class BaseEnemy : MonoBehaviour, IDamageable
             Death();
         }
     }
-
-    private IEnumerator StartRecoil(Vector2 direction)
+    private void HandleEffect(Damage damage)
     {
+       if (damage.isFromEffect) return;
 
-        IsRecoiling = true;
 
-        _rb.linearVelocity = Vector2.zero;
-        _rb.AddForce(direction *  _data.recoilForce, ForceMode2D.Impulse);
-
-        yield return new WaitForSeconds(_data.recoilDuration);
-
-        IsRecoiling = false;
+       if(damage.elementSO== _enemySO.posionEffectSO.elementSO)
+        {
+            _effectManager.ApplyEffect(_enemySO.posionEffectSO);
+        }
     }
 
     public float GetResistanceMultiplier(ElementSO element)
     {
         float multiplier = 1;
-        ElementalResistance[] resistances = _data.resistances;
+        ElementalResistance[] resistances = _enemySO.resistances;
         for (int i = 0; i < resistances.Length; i++)
         {
             if (resistances[i].element== element)

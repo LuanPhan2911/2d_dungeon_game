@@ -13,5 +13,12 @@ public class EnemySO : ScriptableObject
     public float flashDuration;
     [Header("Resisatance")]
     public ElementalResistance[] resistances;
-   
+
+
+
+    [Header("Effects")]
+
+    public StatusEffectSO posionEffectSO;
+    public StatusEffectSO burnEffectSO;
+
 }

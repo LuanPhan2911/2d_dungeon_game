@@ -1,0 +1,23 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ffaaaff9c3ab33e42a52457187909c2f, type: 3}
+  m_Name: PosionStatusEffectSO
+  m_EditorClassIdentifier: Assembly-CSharp::StatusEffectSO
+  effectName: 
+  elementSO: {fileID: 11400000, guid: db1905687a944cc4aa7e5287c2cc606a, type: 2}
+  type: 0
+  icon: {fileID: 0}
+  maxDuration: 5
+  maxStacks: 5
+  stackCooldown: 0.5
+  tickInterval: 0.5
+  valuePerTick: 5

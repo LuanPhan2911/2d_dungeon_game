@@ -15,6 +15,9 @@ public class PlayerElement : MonoBehaviour
     [SerializeField] private float _elementSwapCooldown = 0.5f;
     [SerializeField] private float _elementalSkillCooldown = 5f;
     [SerializeField] private float _elementalSkillDamage = 20f;
+
+    [SerializeField] private float _infusedElementToWeaponDuration = 8.5f;
+    [SerializeField] private float _burstSkillPressedThreshhold = 0.5f;
     [SerializeField] private ElementSO _physicElementType;
 
     [Serializable]
@@ -144,7 +147,7 @@ public class PlayerElement : MonoBehaviour
             if (GameInputManager.Instance.PlayerActions.BurstSkill.IsPressed())
             {
                 _burstSkillPressTimer += Time.deltaTime;
-                if (_burstSkillPressTimer > ActiveElementSO.burstSkillPressedThreshhold && !_isBurstSkillHolding)
+                if (_burstSkillPressTimer > _burstSkillPressedThreshhold && !_isBurstSkillHolding)
                 {
                     InfuseElementToWeapon();
                 }
@@ -222,7 +225,7 @@ public class PlayerElement : MonoBehaviour
     }
     private void InfuseElementToWeapon()
     {
-        _infusedElementToWeaponTimer = ActiveElementSO.infusedElementToWeaponDuration;
+        _infusedElementToWeaponTimer = _infusedElementToWeaponDuration;
         _isBurstSkillHolding = true;
     }
 }

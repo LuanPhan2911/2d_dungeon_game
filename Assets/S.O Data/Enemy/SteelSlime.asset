@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 07187215504c3a54393bab05a697a34d, type: 3}
   m_Name: SteelSlime
   m_EditorClassIdentifier: Assembly-CSharp::EnemyData
-  maxHealth: 500
+  maxHealth: 1000
   CanRecoil: 1
   recoilForce: 5
   recoilDuration: 0.1
@@ -30,3 +30,5 @@ MonoBehaviour:
     resistance: -0.5
   - element: {fileID: 11400000, guid: 900a6a60b4ab0844d865b09c7e9b785f, type: 2}
     resistance: 0.1
+  posionEffectSO: {fileID: 11400000, guid: 65381a2856f05ab4ab570686a456b1a1, type: 2}
+  burnEffectSO: {fileID: 0}

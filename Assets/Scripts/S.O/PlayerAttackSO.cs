@@ -47,15 +47,17 @@ public enum DamageType
     PlungeAttack,
     ElementalSkillAttack,
     BurstAttack,
+
+    EffectDamage, // Sát thương từ hiệu ứng trạng thái
 }
 public class Damage
 {
     public float amount { get; set; }
-    public ElementSO element { get; set; }
+    public ElementSO elementSO { get; set; }
     public bool isCrit { get; set; }
-
-   
     public DamageType type;
+
+    public bool isFromEffect { get; set; }  // Thêm thuộc tính này để xác định nguồn gốc của sát thương
 
 
 }

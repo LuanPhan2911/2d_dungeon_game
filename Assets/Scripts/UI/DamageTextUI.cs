@@ -23,7 +23,7 @@ public class DamageTextUI : MonoBehaviour
         _textMesh.text = Mathf.RoundToInt(damage.amount).ToString();
         _textMesh.fontSize = damage.isCrit ? _critDamageSize: _normalDamageSize;
      
-        _textMesh.color = damage.element.color;
+        _textMesh.color = damage.elementSO.color;
 
         _textColor = _textMesh.color;
 

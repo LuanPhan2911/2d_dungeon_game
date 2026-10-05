@@ -9,8 +9,6 @@ public class PlayerElementSO : ScriptableObject
 
 
     [Header("Burst Skill")]
-    public float infusedElementToWeaponDuration = 8.5f;
-    public float burstSkillPressedThreshhold = 0.5f;
     public float burstCooldown=20f;
     public float burstEnergy=40f;
 

@@ -13,10 +13,8 @@ MonoBehaviour:
   m_Name: Grass Player Element
   m_EditorClassIdentifier: Assembly-CSharp::PlayerElementGrassSO
   element: {fileID: 11400000, guid: db1905687a944cc4aa7e5287c2cc606a, type: 2}
-  infusedElementToWeaponDuration: 8.5
-  burstSkillPressedThreshhold: 0.5
-  burstCooldown: 20
-  burstEnergy: 40
+  burstCooldown: 15
+  burstEnergy: 15
   skillInputBuffer: 0.2
   damage: 10
   elementalResistanceReductionRate: 0.4

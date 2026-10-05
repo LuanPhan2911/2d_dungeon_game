@@ -119,37 +119,6 @@ NavMeshSettings:
     debug:
       m_Flags: 0
   m_NavMeshData: {fileID: 0}
---- !u!1 &11094666
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 11094667}
-  m_Layer: 7
-  m_Name: ChargeAttackPoint
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &11094667
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 11094666}
-  serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 2.23, y: 0.06, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children: []
-  m_Father: {fileID: 57192727}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &17067205
 GameObject:
   m_ObjectHideFlags: 0
@@ -188,11 +157,6 @@ RectTransform:
   m_AnchoredPosition: {x: -200, y: 100}
   m_SizeDelta: {x: 400, y: 200}
   m_Pivot: {x: 0.5, y: 0.5}
---- !u!4 &57192727 stripped
-Transform:
-  m_CorrespondingSourceObject: {fileID: 7593231882374846932, guid: 523e1f14885f3df4cbcde949cdf98e38, type: 3}
-  m_PrefabInstance: {fileID: 7685517063792763008}
-  m_PrefabAsset: {fileID: 0}
 --- !u!1 &63620182
 GameObject:
   m_ObjectHideFlags: 0
@@ -1534,17 +1498,6 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 424062390}
   m_CullTransparentMesh: 1
---- !u!114 &430061423 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 3610509746731027631, guid: 523e1f14885f3df4cbcde949cdf98e38, type: 3}
-  m_PrefabInstance: {fileID: 7685517063792763008}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 4684e5e7a48d9814abf058396b8afea2, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::DashFX
 --- !u!1 &606591524
 GameObject:
   m_ObjectHideFlags: 0
@@ -3052,6 +3005,7 @@ GameObject:
   - component: {fileID: 1213848564}
   - component: {fileID: 1213848563}
   - component: {fileID: 1213848566}
+  - component: {fileID: 1213848567}
   m_Layer: 10
   m_Name: Enemy
   m_TagString: Untagged
@@ -3127,7 +3081,7 @@ Transform:
   m_GameObject: {fileID: 1213848560}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 7.26, y: -0.76, z: 0}
+  m_LocalPosition: {x: 6.79, y: -2.85, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -3146,10 +3100,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6f2bbc7cd10e97240bd6760742fa843e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::BaseEnemy
-  CanRecoil: 1
   _damageTextPrefab: {fileID: 1487051802927294602, guid: 1354b2960d56cea4c8df6c2267a21e03, type: 3}
   _canvasParent: {fileID: 759728018}
-  _data: {fileID: 11400000, guid: 557431c153a8e0942b489e4c4812654a, type: 2}
+  _enemySO: {fileID: 11400000, guid: 557431c153a8e0942b489e4c4812654a, type: 2}
 --- !u!50 &1213848564
 Rigidbody2D:
   serializedVersion: 5
@@ -3238,6 +3191,19 @@ BoxCollider2D:
   m_AutoTiling: 0
   m_Size: {x: 1, y: 1}
   m_EdgeRadius: 0
+--- !u!114 &1213848567
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1213848560}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3eee89c5b70d3064db652e350f1d1aaa, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::StatusEffectManager
+  _stackDecayTime: 5
 --- !u!1 &1222258161
 GameObject:
   m_ObjectHideFlags: 0
@@ -22151,60 +22117,21 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 4897149217227177274, guid: 523e1f14885f3df4cbcde949cdf98e38, type: 3}
-      propertyPath: m_LocalPosition.y
-      value: -0.48
-      objectReference: {fileID: 0}
-    - target: {fileID: 5033102710396620486, guid: 523e1f14885f3df4cbcde949cdf98e38, type: 3}
-      propertyPath: _data
-      value: 
-      objectReference: {fileID: 11400000, guid: ca60778941745a945ad3e3df82d9e0f5, type: 2}
-    - target: {fileID: 5033102710396620486, guid: 523e1f14885f3df4cbcde949cdf98e38, type: 3}
-      propertyPath: _dashFX
-      value: 
-      objectReference: {fileID: 430061423}
-    - target: {fileID: 5033102710396620486, guid: 523e1f14885f3df4cbcde949cdf98e38, type: 3}
-      propertyPath: _groundCheckSize.x
-      value: 0.5
-      objectReference: {fileID: 0}
-    - target: {fileID: 5033102710396620486, guid: 523e1f14885f3df4cbcde949cdf98e38, type: 3}
-      propertyPath: _groundCheckSize.y
-      value: 0.1
+    - target: {fileID: 3735642507340127294, guid: 523e1f14885f3df4cbcde949cdf98e38, type: 3}
+      propertyPath: _infusedElementToWeaponDuration
+      value: 50
       objectReference: {fileID: 0}
     - target: {fileID: 5087166927145310186, guid: 523e1f14885f3df4cbcde949cdf98e38, type: 3}
       propertyPath: m_Name
       value: Player
       objectReference: {fileID: 0}
     - target: {fileID: 6271476450232353595, guid: 523e1f14885f3df4cbcde949cdf98e38, type: 3}
-      propertyPath: _chargeAttackPoint
+      propertyPath: _upAttackPoint
       value: 
-      objectReference: {fileID: 11094667}
-    - target: {fileID: 6271476450232353595, guid: 523e1f14885f3df4cbcde949cdf98e38, type: 3}
-      propertyPath: _chargeAttackSize.x
-      value: 4
-      objectReference: {fileID: 0}
-    - target: {fileID: 6271476450232353595, guid: 523e1f14885f3df4cbcde949cdf98e38, type: 3}
-      propertyPath: _chargeAttackSize.y
-      value: 3
-      objectReference: {fileID: 0}
-    - target: {fileID: 6271476450232353595, guid: 523e1f14885f3df4cbcde949cdf98e38, type: 3}
-      propertyPath: _plungeAttackSize.y
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 6271476450232353595, guid: 523e1f14885f3df4cbcde949cdf98e38, type: 3}
-      propertyPath: _chargeSlashFxPrefab
-      value: 
-      objectReference: {fileID: 614633409195199339, guid: 30205a38c73ab0d4bb332dea2d5768e5, type: 3}
-    - target: {fileID: 8902876242943277303, guid: 523e1f14885f3df4cbcde949cdf98e38, type: 3}
-      propertyPath: m_LocalPosition.y
-      value: -0.997
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
-    m_AddedGameObjects:
-    - targetCorrespondingSourceObject: {fileID: 7593231882374846932, guid: 523e1f14885f3df4cbcde949cdf98e38, type: 3}
-      insertIndex: -1
-      addedObject: {fileID: 11094667}
+    m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 523e1f14885f3df4cbcde949cdf98e38, type: 3}
 --- !u!82 &7751669744603835350
