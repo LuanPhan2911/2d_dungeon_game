@@ -31,4 +31,4 @@ MonoBehaviour:
   - element: {fileID: 11400000, guid: 900a6a60b4ab0844d865b09c7e9b785f, type: 2}
     resistance: 0.1
   posionEffectSO: {fileID: 11400000, guid: 65381a2856f05ab4ab570686a456b1a1, type: 2}
-  burnEffectSO: {fileID: 0}
+  burnEffectSO: {fileID: 11400000, guid: 5e4a838e821b28345a64c62182835e47, type: 2}

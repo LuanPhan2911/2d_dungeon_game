@@ -13,10 +13,8 @@ MonoBehaviour:
   m_Name: Fire Player Element
   m_EditorClassIdentifier: Assembly-CSharp::PlayerElementFireSO
   element: {fileID: 11400000, guid: 5f9787651436ec04fac44ee1fce84e5d, type: 2}
-  infusedElementToWeaponDuration: 8.5
-  burstSkillPressedThreshhold: 0.5
-  burstCooldown: 20
-  burstEnergy: 40
+  burstCooldown: 15
+  burstEnergy: 15
   skillInputBuffer: 0.2
   damage: 40
   burningEffectBonusDamageRate: 0.2

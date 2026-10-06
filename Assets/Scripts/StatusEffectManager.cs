@@ -156,7 +156,7 @@ public class StatusEffectManager : MonoBehaviour
 
         if (gameObject.TryGetComponent(out IDamageable damageable))
         {
-            if (effectSO.type == EffectType.Poison)
+            if (effectSO.type == EffectType.Poison || effectSO.type == EffectType.Burn)
             {
                 Damage damage= new Damage
                 {
@@ -171,5 +171,30 @@ public class StatusEffectManager : MonoBehaviour
 
         }
         
+    }
+
+    public bool HasEffect(EffectType type)
+    {
+        // Tìm trong danh sách xem có hiệu ứng nào trùng loại và có stack lớn hơn 0 không
+        return activeEffects.Exists(e => e.effectSO.type == type && e.currentStacks > 0);
+    }
+
+    public bool IsEffectActive(EffectType type)
+    {
+        ActiveEffect effect = activeEffects.Find(e => e.effectSO.type == type);
+        if (effect != null)
+        {
+            return effect.isDamageActive;
+        }
+        return false;
+    }
+    public float GetDamageBonusPercent(EffectType type)
+    {
+        ActiveEffect effect = activeEffects.Find(e => e.effectSO.type == type);
+        if (effect != null)
+        {
+            return effect.effectSO.damageBonusPercent;
+        }
+        return 0f;
     }
 }

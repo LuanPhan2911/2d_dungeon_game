@@ -56,8 +56,11 @@ public class BaseEnemy : MonoBehaviour, IDamageable
        
         
         damage.amount *= GetResistanceMultiplier(damage.elementSO);
-    
-    
+
+
+        damage.amount *= GetDamageMultiplier();
+
+
 
         _currentHealth -= damage.amount;
         float healthRatio = Math.Clamp(_currentHealth / _enemySO.maxHealth, 0, _enemySO.maxHealth);
@@ -88,6 +91,9 @@ public class BaseEnemy : MonoBehaviour, IDamageable
        if(damage.elementSO== _enemySO.posionEffectSO.elementSO)
         {
             _effectManager.ApplyEffect(_enemySO.posionEffectSO);
+        } else if (damage.elementSO == _enemySO.burnEffectSO.elementSO)
+        {
+            _effectManager.ApplyEffect(_enemySO.burnEffectSO);
         }
     }
 
@@ -108,8 +114,23 @@ public class BaseEnemy : MonoBehaviour, IDamageable
 
         return multiplier;
     }
-  
-   
+
+    private float GetDamageMultiplier()
+    {
+        float multiplier = 1f;
+
+        #region Muliplier from status effects
+        if (_effectManager.IsEffectActive(EffectType.Burn))
+        {
+            multiplier*= (1+ _effectManager.GetDamageBonusPercent(EffectType.Burn));
+        }
+
+
+        #endregion
+        return multiplier;
+    }
+
+
 
 
 }

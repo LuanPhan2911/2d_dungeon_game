@@ -18,5 +18,6 @@ public class StatusEffectSO : ScriptableObject
 
     [Header("Values")]
     public float valuePerTick; // Sát thương mỗi tick hoặc % làm chậm
+    public float damageBonusPercent=0f; // Hệ số nhân sát thương
 }
 public enum EffectType { Poison, Burn }

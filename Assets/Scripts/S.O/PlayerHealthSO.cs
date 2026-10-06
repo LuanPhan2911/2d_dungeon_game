@@ -21,15 +21,6 @@ public class PlayerHealthSO : ScriptableObject
 
 
 
-    [Header("Debuff Effect")]
-
-    public float poisonousDuration = 3f;
-    public float poisionousDamage = 5f;
-    public float poisonousDamagePerSecond = 1f;
-
-    public float burningDuration = 3f;
-    public float burningDamage = 2f;
-    public float burningDamagePerSecond = 0.5f;
 
 
 }
