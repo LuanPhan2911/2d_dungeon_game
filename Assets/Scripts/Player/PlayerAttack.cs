@@ -216,71 +216,65 @@ public class PlayerAttack : MonoBehaviour
             _currentPlungeAttackDamage = _data.baseLowPlungeAttackDamage;
         }
     }
+
+    public bool IsCritStrike()
+    {
+        bool isCritStrike = UnityEngine.Random.value <= _currentCritRate;
+        if (isCritStrike)
+        {
+            _currentCritRate = _data.baseCritRate;
+
+        }
+        else
+        {
+            _currentCritRate = Mathf.Clamp(_currentCritRate + _data.critRateIncreasement, 0, 1);
+        }
+        return isCritStrike;
+    }
  
 
-    private bool ScanAndDamage(Vector3 position, Vector2 size, float damageAmount)
+    public bool ScanAndDamage(Vector3 position, Vector2 size, float damageAmount)
     {
         Collider2D[] hitEnemies = Physics2D.OverlapBoxAll(position, size, 0, _enemyMask);
-
-        
-
-       
         if (hitEnemies.Length > 0)
         {
-
-
             #region Crit rate
-            bool isCritStrike = UnityEngine.Random.value <= _currentCritRate;
-
-
+            bool isCritStrike = IsCritStrike();
             if (isCritStrike)
             {
                 damageAmount *= GetCritDamageMultiplier();
-                _currentCritRate = _data.baseCritRate;
-
             }
-            else
-            {
-                _currentCritRate = Mathf.Clamp(_currentCritRate + _data.critRateIncreasement, 0, 1);
-
-            }
-
-
             #endregion
 
             Damage damage = new Damage
             {
                 amount = damageAmount,
                 elementSO = PElement.GetElementTypeDamage(),
-             
                 isCrit = isCritStrike
             };
 
        
             #region Energy
 
-            PHealth.GainEnergyFromAttack();
+           
 
             #endregion
+            bool isHitEnemy = false; ;
 
             // 2. Damge to enemy
             foreach (Collider2D hit in hitEnemies)
             {
                 if(hit.TryGetComponent(out IDamageable damageable))
                 {
-                    
-                   
-                  
                     damageable.TakeDamage(damage);
+                    isHitEnemy = true;
                 }
             }
-
-           
-          
-            return true;
-           
+            return isHitEnemy;
+            
         }
         return false;
+       
 
       
 

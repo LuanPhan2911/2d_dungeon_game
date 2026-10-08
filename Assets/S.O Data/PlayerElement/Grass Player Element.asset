@@ -16,5 +16,18 @@ MonoBehaviour:
   burstCooldown: 15
   burstEnergy: 15
   skillInputBuffer: 0.2
+  resistances:
+  - element: {fileID: 11400000, guid: fa41908be5b89654d95054a0484eb7d8, type: 2}
+    resistance: 0.1
+  - element: {fileID: 11400000, guid: 0fda099d69e02a14796aa32fe827c589, type: 2}
+    resistance: -0.25
+  - element: {fileID: 11400000, guid: db1905687a944cc4aa7e5287c2cc606a, type: 2}
+    resistance: 0.1
+  - element: {fileID: 11400000, guid: cfb9b5ebcdf62a842af790accf5fe130, type: 2}
+    resistance: 0
+  - element: {fileID: 11400000, guid: 5f9787651436ec04fac44ee1fce84e5d, type: 2}
+    resistance: 0
+  - element: {fileID: 11400000, guid: 900a6a60b4ab0844d865b09c7e9b785f, type: 2}
+    resistance: 0.25
   damage: 10
   elementalResistanceReductionRate: 0.4

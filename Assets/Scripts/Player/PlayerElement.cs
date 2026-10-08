@@ -6,6 +6,9 @@ public class PlayerElement : MonoBehaviour
 
     public static PlayerElement Instance { get; private set; }
 
+
+    public PlayerAttack PAttack=> PlayerAttack.Instance;
+
     const int NONE_PLAYER_ELEMENT_INDEX = -1;
     const int FIRST_PLAYER_ELEMENT_INDEX = 0;
     const int SECOND_PLAYER_ELEMENT_INDEX = 1;
@@ -19,6 +22,11 @@ public class PlayerElement : MonoBehaviour
     [SerializeField] private float _infusedElementToWeaponDuration = 8.5f;
     [SerializeField] private float _burstSkillPressedThreshhold = 0.5f;
     [SerializeField] private ElementSO _physicElementType;
+
+
+    [Header("Elemental Skill")]
+    [SerializeField] private Vector2 _elementalSkillSize;
+    [SerializeField] private Transform _elementalSkillPoint;
 
     [Serializable]
     public class PlayerElementData
@@ -210,10 +218,11 @@ public class PlayerElement : MonoBehaviour
     private void ElementalSkillAttack()
     {
         _elementalSkillTimer = _elementalSkillCooldown;
-
         Debug.Log("Elemental Skill");
-
-        PlayerHealth.Instance.GainEnergyFormElementalSKill();
+        if (PAttack.ScanAndDamage(_elementalSkillPoint.position, _elementalSkillSize, _elementalSkillDamage)){
+            PlayerHealth.Instance.GainEnergyFormElementalSKill();
+        }
+       
 
     }
     private void BurstSkillAttack()
@@ -227,5 +236,14 @@ public class PlayerElement : MonoBehaviour
     {
         _infusedElementToWeaponTimer = _infusedElementToWeaponDuration;
         _isBurstSkillHolding = true;
+    }
+
+
+
+    private void OnDrawGizmos()
+    {
+        Gizmos.color = Color.yellow;
+
+        Gizmos.DrawWireCube(_elementalSkillPoint.position, _elementalSkillSize);
     }
 }

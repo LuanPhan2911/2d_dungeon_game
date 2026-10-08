@@ -12,7 +12,7 @@ public partial class PlayerMovement : MonoBehaviour
     [Header("Player Input")]
     public float HorizontalInput { get; private set; }
     public float VerticalInput { get; private set; }
-    public int LastHorizontalInput { get; private set; }
+
 
     [Header("Player State")]
     public bool IsFacingRight { get; private set; }
@@ -23,6 +23,7 @@ public partial class PlayerMovement : MonoBehaviour
 
     public bool IsSprinting { get; private set; }
 
+    [HideInInspector]
     public bool IsPlunging;
  
 
@@ -76,6 +77,8 @@ public partial class PlayerMovement : MonoBehaviour
 
     [SerializeField] private PlayerMovementSO _data;
 
+    [SerializeField] private Transform _UITransform;
+
     private PlayerAnimation _playerAnimation;
     private Rigidbody2D _rb;
 
@@ -99,7 +102,7 @@ public partial class PlayerMovement : MonoBehaviour
     {
         SetGravityScale(_data.gravityScale);
         IsFacingRight = true;
-        LastHorizontalInput = 1;
+        
     }
     private void Update()
     {
@@ -268,34 +271,30 @@ public partial class PlayerMovement : MonoBehaviour
     }
     private void CheckDirectionToFace()
     {
-        if (IsRightMove)
+        if (IsDashing) return;
+
+        if ((IsRightMove && !IsFacingRight)||(IsLeftMove && IsFacingRight))
         {
-            LastHorizontalInput = 1;
-           
+            IsFacingRight = !IsFacingRight;
 
 
+            Vector3 scale = transform.localScale;
+            scale.x *= -1;
+            transform.localScale = scale;
+
+            Vector3 UIScale = _UITransform.localScale;
+            UIScale.x *= -1;
+            _UITransform.localScale = UIScale;
         }
-        else if (IsLeftMove)
-        {
-            LastHorizontalInput = -1;
-        }
+      
 
 
-        Turn(LastHorizontalInput);
+       
     }
 
     
 
-    private void Turn(int facingDirection)
-    {
-        if (IsDashing) return;
-
-
-        //Vector3 scale = transform.localScale;
-        //scale.x = facingDirection;
-        //transform.localScale = scale;
-        IsFacingRight = facingDirection==1;
-    }
+    
 
     private void HandleGravity()
     {
