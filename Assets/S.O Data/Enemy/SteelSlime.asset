@@ -13,10 +13,12 @@ MonoBehaviour:
   m_Name: SteelSlime
   m_EditorClassIdentifier: Assembly-CSharp::EnemyData
   maxHealth: 1000
+  flashDuration: 0.2
+  element: {fileID: 11400000, guid: 0fda099d69e02a14796aa32fe827c589, type: 2}
   CanRecoil: 1
   recoilForce: 5
   recoilDuration: 0.1
-  flashDuration: 0.2
+  baseDamage: 5
   resistances:
   - element: {fileID: 11400000, guid: fa41908be5b89654d95054a0484eb7d8, type: 2}
     resistance: 0.1

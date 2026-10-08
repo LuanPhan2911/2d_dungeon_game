@@ -39,6 +39,10 @@ public partial class PlayerMovement : MonoBehaviour
             return 0f;
         }
     }
+    public float GetDistanceFromPosition(Vector3 position)
+    {
+        return Vector2.Distance(transform.position, position);
+    }
     public bool IsGrounded => _lastOnGroundTimer > 0f;
 
 
@@ -287,9 +291,9 @@ public partial class PlayerMovement : MonoBehaviour
         if (IsDashing) return;
 
 
-        Vector3 scale = transform.localScale;
-        scale.x = facingDirection;
-        transform.localScale = scale;
+        //Vector3 scale = transform.localScale;
+        //scale.x = facingDirection;
+        //transform.localScale = scale;
         IsFacingRight = facingDirection==1;
     }
 

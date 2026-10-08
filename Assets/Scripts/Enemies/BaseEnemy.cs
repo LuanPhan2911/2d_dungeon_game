@@ -26,6 +26,10 @@ public class BaseEnemy : MonoBehaviour, IDamageable
 
     public event Action<float> OnHealthChange;
 
+
+    public ElementSO Element => _enemySO.element;
+    public float BaseDamage => _enemySO.baseDamage;
+
    
 
 
@@ -53,8 +57,8 @@ public class BaseEnemy : MonoBehaviour, IDamageable
      public void TakeDamage(Damage damage)
     {
 
-       
-        
+
+
         damage.amount *= GetResistanceMultiplier(damage.elementSO);
 
 
@@ -74,15 +78,20 @@ public class BaseEnemy : MonoBehaviour, IDamageable
 
         // spawn damage text
 
-        DamageTextUI damageTextUI = Instantiate(_damageTextPrefab, _canvasParent);
-
-        damageTextUI.SetText(damage);
+        SpanwDamageTextUI(damage);
 
         if (_currentHealth <= 0)
         {
             Death();
         }
     }
+
+    private void SpanwDamageTextUI(Damage damage)
+    {
+        DamageTextUI damageTextUI = Instantiate(_damageTextPrefab, _canvasParent);
+        damageTextUI.Spawn(damage);
+    }
+
     private void HandleEffect(Damage damage)
     {
        if (damage.isFromEffect) return;

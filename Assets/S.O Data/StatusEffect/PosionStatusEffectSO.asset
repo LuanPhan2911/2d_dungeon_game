@@ -20,5 +20,5 @@ MonoBehaviour:
   maxStacks: 5
   stackCooldown: 0.5
   tickInterval: 1
-  valuePerTick: 10
+  valuePerTick: 5
   damageBonusPercent: 0

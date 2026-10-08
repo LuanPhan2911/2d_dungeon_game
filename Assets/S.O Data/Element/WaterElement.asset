@@ -12,5 +12,5 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9014d7a81b4d677478e8a5f66712b28c, type: 3}
   m_Name: WaterElement
   m_EditorClassIdentifier: Assembly-CSharp::ElementData
-  elementName: Physic
+  elementName: Water
   color: {r: 0, g: 0.49438763, b: 1, a: 1}

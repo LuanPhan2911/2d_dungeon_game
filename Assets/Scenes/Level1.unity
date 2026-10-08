@@ -3067,6 +3067,7 @@ GameObject:
   - component: {fileID: 1213848563}
   - component: {fileID: 1213848566}
   - component: {fileID: 1213848567}
+  - component: {fileID: 1213848568}
   m_Layer: 10
   m_Name: Enemy
   m_TagString: Untagged
@@ -3264,8 +3265,23 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3eee89c5b70d3064db652e350f1d1aaa, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::StatusEffectManager
-  _decayStackTime: 5
+  _decayStackTime: 3
   _parentUIGameObject: {fileID: 960776429}
+--- !u!114 &1213848568
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1213848560}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3cbdd590cafc5144ea2ab2f00195ce44, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::ProjectileAttack
+  _bullet: {fileID: 3198516453211441348, guid: 9771a7621311bb44b86103ecb9a9b345, type: 3}
+  _attackRange: 10
+  _attackCooldown: 2
 --- !u!1 &1222258161
 GameObject:
   m_ObjectHideFlags: 0
@@ -4014,7 +4030,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -0, y: 150}
+  m_AnchoredPosition: {x: 0, y: 150}
   m_SizeDelta: {x: 150, y: 20}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1483437319
@@ -22139,6 +22155,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 1467170012286953218, guid: 523e1f14885f3df4cbcde949cdf98e38, type: 3}
+      propertyPath: m_CollisionDetection
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 3212656722255811958, guid: 523e1f14885f3df4cbcde949cdf98e38, type: 3}
       propertyPath: m_LocalPosition.x
       value: -0.03

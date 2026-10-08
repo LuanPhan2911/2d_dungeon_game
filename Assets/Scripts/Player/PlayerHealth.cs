@@ -1,13 +1,20 @@
 using System;
 using UnityEngine;
-using UnityEngine.Experimental.GlobalIllumination;
+
 
 public class PlayerHealth : MonoBehaviour
 {
 
     [SerializeField] private PlayerHealthSO _data;
 
+    [SerializeField] private Transform _canvasParent;
+
+    [SerializeField] private DamageTextUI _damageTextPrefab;
     public static PlayerHealth Instance { get; private set;  }
+
+    public PlayerElement PElement => PlayerElement.Instance;
+
+
 
     public event Action OnHealthChanged;
     public event Action OnEnergyChanged;
@@ -62,16 +69,53 @@ public class PlayerHealth : MonoBehaviour
     private void ChangeHealth(float amount)
     {
         _health = Mathf.Clamp(_health + amount, 0f, GetMaxHealth());
+        OnHealthChanged?.Invoke();
+    }
 
-        if(_health <= 0f)
-        {
-            Debug.Log("player die");
-        }
+    private void SpanwDamageTextUI(Damage damage)
+    {
+        DamageTextUI damageTextUI = Instantiate(_damageTextPrefab, _canvasParent);
+        damageTextUI.Spawn(damage);
+    }
+
+    public void TakeDamage(Damage damage) {
 
       
 
+       damage.amount *= GetDamageResistanceMultiplier(damage.elementSO);
 
-        OnHealthChanged?.Invoke();
+        ChangeHealth(-damage.amount);
+
+        SpanwDamageTextUI(damage);
+
+
+        if (_health <= 0f)
+        {
+            Debug.Log("Player Died");
+            return;
+        }
+    }
+
+    public float GetDamageResistanceMultiplier(ElementSO element)
+    {
+        float multiplier = 1;
+        Debug.Log(2);
+        if (!PElement.HasActive) return multiplier;
+        
+
+        ElementalResistance[] resistances = PElement.ActiveElement.PlayerElementSO.resistances;
+        for (int i = 0; i < resistances.Length; i++)
+        {
+            if (resistances[i].element == element)
+            {
+                multiplier = 1 - resistances[i].resistance;
+                break;
+            }
+        }
+
+
+        Debug.Log(multiplier);
+        return multiplier;
     }
     private void SetStaminaDelayTimer()
     {
@@ -114,14 +158,11 @@ public class PlayerHealth : MonoBehaviour
         ChangeEnergy(_data.gainingEnergyFromElementalSkill);
     }
 
-    public bool IsEnoughEnergyToUseBurstSkill()
+    public void ConsumeEnergy(float amount)
     {
-        return _energy >= _data.energyNeedForBurstSkill;
+        ChangeEnergy(-amount);
+        
     }
-
-    public void UseEnergyForBurstSkill()
-    {
-        ChangeEnergy(-_data.energyNeedForBurstSkill);
-    }
+   
   
 }

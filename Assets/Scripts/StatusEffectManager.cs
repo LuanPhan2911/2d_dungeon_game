@@ -28,7 +28,7 @@ public class ActiveEffect
 public class StatusEffectManager : MonoBehaviour
 {
 
-    [SerializeField] private float _decayStackTime = 5f;
+    [SerializeField] private float _decayStackTime = 3f;
     [SerializeField] private GameObject _parentUIGameObject;
 
     // thời gian để giảm stack nếu không có stack mới được thêm vào
@@ -163,7 +163,6 @@ public class StatusEffectManager : MonoBehaviour
                     amount = effectSO.valuePerTick,
                     elementSO = effectSO.elementSO,
                     isCrit = false,
-                    type = DamageType.EffectDamage,
                     isFromEffect = true
                 };
                 damageable.TakeDamage(damage);

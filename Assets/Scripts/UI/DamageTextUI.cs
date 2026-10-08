@@ -17,7 +17,7 @@ public class DamageTextUI : MonoBehaviour
     private Color _textColor;
 
  
-    public void SetText(Damage damage)
+    public void Spawn(Damage damage)
     {
 
         _textMesh.text = Mathf.RoundToInt(damage.amount).ToString();
@@ -27,7 +27,22 @@ public class DamageTextUI : MonoBehaviour
 
         _textColor = _textMesh.color;
 
-        
+
+        // Random Position
+        float randomX = UnityEngine.Random.Range(-10f, 10f);
+        float randomY = UnityEngine.Random.Range(-10f, 10f);
+
+        Vector2 archoredPosition = new Vector2(randomX, randomY);
+
+        RectTransform rectTransform = GetComponent<RectTransform>();
+
+        if (rectTransform != null)
+        {
+            rectTransform.anchoredPosition = archoredPosition;
+        }
+
+
+
     }
 
     private void Update()

@@ -220,7 +220,7 @@ public class PlayerElement : MonoBehaviour
     {
 
         ElementArray[ActiveIndex].burstSkillTimer = ActiveElementSO.burstCooldown;
-        PlayerHealth.Instance.UseEnergyForBurstSkill();
+        PlayerHealth.Instance.ConsumeEnergy(ActiveElementSO.burstEnergy);
         Debug.Log("Burst Skill");
     }
     private void InfuseElementToWeapon()

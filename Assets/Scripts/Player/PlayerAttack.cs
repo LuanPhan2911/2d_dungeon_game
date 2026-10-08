@@ -143,7 +143,7 @@ public class PlayerAttack : MonoBehaviour
         if (PMovement.IsPlunging && PMovement.IsGrounded)
         {
             PMovement.IsPlunging = false ;
-            ScanAndDamage(_plungeAttackPoint.position, _plungeAttackSize, _currentPlungeAttackDamage, DamageType.PlungeAttack);
+            ScanAndDamage(_plungeAttackPoint.position, _plungeAttackSize, _currentPlungeAttackDamage);
         }
     }
 
@@ -155,7 +155,7 @@ public class PlayerAttack : MonoBehaviour
 
     private void ExecuteChargeAttack()
     {
-        ScanAndDamage(_chargeAttackPoint.position, _chargeAttackSize, _data.baseChargeAttackDamage, DamageType.ChargeAttack);
+        ScanAndDamage(_chargeAttackPoint.position, _chargeAttackSize, _data.baseChargeAttackDamage);
 
         PHealth.ConsumeStamina(_data.chargeAttackStaminaCost);
 
@@ -187,7 +187,7 @@ public class PlayerAttack : MonoBehaviour
         else
         {
         
-            ScanAndDamage(_sideAttackPoint.position, _horizontalAttackSize, _data.baseNormalAttackDamage, DamageType.NormalAttack);
+            ScanAndDamage(_sideAttackPoint.position, _horizontalAttackSize, _data.baseNormalAttackDamage);
             SpawnNormalAttackSlashVFX();
             // horizontal attack
 
@@ -218,7 +218,7 @@ public class PlayerAttack : MonoBehaviour
     }
  
 
-    private bool ScanAndDamage(Vector3 position, Vector2 size, float damageAmount, DamageType damageType)
+    private bool ScanAndDamage(Vector3 position, Vector2 size, float damageAmount)
     {
         Collider2D[] hitEnemies = Physics2D.OverlapBoxAll(position, size, 0, _enemyMask);
 
@@ -252,7 +252,7 @@ public class PlayerAttack : MonoBehaviour
             {
                 amount = damageAmount,
                 elementSO = PElement.GetElementTypeDamage(),
-                type = damageType,
+             
                 isCrit = isCritStrike
             };
 

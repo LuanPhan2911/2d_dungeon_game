@@ -13,6 +13,9 @@ public class PlayerElementSO : ScriptableObject
     public float burstEnergy=40f;
 
     public float skillInputBuffer = 0.2f;
+
+    [Header("Resisatance")]
+    public ElementalResistance[] resistances;
 }
 
 
