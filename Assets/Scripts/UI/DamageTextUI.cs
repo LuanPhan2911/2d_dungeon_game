@@ -28,18 +28,7 @@ public class DamageTextUI : MonoBehaviour
         _textColor = _textMesh.color;
 
 
-        // Random Position
-        float randomX = UnityEngine.Random.Range(-10f, 10f);
-        float randomY = UnityEngine.Random.Range(-10f, 10f);
-
-        Vector2 archoredPosition = new Vector2(randomX, randomY);
-
-        RectTransform rectTransform = GetComponent<RectTransform>();
-
-        if (rectTransform != null)
-        {
-            rectTransform.anchoredPosition = archoredPosition;
-        }
+       
 
 
 

@@ -187,8 +187,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::DamageTextUI
   _textMesh: {fileID: 9131900868968984744}
-  _moveSpeed: 1
-  _disappearTime: 0.5
+  _moveSpeed: 2
+  _disappearTime: 0.25
   _fadeoutSpeed: 5
-  _fontSizeNormal: 64
-  _fontSizeCrit: 96
+  _normalDamageSize: 64
+  _critDamageSize: 128

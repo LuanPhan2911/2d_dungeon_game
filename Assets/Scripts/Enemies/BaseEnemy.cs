@@ -1,5 +1,4 @@
 using System;
-using System.Collections;
 using UnityEngine;
 
 
@@ -21,7 +20,7 @@ public class BaseEnemy : MonoBehaviour, IDamageable
     [SerializeField] private EnemySO _enemySO;
     private DamageFlash _damageFlash;
     private Rigidbody2D _rb;
-    private StatusEffectManager _effectManager;
+    private DebuffEffectManager _debuffEffectManager;
 
 
     public event Action<float> OnHealthChange;
@@ -37,7 +36,7 @@ public class BaseEnemy : MonoBehaviour, IDamageable
     {
         _damageFlash = GetComponent<DamageFlash>();
         _rb=GetComponent<Rigidbody2D>();
-        _effectManager = GetComponent<StatusEffectManager>();
+        _debuffEffectManager = GetComponent<DebuffEffectManager>();
     }
 
 
@@ -60,10 +59,12 @@ public class BaseEnemy : MonoBehaviour, IDamageable
 
 
         damage.amount *= GetResistanceMultiplier(damage.elementSO);
-
-
-        damage.amount *= GetDamageMultiplier();
-
+        if (damage.canCrit && PlayerAttack.Instance.IsCritStrike())
+        {
+            damage.isCrit = true;
+            damage.amount *= PlayerAttack.Instance.GetCritDamageMultiplier();
+        }
+        damage.amount *= GetDamageBonusMultiplier();
 
 
         _currentHealth -= damage.amount;
@@ -95,14 +96,12 @@ public class BaseEnemy : MonoBehaviour, IDamageable
     private void HandleEffect(Damage damage)
     {
        if (damage.isFromEffect) return;
-
-
-       if(damage.elementSO== _enemySO.posionEffectSO.elementSO)
+       if(damage.elementSO.type== ElementalType.Grass)
         {
-            _effectManager.ApplyEffect(_enemySO.posionEffectSO);
-        } else if (damage.elementSO == _enemySO.burnEffectSO.elementSO)
+            _debuffEffectManager.ApplyEffect(_enemySO.posionEffectSO);
+        } else if (damage.elementSO.type== ElementalType.Fire)
         {
-            _effectManager.ApplyEffect(_enemySO.burnEffectSO);
+            _debuffEffectManager.ApplyEffect(_enemySO.burnEffectSO);
         }
     }
 
@@ -124,16 +123,15 @@ public class BaseEnemy : MonoBehaviour, IDamageable
         return multiplier;
     }
 
-    private float GetDamageMultiplier()
+    private float GetDamageBonusMultiplier()
     {
         float multiplier = 1f;
 
         #region Muliplier from status effects
-        if (_effectManager.IsEffectActive(EffectType.Burn))
+        if (_debuffEffectManager.IsEffectActive(DebuffEffectType.Burn))
         {
-            multiplier*= (1+ _effectManager.GetDamageBonusPercent(EffectType.Burn));
+            multiplier *= (1 + DebuffEffectManager.BURNING_DAMAGE_BONUS);
         }
-
 
         #endregion
         return multiplier;

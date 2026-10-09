@@ -13,4 +13,5 @@ MonoBehaviour:
   m_Name: WaterElement
   m_EditorClassIdentifier: Assembly-CSharp::ElementData
   elementName: Water
+  type: 3
   color: {r: 0, g: 0.49438763, b: 1, a: 1}

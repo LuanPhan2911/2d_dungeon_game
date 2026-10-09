@@ -8,6 +8,7 @@ public class PlayerElement : MonoBehaviour
 
 
     public PlayerAttack PAttack=> PlayerAttack.Instance;
+    public PlayerMovement PMovement => PlayerMovement.Instance;
 
     const int NONE_PLAYER_ELEMENT_INDEX = -1;
     const int FIRST_PLAYER_ELEMENT_INDEX = 0;
@@ -21,12 +22,16 @@ public class PlayerElement : MonoBehaviour
 
     [SerializeField] private float _infusedElementToWeaponDuration = 8.5f;
     [SerializeField] private float _burstSkillPressedThreshhold = 0.5f;
-    [SerializeField] private ElementSO _physicElementType;
+  
 
 
     [Header("Elemental Skill")]
     [SerializeField] private Vector2 _elementalSkillSize;
     [SerializeField] private Transform _elementalSkillPoint;
+
+    [Header("Burst Skill")]
+    [SerializeField] private SteelBurstSlash _steelBurstSlashPrefab;
+
 
     [Serializable]
     public class PlayerElementData
@@ -37,6 +42,14 @@ public class PlayerElement : MonoBehaviour
 
     public PlayerElementData[] ElementArray;
 
+    public ElementSO PhysicElementSO;
+    public ElementSO SteelElementSO;
+    public ElementSO GrassElementSO;
+    public ElementSO WaterElementSO;
+    public ElementSO FireElementSO;
+    public ElementSO GroundElementSO;
+
+
 
     public event Action OnElementArrayChanged;
 
@@ -46,8 +59,8 @@ public class PlayerElement : MonoBehaviour
     public bool HasActive => _activeIndex != NONE_PLAYER_ELEMENT_INDEX;
     public PlayerElementData ActiveElement => ElementArray[_activeIndex];
 
-    public ElementSO ActiveElementType => ActiveElement.PlayerElementSO.element;
-    public PlayerElementSO ActiveElementSO => ActiveElement.PlayerElementSO;
+    public ElementSO ActiveElementSO => ActiveElement.PlayerElementSO.element;
+    public PlayerElementSO ActivePlayerElementSO => ActiveElement.PlayerElementSO;
     private float ActiveBurstSkillTimer => ActiveElement.burstSkillTimer;
 
     #endregion
@@ -78,7 +91,7 @@ public class PlayerElement : MonoBehaviour
     public bool IsBurstSkillCooldown => ActiveBurstSkillTimer > 0f;
     public float BurstSkillDuration => ActiveBurstSkillTimer > 1f ?
                 Mathf.Round(ActiveBurstSkillTimer) : ActiveBurstSkillTimer.OneDecimal();
-    public float BurstSkillRatio => ActiveBurstSkillTimer / ActiveElementSO.burstCooldown;
+    public float BurstSkillRatio => ActiveBurstSkillTimer / ActivePlayerElementSO.burstCooldown;
     public bool IsInfusedElementToWeapon => _infusedElementToWeaponTimer > 0f;
 
     private float _burstSkillPressTimer;
@@ -91,10 +104,15 @@ public class PlayerElement : MonoBehaviour
 
 
 
+    private BuffEffectManager _buffEffectManager;
+    private DebuffEffectManager _debuffEffectManager;
+
 
     private void Awake()
     {
         Instance = this;
+        _buffEffectManager = GetComponent<BuffEffectManager>();
+        _debuffEffectManager = GetComponent<DebuffEffectManager>();
        
 
     }
@@ -143,12 +161,12 @@ public class PlayerElement : MonoBehaviour
 
             if (GameInputManager.Instance.PlayerActions.ElementalSkill.WasPressedThisFrame())
             {
-                _lastPressElementalSkillTimer = ActiveElementSO.skillInputBuffer;
+                _lastPressElementalSkillTimer = ActivePlayerElementSO.skillInputBuffer;
             }
 
             if (GameInputManager.Instance.PlayerActions.BurstSkill.WasPressedThisFrame())
             {
-                _lastPressBurstSkillTimer = ActiveElementSO.skillInputBuffer;
+                _lastPressBurstSkillTimer = ActivePlayerElementSO.skillInputBuffer;
                 _burstSkillPressTimer = 0f;
                 _isBurstSkillHolding = false;
             }
@@ -176,16 +194,16 @@ public class PlayerElement : MonoBehaviour
       
 
     }
-    public ElementSO GetElementTypeDamage()
+    public ElementSO GetElementInfuseToWeapon()
     {
         
     
         if (!HasActive|| !IsInfusedElementToWeapon)
         {
-            return _physicElementType;
+            return PhysicElementSO;
         }
        
-        return ActiveElementType;
+        return ActiveElementSO;
     }
     public void SetActivePlayerElement(int index)
     {
@@ -211,7 +229,7 @@ public class PlayerElement : MonoBehaviour
     }
     private bool CanUseBurstSkill()
     {
-        return _lastPressBurstSkillTimer > 0f && PlayerHealth.Instance.CurrentEnergy >= ActiveElementSO.burstEnergy &&
+        return _lastPressBurstSkillTimer > 0f && PlayerHealth.Instance.CurrentEnergy >= ActivePlayerElementSO.burstEnergy &&
             !IsBurstSkillCooldown;
     }
 
@@ -219,23 +237,111 @@ public class PlayerElement : MonoBehaviour
     {
         _elementalSkillTimer = _elementalSkillCooldown;
         Debug.Log("Elemental Skill");
-        if (PAttack.ScanAndDamage(_elementalSkillPoint.position, _elementalSkillSize, _elementalSkillDamage)){
-            PlayerHealth.Instance.GainEnergyFormElementalSKill();
-        }
-       
+        PAttack.ScanAndDamageElementalSkill(_elementalSkillPoint.position,
+            _elementalSkillSize, _elementalSkillDamage);
+
+
 
     }
     private void BurstSkillAttack()
     {
 
-        ElementArray[ActiveIndex].burstSkillTimer = ActiveElementSO.burstCooldown;
-        PlayerHealth.Instance.ConsumeEnergy(ActiveElementSO.burstEnergy);
+        ElementArray[ActiveIndex].burstSkillTimer = ActivePlayerElementSO.burstCooldown;
+        PlayerHealth.Instance.ConsumeEnergy(ActivePlayerElementSO.burstEnergy);
+
+
+        
+
+
         Debug.Log("Burst Skill");
+
+
+        if(ActivePlayerElementSO is SteelPlayerElementSO steelPlayerElementSO)
+        {
+            SpawnSteelBurstSlash(steelPlayerElementSO.burstDamage);
+
+            _debuffEffectManager.PurifyEffect(DebuffEffectType.Poison);
+            
+
+            ActiveBuffEffect grassResistanceEffect = new ActiveBuffEffect
+            {
+                durationTimer = steelPlayerElementSO.resistanceBonusDuration,
+                type= BuffEffectType.ResistanceBonus,
+                value= steelPlayerElementSO.resistanceBonus
+                
+
+            };
+            _buffEffectManager.ApplyEffect(grassResistanceEffect);
+
+            ActiveBuffEffect counterAttackEffect = new ActiveBuffEffect
+            {
+                durationTimer = steelPlayerElementSO.counterAttackDuration,
+                type= BuffEffectType.CounterAttack,
+                value= steelPlayerElementSO.counterAttackRate
+                
+
+            };
+            _buffEffectManager.ApplyEffect(counterAttackEffect);
+
+
+            ActiveBuffEffect damageReductionEffect = new ActiveBuffEffect
+            {
+                durationTimer = steelPlayerElementSO.damageReductionDuration,
+                type= BuffEffectType.DamageReduction,
+                value= steelPlayerElementSO.damageReductionRate
+                
+
+            };
+
+         
+            _buffEffectManager.ApplyEffect(damageReductionEffect);
+        }
+    }
+
+    private void SpawnSteelBurstSlash(float damageAmount)
+    {
+        SteelBurstSlash slash = Instantiate(_steelBurstSlashPrefab, transform.position, Quaternion.identity);
+        Vector2 direction = PMovement.IsFacingRight ? Vector2.right : Vector2.left;
+
+        Damage damage = new Damage
+        {
+            amount = damageAmount,
+            elementSO = ActiveElementSO,
+        };
+        slash.Lauch(direction, damage);
+
     }
     private void InfuseElementToWeapon()
     {
         _infusedElementToWeaponTimer = _infusedElementToWeaponDuration;
         _isBurstSkillHolding = true;
+    }
+
+    public float GetResistanceByElement(ElementSO element)
+    {
+        float value = 0f;
+
+        if (HasActive)
+        {
+            foreach (var item in ActiveElement.PlayerElementSO.resistances)
+            {
+                if (item.element == element)
+                {
+                    value += item.resistance;
+                    break;
+                }
+            }
+        }
+
+        foreach (var item in _buffEffectManager.GetResiatanceBonusArray())
+        {
+            if (item.element == element)
+            {
+                value += item.resistance;
+                break;
+            }
+        }
+        return value;
     }
 
 
@@ -246,4 +352,6 @@ public class PlayerElement : MonoBehaviour
 
         Gizmos.DrawWireCube(_elementalSkillPoint.position, _elementalSkillSize);
     }
+
+   
 }

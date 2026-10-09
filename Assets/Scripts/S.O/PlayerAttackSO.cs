@@ -46,8 +46,10 @@ public class Damage
     public float amount { get; set; }
     public ElementSO elementSO { get; set; }
     public bool isCrit { get; set; }
-
+    public bool canCrit { get; set; } = true;
     public bool isFromEffect { get; set; }  // Thêm thuộc tính này để xác định nguồn gốc của sát thương
+
+    public GameObject sourceAttackGameObject;
 
 
 }

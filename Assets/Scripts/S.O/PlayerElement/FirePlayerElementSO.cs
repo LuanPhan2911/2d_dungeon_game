@@ -1,7 +1,7 @@
 ﻿using UnityEngine;
 
 [CreateAssetMenu(fileName = "Fire Player Element", menuName = "Player Element/Fire Player Element")]
-public class PlayerElementFireSO : PlayerElementSO
+public class FirePlayerElementSO : PlayerElementSO
 {
     public float damage = 40f;
 

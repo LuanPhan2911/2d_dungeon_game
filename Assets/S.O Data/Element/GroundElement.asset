@@ -13,4 +13,5 @@ MonoBehaviour:
   m_Name: GroundElement
   m_EditorClassIdentifier: Assembly-CSharp::ElementData
   elementName: Ground
+  type: 5
   color: {r: 0.509434, g: 0.43995076, b: 0.33737984, a: 1}

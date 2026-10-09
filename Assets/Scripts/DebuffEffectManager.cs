@@ -1,67 +1,77 @@
+
+
 using NUnit.Framework.Internal;
 using System.Collections.Generic;
-
 using UnityEngine;
 
 
-[System.Serializable]
-public class ActiveEffect
+
+
+public class DebuffEffectManager : MonoBehaviour
 {
-    public StatusEffectSO effectSO;
-
-    public int currentStacks;
-    public float durationTimer;
-    public float tickTimer;
-    public float lastStackAddedTime;
-    public float decayTimer;
-    public bool isDamageActive; 
-    public GameObject effectUIInstance; // Reference to the instantiated UI prefab
-
-    public ActiveEffect(StatusEffectSO effectSO)
+    [System.Serializable]
+    public class ActiveEffect
     {
-        this.effectSO = effectSO;
-        this.currentStacks = 0;
-        this.lastStackAddedTime = -99f;
-    }
-}
+        public DebuffEffectSO effectSO;
 
-public class StatusEffectManager : MonoBehaviour
-{
+        public int currentStacks;
+        public float durationTimer;
+        public float tickTimer;
+        public float lastStackAddedTime;
+        public float decayTimer;
+        public bool isActive; // enough stack, trigger active effect
+        public GameObject effectUIInstance; // Reference to the instantiated UI prefab
+      
+
+        public ActiveEffect(DebuffEffectSO effectSO)
+        {
+            this.effectSO = effectSO;
+            this.currentStacks = 0;
+            this.lastStackAddedTime = -99f;
+        }
+    }
+
+    public const float BURNING_DAMAGE_BONUS = 0.2f;
 
     [SerializeField] private float _decayStackTime = 3f;
-    [SerializeField] private GameObject _parentUIGameObject;
+    [SerializeField] private GameObject _effectUIGameObject;
+    [SerializeField] private StatusEffectUI _effectUIPrefab;
 
     // thời gian để giảm stack nếu không có stack mới được thêm vào
-    private List<ActiveEffect> activeEffects = new List<ActiveEffect>();
+    private List<ActiveEffect> _activeEffects = new List<ActiveEffect>();
 
-    private List<ActiveEffect> effectsToRemove = new List<ActiveEffect>();
+    private List<ActiveEffect> _effectsToRemove = new List<ActiveEffect>();
 
     private void Update()
     {
-        effectsToRemove.Clear();
-        foreach (var effect in activeEffects)
+        _effectsToRemove.Clear();
+        foreach (var effect in _activeEffects)
         {
             HandleEffectLogic(effect);
         }
-        foreach (var effect in effectsToRemove)
+        foreach (var effect in _effectsToRemove)
         {
-            activeEffects.Remove(effect);
+            _activeEffects.Remove(effect);
         }
     }
 
 
 
-    public void ApplyEffect(StatusEffectSO effectSO) { 
+    public void ApplyEffect(DebuffEffectSO effectSO) { 
         
-        ActiveEffect existingEffect = activeEffects.Find(effect => effect.effectSO == effectSO);
+        ActiveEffect existingEffect = _activeEffects.Find(effect => effect.effectSO == effectSO);
 
         if(existingEffect== null)
         {
             existingEffect= new ActiveEffect(effectSO);
-            activeEffects.Add(existingEffect);
+            _activeEffects.Add(existingEffect);
 
-            existingEffect.effectUIInstance= Instantiate(effectSO.effectUIPrefab, _parentUIGameObject.transform);
+            existingEffect.effectUIInstance= Instantiate(_effectUIPrefab.gameObject, _effectUIGameObject.transform);
+
+
         }
+
+       
 
         float currentTime = Time.time;
        
@@ -80,11 +90,11 @@ public class StatusEffectManager : MonoBehaviour
 
             if(existingEffect.currentStacks>= effectSO.maxStacks)
             {
-                existingEffect.isDamageActive = true;
+                existingEffect.isActive = true;
             }
         }
 
-        if (existingEffect.isDamageActive)
+        if (existingEffect.isActive)
         {
             existingEffect.durationTimer = effectSO.maxDuration; // reset duration timer when damage is active
 
@@ -99,7 +109,7 @@ public class StatusEffectManager : MonoBehaviour
 
         
 
-        if (effect.isDamageActive)
+        if (effect.isActive)
         {
             effect.durationTimer -= Time.deltaTime;
 
@@ -114,8 +124,7 @@ public class StatusEffectManager : MonoBehaviour
 
             if (effect.durationTimer <= 0f)
             {
-                effectsToRemove.Add(effect);
-                Destroy(effect.effectUIInstance);
+                effect.currentStacks = 0;
 
             }
         }
@@ -129,41 +138,43 @@ public class StatusEffectManager : MonoBehaviour
                     effect.currentStacks--;
                     effect.decayTimer = _decayStackTime;
                     UpdateStatusEffectUI(effect);
-
-
-
-                    if (effect.currentStacks <= 0)
-                    {
-                        effectsToRemove.Add(effect);
-                        Destroy(effect.effectUIInstance);
-                    }
-
                 }
-            }
-        }        
-    }
-    private void UpdateStatusEffectUI(ActiveEffect effect)
-    {
-        if (effect.effectUIInstance.TryGetComponent(out StatusEffectUI statusEffectUI))
+            } 
+        }
+
+        if (effect.currentStacks <= 0)
         {
-            statusEffectUI.SetFillAmount((float)effect.currentStacks / effect.effectSO.maxStacks);
+            _effectsToRemove.Add(effect);
+            Destroy(effect.effectUIInstance);
         }
     }
-    private void ExecuteEffectAction(StatusEffectSO effectSO)
+
+   
+    private void UpdateStatusEffectUI(ActiveEffect effect)
+    {
+        if(effect.effectUIInstance.TryGetComponent(out StatusEffectUI statusEffectUI))
+        {
+            statusEffectUI.SetImage(effect.effectSO.sprite);
+            statusEffectUI.SetFillAmount((float)effect.currentStacks / effect.effectSO.maxStacks);
+        }
+      
+    }
+    private void ExecuteEffectAction(DebuffEffectSO effectSO)
     {
         // Implement the logic to apply the effect's action (e.g., damage, slow, etc.)
         // This is a placeholder for demonstration purposes.
 
         if (gameObject.TryGetComponent(out IDamageable damageable))
         {
-            if (effectSO.type == EffectType.Poison || effectSO.type == EffectType.Burn)
+            if (effectSO.type == DebuffEffectType.Poison || effectSO.type == DebuffEffectType.Burn)
             {
-                Damage damage= new Damage
+                Damage damage = new Damage
                 {
                     amount = effectSO.valuePerTick,
                     elementSO = effectSO.elementSO,
-                    isCrit = false,
-                    isFromEffect = true
+                    canCrit = false,
+                    isFromEffect = true,
+                    sourceAttackGameObject= gameObject
                 };
                 damageable.TakeDamage(damage);
             }
@@ -172,28 +183,28 @@ public class StatusEffectManager : MonoBehaviour
         
     }
 
-    public bool HasEffect(EffectType type)
+    public bool HasEffect(DebuffEffectType type)
     {
         // Tìm trong danh sách xem có hiệu ứng nào trùng loại và có stack lớn hơn 0 không
-        return activeEffects.Exists(e => e.effectSO.type == type && e.currentStacks > 0);
+        return _activeEffects.Exists(e => e.effectSO.type == type && e.currentStacks > 0);
     }
 
-    public bool IsEffectActive(EffectType type)
+    public bool IsEffectActive(DebuffEffectType type)
     {
-        ActiveEffect effect = activeEffects.Find(e => e.effectSO.type == type);
+        ActiveEffect effect = _activeEffects.Find(e => e.effectSO.type == type);
         if (effect != null)
         {
-            return effect.isDamageActive;
+            return effect.isActive;
         }
         return false;
     }
-    public float GetDamageBonusPercent(EffectType type)
+    public void PurifyEffect (DebuffEffectType type)
     {
-        ActiveEffect effect = activeEffects.Find(e => e.effectSO.type == type);
-        if (effect != null)
-        {
-            return effect.effectSO.damageBonusPercent;
-        }
-        return 0f;
+        if (!HasEffect(type)) return;
+
+        ActiveEffect effect = _activeEffects.Find(e => e.effectSO.type == type);
+
+        effect.currentStacks = 0;
     }
+    
 }

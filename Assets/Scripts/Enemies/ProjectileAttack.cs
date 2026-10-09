@@ -49,6 +49,7 @@ public class ProjectileAttack : MonoBehaviour
         {
             elementSO = _enemy.Element,
             amount = _enemy.BaseDamage,
+            sourceAttackGameObject= gameObject
             
             
         };

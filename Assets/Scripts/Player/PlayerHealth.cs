@@ -2,7 +2,7 @@ using System;
 using UnityEngine;
 
 
-public class PlayerHealth : MonoBehaviour
+public class PlayerHealth : MonoBehaviour, IDamageable
 {
 
     [SerializeField] private PlayerHealthSO _data;
@@ -30,9 +30,16 @@ public class PlayerHealth : MonoBehaviour
     public float CurrentStamina => _stamina;
 
 
+
+    private DebuffEffectManager _debuffEffectManager;
+    private BuffEffectManager _buffEffectManager;
+
+
     private void Awake()
     {
         Instance = this;
+        _debuffEffectManager = GetComponent<DebuffEffectManager>();
+        _buffEffectManager = GetComponent<BuffEffectManager>();
     }
 
     private float _health;
@@ -80,9 +87,15 @@ public class PlayerHealth : MonoBehaviour
 
     public void TakeDamage(Damage damage) {
 
-      
+        
 
-       damage.amount *= GetDamageResistanceMultiplier(damage.elementSO);
+        damage.amount *= GetResistanceMultiplier(damage.elementSO);
+
+        damage.amount *= GetDamageBonusMultiplier();
+
+        HandleEffect(damage);
+
+
 
         ChangeHealth(-damage.amount);
 
@@ -95,28 +108,84 @@ public class PlayerHealth : MonoBehaviour
             return;
         }
     }
-
-    public float GetDamageResistanceMultiplier(ElementSO element)
+    private float GetDamageBonusMultiplier()
     {
-        float multiplier = 1;
-        Debug.Log(2);
-        if (!PElement.HasActive) return multiplier;
-        
+        float multiplier = 1f;
 
-        ElementalResistance[] resistances = PElement.ActiveElement.PlayerElementSO.resistances;
-        for (int i = 0; i < resistances.Length; i++)
+        #region Muliplier from status effects
+
+        if (_buffEffectManager.HasEffect(BuffEffectType.DamageReduction))
         {
-            if (resistances[i].element == element)
-            {
-                multiplier = 1 - resistances[i].resistance;
-                break;
-            }
+            multiplier *= (1 - _buffEffectManager.GetValues(BuffEffectType.DamageReduction));
         }
 
 
-        Debug.Log(multiplier);
+        #endregion
         return multiplier;
     }
+
+    private void HandleEffect(Damage damage)
+    {
+        if (damage.isFromEffect) return;
+
+
+        // apply effect
+        if (damage.elementSO.type == ElementalType.Grass)
+        {
+            _debuffEffectManager.ApplyEffect(_data.posionEffectSO);
+        }
+        else if (damage.elementSO.type == ElementalType.Fire)
+        {
+            _debuffEffectManager.ApplyEffect(_data.burnEffectSO);
+        }
+
+
+        // counter attack
+
+        if (_buffEffectManager.HasEffect(BuffEffectType.CounterAttack)){
+
+            float amount = damage.amount * _buffEffectManager.GetValues(BuffEffectType.CounterAttack);
+
+            Damage counterDamage = new Damage
+            {
+                amount = amount,
+                canCrit =false,
+                isFromEffect = true,
+                elementSO = PElement.SteelElementSO,
+                sourceAttackGameObject = gameObject
+
+            };
+            if(damage.sourceAttackGameObject && 
+                damage.sourceAttackGameObject.TryGetComponent(out IDamageable damageable))
+            {
+                damageable.TakeDamage(counterDamage);
+            }
+        }
+    }
+
+
+   
+
+    public float GetResistanceMultiplier(ElementSO element)
+    {
+        float multiplier = 1;
+
+        float resistance = PElement.GetResistanceByElement(element);
+        if(resistance < 0)
+        {
+            multiplier = 1 - (resistance / 2);
+        }else if(resistance>=0f && resistance <= 0.75f)
+        {
+            multiplier = 1 - resistance;
+        }else if(resistance> 0.75f)
+        {
+            multiplier = 1f / (4 * resistance + 1);
+        }
+        
+
+        return multiplier ;
+    }
+   
     private void SetStaminaDelayTimer()
     {
         _staminaRegenDelayTimer = _data.staminaRegainDelay;

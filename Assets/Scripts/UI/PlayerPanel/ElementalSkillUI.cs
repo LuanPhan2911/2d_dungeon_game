@@ -21,7 +21,7 @@ public class ElementalSkillUI : MonoBehaviour
     }
     private void ElementSwap()
     {
-        _backgroundImage.color = PlayerElement.Instance.ActiveElementType.color;
+        _backgroundImage.color = PlayerElement.Instance.ActiveElementSO.color;
         Show();
     }
 

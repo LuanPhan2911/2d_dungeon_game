@@ -28,7 +28,7 @@ public class EnemySO : ScriptableObject
 
     [Header("Effects")]
 
-    public StatusEffectSO posionEffectSO;
-    public StatusEffectSO burnEffectSO;
+    public DebuffEffectSO posionEffectSO;
+    public DebuffEffectSO burnEffectSO;
 
 }

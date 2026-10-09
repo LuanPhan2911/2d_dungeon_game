@@ -231,35 +231,59 @@ public class PlayerAttack : MonoBehaviour
         }
         return isCritStrike;
     }
- 
 
-    public bool ScanAndDamage(Vector3 position, Vector2 size, float damageAmount)
+
+    public void ScanAndDamage(Vector3 position, Vector2 size, float damageAmount)
     {
         Collider2D[] hitEnemies = Physics2D.OverlapBoxAll(position, size, 0, _enemyMask);
         if (hitEnemies.Length > 0)
         {
-            #region Crit rate
-            bool isCritStrike = IsCritStrike();
-            if (isCritStrike)
-            {
-                damageAmount *= GetCritDamageMultiplier();
-            }
-            #endregion
-
             Damage damage = new Damage
             {
                 amount = damageAmount,
-                elementSO = PElement.GetElementTypeDamage(),
-                isCrit = isCritStrike
+                elementSO = PElement.GetElementInfuseToWeapon(),
+                sourceAttackGameObject= gameObject
+
             };
 
-       
             #region Energy
-
+            PHealth.GainEnergyFromAttack();
+            #endregion
            
 
-            #endregion
-            bool isHitEnemy = false; ;
+            // 2. Damge to enemy
+            foreach (Collider2D hit in hitEnemies)
+            {
+                if (hit.TryGetComponent(out IDamageable damageable))
+                {
+                    damageable.TakeDamage(damage);
+                   
+                }
+            }
+            
+
+        }
+      
+
+    }
+       
+
+      
+    public void ScanAndDamageElementalSkill(Vector3 position, Vector2 size, float damageAmount)
+    {
+        Collider2D[] hitEnemies = Physics2D.OverlapBoxAll(position, size, 0, _enemyMask);
+        if (hitEnemies.Length > 0)
+        {
+            Damage damage = new Damage
+            {
+                amount = damageAmount,
+                elementSO = PElement.ActiveElementSO,   
+                sourceAttackGameObject= gameObject
+            };
+
+            PlayerHealth.Instance.GainEnergyFormElementalSKill();
+
+           
 
             // 2. Damge to enemy
             foreach (Collider2D hit in hitEnemies)
@@ -267,27 +291,17 @@ public class PlayerAttack : MonoBehaviour
                 if(hit.TryGetComponent(out IDamageable damageable))
                 {
                     damageable.TakeDamage(damage);
-                    isHitEnemy = true;
+                   
                 }
-            }
-            return isHitEnemy;
-            
+            }    
         }
-        return false;
-       
-
-      
-
     }
-    private float GetCritDamageMultiplier()
+    public float GetCritDamageMultiplier()
     {
         return 1 + _data.baseCritDamage;
     }
     private void SpawnNormalAttackSlashVFX( )
     {
-
-
-      
         bool isFacingRight = PMovement.IsFacingRight;
 
         GameObject slashFx = Instantiate(_slashFxPrefab );
@@ -296,7 +310,7 @@ public class PlayerAttack : MonoBehaviour
         slashFx.transform.localScale = new Vector3(isFacingRight ? 1 : -1, 1, 1);
 
 
-        ElementSO elementDamage = PElement.GetElementTypeDamage();
+        ElementSO elementDamage = PElement.GetElementInfuseToWeapon();
        
         slashFx.GetComponent<SlashFX>().SetColor(elementDamage.color);
         
@@ -312,7 +326,7 @@ public class PlayerAttack : MonoBehaviour
         Vector3 scale= slashFx.transform.localScale;
         slashFx.transform.localScale = new Vector3(isFacingRight ? scale.x : -scale.x, scale.y, scale.z);
 
-        ElementSO elementDamage = PElement.GetElementTypeDamage();
+        ElementSO elementDamage = PElement.GetElementInfuseToWeapon();
        
         slashFx.GetComponent<SlashFX>().SetColor(elementDamage.color);
     }

@@ -1,14 +1,14 @@
 using UnityEngine;
 
-[CreateAssetMenu(fileName = "StatusEffectSO", menuName = "Scriptable Objects/StatusEffectSO")]
+[CreateAssetMenu(fileName = "DebuffEffectSO", menuName = "Scriptable Objects/DebuffEffectSO")]
 
 
-public class StatusEffectSO : ScriptableObject
+public class DebuffEffectSO : ScriptableObject
 {
     public string effectName;
     public ElementSO elementSO;
-    public EffectType type;
-    public GameObject effectUIPrefab;
+    public Sprite sprite;
+    public DebuffEffectType type;
 
     [Header("Settings")]
     public float maxDuration = 3.0f;
@@ -18,6 +18,5 @@ public class StatusEffectSO : ScriptableObject
 
     [Header("Values")]
     public float valuePerTick; // Sát thương mỗi tick hoặc % làm chậm
-    public float damageBonusPercent=0f; // Hệ số nhân sát thương
 }
-public enum EffectType { Poison, Burn }
+public enum DebuffEffectType { Poison, Burn }

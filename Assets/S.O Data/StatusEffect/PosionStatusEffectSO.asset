@@ -14,11 +14,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::StatusEffectSO
   effectName: 
   elementSO: {fileID: 11400000, guid: db1905687a944cc4aa7e5287c2cc606a, type: 2}
+  sprite: {fileID: 21300000, guid: 1a67063fd24b2c04eac7f27e20544141, type: 3}
   type: 0
-  effectUIPrefab: {fileID: 4548392702050862670, guid: 8bc15896a4f8a3e4dae1fd0e2d55e438, type: 3}
   maxDuration: 5
   maxStacks: 5
   stackCooldown: 0.5
   tickInterval: 1
   valuePerTick: 5
-  damageBonusPercent: 0
