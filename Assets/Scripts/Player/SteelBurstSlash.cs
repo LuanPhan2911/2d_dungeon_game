@@ -2,29 +2,28 @@ using UnityEngine;
 
 public class SteelBurstSlash : MonoBehaviour
 {
-    [SerializeField] private float _duration=1f;
-    [SerializeField] private float _distance = 5f;
-
-
-
+ 
     private Damage _damage;
-    private Rigidbody2D _rb;
+
     private SpriteRenderer _spriteRenderer;
+    private HorizontalMove _horizontalMove;
 
     private void Awake()
     {
-        _rb = GetComponent<Rigidbody2D>();
         _spriteRenderer = GetComponent<SpriteRenderer>();
+        _horizontalMove = GetComponent<HorizontalMove>();
     }
-
 
     private void Start()
     {
-        Destroy(gameObject, _duration);
+        _horizontalMove.OnMovedToDestination += OnMovedToDestination;
+        _horizontalMove.OnMovedToObstacle += OnMovedToDestination;
     }
 
-   
-
+    private void OnMovedToDestination()
+    {
+        Destroy(gameObject);
+    }
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
@@ -37,11 +36,7 @@ public class SteelBurstSlash : MonoBehaviour
     public void Lauch(Vector2 direction, Damage damage)
     {
         _damage = damage;
-        float speed = _distance / _duration;
-
         _spriteRenderer.flipX = direction == Vector2.left;
-
-        _rb.linearVelocity = direction * speed;
-       
+        _horizontalMove.IsMoveRight = direction == Vector2.right;
     }
 }

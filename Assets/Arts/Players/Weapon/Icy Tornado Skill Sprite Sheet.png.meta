@@ -1,0 +1,674 @@
+fileFormatVersion: 2
+guid: 7b8d38306a103cd4eb37fa118863bffe
+TextureImporter:
+  internalIDToNameTable:
+  - first:
+      213: 1800725945194008080
+    second: Icy Tornado Skill Sprite Sheet_0
+  externalObjects: {}
+  serializedVersion: 13
+  mipmaps:
+    mipMapMode: 0
+    enableMipMap: 0
+    sRGBTexture: 1
+    linearTexture: 0
+    fadeOut: 0
+    borderMipMap: 0
+    mipMapsPreserveCoverage: 0
+    alphaTestReferenceValue: 0.5
+    mipMapFadeDistanceStart: 1
+    mipMapFadeDistanceEnd: 3
+  bumpmap:
+    convertToNormalMap: 0
+    externalNormalMap: 0
+    heightScale: 0.25
+    normalMapFilter: 0
+    flipGreenChannel: 0
+  isReadable: 0
+  streamingMipmaps: 0
+  streamingMipmapsPriority: 0
+  vTOnly: 0
+  ignoreMipmapLimit: 0
+  grayScaleToAlpha: 0
+  generateCubemap: 6
+  cubemapConvolution: 0
+  seamlessCubemap: 0
+  textureFormat: 1
+  maxTextureSize: 2048
+  textureSettings:
+    serializedVersion: 2
+    filterMode: 1
+    aniso: 1
+    mipBias: 0
+    wrapU: 1
+    wrapV: 1
+    wrapW: 1
+  nPOTScale: 0
+  lightmap: 0
+  compressionQuality: 50
+  spriteMode: 2
+  spriteExtrude: 1
+  spriteMeshType: 1
+  alignment: 0
+  spritePivot: {x: 0.5, y: 0.5}
+  spritePixelsToUnits: 100
+  spriteBorder: {x: 0, y: 0, z: 0, w: 0}
+  spriteGenerateFallbackPhysicsShape: 1
+  alphaUsage: 1
+  alphaIsTransparency: 1
+  spriteTessellationDetail: -1
+  textureType: 8
+  textureShape: 1
+  singleChannelComponent: 0
+  flipbookRows: 1
+  flipbookColumns: 1
+  maxTextureSizeSet: 0
+  compressionQualitySet: 0
+  textureFormatSet: 0
+  ignorePngGamma: 0
+  applyGammaDecoding: 0
+  swizzle: 50462976
+  cookieLightType: 0
+  platformSettings:
+  - serializedVersion: 4
+    buildTarget: DefaultTexturePlatform
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 4
+    buildTarget: Standalone
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  spriteSheet:
+    serializedVersion: 2
+    sprites:
+    - serializedVersion: 2
+      name: Icy Tornado Skill Sprite Sheet_0
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 746
+        width: 256
+        height: 248
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 01e4e1dd4b67df810800000000000000
+      internalID: 1800725945194008080
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Icy Tornado Skill Sprite Sheet_1
+      rect:
+        serializedVersion: 2
+        x: 256
+        y: 746
+        width: 256
+        height: 248
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: d938921d8261f6c42ae8474760bd9b00
+      internalID: 1958369205
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Icy Tornado Skill Sprite Sheet_2
+      rect:
+        serializedVersion: 2
+        x: 512
+        y: 746
+        width: 256
+        height: 248
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: a41ae1090a7f15f4baf2ed50dad8f663
+      internalID: 1268949040
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Icy Tornado Skill Sprite Sheet_3
+      rect:
+        serializedVersion: 2
+        x: 768
+        y: 746
+        width: 256
+        height: 248
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 3f77cb24af451424286747b322f34ecf
+      internalID: -1569768083
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Icy Tornado Skill Sprite Sheet_4
+      rect:
+        serializedVersion: 2
+        x: 1024
+        y: 746
+        width: 256
+        height: 248
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 3d94499f06c00ef4daf217aa5fad2a1e
+      internalID: 2078468987
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Icy Tornado Skill Sprite Sheet_5
+      rect:
+        serializedVersion: 2
+        x: 1280
+        y: 746
+        width: 256
+        height: 248
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 41247278b59b20142a4546c4eafb186a
+      internalID: 2086465299
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Icy Tornado Skill Sprite Sheet_6
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 498
+        width: 256
+        height: 248
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 4049ffa7cfc8f4443a6a5b46a58fd73e
+      internalID: -1639421483
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Icy Tornado Skill Sprite Sheet_7
+      rect:
+        serializedVersion: 2
+        x: 256
+        y: 498
+        width: 256
+        height: 248
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: bcc3aae6d42216148aa5204f006bbf4c
+      internalID: -760734070
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Icy Tornado Skill Sprite Sheet_8
+      rect:
+        serializedVersion: 2
+        x: 512
+        y: 498
+        width: 256
+        height: 248
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: e64a601b911cc334d8bdf061a8ef087c
+      internalID: -1762838148
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Icy Tornado Skill Sprite Sheet_9
+      rect:
+        serializedVersion: 2
+        x: 768
+        y: 498
+        width: 256
+        height: 248
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 3b6ee7aa90639e740897bbff9c3f1bff
+      internalID: 940675335
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Icy Tornado Skill Sprite Sheet_10
+      rect:
+        serializedVersion: 2
+        x: 1024
+        y: 498
+        width: 256
+        height: 248
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 537b7003f5ba7044da1a88067d654094
+      internalID: -1672493400
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Icy Tornado Skill Sprite Sheet_11
+      rect:
+        serializedVersion: 2
+        x: 1280
+        y: 498
+        width: 256
+        height: 248
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: e9ac4da3303b17c49befc184ba8f5530
+      internalID: 305611699
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Icy Tornado Skill Sprite Sheet_12
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 250
+        width: 256
+        height: 248
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 018bd748066688744bd8073f47db5c9c
+      internalID: 1407683840
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Icy Tornado Skill Sprite Sheet_13
+      rect:
+        serializedVersion: 2
+        x: 256
+        y: 250
+        width: 256
+        height: 248
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: a8f5263ab80775a44921f3c3b1a5c3c7
+      internalID: -309300746
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Icy Tornado Skill Sprite Sheet_14
+      rect:
+        serializedVersion: 2
+        x: 512
+        y: 250
+        width: 256
+        height: 248
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: e865141ed4196df43b78137410892217
+      internalID: -213783395
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Icy Tornado Skill Sprite Sheet_15
+      rect:
+        serializedVersion: 2
+        x: 768
+        y: 250
+        width: 256
+        height: 248
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: d06188c1658280a45ba6cce93faffb83
+      internalID: -130268547
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Icy Tornado Skill Sprite Sheet_16
+      rect:
+        serializedVersion: 2
+        x: 1024
+        y: 250
+        width: 256
+        height: 248
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 7bf2be8dacacd0a45b8a9bb79077f45f
+      internalID: -735901487
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Icy Tornado Skill Sprite Sheet_17
+      rect:
+        serializedVersion: 2
+        x: 1280
+        y: 250
+        width: 256
+        height: 248
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 75b5ac97605d55f44b172ae0661792c7
+      internalID: 1826129407
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Icy Tornado Skill Sprite Sheet_18
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 2
+        width: 256
+        height: 248
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: d5bd214353c3c594bbd69768fba7846a
+      internalID: 1606396612
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Icy Tornado Skill Sprite Sheet_19
+      rect:
+        serializedVersion: 2
+        x: 256
+        y: 2
+        width: 256
+        height: 248
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 8b118fdbe5394f2458511bc96c095206
+      internalID: -595388151
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Icy Tornado Skill Sprite Sheet_20
+      rect:
+        serializedVersion: 2
+        x: 512
+        y: 2
+        width: 256
+        height: 248
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 6133bad113b806d4493c2f0d57358c73
+      internalID: -1411266818
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Icy Tornado Skill Sprite Sheet_21
+      rect:
+        serializedVersion: 2
+        x: 768
+        y: 2
+        width: 256
+        height: 248
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 052dc84a56a60a24e95db44a85c0a1a0
+      internalID: 1498671867
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Icy Tornado Skill Sprite Sheet_22
+      rect:
+        serializedVersion: 2
+        x: 1024
+        y: 2
+        width: 256
+        height: 248
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 81617a29f9300294dbaaf68600efc0cf
+      internalID: -1981887858
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Icy Tornado Skill Sprite Sheet_23
+      rect:
+        serializedVersion: 2
+        x: 1280
+        y: 2
+        width: 256
+        height: 248
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 0ceb48e26c015374e9e1a1d4d5408ce0
+      internalID: -1957226291
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    outline: []
+    customData: 
+    physicsShape: []
+    bones: []
+    spriteID: b87e99e57136e6c4d9bdc847b4d1f7bc
+    internalID: 0
+    vertices: []
+    indices: 
+    edges: []
+    weights: []
+    secondaryTextures: []
+    spriteCustomMetadata:
+      entries:
+      - key: SpriteEditor.SliceSettings
+        value: '{"sliceOnImport":false,"gridCellCount":{"x":6.0,"y":4.0},"gridSpriteSize":{"x":256.0,"y":248.0},"gridSpriteOffset":{"x":0.0,"y":30.0},"gridSpritePadding":{"x":0.0,"y":0.0},"pivot":{"x":0.5,"y":0.5},"pivotPixels":{"x":0.0,"y":0.0},"autoSlicingMethod":0,"spriteAlignment":0,"pivotUnitMode":0,"slicingType":2,"keepEmptyRects":false,"isAlternate":false}'
+    nameFileIdTable:
+      Icy Tornado Skill Sprite Sheet_0: 1800725945194008080
+      Icy Tornado Skill Sprite Sheet_1: 1958369205
+      Icy Tornado Skill Sprite Sheet_10: -1672493400
+      Icy Tornado Skill Sprite Sheet_11: 305611699
+      Icy Tornado Skill Sprite Sheet_12: 1407683840
+      Icy Tornado Skill Sprite Sheet_13: -309300746
+      Icy Tornado Skill Sprite Sheet_14: -213783395
+      Icy Tornado Skill Sprite Sheet_15: -130268547
+      Icy Tornado Skill Sprite Sheet_16: -735901487
+      Icy Tornado Skill Sprite Sheet_17: 1826129407
+      Icy Tornado Skill Sprite Sheet_18: 1606396612
+      Icy Tornado Skill Sprite Sheet_19: -595388151
+      Icy Tornado Skill Sprite Sheet_2: 1268949040
+      Icy Tornado Skill Sprite Sheet_20: -1411266818
+      Icy Tornado Skill Sprite Sheet_21: 1498671867
+      Icy Tornado Skill Sprite Sheet_22: -1981887858
+      Icy Tornado Skill Sprite Sheet_23: -1957226291
+      Icy Tornado Skill Sprite Sheet_3: -1569768083
+      Icy Tornado Skill Sprite Sheet_4: 2078468987
+      Icy Tornado Skill Sprite Sheet_5: 2086465299
+      Icy Tornado Skill Sprite Sheet_6: -1639421483
+      Icy Tornado Skill Sprite Sheet_7: -760734070
+      Icy Tornado Skill Sprite Sheet_8: -1762838148
+      Icy Tornado Skill Sprite Sheet_9: 940675335
+  mipmapLimitGroupName: 
+  pSDRemoveMatte: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

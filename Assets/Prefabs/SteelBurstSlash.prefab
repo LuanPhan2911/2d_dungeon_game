@@ -11,8 +11,9 @@ GameObject:
   - component: {fileID: 6517686860992966063}
   - component: {fileID: 2025406616856627220}
   - component: {fileID: 146534086873401346}
-  - component: {fileID: 202046149228580867}
   - component: {fileID: 8345158031801835860}
+  - component: {fileID: 202046149228580867}
+  - component: {fileID: 6636216100658603732}
   m_Layer: 0
   m_Name: SteelBurstSlash
   m_TagString: Untagged
@@ -140,20 +141,6 @@ BoxCollider2D:
   m_AutoTiling: 0
   m_Size: {x: 2.345, y: 1.615}
   m_EdgeRadius: 0
---- !u!114 &202046149228580867
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 850530414605353097}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: a87e5fafd1bd9d9479f7d00f5a969669, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::SteelBurstSlash
-  _duration: 0.5
-  _distance: 10
 --- !u!50 &8345158031801835860
 Rigidbody2D:
   serializedVersion: 5
@@ -181,3 +168,33 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 1
   m_Constraints: 0
+--- !u!114 &202046149228580867
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 850530414605353097}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a87e5fafd1bd9d9479f7d00f5a969669, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::SteelBurstSlash
+--- !u!114 &6636216100658603732
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 850530414605353097}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 78541d7eed8a98b41be5ffce00ed6863, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::HorizontalMove
+  _distance: 10
+  _duration: 0.5
+  _obstacleLayerMask:
+    serializedVersion: 2
+    m_Bits: 64
+  IsMoveRight: 1
