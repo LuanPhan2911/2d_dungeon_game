@@ -17,18 +17,9 @@ public class EnemySO : ScriptableObject
     [Header("Attack")]
     public float baseDamage = 5f;
 
-
-
-
-
     [Header("Resisatance")]
     public ElementalResistance[] resistances;
-
-
-
-    [Header("Effects")]
-
-    public DebuffEffectSO posionEffectSO;
-    public DebuffEffectSO burnEffectSO;
+    [Header("Debuff Effects")]
+    public DebuffEffectSO[] debuffEffectSOArray;
 
 }

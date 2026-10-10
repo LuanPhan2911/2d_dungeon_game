@@ -33,6 +33,8 @@ public class PlayerElement : MonoBehaviour
     [Header("Burst Skill")]
     [SerializeField] private SteelBurstSlash _steelBurstSlashPrefab;
 
+    [SerializeField] private GroundBurstTornado _groundBurstTornadoPrefab;
+
 
     [Serializable]
     public class PlayerElementData
@@ -259,7 +261,9 @@ public class PlayerElement : MonoBehaviour
         #region Steel Burst Skill
         if (ActivePlayerElementSO is SteelPlayerElementSO steelPlayerElementSO)
         {
-            SpawnSteelBurstSlash(steelPlayerElementSO.burstDamage);
+            float distance = steelPlayerElementSO.slashBurstDistance;
+            float duration = steelPlayerElementSO.slashBurstDuration;
+            SpawnSteelBurstSlash(steelPlayerElementSO.burstDamage, distance, duration);
 
             _debuffEffectManager.PurifyEffect(DebuffEffectType.Poison);
             
@@ -338,20 +342,81 @@ public class PlayerElement : MonoBehaviour
         #endregion
 
 
+
+        #region Ground Burst Skill
+        if(ActivePlayerElementSO is GroundPlayerElementSO groundPlayerElementSO)
+        {
+            float distance = groundPlayerElementSO.tornadoMoveDistance;
+            float duration = groundPlayerElementSO.tornadoDuration;
+            float damageAmount = groundPlayerElementSO.tornadoDamage;
+            float damageInterval = groundPlayerElementSO.damageInterval;
+            SpawnGroundTornado(damageAmount, damageInterval, distance, duration);
+
+
+
+            ActiveBuffEffect moveSpeedBonusEffect = new ActiveBuffEffect
+            {
+                durationTimer = groundPlayerElementSO.moveSpeedDuration,
+                value = groundPlayerElementSO.moveSpeedRate,
+                type = BuffEffectType.MoveSpeedBonus,
+
+            };
+
+            _buffEffectManager.ApplyEffect(moveSpeedBonusEffect);
+
+            ActiveBuffEffect attackSpeedBonusEffect = new ActiveBuffEffect
+            {
+                durationTimer = groundPlayerElementSO.attackSpeedDuration,
+                value = groundPlayerElementSO.attackSpeedRate,
+                type = BuffEffectType.AttackSpeedBonus,
+
+            };
+
+            _buffEffectManager.ApplyEffect(attackSpeedBonusEffect);
+
+            ActiveBuffEffect debuffInscreasementEffect = new ActiveBuffEffect
+            {
+                durationTimer = groundPlayerElementSO.debuffIncreasementEffectDuration,
+                value = groundPlayerElementSO.debuffIncreasementEffectRate,
+                type = BuffEffectType.DebuffIncreasement,
+
+            };
+
+            _buffEffectManager.ApplyEffect(debuffInscreasementEffect);
+        }
+
+
+        #endregion
     }
 
-    private void SpawnSteelBurstSlash(float damageAmount)
+    private void SpawnSteelBurstSlash(float damageAmount, float distance, float duration)
     {
         SteelBurstSlash slash = Instantiate(_steelBurstSlashPrefab, transform.position, Quaternion.identity);
-        Vector2 direction = PMovement.IsFacingRight ? Vector2.right : Vector2.left;
-
+        
         Damage damage = new Damage
         {
             amount = damageAmount,
             elementSO = ActiveElementSO,
+            sourceAttackGameObject=gameObject
         };
-        slash.Lauch(direction, damage);
+        slash.Launch(PMovement.IsFacingRight,distance, duration );
+        slash.SetDamage(damage);
 
+    }
+    private void SpawnGroundTornado(float damageAmount, float damageInterval,  float distance, float duration)
+    {
+        GroundBurstTornado tornado = 
+            Instantiate(_groundBurstTornadoPrefab, transform.position, Quaternion.identity);
+
+
+        tornado.Launch(PMovement.IsFacingRight, distance, duration);
+        Damage damage = new Damage
+        {
+            amount = damageAmount,
+            elementSO = ActiveElementSO,
+            sourceAttackGameObject=gameObject
+        };
+        tornado.SetDamage(damage, damageInterval);
     }
     private void InfuseElementToWeapon()
     {

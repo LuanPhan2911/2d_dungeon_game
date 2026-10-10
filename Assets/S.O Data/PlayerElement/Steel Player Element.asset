@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: Steel Player Element
   m_EditorClassIdentifier: Assembly-CSharp::PlayerElementSteelSO
   element: {fileID: 11400000, guid: 0fda099d69e02a14796aa32fe827c589, type: 2}
-  burstCooldown: 20
+  burstCooldown: 10
   burstEnergy: 10
   skillInputBuffer: 0.2
   resistances:
@@ -34,9 +34,9 @@ MonoBehaviour:
     resistance: 0.25
   resistanceBonusDuration: 10
   burstDamage: 40
-  counterAttackSprite: {fileID: 0}
+  slashBurstDuration: 1
+  slashBurstDistance: 17.5
   counterAttackDuration: 10
   counterAttackRate: 0.2
   damageReductionRate: 0.2
-  damageReductionSprite: {fileID: 0}
   damageReductionDuration: 10

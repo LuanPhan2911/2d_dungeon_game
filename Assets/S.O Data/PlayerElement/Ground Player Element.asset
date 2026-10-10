@@ -13,8 +13,8 @@ MonoBehaviour:
   m_Name: Ground Player Element
   m_EditorClassIdentifier: Assembly-CSharp::PlayerElementGroundSO
   element: {fileID: 11400000, guid: 900a6a60b4ab0844d865b09c7e9b785f, type: 2}
-  burstCooldown: 20
-  burstEnergy: 40
+  burstCooldown: 10
+  burstEnergy: 15
   skillInputBuffer: 0.2
   resistances:
   - element: {fileID: 11400000, guid: fa41908be5b89654d95054a0484eb7d8, type: 2}
@@ -33,5 +33,13 @@ MonoBehaviour:
     element: {fileID: 11400000, guid: cfb9b5ebcdf62a842af790accf5fe130, type: 2}
     resistance: 0.25
   resistanceBonusDuration: 10
-  shieldRate: 0.2
+  tornadoDuration: 5
+  tornadoMoveDistance: 20
+  damageInterval: 0.5
+  tornadoDamage: 5
+  moveSpeedRate: 0.2
+  moveSpeedDuration: 10
+  attackSpeedRate: 0.2
+  attackSpeedDuration: 10
   debuffEffectIncreasementRate: 0.5
+  deffBuffEffectIncreasementDuration: 10

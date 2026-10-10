@@ -33,10 +33,16 @@ public class SteelBurstSlash : MonoBehaviour
         }
     }
 
-    public void Lauch(Vector2 direction, Damage damage)
+    public void Launch(bool isMoveRight, float distance, float duration)
+    {
+      
+        _spriteRenderer.flipX = !isMoveRight;
+        _horizontalMove.IsMoveRight = isMoveRight;
+        _horizontalMove.Distance = distance;
+        _horizontalMove.Duration = duration;
+    }
+    public void SetDamage(Damage damage)
     {
         _damage = damage;
-        _spriteRenderer.flipX = direction == Vector2.left;
-        _horizontalMove.IsMoveRight = direction == Vector2.right;
     }
 }

@@ -7,10 +7,11 @@ public class HorizontalMove : MonoBehaviour
 {
 
 
-    [SerializeField] private float _distance = 10f;
-    [SerializeField] private float _duration = 5f;
+   
     [SerializeField] private LayerMask _obstacleLayerMask;
     public bool IsMoveRight = true;
+    public float Distance = 10f;
+    public float Duration = 5f;
 
 
     public event Action OnMovedToDestination;
@@ -42,20 +43,21 @@ public class HorizontalMove : MonoBehaviour
         }
     }
 
-    private void OnTriggerEnter2D(Collider2D collision)
-    {
-        if (_obstacleLayerMask.Contains(collision.gameObject.layer))
-        {
-            OnMovedToObstacle?.Invoke();
-        }
-    }
+    //private void OnTriggerEnter2D(Collider2D collision)
+    //{
+    //    if (_obstacleLayerMask.Contains(collision.gameObject.layer))
+    //    {
+    //        OnMovedToObstacle?.Invoke();
+    //    }
+    //}
 
+  
 
     private void Move()
     {
         Vector2 direction = IsMoveRight ? Vector2.right : Vector2.left;
-        _timer = _duration;
-        float speed = _distance / _duration;
+        _timer = Duration;
+        float speed = Distance / Duration;
         _rb.linearVelocity = direction * speed;
     }
     public void StopMove()

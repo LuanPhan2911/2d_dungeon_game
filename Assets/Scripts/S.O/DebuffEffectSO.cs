@@ -17,6 +17,6 @@ public class DebuffEffectSO : ScriptableObject
     public float tickInterval = 1.0f;
 
     [Header("Values")]
-    public float valuePerTick; // Sát thương mỗi tick hoặc % làm chậm
+    public float baseValuePerTick; // Sát thương mỗi tick hoặc % làm chậm
 }
 public enum DebuffEffectType { Poison, Burn }

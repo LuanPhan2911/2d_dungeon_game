@@ -5,7 +5,7 @@ using UnityEngine;
 public class PlayerHealth : MonoBehaviour, IDamageable
 {
 
-    [SerializeField] private PlayerHealthSO _data;
+    [SerializeField] private PlayerHealthSO _dataSO;
 
     [SerializeField] private Transform _canvasParent;
 
@@ -56,15 +56,15 @@ public class PlayerHealth : MonoBehaviour, IDamageable
 
     public float GetMaxHealth()
     {
-        return _data.baseHealth;
+        return _dataSO.baseHealth;
     }
     public float GetMaxEnergy()
     {
-        return _data.baseEnergy;
+        return _dataSO.baseEnergy;
     }
     public float GetMaxStamina()
     {
-        return _data.baseStamina;
+        return _dataSO.baseStamina;
     }
 
     void Start()
@@ -141,14 +141,13 @@ public class PlayerHealth : MonoBehaviour, IDamageable
         if (damage.isFromEffect) return;
 
 
-        // apply effect
-        if (damage.elementSO.type == ElementalType.Grass)
+        foreach (DebuffEffectSO debuffEffectSO in _dataSO.debuffEffectSOArray)
         {
-            _debuffEffectManager.ApplyEffect(_data.posionEffectSO);
-        }
-        else if (damage.elementSO.type == ElementalType.Fire)
-        {
-            _debuffEffectManager.ApplyEffect(_data.burnEffectSO);
+            if (debuffEffectSO.elementSO.type == damage.elementSO.type)
+            {
+                float valuePerTick = debuffEffectSO.baseValuePerTick;
+                _debuffEffectManager.ApplyEffect(debuffEffectSO, valuePerTick);
+            }
         }
 
 
@@ -176,7 +175,11 @@ public class PlayerHealth : MonoBehaviour, IDamageable
     }
 
 
-   
+    private float GetValuePerTickOfDebuffEffect(DebuffEffectSO debuffEffectSO)
+    {
+        return debuffEffectSO.baseValuePerTick;
+    }
+
 
     public float GetResistanceMultiplier(ElementSO element)
     {
@@ -200,7 +203,7 @@ public class PlayerHealth : MonoBehaviour, IDamageable
    
     private void SetStaminaDelayTimer()
     {
-        _staminaRegenDelayTimer = _data.staminaRegainDelay;
+        _staminaRegenDelayTimer = _dataSO.staminaRegainDelay;
     }
 
     public void ConsumeStamina(float amount) {
@@ -216,7 +219,7 @@ public class PlayerHealth : MonoBehaviour, IDamageable
             _staminaRegenDelayTimer -= Time.deltaTime;
             if(_staminaRegenDelayTimer <= 0f)
             {
-                _stamina += _data.staminaRegenRate * Time.deltaTime;
+                _stamina += _dataSO.staminaRegenRate * Time.deltaTime;
                 _stamina = Mathf.Clamp(_stamina, 0f, GetMaxStamina());
             }
            
@@ -232,11 +235,11 @@ public class PlayerHealth : MonoBehaviour, IDamageable
 
     public void GainEnergyFromAttack()
     {
-        ChangeEnergy(_data.gainingEnergyFromNormalAttack);
+        ChangeEnergy(_dataSO.gainingEnergyFromNormalAttack);
     }
     public void GainEnergyFormElementalSKill()
     {
-        ChangeEnergy(_data.gainingEnergyFromElementalSkill);
+        ChangeEnergy(_dataSO.gainingEnergyFromElementalSkill);
     }
 
     public void ConsumeEnergy(float amount)

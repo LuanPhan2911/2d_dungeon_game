@@ -1941,83 +1941,6 @@ Canvas:
   m_SortingLayerID: -1598219977
   m_SortingOrder: 0
   m_TargetDisplay: 0
---- !u!1001 &877612027
-PrefabInstance:
-  m_ObjectHideFlags: 0
-  serializedVersion: 2
-  m_Modification:
-    serializedVersion: 3
-    m_TransformParent: {fileID: 0}
-    m_Modifications:
-    - target: {fileID: 4506990969905542770, guid: 4304f572dd00f1744911b5f42d3908f1, type: 3}
-      propertyPath: m_LocalPosition.x
-      value: -1.88222
-      objectReference: {fileID: 0}
-    - target: {fileID: 4506990969905542770, guid: 4304f572dd00f1744911b5f42d3908f1, type: 3}
-      propertyPath: m_LocalPosition.y
-      value: -1.48426
-      objectReference: {fileID: 0}
-    - target: {fileID: 4506990969905542770, guid: 4304f572dd00f1744911b5f42d3908f1, type: 3}
-      propertyPath: m_LocalPosition.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4506990969905542770, guid: 4304f572dd00f1744911b5f42d3908f1, type: 3}
-      propertyPath: m_LocalRotation.w
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 4506990969905542770, guid: 4304f572dd00f1744911b5f42d3908f1, type: 3}
-      propertyPath: m_LocalRotation.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4506990969905542770, guid: 4304f572dd00f1744911b5f42d3908f1, type: 3}
-      propertyPath: m_LocalRotation.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4506990969905542770, guid: 4304f572dd00f1744911b5f42d3908f1, type: 3}
-      propertyPath: m_LocalRotation.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4506990969905542770, guid: 4304f572dd00f1744911b5f42d3908f1, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4506990969905542770, guid: 4304f572dd00f1744911b5f42d3908f1, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4506990969905542770, guid: 4304f572dd00f1744911b5f42d3908f1, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 7927414223829545587, guid: 4304f572dd00f1744911b5f42d3908f1, type: 3}
-      propertyPath: m_Name
-      value: GroundBurstTornado
-      objectReference: {fileID: 0}
-    m_RemovedComponents: []
-    m_RemovedGameObjects: []
-    m_AddedGameObjects: []
-    m_AddedComponents:
-    - targetCorrespondingSourceObject: {fileID: 7927414223829545587, guid: 4304f572dd00f1744911b5f42d3908f1, type: 3}
-      insertIndex: -1
-      addedObject: {fileID: 877612029}
-  m_SourcePrefab: {fileID: 100100000, guid: 4304f572dd00f1744911b5f42d3908f1, type: 3}
---- !u!1 &877612028 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 7927414223829545587, guid: 4304f572dd00f1744911b5f42d3908f1, type: 3}
-  m_PrefabInstance: {fileID: 877612027}
-  m_PrefabAsset: {fileID: 0}
---- !u!114 &877612029
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 877612028}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ba8853eb2015eaa47baed02890fc0094, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::GroundBurstTornado
 --- !u!1 &934647830
 GameObject:
   m_ObjectHideFlags: 0
@@ -22514,9 +22437,17 @@ PrefabInstance:
       value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 3735642507340127294, guid: 523e1f14885f3df4cbcde949cdf98e38, type: 3}
+      propertyPath: _groundBurstTornadoPrefab
+      value: 
+      objectReference: {fileID: 2183549926405298608, guid: 4304f572dd00f1744911b5f42d3908f1, type: 3}
+    - target: {fileID: 3735642507340127294, guid: 523e1f14885f3df4cbcde949cdf98e38, type: 3}
       propertyPath: _infusedElementToWeaponDuration
       value: 50
       objectReference: {fileID: 0}
+    - target: {fileID: 3735642507340127294, guid: 523e1f14885f3df4cbcde949cdf98e38, type: 3}
+      propertyPath: ElementArray.Array.data[0].PlayerElementSO
+      value: 
+      objectReference: {fileID: 11400000, guid: 0b2240dbf9849fb4d9cfd932a830e79b, type: 2}
     - target: {fileID: 3735642507340127294, guid: 523e1f14885f3df4cbcde949cdf98e38, type: 3}
       propertyPath: ElementArray.Array.data[1].PlayerElementSO
       value: 
@@ -23225,4 +23156,3 @@ SceneRoots:
   - {fileID: 3734041594492279441}
   - {fileID: 4844063437727591414}
   - {fileID: 134635849}
-  - {fileID: 877612027}

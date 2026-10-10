@@ -1,5 +1,6 @@
 using System;
 using UnityEngine;
+using UnityEngine.Rendering;
 
 
 [RequireComponent(typeof(DamageFlash))]
@@ -17,7 +18,7 @@ public class BaseEnemy : MonoBehaviour, IDamageable
 
     private float _currentHealth;
 
-    [SerializeField] private EnemySO _enemySO;
+    [SerializeField] private EnemySO _dataSO;
     private DamageFlash _damageFlash;
     private Rigidbody2D _rb;
     private DebuffEffectManager _debuffEffectManager;
@@ -26,8 +27,8 @@ public class BaseEnemy : MonoBehaviour, IDamageable
     public event Action<float> OnHealthChange;
 
 
-    public ElementSO Element => _enemySO.element;
-    public float BaseDamage => _enemySO.baseDamage;
+    public ElementSO Element => _dataSO.element;
+    public float BaseDamage => _dataSO.baseDamage;
 
    
 
@@ -42,7 +43,7 @@ public class BaseEnemy : MonoBehaviour, IDamageable
 
     private void Start()
     {
-        _currentHealth = _enemySO.maxHealth ;
+        _currentHealth = _dataSO.maxHealth ;
     }
 
    
@@ -58,21 +59,23 @@ public class BaseEnemy : MonoBehaviour, IDamageable
 
 
 
-        damage.amount *= GetResistanceMultiplier(damage.elementSO);
+        
         if (damage.canCrit && PlayerAttack.Instance.IsCritStrike())
         {
             damage.isCrit = true;
             damage.amount *= PlayerAttack.Instance.GetCritDamageMultiplier();
         }
+        damage.amount *= GetResistanceMultiplier(damage.elementSO);
         damage.amount *= GetDamageBonusMultiplier();
 
+        damage.amount = Math.Max(1f, damage.amount);
 
         _currentHealth -= damage.amount;
-        float healthRatio = Math.Clamp(_currentHealth / _enemySO.maxHealth, 0, _enemySO.maxHealth);
+        float healthRatio = Math.Clamp(_currentHealth / _dataSO.maxHealth, 0, _dataSO.maxHealth);
 
         OnHealthChange?.Invoke(healthRatio);
 
-        _damageFlash.Flash(_enemySO.flashDuration);
+        _damageFlash.Flash(_dataSO.flashDuration);
 
         // apply effects
         HandleEffect(damage);
@@ -96,19 +99,42 @@ public class BaseEnemy : MonoBehaviour, IDamageable
     private void HandleEffect(Damage damage)
     {
        if (damage.isFromEffect) return;
-       if(damage.elementSO.type== ElementalType.Grass)
+
+       foreach(DebuffEffectSO debuffEffectSO in _dataSO.debuffEffectSOArray)
         {
-            _debuffEffectManager.ApplyEffect(_enemySO.posionEffectSO);
-        } else if (damage.elementSO.type== ElementalType.Fire)
-        {
-            _debuffEffectManager.ApplyEffect(_enemySO.burnEffectSO);
+            if(debuffEffectSO.elementSO.type== damage.elementSO.type)
+            {
+                float valuePerTick = debuffEffectSO.baseValuePerTick;
+
+                if (damage.sourceAttackGameObject)
+                {
+                    valuePerTick *= GetDebuffEffectIncreasementMultiplier(damage.sourceAttackGameObject);
+                }
+               
+
+                _debuffEffectManager.ApplyEffect(debuffEffectSO, valuePerTick);
+            }
         }
+    }
+
+
+    private float GetDebuffEffectIncreasementMultiplier(GameObject sourceAttackGameObject)
+    {
+        float multiplier = 1f;
+        if(sourceAttackGameObject.TryGetComponent(out BuffEffectManager buffEffectManager))
+        {
+            if (buffEffectManager.HasEffect(BuffEffectType.DebuffIncreasement))
+            {
+                multiplier = (1 + buffEffectManager.GetValues(BuffEffectType.DebuffIncreasement));
+            }
+        }
+        return multiplier;
     }
 
     public float GetResistanceMultiplier(ElementSO element)
     {
         float multiplier = 1;
-        ElementalResistance[] resistances = _enemySO.resistances;
+        ElementalResistance[] resistances = _dataSO.resistances;
         for (int i = 0; i < resistances.Length; i++)
         {
             if (resistances[i].element== element)

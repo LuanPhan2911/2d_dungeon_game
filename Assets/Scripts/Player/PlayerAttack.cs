@@ -67,10 +67,12 @@ public class PlayerAttack : MonoBehaviour
 
     public static PlayerAttack Instance { get; private set;  }
 
+    private BuffEffectManager _buffEffectManager;
 
     private void Awake()
     {
         Instance = this;
+        _buffEffectManager = GetComponent<BuffEffectManager>();
         
      
     }
@@ -113,7 +115,7 @@ public class PlayerAttack : MonoBehaviour
             if (CanChargedAttack())
             {
                 ExecuteChargeAttack();
-                _nextAttackTime = Time.time + _data.baseAttackRate;
+                _nextAttackTime = Time.time + GetAttackRate();
                 _lastPressAttackTimer = 0f;
                 _hasChargedAttack = true;
              
@@ -133,7 +135,7 @@ public class PlayerAttack : MonoBehaviour
         if ( CanNormalAttack())
         {
             ExecuteNormalAttack();
-            _nextAttackTime = Time.time + _data.baseAttackRate;
+            _nextAttackTime = Time.time + GetAttackRate();
             _lastPressAttackTimer = 0f;
         }
 
@@ -329,6 +331,21 @@ public class PlayerAttack : MonoBehaviour
         ElementSO elementDamage = PElement.GetElementInfuseToWeapon();
        
         slashFx.GetComponent<SlashFX>().SetColor(elementDamage.color);
+    }
+
+    private float GetAttackSpeedMultiplier()
+    {
+        float multiplier = 1f;
+        if (_buffEffectManager.HasEffect(BuffEffectType.AttackSpeedBonus))
+        {
+            multiplier = (1 - _buffEffectManager.GetValues(BuffEffectType.AttackSpeedBonus));
+        }
+        return multiplier;
+    }
+    private float GetAttackRate()
+    {
+        float attackRate = _data.baseAttackRate * GetAttackSpeedMultiplier();
+        return attackRate;
     }
 
     private void OnDrawGizmos()

@@ -81,6 +81,7 @@ public partial class PlayerMovement : MonoBehaviour
 
     private PlayerAnimation _playerAnimation;
     private Rigidbody2D _rb;
+    private BuffEffectManager _buffEffectManager;
 
 
 
@@ -95,6 +96,7 @@ public partial class PlayerMovement : MonoBehaviour
         Instance = this;
         _rb = GetComponent<Rigidbody2D>();
         _playerAnimation = GetComponent<PlayerAnimation>();
+        _buffEffectManager = GetComponent<BuffEffectManager>();
        
     }
 
@@ -333,6 +335,8 @@ public partial class PlayerMovement : MonoBehaviour
     {
         
         float moveSpeed= IsSprinting ? _data.maxSprintSpeed: _data.maxMoveSpeed;
+
+        moveSpeed *= GetMoveSpeedMultiplier();
         float targetSpeed = HorizontalInput * moveSpeed;
        
         _rb.linearVelocity = new Vector2(targetSpeed, _rb.linearVelocityY);
@@ -420,5 +424,15 @@ public partial class PlayerMovement : MonoBehaviour
         Gizmos.color = Color.blue;
 
         Gizmos.DrawWireCube(_groundCheckPoint.position, _groundCheckSize);
+    }
+    private float GetMoveSpeedMultiplier()
+    {
+        float multiplier = 1;
+        if (_buffEffectManager.HasEffect(BuffEffectType.MoveSpeedBonus))
+        {
+            multiplier = (1 + _buffEffectManager.GetValues(BuffEffectType.MoveSpeedBonus));
+        }
+
+        return multiplier;
     }
 }

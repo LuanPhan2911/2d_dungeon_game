@@ -20,6 +20,7 @@ public class DebuffEffectManager : MonoBehaviour
         public float lastStackAddedTime;
         public float decayTimer;
         public bool isActive; // enough stack, trigger active effect
+        public float valuePerTick;
         public GameObject effectUIInstance; // Reference to the instantiated UI prefab
       
 
@@ -57,7 +58,7 @@ public class DebuffEffectManager : MonoBehaviour
 
 
 
-    public void ApplyEffect(DebuffEffectSO effectSO) { 
+    public void ApplyEffect(DebuffEffectSO effectSO, float valuePerTick) { 
         
         ActiveEffect existingEffect = _activeEffects.Find(effect => effect.effectSO == effectSO);
 
@@ -65,11 +66,9 @@ public class DebuffEffectManager : MonoBehaviour
         {
             existingEffect= new ActiveEffect(effectSO);
             _activeEffects.Add(existingEffect);
-
             existingEffect.effectUIInstance= Instantiate(_effectUIPrefab.gameObject, _effectUIGameObject.transform);
-
-
         }
+        existingEffect.valuePerTick = valuePerTick;
 
        
 
@@ -117,8 +116,8 @@ public class DebuffEffectManager : MonoBehaviour
 
             if (effect.tickTimer <= 0f)
             {
-                // Apply damage here
-                ExecuteEffectAction(effect.effectSO);
+               
+                ExecuteEffectAction(effect);
                 effect.tickTimer = effect.effectSO.tickInterval;
             }
 
@@ -159,27 +158,30 @@ public class DebuffEffectManager : MonoBehaviour
         }
       
     }
-    private void ExecuteEffectAction(DebuffEffectSO effectSO)
+    private void ExecuteEffectAction(ActiveEffect effect)
     {
         // Implement the logic to apply the effect's action (e.g., damage, slow, etc.)
         // This is a placeholder for demonstration purposes.
+        DebuffEffectSO effectSO = effect.effectSO;
 
-        if (gameObject.TryGetComponent(out IDamageable damageable))
+        if(effectSO.type == DebuffEffectType.Poison || effectSO.type == DebuffEffectType.Burn)
         {
-            if (effectSO.type == DebuffEffectType.Poison || effectSO.type == DebuffEffectType.Burn)
+            if (gameObject.TryGetComponent(out IDamageable damageable))
             {
                 Damage damage = new Damage
                 {
-                    amount = effectSO.valuePerTick,
+                    amount = effect.valuePerTick,
                     elementSO = effectSO.elementSO,
                     canCrit = false,
                     isFromEffect = true,
-                    sourceAttackGameObject= gameObject
+                    
                 };
                 damageable.TakeDamage(damage);
-            }
 
+            }
         }
+
+       
         
     }
 

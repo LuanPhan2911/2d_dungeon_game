@@ -21,7 +21,8 @@ public class PlayerHealthSO : ScriptableObject
 
 
 
-    [Header("Effects")]
+    [Header("Debuff Effects")]
+    public DebuffEffectSO[] debuffEffectSOArray;
 
     public DebuffEffectSO posionEffectSO;
     public DebuffEffectSO burnEffectSO;

@@ -16,6 +16,11 @@ public enum BuffEffectType
 
     ResistanceBonus,
     AllResistances,
+
+    MoveSpeedBonus,
+    AttackSpeedBonus,
+
+    DebuffIncreasement
   
 }
 
