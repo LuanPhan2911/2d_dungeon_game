@@ -29,5 +29,9 @@ MonoBehaviour:
     resistance: 0.1
   - element: {fileID: 11400000, guid: 900a6a60b4ab0844d865b09c7e9b785f, type: 2}
     resistance: 0
+  bonusResistance:
+    element: {fileID: 11400000, guid: 0fda099d69e02a14796aa32fe827c589, type: 2}
+    resistance: 0.25
+  resistanceBonusDuration: 10
   damage: 40
   burningEffectBonusDamageRate: 0.2

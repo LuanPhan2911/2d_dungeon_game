@@ -15,6 +15,7 @@ public enum BuffEffectType
     DamageReduction,
 
     ResistanceBonus,
+    AllResistances,
   
 }
 

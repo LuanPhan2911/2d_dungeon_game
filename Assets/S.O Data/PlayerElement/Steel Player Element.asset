@@ -29,10 +29,11 @@ MonoBehaviour:
     resistance: -0.25
   - element: {fileID: 11400000, guid: 900a6a60b4ab0844d865b09c7e9b785f, type: 2}
     resistance: 0
-  burstDamage: 40
-  resistanceBonus:
+  bonusResistance:
     element: {fileID: 11400000, guid: db1905687a944cc4aa7e5287c2cc606a, type: 2}
     resistance: 0.25
+  resistanceBonusDuration: 10
+  burstDamage: 40
   counterAttackSprite: {fileID: 0}
   counterAttackDuration: 10
   counterAttackRate: 0.2

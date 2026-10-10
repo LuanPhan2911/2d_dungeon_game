@@ -1,24 +1,16 @@
 using TMPro;
 using UnityEngine;
 
-public class DamageTextUI : MonoBehaviour
+public class HealTextUI : MonoBehaviour
 {
-
     [SerializeField] private TextMeshProUGUI _textMesh;
     [SerializeField] private float _moveSpeed = 2f;
     [SerializeField] private float _disappearTime = 0.5f;
 
-    [SerializeField] private float _normalDamageSize = 64;
-    [SerializeField] private float _critDamageSize = 128;
 
- 
-    public void Spawn(Damage damage)
+    public void Spawn(float amount)
     {
-
-        _textMesh.text = Mathf.RoundToInt(damage.amount).ToString();
-        _textMesh.fontSize = damage.isCrit ? _critDamageSize: _normalDamageSize;
-     
-        _textMesh.color = damage.elementSO.color;
+        _textMesh.text = Mathf.RoundToInt(amount).ToString();
     }
 
     private void Update()

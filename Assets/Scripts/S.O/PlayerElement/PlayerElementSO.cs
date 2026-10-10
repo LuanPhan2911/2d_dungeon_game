@@ -17,7 +17,7 @@ public class PlayerElementSO : ScriptableObject
     [Header("Resisatance")]
     public ElementalResistance[] resistances;
 
-    public ElementalResistance resistanceBonus;
+    public ElementalResistance bonusResistance;
     public float resistanceBonusDuration = 10f;
 }
 

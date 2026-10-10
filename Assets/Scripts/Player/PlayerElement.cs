@@ -9,6 +9,7 @@ public class PlayerElement : MonoBehaviour
 
     public PlayerAttack PAttack=> PlayerAttack.Instance;
     public PlayerMovement PMovement => PlayerMovement.Instance;
+    public PlayerHealth PHealth => PlayerHealth.Instance;
 
     const int NONE_PLAYER_ELEMENT_INDEX = -1;
     const int FIRST_PLAYER_ELEMENT_INDEX = 0;
@@ -255,8 +256,8 @@ public class PlayerElement : MonoBehaviour
 
         Debug.Log("Burst Skill");
 
-
-        if(ActivePlayerElementSO is SteelPlayerElementSO steelPlayerElementSO)
+        #region Steel Burst Skill
+        if (ActivePlayerElementSO is SteelPlayerElementSO steelPlayerElementSO)
         {
             SpawnSteelBurstSlash(steelPlayerElementSO.burstDamage);
 
@@ -267,7 +268,7 @@ public class PlayerElement : MonoBehaviour
             {
                 durationTimer = steelPlayerElementSO.resistanceBonusDuration,
                 type= BuffEffectType.ResistanceBonus,
-                value= steelPlayerElementSO.resistanceBonus
+                value= steelPlayerElementSO.bonusResistance
                 
 
             };
@@ -296,6 +297,47 @@ public class PlayerElement : MonoBehaviour
          
             _buffEffectManager.ApplyEffect(damageReductionEffect);
         }
+
+        #endregion
+
+        #region Water Burst Skill
+
+        if(ActivePlayerElementSO is WaterPlayerElementSO waterPlayerElementSO)
+        {
+            // restore health instantly 
+            float amount = waterPlayerElementSO.healRate * PHealth.GetMaxHealth();
+            PHealth.RestoreHealth(amount);
+
+
+            _debuffEffectManager.PurifyEffect(DebuffEffectType.Burn);
+
+            ActiveBuffEffect fireResistanceEffect = new ActiveBuffEffect
+            {
+                durationTimer = waterPlayerElementSO.resistanceBonusDuration,
+                type = BuffEffectType.ResistanceBonus,
+                value = waterPlayerElementSO.bonusResistance
+
+
+            };
+            _buffEffectManager.ApplyEffect(fireResistanceEffect);
+
+
+            PHealth.SetHealPerDuration(waterPlayerElementSO.healPerDuration);
+
+            ActiveBuffEffect allResistances = new ActiveBuffEffect
+            {
+                durationTimer = waterPlayerElementSO.allResistancesDuration,
+                type = BuffEffectType.AllResistances,
+                value = waterPlayerElementSO.allResistanceRate
+
+
+            };
+            _buffEffectManager.ApplyEffect(allResistances);
+        }
+
+        #endregion
+
+
     }
 
     private void SpawnSteelBurstSlash(float damageAmount)
@@ -323,11 +365,13 @@ public class PlayerElement : MonoBehaviour
 
         if (HasActive)
         {
+            float allResistances =  _buffEffectManager.HasEffect(BuffEffectType.AllResistances) ?
+                     _buffEffectManager.GetValues(BuffEffectType.AllResistances): 0f;
             foreach (var item in ActiveElement.PlayerElementSO.resistances)
             {
                 if (item.element == element)
                 {
-                    value += item.resistance;
+                    value += item.resistance + allResistances;
                     break;
                 }
             }

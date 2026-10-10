@@ -13,8 +13,8 @@ MonoBehaviour:
   m_Name: Water Player Element
   m_EditorClassIdentifier: Assembly-CSharp::PlayerElementWaterSO
   element: {fileID: 11400000, guid: cfb9b5ebcdf62a842af790accf5fe130, type: 2}
-  burstCooldown: 20
-  burstEnergy: 40
+  burstCooldown: 10
+  burstEnergy: 20
   skillInputBuffer: 0.2
   resistances:
   - element: {fileID: 11400000, guid: fa41908be5b89654d95054a0484eb7d8, type: 2}
@@ -29,4 +29,23 @@ MonoBehaviour:
     resistance: 0.25
   - element: {fileID: 11400000, guid: 900a6a60b4ab0844d865b09c7e9b785f, type: 2}
     resistance: -0.25
-  healthHealRate: 0.2
+  bonusResistance:
+    element: {fileID: 11400000, guid: 5f9787651436ec04fac44ee1fce84e5d, type: 2}
+    resistance: 0.25
+  resistanceBonusDuration: 10
+  healRate: 0.3
+  healPerDurationRate: 0.05
+  healPerDurationInterval: 2.5
+  allResistances:
+  - element: {fileID: 11400000, guid: fa41908be5b89654d95054a0484eb7d8, type: 2}
+    resistance: 0.2
+  - element: {fileID: 11400000, guid: 0fda099d69e02a14796aa32fe827c589, type: 2}
+    resistance: 0.2
+  - element: {fileID: 11400000, guid: db1905687a944cc4aa7e5287c2cc606a, type: 2}
+    resistance: 0.2
+  - element: {fileID: 11400000, guid: cfb9b5ebcdf62a842af790accf5fe130, type: 2}
+    resistance: 0.2
+  - element: {fileID: 11400000, guid: 5f9787651436ec04fac44ee1fce84e5d, type: 2}
+    resistance: 0.2
+  - element: {fileID: 11400000, guid: 900a6a60b4ab0844d865b09c7e9b785f, type: 2}
+    resistance: 0.2

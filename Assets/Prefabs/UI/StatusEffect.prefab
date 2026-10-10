@@ -86,7 +86,7 @@ GameObject:
   - component: {fileID: 7468443443512047774}
   - component: {fileID: 5611728513813358685}
   m_Layer: 5
-  m_Name: StatusEffectUI
+  m_Name: StatusEffect
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

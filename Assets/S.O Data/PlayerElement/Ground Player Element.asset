@@ -29,5 +29,9 @@ MonoBehaviour:
     resistance: 0
   - element: {fileID: 11400000, guid: 900a6a60b4ab0844d865b09c7e9b785f, type: 2}
     resistance: 0.1
+  bonusResistance:
+    element: {fileID: 11400000, guid: cfb9b5ebcdf62a842af790accf5fe130, type: 2}
+    resistance: 0.25
+  resistanceBonusDuration: 10
   shieldRate: 0.2
   debuffEffectIncreasementRate: 0.5

@@ -22345,6 +22345,10 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 1283718676}
     - target: {fileID: 3024244117808424973, guid: 523e1f14885f3df4cbcde949cdf98e38, type: 3}
+      propertyPath: _healTextPrefab
+      value: 
+      objectReference: {fileID: 6431426753298206016, guid: 07d882b796c53844cac75c5beb5a3c2b, type: 3}
+    - target: {fileID: 3024244117808424973, guid: 523e1f14885f3df4cbcde949cdf98e38, type: 3}
       propertyPath: _damageTextPrefab
       value: 
       objectReference: {fileID: 1487051802927294602, guid: 1354b2960d56cea4c8df6c2267a21e03, type: 3}
@@ -22437,9 +22441,13 @@ PrefabInstance:
       value: 50
       objectReference: {fileID: 0}
     - target: {fileID: 3735642507340127294, guid: 523e1f14885f3df4cbcde949cdf98e38, type: 3}
-      propertyPath: ElementArray.Array.data[2].PlayerElementSO
+      propertyPath: ElementArray.Array.data[1].PlayerElementSO
       value: 
       objectReference: {fileID: 11400000, guid: 3400c7386a8f0ab44a83f01bfa8a0629, type: 2}
+    - target: {fileID: 3735642507340127294, guid: 523e1f14885f3df4cbcde949cdf98e38, type: 3}
+      propertyPath: ElementArray.Array.data[2].PlayerElementSO
+      value: 
+      objectReference: {fileID: 11400000, guid: ace3080cbe0a13c4587f45b5aad1daa8, type: 2}
     - target: {fileID: 5033102710396620486, guid: 523e1f14885f3df4cbcde949cdf98e38, type: 3}
       propertyPath: _UITransform
       value: 
@@ -22735,8 +22743,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 47d1d120cf61f5846bd2933e3650fe2b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::BuffEffectManager
-  _effectUIGameObject: {fileID: 1153409856}
-  _statusEffectUI: {fileID: 5611728513813358685, guid: 8bc15896a4f8a3e4dae1fd0e2d55e438, type: 3}
 --- !u!114 &7956069889846286624
 MonoBehaviour:
   m_ObjectHideFlags: 0

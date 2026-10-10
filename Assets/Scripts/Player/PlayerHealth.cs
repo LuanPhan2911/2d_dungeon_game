@@ -10,6 +10,7 @@ public class PlayerHealth : MonoBehaviour, IDamageable
     [SerializeField] private Transform _canvasParent;
 
     [SerializeField] private DamageTextUI _damageTextPrefab;
+    [SerializeField] private HealTextUI _healTextPrefab;
     public static PlayerHealth Instance { get; private set;  }
 
     public PlayerElement PElement => PlayerElement.Instance;
@@ -35,6 +36,11 @@ public class PlayerHealth : MonoBehaviour, IDamageable
     private BuffEffectManager _buffEffectManager;
 
 
+    private float _healPerDurationTimer;
+    private float _healPerDurationIntervalTimer;
+    private HealPerDuration _healPerduration;
+
+
     private void Awake()
     {
         Instance = this;
@@ -48,15 +54,15 @@ public class PlayerHealth : MonoBehaviour, IDamageable
     private float _staminaRegenDelayTimer;
 
 
-    private float GetMaxHealth()
+    public float GetMaxHealth()
     {
         return _data.baseHealth;
     }
-    private float GetMaxEnergy()
+    public float GetMaxEnergy()
     {
         return _data.baseEnergy;
     }
-    private float GetMaxStamina()
+    public float GetMaxStamina()
     {
         return _data.baseStamina;
     }
@@ -70,6 +76,7 @@ public class PlayerHealth : MonoBehaviour, IDamageable
     private void Update()
     {
         HandleRegenStamina();
+        HandleHealPerDuration();
     }
 
 
@@ -85,6 +92,11 @@ public class PlayerHealth : MonoBehaviour, IDamageable
         damageTextUI.Spawn(damage);
     }
 
+    private void SpawnHealTextUI(float amount)
+    {
+        HealTextUI healTextUI = Instantiate(_healTextPrefab, _canvasParent);
+        healTextUI.Spawn(amount);
+    }
     public void TakeDamage(Damage damage) {
 
         
@@ -233,5 +245,35 @@ public class PlayerHealth : MonoBehaviour, IDamageable
         
     }
    
+
+    public void RestoreHealth(float amount)
+    {
+        ChangeHealth(amount);
+        SpawnHealTextUI(amount);
+    }
+
+    public void SetHealPerDuration(HealPerDuration healPerDuration)
+    {
+        _healPerduration = healPerDuration;
+        _healPerDurationTimer = healPerDuration.duration;
+        _healPerDurationIntervalTimer = healPerDuration.interval;
+    }
+    private void HandleHealPerDuration()
+    {
+        if (_healPerDurationTimer <= 0f) return;
+
+        _healPerDurationTimer -= Time.deltaTime;
+
+        if(_healPerDurationIntervalTimer > 0f)
+        {
+            _healPerDurationIntervalTimer -= Time.deltaTime;
+
+        }
+        else
+        {
+            RestoreHealth(_healPerduration.rate * GetMaxHealth());
+            _healPerDurationIntervalTimer = _healPerduration.interval;
+        }
+    }
   
 }

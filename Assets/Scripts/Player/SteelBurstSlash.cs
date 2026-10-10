@@ -2,17 +2,19 @@ using UnityEngine;
 
 public class SteelBurstSlash : MonoBehaviour
 {
-    [SerializeField] private float _speed = 15f;
     [SerializeField] private float _duration=1f;
+    [SerializeField] private float _distance = 5f;
 
 
 
     private Damage _damage;
     private Rigidbody2D _rb;
+    private SpriteRenderer _spriteRenderer;
 
     private void Awake()
     {
         _rb = GetComponent<Rigidbody2D>();
+        _spriteRenderer = GetComponent<SpriteRenderer>();
     }
 
 
@@ -35,8 +37,11 @@ public class SteelBurstSlash : MonoBehaviour
     public void Lauch(Vector2 direction, Damage damage)
     {
         _damage = damage;
+        float speed = _distance / _duration;
 
-        _rb.linearVelocity = direction * _speed;
+        _spriteRenderer.flipX = direction == Vector2.left;
+
+        _rb.linearVelocity = direction * speed;
        
     }
 }
