@@ -20,5 +20,8 @@ MonoBehaviour:
   energyNeedForBurstSkill: 40
   gainingEnergyFromNormalAttack: 1
   gainingEnergyFromElementalSkill: 15
+  debuffEffectSOArray:
+  - {fileID: 11400000, guid: 5e4a838e821b28345a64c62182835e47, type: 2}
+  - {fileID: 11400000, guid: 65381a2856f05ab4ab570686a456b1a1, type: 2}
   posionEffectSO: {fileID: 11400000, guid: 65381a2856f05ab4ab570686a456b1a1, type: 2}
   burnEffectSO: {fileID: 11400000, guid: 5e4a838e821b28345a64c62182835e47, type: 2}

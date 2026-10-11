@@ -20,4 +20,4 @@ MonoBehaviour:
   maxStacks: 5
   stackCooldown: 0.5
   tickInterval: 0.5
-  valuePerTick: 2
+  baseValuePerTick: 3

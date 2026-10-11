@@ -1,5 +1,6 @@
 
 
+using System.Collections.Generic;
 using UnityEngine;
 
 
@@ -9,17 +10,19 @@ public class GroundBurstTornado : MonoBehaviour
     [SerializeField] private LayerMask _enemyLayerMask;
     [SerializeField] private Vector2 _damageRangeSize;
 
+    [SerializeField] private float _pullSpeed = 10f;
+    [SerializeField] private float _stopRadius = 0.2f;
+
     private Animator _animator;
  
 
     const string END_TORNADO = "EndTornado";
     private HorizontalMove _horizontalMove;
     private Damage _damage;
-    private float _damageInterval;
+    private float _damageInterval=0.5f;
     private float _damageIntervalTimer;
 
 
-    
     private void Awake()
     {
         _animator = GetComponent<Animator>();
@@ -46,6 +49,36 @@ public class GroundBurstTornado : MonoBehaviour
            
         }
     }
+    private void OnTriggerEnter2D(Collider2D collision)
+    {
+        if (_enemyLayerMask.Contains(collision.gameObject.layer))
+        {
+            if (collision.TryGetComponent(out Rigidbody2D enemyRb))
+            {
+                enemyRb.linearVelocity = Vector2.zero;
+                
+            }
+        }
+    }
+
+    private void OnTriggerStay2D(Collider2D collision)
+    {
+        if (_enemyLayerMask.Contains(collision.gameObject.layer))
+        {
+            if(collision.TryGetComponent( out Rigidbody2D enemyRb))
+            {
+                Vector2 enemyPosition = enemyRb.transform.position;
+                Vector2 centerPosition = transform.position;
+
+
+                enemyRb.transform.position = 
+                    Vector2.MoveTowards( enemyPosition, centerPosition, _pullSpeed * Time.deltaTime);
+
+            } 
+        }
+    }
+
+   
     private void ScanAndDamage()
     {
         Collider2D[] hitEnemies = Physics2D.OverlapBoxAll(transform.position, _damageRangeSize, 0, _enemyLayerMask);
@@ -53,14 +86,19 @@ public class GroundBurstTornado : MonoBehaviour
         
         if(hitEnemies.Length > 0)
         {
+            //Damage damage = new Damage
+            //{
+            //    amount = _damage.amount,
+            //    elementSO = _damage.elementSO,
+            //    canCrit = _damage.canCrit,
+            //    isCrit = _damage.isCrit,
+            //    isFromEffect = _damage.isFromEffect,
+            //    sourceAttackGameObject = _damage.sourceAttackGameObject
+            //};
             Damage damage = new Damage
             {
-                amount = _damage.amount,
-                elementSO = _damage.elementSO,
-                canCrit = _damage.canCrit,
-                isCrit = _damage.isCrit,
-                isFromEffect = _damage.isFromEffect,
-                sourceAttackGameObject = _damage.sourceAttackGameObject
+                amount = 1,
+                elementSO= PlayerElement.Instance.GroundElementSO
             };
             foreach (Collider2D hit in hitEnemies)
             {
@@ -104,6 +142,8 @@ public class GroundBurstTornado : MonoBehaviour
         Gizmos.color = Color.red;
 
         Gizmos.DrawWireCube(transform.position, _damageRangeSize);
+
+     
     }
 
 

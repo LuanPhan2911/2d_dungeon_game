@@ -12,6 +12,7 @@ GameObject:
   - component: {fileID: 560249109680743353}
   - component: {fileID: 1048875381210317407}
   - component: {fileID: 3527363404008814862}
+  - component: {fileID: 2042804995843176102}
   - component: {fileID: 2183549926405298608}
   - component: {fileID: 9069032333372938855}
   m_Layer: 0
@@ -144,6 +145,42 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 1
   m_Constraints: 0
+--- !u!58 &2042804995843176102
+CircleCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7927414223829545587}
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_ForceSendLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_ForceReceiveLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_ContactCaptureLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_CallbackLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_IsTrigger: 1
+  m_UsedByEffector: 0
+  m_CompositeOperation: 0
+  m_CompositeOrder: 0
+  m_Offset: {x: 0, y: 0}
+  m_Radius: 2.5
 --- !u!114 &2183549926405298608
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -159,7 +196,9 @@ MonoBehaviour:
   _enemyLayerMask:
     serializedVersion: 2
     m_Bits: 1024
-  _damageRangeSize: {x: 2, y: 2}
+  _damageRangeSize: {x: 3, y: 3}
+  _pullSpeed: 10
+  _stopRadius: 0.2
 --- !u!114 &9069032333372938855
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -175,6 +214,6 @@ MonoBehaviour:
   _obstacleLayerMask:
     serializedVersion: 2
     m_Bits: 64
-  IsMoveRight: 0
+  IsMoveRight: 1
   Distance: 10
   Duration: 5
