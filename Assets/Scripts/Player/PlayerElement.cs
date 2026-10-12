@@ -27,7 +27,8 @@ public class PlayerElement : MonoBehaviour
     public class PlayerElementData
     {
         public PlayerElementSO PlayerElementSO;
-       [HideInInspector] public float burstSkillTimer;
+        [HideInInspector] public float burstTimer;
+        [HideInInspector] public float burstEnergy;
     }
 
     public PlayerElementData[] ElementArray;
@@ -47,11 +48,11 @@ public class PlayerElement : MonoBehaviour
     public int ActiveIndex => _activeIndex;
     
     public bool HasActive => _activeIndex != NONE_PLAYER_ELEMENT_INDEX;
-    public PlayerElementData ActiveElement => ElementArray[_activeIndex];
-
-    public ElementSO ActiveElementSO => ActiveElement.PlayerElementSO.element;
-    public PlayerElementSO ActivePlayerElementSO => ActiveElement.PlayerElementSO;
-    private float ActiveBurstSkillTimer => ActiveElement.burstSkillTimer;
+    public PlayerElementData ActivePlayerElement => ElementArray[_activeIndex];
+    public ElementSO ActiveElementSO => ActivePlayerElement.PlayerElementSO.element;
+    public PlayerElementSO ActivePlayerElementSO => ActivePlayerElement.PlayerElementSO;
+    public float ActiveBurstTimer => ActivePlayerElement.burstTimer;
+    public float ActiveBurstEnergy => ActivePlayerElement.burstEnergy;
 
     #endregion
 
@@ -60,7 +61,7 @@ public class PlayerElement : MonoBehaviour
     public bool IsElementSwapCooldown => _elementSwapTimer > 0f;
     private float _elementSwapTimer;
     private int _activeIndex = NONE_PLAYER_ELEMENT_INDEX;
-    private float _elementSwapCooldow=0.5f;
+    private float _elementSwapCooldown=0.5f;
 
 
 
@@ -71,18 +72,21 @@ public class PlayerElement : MonoBehaviour
 
  
 
-    private float _infusedElementToWeaponTimer;
-    public bool IsBurstSkillCooldown => ActiveBurstSkillTimer > 0f;
-    public float BurstSkillDuration => ActiveBurstSkillTimer > 1f ?
-                Mathf.Round(ActiveBurstSkillTimer) : ActiveBurstSkillTimer.OneDecimal();
-    public float BurstSkillRatio => ActiveBurstSkillTimer / ActivePlayerElementSO.burstCooldown;
+    public bool IsBurstCooldown => ActiveBurstTimer > 0f;
+    public float BurstCooldownDuration => ActiveBurstTimer > 1f ?
+                Mathf.Round(ActiveBurstTimer) : ActiveBurstTimer.OneDecimal();
+    public float BurstCooldownRatio => ActiveBurstTimer / ActivePlayerElementSO.burstCooldown;
+    public float BurstEnergyRatio => ActiveBurstEnergy / ActivePlayerElementSO.burstEnergy;
     public bool IsInfusedElementToWeapon => _infusedElementToWeaponTimer > 0f;
 
 
-    #endregion
 
 
     private float _lastPressBurstSkillTimer;
+    private float _infusedElementToWeaponTimer;
+    #endregion
+
+
 
 
 
@@ -131,8 +135,8 @@ public class PlayerElement : MonoBehaviour
         {
             for (int i = 0; i < ElementArray.Length; i++)
             {
-                float timer = ElementArray[i].burstSkillTimer;
-                ElementArray[i].burstSkillTimer =Mathf.Max(timer - Time.deltaTime, 0f);
+                float timer = ElementArray[i].burstTimer;
+                ElementArray[i].burstTimer =Mathf.Max(timer - Time.deltaTime, 0f);
             }
 
 
@@ -176,7 +180,7 @@ public class PlayerElement : MonoBehaviour
 
 
         _activeIndex = index;
-        _elementSwapTimer = _elementSwapCooldow;
+        _elementSwapTimer = _elementSwapCooldown;
         StopInfuseElementToWeapon();
         OnElementSwapped?.Invoke();
 
@@ -189,13 +193,14 @@ public class PlayerElement : MonoBehaviour
    
     private bool CanUseBurstSkill()
     {
-        return _lastPressBurstSkillTimer > 0f && PlayerHealth.Instance.CurrentEnergy >= ActivePlayerElementSO.burstEnergy &&
-            !IsBurstSkillCooldown;
+        return _lastPressBurstSkillTimer > 0f && 
+            ActivePlayerElement.burstEnergy >= ActivePlayerElementSO.burstEnergy &&
+            !IsBurstCooldown;
     }
     private void BurstSkillAttack()
     {
 
-        ElementArray[ActiveIndex].burstSkillTimer = ActivePlayerElementSO.burstCooldown;
+        ElementArray[ActiveIndex].burstTimer = ActivePlayerElementSO.burstCooldown;
         PlayerHealth.Instance.ConsumeEnergy(ActivePlayerElementSO.burstEnergy);
 
 
@@ -378,7 +383,7 @@ public class PlayerElement : MonoBehaviour
         {
             float allResistances =  _buffEffectManager.HasEffect(BuffEffectType.AllResistances) ?
                      _buffEffectManager.GetValues(BuffEffectType.AllResistances): 0f;
-            foreach (var item in ActiveElement.PlayerElementSO.resistances)
+            foreach (var item in ActivePlayerElement.PlayerElementSO.resistances)
             {
                 if (item.element == element)
                 {

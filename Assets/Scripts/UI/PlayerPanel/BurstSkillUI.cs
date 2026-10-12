@@ -4,21 +4,24 @@ using UnityEngine.UI;
 
 public class BurstSkillUI : MonoBehaviour
 {
-    [SerializeField] private Image _activeImage;
-    [SerializeField] private Image _backgroundImage;
+    [SerializeField] private Image _energyImage;
+    [SerializeField] private Image _cooldownImage;
+    [SerializeField] private Image _mainImage;
     [SerializeField] private TextMeshProUGUI _cooldownText;
 
+
+    public PlayerElement PElement => PlayerElement.Instance;
 
     private float _currentDuration;
 
 
     private void Start()
     {
-        PlayerElement.Instance.OnElementSwapped += ElementSwap;
+        PElement.OnElementSwapped += ElementSwap;
     
       
 
-        if (!PlayerElement.Instance.HasActive)
+        if (!PElement.HasActive)
         {
             Hide();
         }
@@ -26,31 +29,35 @@ public class BurstSkillUI : MonoBehaviour
     private void Update()
 
     {
-        if (!PlayerElement.Instance.HasActive) return;
+        if (!PElement.HasActive) return;
 
 
-        if (PlayerElement.Instance.IsBurstSkillCooldown)
+
+        _energyImage.fillAmount = PElement.BurstEnergyRatio;
+        if (PElement.IsBurstCooldown)
         {
-            _activeImage.gameObject.SetActive(true);
+            _cooldownImage.gameObject.SetActive(true);
             _cooldownText.gameObject.SetActive(true);
-            _activeImage.fillAmount = PlayerElement.Instance.BurstSkillRatio;
-            if (_currentDuration != PlayerElement.Instance.BurstSkillDuration)
+            _cooldownImage.fillAmount = PElement.BurstCooldownRatio;
+
+            if (_currentDuration != PElement.BurstCooldownDuration)
             {
-                _cooldownText.text = $"{PlayerElement.Instance.BurstSkillDuration}";
+                _cooldownText.text = $"{PElement.BurstCooldownDuration}";
 
             }
-            _currentDuration = PlayerElement.Instance.BurstSkillDuration;
+            _currentDuration = PElement.BurstCooldownDuration;
         }
         else
         {
-            _activeImage.gameObject.SetActive(false);
+            _cooldownImage.gameObject.SetActive(false);
             _cooldownText.gameObject.SetActive(false);
         }
     }
 
     private void ElementSwap()
     {
-        _backgroundImage.color = PlayerElement.Instance.ActiveElementSO.color;
+        _energyImage.color = PElement.ActiveElementSO.color;
+        _mainImage.sprite = PElement.ActivePlayerElementSO.burstSkillSprite;
         Show();
     }
 
