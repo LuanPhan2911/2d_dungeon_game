@@ -5,17 +5,13 @@ using UnityEngine;
 public class PlayerAttackSO : ScriptableObject
 {
     public float baseAttackRate=0.4f;
-
     public float baseNormalAttackDamage = 10f;
-
     public float baseChargeAttackDamage = 20f;
-    public float chargeAttackHoldTime = 0.5f;
-    public float chargeAttackStaminaCost = 20f;
+    public float chargeAttackTime = 1.5f;
 
-
-    public float baseLowPlungeAttackDamage = 12f;
-    public float baseHighPlungeAttackDamage = 18f;
-    public float highHeightThreshold = 4.5f;
+    public float lowPlungeAttackDamage = 14f;
+    public float highPlungeAttackDamage = 18f;
+    public float hightHeightThreshold = 4.5f;
 
     [Header("Input Buffer")]
     public float attackInputBuffer = 0.2f;
@@ -27,7 +23,7 @@ public class PlayerAttackSO : ScriptableObject
     public float baseCritRate = 0.1f;
     public float baseCritDamage = 0.5f;
 
-    public float critRateIncreasement = 0.05f;
+    public float critRateIncreasement = 0.025f;
 
 
 }

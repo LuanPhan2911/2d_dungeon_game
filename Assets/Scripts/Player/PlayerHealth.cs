@@ -9,8 +9,6 @@ public class PlayerHealth : MonoBehaviour, IDamageable
 
     [SerializeField] private Transform _canvasParent;
 
-    [SerializeField] private DamageTextUI _damageTextPrefab;
-    [SerializeField] private HealTextUI _healTextPrefab;
     public static PlayerHealth Instance { get; private set;  }
 
     public PlayerElement PElement => PlayerElement.Instance;
@@ -22,13 +20,9 @@ public class PlayerHealth : MonoBehaviour, IDamageable
 
 
     public float HealthRatio => _health / GetMaxHealth();
-    public float EnergyRatio => _energy / GetMaxEnergy();
-    public float StaminaRatio => _stamina / GetMaxStamina();
 
-    public float CurrentEnergy => _energy;
     public float CurrentHealth => _health;
 
-    public float CurrentStamina => _stamina;
 
 
 
@@ -49,33 +43,22 @@ public class PlayerHealth : MonoBehaviour, IDamageable
     }
 
     private float _health;
-    private float _energy;
-    private float _stamina;
-    private float _staminaRegenDelayTimer;
 
 
     public float GetMaxHealth()
     {
         return _dataSO.baseHealth;
     }
-    public float GetMaxEnergy()
-    {
-        return _dataSO.baseEnergy;
-    }
-    public float GetMaxStamina()
-    {
-        return _dataSO.baseStamina;
-    }
+ 
 
     void Start()
     {
         _health = GetMaxHealth();
-        _energy = 0f;
     }
 
     private void Update()
     {
-        HandleRegenStamina();
+       
         HandleHealPerDuration();
     }
 
@@ -86,17 +69,7 @@ public class PlayerHealth : MonoBehaviour, IDamageable
         OnHealthChanged?.Invoke();
     }
 
-    private void SpanwDamageTextUI(Damage damage)
-    {
-        DamageTextUI damageTextUI = Instantiate(_damageTextPrefab, _canvasParent);
-        damageTextUI.Spawn(damage);
-    }
-
-    private void SpawnHealTextUI(float amount)
-    {
-        HealTextUI healTextUI = Instantiate(_healTextPrefab, _canvasParent);
-        healTextUI.Spawn(amount);
-    }
+   
     public void TakeDamage(Damage damage) {
 
         
@@ -111,7 +84,7 @@ public class PlayerHealth : MonoBehaviour, IDamageable
 
         ChangeHealth(-damage.amount);
 
-        SpanwDamageTextUI(damage);
+       
 
 
         if (_health <= 0f)
@@ -201,58 +174,15 @@ public class PlayerHealth : MonoBehaviour, IDamageable
         return multiplier ;
     }
    
-    private void SetStaminaDelayTimer()
-    {
-        _staminaRegenDelayTimer = _dataSO.staminaRegainDelay;
-    }
-
-    public void ConsumeStamina(float amount) {
-        _stamina = Mathf.Clamp(_stamina - amount, 0f, GetMaxStamina());
-        SetStaminaDelayTimer();
-    }
-
+  
+  
     
-    private void HandleRegenStamina()
-    {
-        if(_stamina < GetMaxStamina())
-        {
-            _staminaRegenDelayTimer -= Time.deltaTime;
-            if(_staminaRegenDelayTimer <= 0f)
-            {
-                _stamina += _dataSO.staminaRegenRate * Time.deltaTime;
-                _stamina = Mathf.Clamp(_stamina, 0f, GetMaxStamina());
-            }
-           
-        }   
-    }
-   
-
-    private void ChangeEnergy(float amount)
-    {
-        _energy = Mathf.Clamp(_energy + amount, 0f, GetMaxEnergy());
-        OnEnergyChanged?.Invoke();
-    }
-
-    public void GainEnergyFromAttack()
-    {
-        ChangeEnergy(_dataSO.gainingEnergyFromNormalAttack);
-    }
-    public void GainEnergyFormElementalSKill()
-    {
-        ChangeEnergy(_dataSO.gainingEnergyFromElementalSkill);
-    }
-
-    public void ConsumeEnergy(float amount)
-    {
-        ChangeEnergy(-amount);
-        
-    }
    
 
     public void RestoreHealth(float amount)
     {
         ChangeHealth(amount);
-        SpawnHealTextUI(amount);
+        
     }
 
     public void SetHealPerDuration(HealPerDuration healPerDuration)

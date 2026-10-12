@@ -27,9 +27,17 @@ public partial class PlayerMovement : MonoBehaviour
     public bool IsPlunging;
  
 
+   
+    public float GetDistanceFromPosition(Vector3 position)
+    {
+        return Vector2.Distance(transform.position, position);
+    }
+    public bool IsGrounded => _lastOnGroundTimer > 0f;
+
+
     public float GetFallHeight()
     {
-        RaycastHit2D hit= Physics2D.Raycast(_groundCheckPoint.position, Vector2.down, Mathf.Infinity, GroundLayerMask);
+        RaycastHit2D hit = Physics2D.Raycast(_groundCheckPoint.position, Vector2.down, Mathf.Infinity, GroundLayerMask);
 
         if (hit.collider != null)
         {
@@ -40,14 +48,6 @@ public partial class PlayerMovement : MonoBehaviour
             return 0f;
         }
     }
-    public float GetDistanceFromPosition(Vector3 position)
-    {
-        return Vector2.Distance(transform.position, position);
-    }
-    public bool IsGrounded => _lastOnGroundTimer > 0f;
-
-
-
 
 
 
@@ -221,7 +221,7 @@ public partial class PlayerMovement : MonoBehaviour
         if (CanSprint())
         {
             IsSprinting = true;
-            PlayerHealth.Instance.ConsumeStamina(_data.sprintStaminaCostPerSecond * Time.deltaTime);
+            
         }
         else
         {
@@ -371,8 +371,8 @@ public partial class PlayerMovement : MonoBehaviour
 
     private bool CanDash()
     {
-        return !IsDashing && IsGrounded && !_isDashCooldown &&
-            PlayerHealth.Instance.CurrentStamina >= _data.staminaCostPerDash;
+        return !IsDashing && IsGrounded && !_isDashCooldown;
+            
     }
 
    
@@ -389,7 +389,7 @@ public partial class PlayerMovement : MonoBehaviour
         float startTime = Time.time;
         IsDashing = true;
 
-        PlayerHealth.Instance.ConsumeStamina(_data.staminaCostPerDash);
+      
 
         while (Time.time - startTime < _data.dashTime)
         {
@@ -413,8 +413,7 @@ public partial class PlayerMovement : MonoBehaviour
     {
 
         return GameInputManager.Instance.PlayerActions.Run.IsPressed() && IsGrounded
-            && IsHorizontalMoving && _canSprintAfterDash
-            && PlayerHealth.Instance.CurrentStamina >= _data.sprintStaminaCostPerSecond * Time.deltaTime;
+            && IsHorizontalMoving && _canSprintAfterDash;
 
     }
 

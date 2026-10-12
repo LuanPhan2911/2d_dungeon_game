@@ -25,7 +25,7 @@ public class PlayerAttack : MonoBehaviour
 
 
 
-    [SerializeField] private PlayerAttackSO _data;
+    [SerializeField] private PlayerAttackSO _dataSO;
     [SerializeField] private LayerMask _enemyMask;
 
 
@@ -53,9 +53,8 @@ public class PlayerAttack : MonoBehaviour
 
 
     private float _chargedTimer;
-    private bool _hasChargedAttack;
-    private bool _isEnoughStaminaForChargeAttack = false;
-    private bool _isChargedOnGround = false;
+    private bool _isCharging;
+    private bool _isFullyCharged;
 
 
 
@@ -78,7 +77,7 @@ public class PlayerAttack : MonoBehaviour
     }
     private void Start()
     {
-        _currentCritRate = _data.baseCritRate;
+        _currentCritRate = _dataSO.baseCritRate;
     }
 
    
@@ -94,41 +93,31 @@ public class PlayerAttack : MonoBehaviour
 
         if ( PlayerActions.Attack.WasPressedThisFrame() )
         {
-            _lastPressAttackTimer = _data.attackInputBuffer;
-
+            _lastPressAttackTimer = _dataSO.attackInputBuffer;
             _chargedTimer = 0f;
-            _hasChargedAttack = false;
-            _isEnoughStaminaForChargeAttack= PHealth.CurrentStamina >= _data.chargeAttackStaminaCost;
-            _isChargedOnGround = PMovement.IsGrounded;
+            _isCharging = true;
+            _isFullyCharged = false;   
         }
 
-        if (PlayerActions.Attack.IsPressed()  
-            && _isEnoughStaminaForChargeAttack && _isChargedOnGround
-            )
+        if (_isCharging && PlayerActions.Attack.IsPressed())
         {
             _chargedTimer += Time.deltaTime;
-            if (!PMovement.IsGrounded)
-            {
-                _isChargedOnGround = false;
-            }
 
-            if (CanChargedAttack())
+            if(_chargedTimer >= _dataSO.chargeAttackTime && !_isFullyCharged)
+            {
+                _isFullyCharged = true;
+                OnFullyCharged();
+            }
+        }
+
+        if (_isCharging&& PlayerActions.Attack.WasReleasedThisFrame())
+        {
+            if (_isFullyCharged)
             {
                 ExecuteChargeAttack();
                 _nextAttackTime = Time.time + GetAttackRate();
                 _lastPressAttackTimer = 0f;
-                _hasChargedAttack = true;
-             
-
             }
-        }
-
-        if (PlayerActions.Attack.WasReleasedThisFrame())
-        {
-            _chargedTimer = 0f;
-            _hasChargedAttack = false;
-            _isEnoughStaminaForChargeAttack = false;
-            _isChargedOnGround = false;
         }
 
 
@@ -136,6 +125,7 @@ public class PlayerAttack : MonoBehaviour
         {
             ExecuteNormalAttack();
             _nextAttackTime = Time.time + GetAttackRate();
+            _isCharging = false;
             _lastPressAttackTimer = 0f;
         }
 
@@ -149,26 +139,22 @@ public class PlayerAttack : MonoBehaviour
         }
     }
 
-    private bool CanChargedAttack()
+
+    private void OnFullyCharged()
     {
-        return _chargedTimer >= _data.chargeAttackHoldTime && !_hasChargedAttack
-            ;
+        Debug.Log("On Full Charged");
     }
 
     private void ExecuteChargeAttack()
     {
-        ScanAndDamage(_chargeAttackPoint.position, _chargeAttackSize, _data.baseChargeAttackDamage);
-
-        PHealth.ConsumeStamina(_data.chargeAttackStaminaCost);
+        ScanAndDamage(_chargeAttackPoint.position, _chargeAttackSize, _dataSO.baseChargeAttackDamage);
 
         SpawnChargeAttackSlashVFX();
     }
     private bool CanNormalAttack()
     {
-   
-
-        return Time.time >= _nextAttackTime && _lastPressAttackTimer >0f &&  
-            !PMovement.IsDashing &&! PMovement.IsPlunging;
+        return Time.time >= _nextAttackTime && _lastPressAttackTimer >0f &&  !PlayerActions.Attack.IsPressed()
+            &&!PMovement.IsDashing &&! PMovement.IsPlunging;
     }
     private void ExecuteNormalAttack()
     {
@@ -189,7 +175,7 @@ public class PlayerAttack : MonoBehaviour
         else
         {
         
-            ScanAndDamage(_sideAttackPoint.position, _horizontalAttackSize, _data.baseNormalAttackDamage);
+            ScanAndDamage(_sideAttackPoint.position, _horizontalAttackSize, _dataSO.baseNormalAttackDamage);
             SpawnNormalAttackSlashVFX();
             // horizontal attack
 
@@ -206,17 +192,17 @@ public class PlayerAttack : MonoBehaviour
     private void StartPlungeAttack()
     {
         PMovement.IsPlunging = true;
-
         float fallHeight = PMovement.GetFallHeight();
 
-        if(fallHeight >= _data.highHeightThreshold)
+        if (fallHeight >= _dataSO.hightHeightThreshold)
         {
-            _currentPlungeAttackDamage = _data.baseHighPlungeAttackDamage;
+            _currentPlungeAttackDamage = _dataSO.highPlungeAttackDamage;
         }
         else
         {
-            _currentPlungeAttackDamage = _data.baseLowPlungeAttackDamage;
+            _currentPlungeAttackDamage = _dataSO.lowPlungeAttackDamage;
         }
+
     }
 
     public bool IsCritStrike()
@@ -224,12 +210,12 @@ public class PlayerAttack : MonoBehaviour
         bool isCritStrike = UnityEngine.Random.value <= _currentCritRate;
         if (isCritStrike)
         {
-            _currentCritRate = _data.baseCritRate;
+            _currentCritRate = _dataSO.baseCritRate;
 
         }
         else
         {
-            _currentCritRate = Mathf.Clamp(_currentCritRate + _data.critRateIncreasement, 0, 1);
+            _currentCritRate = Mathf.Clamp(_currentCritRate + _dataSO.critRateIncreasement, 0, 1);
         }
         return isCritStrike;
     }
@@ -249,7 +235,7 @@ public class PlayerAttack : MonoBehaviour
             };
 
             #region Energy
-            PHealth.GainEnergyFromAttack();
+
             #endregion
            
 
@@ -269,38 +255,9 @@ public class PlayerAttack : MonoBehaviour
 
     }
        
-
-      
-    public void ScanAndDamageElementalSkill(Vector3 position, Vector2 size, float damageAmount)
-    {
-        Collider2D[] hitEnemies = Physics2D.OverlapBoxAll(position, size, 0, _enemyMask);
-        if (hitEnemies.Length > 0)
-        {
-            Damage damage = new Damage
-            {
-                amount = damageAmount,
-                elementSO = PElement.ActiveElementSO,   
-                sourceAttackGameObject= gameObject
-            };
-
-            PlayerHealth.Instance.GainEnergyFormElementalSKill();
-
-           
-
-            // 2. Damge to enemy
-            foreach (Collider2D hit in hitEnemies)
-            {
-                if(hit.TryGetComponent(out IDamageable damageable))
-                {
-                    damageable.TakeDamage(damage);
-                   
-                }
-            }    
-        }
-    }
     public float GetCritDamageMultiplier()
     {
-        return 1 + _data.baseCritDamage;
+        return 1 + _dataSO.baseCritDamage;
     }
     private void SpawnNormalAttackSlashVFX( )
     {
@@ -344,7 +301,7 @@ public class PlayerAttack : MonoBehaviour
     }
     private float GetAttackRate()
     {
-        float attackRate = _data.baseAttackRate * GetAttackSpeedMultiplier();
+        float attackRate = _dataSO.baseAttackRate * GetAttackSpeedMultiplier();
         return attackRate;
     }
 

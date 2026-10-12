@@ -80,10 +80,9 @@ public class PlayerElement : MonoBehaviour
     public bool IsInfusedElementToWeapon => _infusedElementToWeaponTimer > 0f;
 
 
-
-
     private float _lastPressBurstSkillTimer;
     private float _infusedElementToWeaponTimer;
+
     #endregion
 
 
@@ -201,12 +200,10 @@ public class PlayerElement : MonoBehaviour
     {
 
         ElementArray[ActiveIndex].burstTimer = ActivePlayerElementSO.burstCooldown;
-        PlayerHealth.Instance.ConsumeEnergy(ActivePlayerElementSO.burstEnergy);
+        ElementArray[ActiveIndex].burstEnergy = 0f;
+       
 
-
-        
-
-
+    
         Debug.Log("Burst Skill");
 
         #region Steel Burst Skill
