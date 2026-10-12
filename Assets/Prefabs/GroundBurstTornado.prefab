@@ -197,7 +197,7 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 1024
   _damageRangeSize: {x: 3, y: 3}
-  _pullSpeed: 10
+  _pullSpeed: 5
   _stopRadius: 0.2
 --- !u!114 &9069032333372938855
 MonoBehaviour:

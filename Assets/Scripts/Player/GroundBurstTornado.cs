@@ -11,7 +11,7 @@ public class GroundBurstTornado : MonoBehaviour
     [SerializeField] private Vector2 _damageRangeSize;
 
     [SerializeField] private float _pullSpeed = 10f;
-    [SerializeField] private float _stopRadius = 0.2f;
+
 
     private Animator _animator;
  

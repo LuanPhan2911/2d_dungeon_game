@@ -8,7 +8,7 @@ public class HorizontalMove : MonoBehaviour
 
 
    
-    [SerializeField] private LayerMask _obstacleLayerMask;
+    //[SerializeField] private LayerMask _obstacleLayerMask;
     public bool IsMoveRight = true;
     public float Distance = 10f;
     public float Duration = 5f;

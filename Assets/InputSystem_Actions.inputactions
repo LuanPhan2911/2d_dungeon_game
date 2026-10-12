@@ -47,6 +47,16 @@
                     "priority": 0
                 },
                 {
+                    "name": "Parry",
+                    "type": "Button",
+                    "id": "0c304757-2701-46cb-bc66-ed4bf5f9d6d8",
+                    "expectedControlType": "",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false,
+                    "priority": 0
+                },
+                {
                     "name": "ElementalSkill",
                     "type": "Button",
                     "id": "d77e887e-d9fc-4300-9ea9-9b5e0ff09eba",
@@ -200,7 +210,7 @@
                 {
                     "name": "",
                     "id": "c6a22a46-0d33-4a06-8694-792f35648ac2",
-                    "path": "<Mouse>/rightButton",
+                    "path": "<Keyboard>/leftShift",
                     "interactions": "",
                     "processors": "",
                     "groups": "",
@@ -238,6 +248,17 @@
                     "processors": "",
                     "groups": "",
                     "action": "BurstSkill",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "dabfee55-987c-4b21-bf86-bcdb4eb07a7c",
+                    "path": "<Mouse>/rightButton",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Parry",
                     "isComposite": false,
                     "isPartOfComposite": false
                 }
