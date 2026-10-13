@@ -254,7 +254,7 @@ public class PlayerElement : MonoBehaviour
         {
             // restore health instantly 
             float amount = waterPlayerElementSO.healRate * PHealth.GetMaxHealth();
-            PHealth.RestoreHealth(amount);
+            PHealth.Heal(amount);
 
 
             _debuffEffectManager.PurifyEffect(DebuffEffectType.Burn);

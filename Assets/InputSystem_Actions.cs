@@ -143,7 +143,7 @@ public partial class @InputSystem_Actions: IInputActionCollection2, IDisposable
                     ""priority"": 0
                 },
                 {
-                    ""name"": ""ElementalSkill"",
+                    ""name"": ""Interact"",
                     ""type"": ""Button"",
                     ""id"": ""d77e887e-d9fc-4300-9ea9-9b5e0ff09eba"",
                     ""expectedControlType"": """",
@@ -328,11 +328,11 @@ public partial class @InputSystem_Actions: IInputActionCollection2, IDisposable
                 {
                     ""name"": """",
                     ""id"": ""e7fea889-804b-47da-8a45-90bdfd13c266"",
-                    ""path"": ""<Keyboard>/e"",
+                    ""path"": ""<Keyboard>/f"",
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": """",
-                    ""action"": ""ElementalSkill"",
+                    ""action"": ""Interact"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
                 },
@@ -471,7 +471,7 @@ public partial class @InputSystem_Actions: IInputActionCollection2, IDisposable
         m_Player_Run = m_Player.FindAction("Run", throwIfNotFound: true);
         m_Player_Attack = m_Player.FindAction("Attack", throwIfNotFound: true);
         m_Player_Parry = m_Player.FindAction("Parry", throwIfNotFound: true);
-        m_Player_ElementalSkill = m_Player.FindAction("ElementalSkill", throwIfNotFound: true);
+        m_Player_Interact = m_Player.FindAction("Interact", throwIfNotFound: true);
         m_Player_BurstSkill = m_Player.FindAction("BurstSkill", throwIfNotFound: true);
         m_Player_SwapElement1 = m_Player.FindAction("SwapElement1", throwIfNotFound: true);
         m_Player_SwapElement2 = m_Player.FindAction("SwapElement2", throwIfNotFound: true);
@@ -566,7 +566,7 @@ public partial class @InputSystem_Actions: IInputActionCollection2, IDisposable
     private readonly InputAction m_Player_Run;
     private readonly InputAction m_Player_Attack;
     private readonly InputAction m_Player_Parry;
-    private readonly InputAction m_Player_ElementalSkill;
+    private readonly InputAction m_Player_Interact;
     private readonly InputAction m_Player_BurstSkill;
     private readonly InputAction m_Player_SwapElement1;
     private readonly InputAction m_Player_SwapElement2;
@@ -604,9 +604,9 @@ public partial class @InputSystem_Actions: IInputActionCollection2, IDisposable
         /// </summary>
         public InputAction @Parry => m_Wrapper.m_Player_Parry;
         /// <summary>
-        /// Provides access to the underlying input action "Player/ElementalSkill".
+        /// Provides access to the underlying input action "Player/Interact".
         /// </summary>
-        public InputAction @ElementalSkill => m_Wrapper.m_Player_ElementalSkill;
+        public InputAction @Interact => m_Wrapper.m_Player_Interact;
         /// <summary>
         /// Provides access to the underlying input action "Player/BurstSkill".
         /// </summary>
@@ -668,9 +668,9 @@ public partial class @InputSystem_Actions: IInputActionCollection2, IDisposable
             @Parry.started += instance.OnParry;
             @Parry.performed += instance.OnParry;
             @Parry.canceled += instance.OnParry;
-            @ElementalSkill.started += instance.OnElementalSkill;
-            @ElementalSkill.performed += instance.OnElementalSkill;
-            @ElementalSkill.canceled += instance.OnElementalSkill;
+            @Interact.started += instance.OnInteract;
+            @Interact.performed += instance.OnInteract;
+            @Interact.canceled += instance.OnInteract;
             @BurstSkill.started += instance.OnBurstSkill;
             @BurstSkill.performed += instance.OnBurstSkill;
             @BurstSkill.canceled += instance.OnBurstSkill;
@@ -712,9 +712,9 @@ public partial class @InputSystem_Actions: IInputActionCollection2, IDisposable
             @Parry.started -= instance.OnParry;
             @Parry.performed -= instance.OnParry;
             @Parry.canceled -= instance.OnParry;
-            @ElementalSkill.started -= instance.OnElementalSkill;
-            @ElementalSkill.performed -= instance.OnElementalSkill;
-            @ElementalSkill.canceled -= instance.OnElementalSkill;
+            @Interact.started -= instance.OnInteract;
+            @Interact.performed -= instance.OnInteract;
+            @Interact.canceled -= instance.OnInteract;
             @BurstSkill.started -= instance.OnBurstSkill;
             @BurstSkill.performed -= instance.OnBurstSkill;
             @BurstSkill.canceled -= instance.OnBurstSkill;
@@ -967,12 +967,12 @@ public partial class @InputSystem_Actions: IInputActionCollection2, IDisposable
         /// <seealso cref="UnityEngine.InputSystem.InputAction.canceled" />
         void OnParry(InputAction.CallbackContext context);
         /// <summary>
-        /// Method invoked when associated input action "ElementalSkill" is either <see cref="UnityEngine.InputSystem.InputAction.started" />, <see cref="UnityEngine.InputSystem.InputAction.performed" /> or <see cref="UnityEngine.InputSystem.InputAction.canceled" />.
+        /// Method invoked when associated input action "Interact" is either <see cref="UnityEngine.InputSystem.InputAction.started" />, <see cref="UnityEngine.InputSystem.InputAction.performed" /> or <see cref="UnityEngine.InputSystem.InputAction.canceled" />.
         /// </summary>
         /// <seealso cref="UnityEngine.InputSystem.InputAction.started" />
         /// <seealso cref="UnityEngine.InputSystem.InputAction.performed" />
         /// <seealso cref="UnityEngine.InputSystem.InputAction.canceled" />
-        void OnElementalSkill(InputAction.CallbackContext context);
+        void OnInteract(InputAction.CallbackContext context);
         /// <summary>
         /// Method invoked when associated input action "BurstSkill" is either <see cref="UnityEngine.InputSystem.InputAction.started" />, <see cref="UnityEngine.InputSystem.InputAction.performed" /> or <see cref="UnityEngine.InputSystem.InputAction.canceled" />.
         /// </summary>

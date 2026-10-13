@@ -57,7 +57,7 @@
                     "priority": 0
                 },
                 {
-                    "name": "ElementalSkill",
+                    "name": "Interact",
                     "type": "Button",
                     "id": "d77e887e-d9fc-4300-9ea9-9b5e0ff09eba",
                     "expectedControlType": "",
@@ -242,11 +242,11 @@
                 {
                     "name": "",
                     "id": "e7fea889-804b-47da-8a45-90bdfd13c266",
-                    "path": "<Keyboard>/e",
+                    "path": "<Keyboard>/f",
                     "interactions": "",
                     "processors": "",
                     "groups": "",
-                    "action": "ElementalSkill",
+                    "action": "Interact",
                     "isComposite": false,
                     "isPartOfComposite": false
                 },

@@ -197,7 +197,7 @@ public class GameInputManager : MonoBehaviour
         Debug.Log("Rebinding canceled.");
     }
 
-    private string GetBindingDisplayString(InputAction action, int bindingIndex)
+    public string GetBindingDisplayString(InputAction action, int bindingIndex)
     {
         if (bindingIndex < 0 || bindingIndex >= action.bindings.Count)
         {

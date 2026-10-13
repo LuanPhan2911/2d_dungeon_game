@@ -111,7 +111,8 @@ public class PlayerHealth : MonoBehaviour, IDamageable
         }
         if (_isUseHealPotion && _healPotionTimer <= 0)
         {
-            UseHealPotion();
+            float amount = GetMaxHealth() * GetMaxHealPotionRate();
+            Heal(amount);
             _isUseHealPotion = false;
 
         }
@@ -124,12 +125,10 @@ public class PlayerHealth : MonoBehaviour, IDamageable
         OnHealthChanged?.Invoke();
     }
 
-    private void UseHealPotion()
+    public void Heal(float amount)
     {
-      
-        float amount = GetMaxHealth() * GetMaxHealPotionRate();
+     
         ChangeHealth(amount);
-      
     }
    
     public void TakeDamage(Damage damage) {
@@ -207,13 +206,6 @@ public class PlayerHealth : MonoBehaviour, IDamageable
         }
     }
 
-
-    private float GetValuePerTickOfDebuffEffect(DebuffEffectSO debuffEffectSO)
-    {
-        return debuffEffectSO.baseValuePerTick;
-    }
-
-
     public float GetResistanceMultiplier(ElementSO element)
     {
         float multiplier = 1;
@@ -233,17 +225,7 @@ public class PlayerHealth : MonoBehaviour, IDamageable
 
         return multiplier ;
     }
-   
   
-  
-    
-   
-
-    public void RestoreHealth(float amount)
-    {
-        ChangeHealth(amount);
-        
-    }
 
     public void SetHealPerDuration(HealPerDuration healPerDuration)
     {
@@ -264,7 +246,7 @@ public class PlayerHealth : MonoBehaviour, IDamageable
         }
         else
         {
-            RestoreHealth(_healPerduration.rate * GetMaxHealth());
+            ChangeHealth(_healPerduration.rate * GetMaxHealth());
             _healPerDurationIntervalTimer = _healPerduration.interval;
         }
     }
