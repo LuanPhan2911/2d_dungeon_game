@@ -6,7 +6,9 @@ public class PlayerAnimation : MonoBehaviour
 {
 
 
-  
+    public static PlayerAnimation Instance { get; private set; }
+
+    public PlayerMovement PMovement => PlayerMovement.Instance;
 
     const string HORIZONTAL = "Horizontal";
     const string IS_FALLING = "IsFalling";
@@ -18,25 +20,23 @@ public class PlayerAnimation : MonoBehaviour
     const string HORIZONTAL_ATTACK = "HorizontalAttack";
     const string UPWARD_ATTACK = "UpwardAttack";
     const string DOWNWARD_ATTACK = "DownwardAttack";
-    private PlayerMovement _playerMovement;
     private Animator _animator;
 
 
     private void Awake()
     {
-       
-        _playerMovement = GetComponent<PlayerMovement>();
+        Instance = this;
         _animator = GetComponent<Animator>();
     }
 
     public void UpdateAnimation()
     {
-        float horizontal = Mathf.Abs(_playerMovement.HorizontalInput);
+        float horizontal = Mathf.Abs(PMovement.HorizontalInput);
        
         SetHorizontal(horizontal);
-        SetFalling(_playerMovement.IsFalling);
-        SetJumping(_playerMovement.IsJumping );
-        SetDashing(_playerMovement.IsDashing);
+        SetFalling(PMovement.IsFalling);
+        SetJumping(PMovement.IsJumping );
+        SetDashing(PMovement.IsDashing);
        
     }
 

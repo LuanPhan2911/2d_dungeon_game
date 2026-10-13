@@ -11,15 +11,14 @@ MonoBehaviour:
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 53a7801ae75585f41b962551ff5b870e, type: 3}
   m_Name: PlayerMovement
-  m_EditorClassIdentifier: Assembly-CSharp::PlayerMovementData
+  m_EditorClassIdentifier: Assembly-CSharp::PlayerMovementSO
   gravityStrength: -52
   gravityScale: 5.3007135
   plungingGravityMult: 4.5
   fallGravityMult: 1.5
   maxFallSpeed: 45
-  maxMoveSpeed: 9.5
-  maxSprintSpeed: 15
-  sprintStaminaCostPerSecond: 10
+  maxMoveSpeed: 9
+  maxSprintSpeed: 12
   jumpHeight: 6.5
   jumpTimeToApex: 0.5
   jumpForce: 26
@@ -27,7 +26,7 @@ MonoBehaviour:
   coyoteTime: 0.2
   jumpInputBufferTime: 0.2
   dashSpeed: 20
+  dashDistance: 4
   dashTime: 0.2
   dashCooldownTime: 0.5
   dashInputBufferTime: 0.2
-  staminaCostPerDash: 20

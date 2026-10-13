@@ -97,8 +97,8 @@ public class GroundBurstTornado : MonoBehaviour
             //};
             Damage damage = new Damage
             {
-                amount = 1,
-                elementSO= PlayerElement.Instance.GroundElementSO
+                Amount = 1,
+                ElementSO= PlayerElement.Instance.GroundElementSO
             };
             foreach (Collider2D hit in hitEnemies)
             {

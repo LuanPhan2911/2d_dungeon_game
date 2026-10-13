@@ -60,17 +60,17 @@ public class BaseEnemy : MonoBehaviour, IDamageable
 
 
         
-        if (damage.canCrit && PlayerAttack.Instance.IsCritStrike())
+        if (damage.CanCrit && PlayerAttack.Instance.IsCritStrike())
         {
-            damage.isCrit = true;
-            damage.amount *= PlayerAttack.Instance.GetCritDamageMultiplier();
+            damage.IsCrit = true;
+            damage.Amount *= PlayerAttack.Instance.GetCritDamageMultiplier();
         }
-        damage.amount *= GetResistanceMultiplier(damage.elementSO);
-        damage.amount *= GetDamageBonusMultiplier();
+        damage.Amount *= GetResistanceMultiplier(damage.ElementSO);
+        damage.Amount *= GetDamageBonusMultiplier();
 
-        damage.amount = Math.Max(1f, damage.amount);
+        damage.Amount = Math.Max(1f, damage.Amount);
 
-        _currentHealth -= damage.amount;
+        _currentHealth -= damage.Amount;
         float healthRatio = Math.Clamp(_currentHealth / _dataSO.maxHealth, 0, _dataSO.maxHealth);
 
         OnHealthChange?.Invoke(healthRatio);
@@ -98,17 +98,17 @@ public class BaseEnemy : MonoBehaviour, IDamageable
 
     private void HandleEffect(Damage damage)
     {
-       if (damage.isFromEffect) return;
+       if (damage.IsFromEffect) return;
 
        foreach(DebuffEffectSO debuffEffectSO in _dataSO.debuffEffectSOArray)
         {
-            if(debuffEffectSO.elementSO.type== damage.elementSO.type)
+            if(debuffEffectSO.elementSO.type== damage.ElementSO.type)
             {
                 float valuePerTick = debuffEffectSO.baseValuePerTick;
 
-                if (damage.sourceAttackGameObject)
+                if (damage.SourceAttackGameObject)
                 {
-                    valuePerTick *= GetDebuffEffectIncreasementMultiplier(damage.sourceAttackGameObject);
+                    valuePerTick *= GetDebuffEffectIncreasementMultiplier(damage.SourceAttackGameObject);
                 }
                
 

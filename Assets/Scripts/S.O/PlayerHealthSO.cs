@@ -4,22 +4,11 @@ using UnityEngine;
 public class PlayerHealthSO : ScriptableObject
 {
     public float baseHealth=100f;
-    public float baseEnergy = 40f;
-
-    public float baseStamina = 100f;
-    public float staminaRegenRate = 10f;
-
-    public float staminaRegainDelay = 1f;
 
 
-    public float energyNeedForBurstSkill = 40f;
-
-
-
-    public float gainingEnergyFromNormalAttack = 1f;
-    public float gainingEnergyFromElementalSkill = 15f;
-
-
+    public int baseHealPotionCount = 2;
+    public float baseHealPotionRate = 0.2f;
+    public float healPotionTime = 1f;
 
     [Header("Debuff Effects")]
     public DebuffEffectSO[] debuffEffectSOArray;

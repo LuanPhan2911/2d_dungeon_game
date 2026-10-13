@@ -47,9 +47,9 @@ public class ProjectileAttack : MonoBehaviour
 
         Damage damage = new Damage
         {
-            elementSO = _enemy.Element,
-            amount = _enemy.BaseDamage,
-            sourceAttackGameObject= gameObject
+            ElementSO = _enemy.Element,
+            Amount = _enemy.BaseDamage,
+            SourceAttackGameObject= gameObject
             
             
         };

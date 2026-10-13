@@ -7,22 +7,24 @@ public class PlayerHealth : MonoBehaviour, IDamageable
 
     [SerializeField] private PlayerHealthSO _dataSO;
 
-    [SerializeField] private Transform _canvasParent;
 
     public static PlayerHealth Instance { get; private set;  }
 
     public PlayerElement PElement => PlayerElement.Instance;
 
+    public bool IsInvincible;
+
 
 
     public event Action OnHealthChanged;
-    public event Action OnEnergyChanged;
+    public event Action OnHealPotionCountChanged;
 
 
     public float HealthRatio => _health / GetMaxHealth();
 
     public float CurrentHealth => _health;
 
+    public int CurrentHealPotionCount => _healPotionCount;
 
 
 
@@ -35,31 +37,84 @@ public class PlayerHealth : MonoBehaviour, IDamageable
     private HealPerDuration _healPerduration;
 
 
+    private float _health;
+
+    private int _healPotionCount;
+    private float _healPotionTimer;
+    private bool _isUseHealPotion;
+ 
+
+
     private void Awake()
     {
         Instance = this;
         _debuffEffectManager = GetComponent<DebuffEffectManager>();
         _buffEffectManager = GetComponent<BuffEffectManager>();
+
+        _health = GetMaxHealth();
+        _healPotionCount = GetMaxHealPotionCount();
+
+
     }
 
-    private float _health;
+ 
 
 
     public float GetMaxHealth()
     {
         return _dataSO.baseHealth;
     }
- 
-
-    void Start()
+    public int GetMaxHealPotionCount()
     {
-        _health = GetMaxHealth();
+        return _dataSO.baseHealPotionCount;
     }
+    private float GetMaxHealPotionRate()
+    {
+        return _dataSO.baseHealPotionRate;
+    }
+    private float GetHealPotionTime()
+    {
+        return _dataSO.healPotionTime;
+    }
+
+
+    private void Start()
+    {
+        OnHealthChanged?.Invoke();
+        OnHealPotionCountChanged?.Invoke();
+    }
+
 
     private void Update()
     {
-       
+
+
+        HandleHealPotion();
         HandleHealPerDuration();
+
+       
+    }
+    private void HandleHealPotion()
+    {
+       
+
+        _healPotionTimer -= Time.deltaTime;
+        if (!_isUseHealPotion && GameInputManager.Instance.PlayerActions.Heal.WasPressedThisFrame())
+        {
+            if (_healPotionCount <= 0) return;
+
+
+            _healPotionCount--;
+            _healPotionTimer = GetHealPotionTime();
+            _isUseHealPotion = true;
+            OnHealPotionCountChanged?.Invoke();
+        }
+        if (_isUseHealPotion && _healPotionTimer <= 0)
+        {
+            UseHealPotion();
+            _isUseHealPotion = false;
+
+        }
     }
 
 
@@ -69,20 +124,25 @@ public class PlayerHealth : MonoBehaviour, IDamageable
         OnHealthChanged?.Invoke();
     }
 
+    private void UseHealPotion()
+    {
+      
+        float amount = GetMaxHealth() * GetMaxHealPotionRate();
+        ChangeHealth(amount);
+      
+    }
    
     public void TakeDamage(Damage damage) {
 
+        if (IsInvincible) return;
         
 
-        damage.amount *= GetResistanceMultiplier(damage.elementSO);
+        damage.Amount *= GetResistanceMultiplier(damage.ElementSO);
 
-        damage.amount *= GetDamageBonusMultiplier();
+        damage.Amount *= GetDamageBonusMultiplier();
 
         HandleEffect(damage);
-
-
-
-        ChangeHealth(-damage.amount);
+        ChangeHealth(-damage.Amount);
 
        
 
@@ -111,12 +171,12 @@ public class PlayerHealth : MonoBehaviour, IDamageable
 
     private void HandleEffect(Damage damage)
     {
-        if (damage.isFromEffect) return;
+        if (damage.IsFromEffect) return;
 
 
         foreach (DebuffEffectSO debuffEffectSO in _dataSO.debuffEffectSOArray)
         {
-            if (debuffEffectSO.elementSO.type == damage.elementSO.type)
+            if (debuffEffectSO.elementSO.type == damage.ElementSO.type)
             {
                 float valuePerTick = debuffEffectSO.baseValuePerTick;
                 _debuffEffectManager.ApplyEffect(debuffEffectSO, valuePerTick);
@@ -128,19 +188,19 @@ public class PlayerHealth : MonoBehaviour, IDamageable
 
         if (_buffEffectManager.HasEffect(BuffEffectType.CounterAttack)){
 
-            float amount = damage.amount * _buffEffectManager.GetValues(BuffEffectType.CounterAttack);
+            float amount = damage.Amount * _buffEffectManager.GetValues(BuffEffectType.CounterAttack);
 
             Damage counterDamage = new Damage
             {
-                amount = amount,
-                canCrit =false,
-                isFromEffect = true,
-                elementSO = PElement.SteelElementSO,
-                sourceAttackGameObject = gameObject
+                Amount = amount,
+                CanCrit =false,
+                IsFromEffect = true,
+                ElementSO = PElement.SteelElementSO,
+                SourceAttackGameObject = gameObject
 
             };
-            if(damage.sourceAttackGameObject && 
-                damage.sourceAttackGameObject.TryGetComponent(out IDamageable damageable))
+            if(damage.SourceAttackGameObject && 
+                damage.SourceAttackGameObject.TryGetComponent(out IDamageable damageable))
             {
                 damageable.TakeDamage(counterDamage);
             }

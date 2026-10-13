@@ -15,10 +15,10 @@ public class DamageTextUI : MonoBehaviour
     public void Spawn(Damage damage)
     {
 
-        _textMesh.text = Mathf.RoundToInt(damage.amount).ToString();
-        _textMesh.fontSize = damage.isCrit ? _critDamageSize: _normalDamageSize;
+        _textMesh.text = Mathf.RoundToInt(damage.Amount).ToString();
+        _textMesh.fontSize = damage.IsCrit ? _critDamageSize: _normalDamageSize;
      
-        _textMesh.color = damage.elementSO.color;
+        _textMesh.color = damage.ElementSO.color;
     }
 
     private void Update()

@@ -8,6 +8,8 @@ public partial class PlayerMovement : MonoBehaviour
 {
 
     public static PlayerMovement Instance { get; private set; }
+    public PlayerHealth PHealth => PlayerHealth.Instance;
+    public PlayerAnimation PAnimation => PlayerAnimation.Instance;
 
     [Header("Player Input")]
     public float HorizontalInput { get; private set; }
@@ -25,32 +27,7 @@ public partial class PlayerMovement : MonoBehaviour
 
     [HideInInspector]
     public bool IsPlunging;
- 
-
-   
-    public float GetDistanceFromPosition(Vector3 position)
-    {
-        return Vector2.Distance(transform.position, position);
-    }
     public bool IsGrounded => _lastOnGroundTimer > 0f;
-
-
-    public float GetFallHeight()
-    {
-        RaycastHit2D hit = Physics2D.Raycast(_groundCheckPoint.position, Vector2.down, Mathf.Infinity, GroundLayerMask);
-
-        if (hit.collider != null)
-        {
-            return hit.distance;
-        }
-        else
-        {
-            return 0f;
-        }
-    }
-
-
-
     public bool IsHorizontalMoving => HorizontalInput != 0f;
     public bool IsLeftMove => HorizontalInput < 0f;
     public bool IsRightMove => HorizontalInput > 0f;
@@ -71,21 +48,10 @@ public partial class PlayerMovement : MonoBehaviour
     [Header("Ground Check")]
     [SerializeField] private Transform _groundCheckPoint;
     [SerializeField] private Vector2 _groundCheckSize = new Vector2(0.3f, 0.03f);
-
-
-
-
-    [SerializeField] private PlayerMovementSO _data;
-
-    [SerializeField] private Transform _UITransform;
-
-    private PlayerAnimation _playerAnimation;
+    [SerializeField] private PlayerMovementSO _dataSO;
+    [SerializeField] private bool _canDashInAir;
     private Rigidbody2D _rb;
     private BuffEffectManager _buffEffectManager;
-
-
-
-
     private bool _isDashCooldown;
     private bool _canSprintAfterDash;
 
@@ -95,14 +61,13 @@ public partial class PlayerMovement : MonoBehaviour
     {
         Instance = this;
         _rb = GetComponent<Rigidbody2D>();
-        _playerAnimation = GetComponent<PlayerAnimation>();
         _buffEffectManager = GetComponent<BuffEffectManager>();
        
     }
 
     private void Start()
     {
-        SetGravityScale(_data.gravityScale);
+        SetGravityScale(_dataSO.gravityScale);
         IsFacingRight = true;
         
     }
@@ -125,7 +90,7 @@ public partial class PlayerMovement : MonoBehaviour
 
         if (GameInputManager.Instance.PlayerActions.Jump.WasPressedThisFrame())
         {
-            _lastPressJumpTimer = _data.jumpInputBufferTime;
+            _lastPressJumpTimer = _dataSO.jumpInputBufferTime;
         }
         if (GameInputManager.Instance.PlayerActions.Jump.WasReleasedThisFrame())
         {
@@ -142,7 +107,7 @@ public partial class PlayerMovement : MonoBehaviour
 
         if (GameInputManager.Instance.PlayerActions.Run.WasPressedThisFrame())
         {
-            _lastPressDashTimer = _data.dashInputBufferTime;
+            _lastPressDashTimer = _dataSO.dashInputBufferTime;
         }
         if (GameInputManager.Instance.PlayerActions.Run.WasReleasedThisFrame())
         {
@@ -155,7 +120,7 @@ public partial class PlayerMovement : MonoBehaviour
 
             if (Physics2D.OverlapBox(_groundCheckPoint.position, _groundCheckSize, 0f, GroundLayerMask) && !IsJumping)
             {
-                _lastOnGroundTimer = _data.coyoteTime;
+                _lastOnGroundTimer = _dataSO.coyoteTime;
             }
 
         }
@@ -197,7 +162,7 @@ public partial class PlayerMovement : MonoBehaviour
 
     private void HandleDash()
     {
-        if (CanDash() && _lastPressDashTimer > 0)
+        if (CanDash())
         {
             Vector2 dashDir;
 
@@ -215,6 +180,25 @@ public partial class PlayerMovement : MonoBehaviour
             StartCoroutine(StartDash(dashDir));
         }
        
+    }
+    public float GetDistanceFromPosition(Vector3 position)
+    {
+        return Vector2.Distance(transform.position, position);
+    }
+
+
+    public float GetFallHeight()
+    {
+        RaycastHit2D hit = Physics2D.Raycast(_groundCheckPoint.position, Vector2.down, Mathf.Infinity, GroundLayerMask);
+
+        if (hit.collider != null)
+        {
+            return hit.distance;
+        }
+        else
+        {
+            return 0f;
+        }
     }
     private void HandleSprint()
     {
@@ -246,7 +230,7 @@ public partial class PlayerMovement : MonoBehaviour
     private void LateUpdate()
     {
        
-        _playerAnimation.UpdateAnimation();
+        PAnimation.UpdateAnimation();
         HandleGravity();
     }
     private void FixedUpdate()
@@ -283,10 +267,6 @@ public partial class PlayerMovement : MonoBehaviour
             Vector3 scale = transform.localScale;
             scale.x *= -1;
             transform.localScale = scale;
-
-            Vector3 UIScale = _UITransform.localScale;
-            UIScale.x *= -1;
-            _UITransform.localScale = UIScale;
         }
       
 
@@ -306,26 +286,26 @@ public partial class PlayerMovement : MonoBehaviour
             SetGravityScale(0);
         }else if (IsPlunging)
         {
-            SetGravityScale(_data.gravityScale * _data.plungingGravityMult);
-            _rb.linearVelocity = new Vector2(_rb.linearVelocityX, Mathf.Max(_rb.linearVelocityY, -_data.maxFallSpeed));
+            SetGravityScale(_dataSO.gravityScale * _dataSO.plungingGravityMult);
+            _rb.linearVelocity = new Vector2(_rb.linearVelocityX, Mathf.Max(_rb.linearVelocityY, -_dataSO.maxFallSpeed));
         }
         else if (IsJumpCut)
         {
            
-            SetGravityScale(_data.gravityScale * _data.jumpCutGravityMult);
-            _rb.linearVelocity = new Vector2(_rb.linearVelocityX, Mathf.Max(_rb.linearVelocityY, -_data.maxFallSpeed));
+            SetGravityScale(_dataSO.gravityScale * _dataSO.jumpCutGravityMult);
+            _rb.linearVelocity = new Vector2(_rb.linearVelocityX, Mathf.Max(_rb.linearVelocityY, -_dataSO.maxFallSpeed));
         }
         else if( _rb.linearVelocityY < 0)
         {
            
             //Higher gravity if falling
-            SetGravityScale(_data.gravityScale * _data.fallGravityMult);
+            SetGravityScale(_dataSO.gravityScale * _dataSO.fallGravityMult);
             //Caps maximum fall speed, so when falling over large distances we don't accelerate to insanely high speeds
-            _rb.linearVelocity = new Vector2(_rb.linearVelocityX, Mathf.Max(_rb.linearVelocityY, -_data.maxFallSpeed));
+            _rb.linearVelocity = new Vector2(_rb.linearVelocityX, Mathf.Max(_rb.linearVelocityY, -_dataSO.maxFallSpeed));
         }
         else
         {
-            SetGravityScale(_data.gravityScale);
+            SetGravityScale(_dataSO.gravityScale);
         }
 
     }
@@ -334,7 +314,7 @@ public partial class PlayerMovement : MonoBehaviour
     private void HandleMove()
     {
         
-        float moveSpeed= IsSprinting ? _data.maxSprintSpeed: _data.maxMoveSpeed;
+        float moveSpeed= IsSprinting ? _dataSO.maxSprintSpeed: _dataSO.maxMoveSpeed;
 
         moveSpeed *= GetMoveSpeedMultiplier();
         float targetSpeed = HorizontalInput * moveSpeed;
@@ -359,7 +339,7 @@ public partial class PlayerMovement : MonoBehaviour
 
         #region Perform Jump
 
-        float force = _data.jumpForce;
+        float force = _dataSO.jumpForce;
 
         if (_rb.linearVelocityY < 0)
         {
@@ -371,7 +351,14 @@ public partial class PlayerMovement : MonoBehaviour
 
     private bool CanDash()
     {
-        return !IsDashing && IsGrounded && !_isDashCooldown;
+        if(_lastPressDashTimer > 0f && !IsDashing && !_isDashCooldown)
+        {
+
+            if (!_canDashInAir) return IsGrounded;
+            return true;
+        }
+
+        return false;
             
     }
 
@@ -388,22 +375,24 @@ public partial class PlayerMovement : MonoBehaviour
 
         float startTime = Time.time;
         IsDashing = true;
+        PHealth.IsInvincible = true;
 
       
 
-        while (Time.time - startTime < _data.dashTime)
+        while (Time.time - startTime < _dataSO.dashTime)
         {
-            _rb.linearVelocity = dashDir.normalized *_data.dashSpeed;
+            _rb.linearVelocity = dashDir.normalized *_dataSO.dashSpeed;
 
             yield return null;
         }
 
         IsDashing = false;
+        PHealth.IsInvincible = false;
         _canSprintAfterDash = true;
         _dashFX.PlayDashFX(false);
 
         
-        yield return new WaitForSeconds(_data.dashCooldownTime);
+        yield return new WaitForSeconds(_dataSO.dashCooldownTime);
         _isDashCooldown = false;
     }
 

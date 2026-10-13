@@ -101,11 +101,7 @@ public class PlayerElement : MonoBehaviour
        
 
     }
-    private void Start()
-    {
-      
-     
-    }
+
     private void Update()
     {
         _elementSwapTimer = Mathf.Max(0, _elementSwapTimer - Time.deltaTime);
@@ -343,9 +339,9 @@ public class PlayerElement : MonoBehaviour
         
         Damage damage = new Damage
         {
-            amount = damageAmount,
-            elementSO = ActiveElementSO,
-            sourceAttackGameObject=gameObject
+            Amount = damageAmount,
+            ElementSO = ActiveElementSO,
+            SourceAttackGameObject=gameObject
         };
         slash.Launch(PMovement.IsFacingRight,distance, duration );
         slash.SetDamage(damage);
@@ -360,9 +356,9 @@ public class PlayerElement : MonoBehaviour
         tornado.Launch(PMovement.IsFacingRight, distance, duration);
         Damage damage = new Damage
         {
-            amount = damageAmount,
-            elementSO = ActiveElementSO,
-            sourceAttackGameObject=gameObject
+            Amount = damageAmount,
+            ElementSO = ActiveElementSO,
+            SourceAttackGameObject=gameObject
         };
         tornado.SetDamage(damage, damageInterval);
     }

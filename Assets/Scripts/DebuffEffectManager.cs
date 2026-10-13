@@ -170,10 +170,10 @@ public class DebuffEffectManager : MonoBehaviour
             {
                 Damage damage = new Damage
                 {
-                    amount = effect.valuePerTick,
-                    elementSO = effectSO.elementSO,
-                    canCrit = false,
-                    isFromEffect = true,
+                    Amount = effect.valuePerTick,
+                    ElementSO = effectSO.elementSO,
+                    CanCrit = false,
+                    IsFromEffect = true,
                     
                 };
                 damageable.TakeDamage(damage);

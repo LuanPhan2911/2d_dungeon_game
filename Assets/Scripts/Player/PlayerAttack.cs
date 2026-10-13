@@ -61,7 +61,8 @@ public class PlayerAttack : MonoBehaviour
     [Header("FX")]
     [SerializeField] private GameObject _slashFxPrefab;
     [SerializeField] private GameObject _chargeSlashFxPrefab;
-  
+    [SerializeField] private ChargeAttackFX _chargeAttackFx;
+
 
 
     public static PlayerAttack Instance { get; private set;  }
@@ -102,10 +103,15 @@ public class PlayerAttack : MonoBehaviour
         if (_isCharging && PlayerActions.Attack.IsPressed())
         {
             _chargedTimer += Time.deltaTime;
+            if (_chargedTimer >= _dataSO.chargeAttackThreshold)
+            {
+                _chargeAttackFx.Play();
+            }
 
-            if(_chargedTimer >= _dataSO.chargeAttackTime && !_isFullyCharged)
+            if (_chargedTimer >= _dataSO.chargeAttackTime && !_isFullyCharged)
             {
                 _isFullyCharged = true;
+               
                 OnFullyCharged();
             }
         }
@@ -118,6 +124,7 @@ public class PlayerAttack : MonoBehaviour
                 _nextAttackTime = Time.time + GetAttackRate();
                 _lastPressAttackTimer = 0f;
             }
+            _chargeAttackFx.Stop();
         }
 
 
@@ -142,6 +149,7 @@ public class PlayerAttack : MonoBehaviour
 
     private void OnFullyCharged()
     {
+        
         Debug.Log("On Full Charged");
     }
 
@@ -162,7 +170,7 @@ public class PlayerAttack : MonoBehaviour
     
 
 
-        bool isUpPressed = GameInputManager.Instance.IsUpPressed();
+     
         bool isDownPressed = GameInputManager.Instance.IsDownPressed();
 
        
@@ -228,9 +236,9 @@ public class PlayerAttack : MonoBehaviour
         {
             Damage damage = new Damage
             {
-                amount = damageAmount,
-                elementSO = PElement.GetElementInfuseToWeapon(),
-                sourceAttackGameObject= gameObject
+                Amount = damageAmount,
+                ElementSO = PElement.GetElementInfuseToWeapon(),
+                SourceAttackGameObject= gameObject
 
             };
 

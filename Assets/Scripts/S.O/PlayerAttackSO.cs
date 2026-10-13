@@ -8,6 +8,8 @@ public class PlayerAttackSO : ScriptableObject
     public float baseNormalAttackDamage = 10f;
     public float baseChargeAttackDamage = 20f;
     public float chargeAttackTime = 1.5f;
+    public float chargeAttackThreshold = 0.5f; // use for spawn charge attack vfx,
+    // if press charge attack button >= threshold, spawn vfx
 
     public float lowPlungeAttackDamage = 14f;
     public float highPlungeAttackDamage = 18f;
@@ -39,13 +41,13 @@ public class ElementalResistance
 
 public class Damage
 {
-    public float amount { get; set; }
-    public ElementSO elementSO { get; set; }
-    public bool isCrit { get; set; }
-    public bool canCrit { get; set; } = true;
-    public bool isFromEffect { get; set; }  // Thêm thuộc tính này để xác định nguồn gốc của sát thương
+    public float Amount { get; set; }
+    public ElementSO ElementSO { get; set; }
+    public bool IsCrit { get; set; }
+    public bool CanCrit { get; set; } = true;
+    public bool IsFromEffect { get; set; }  // Thêm thuộc tính này để xác định nguồn gốc của sát thương
 
-    public GameObject sourceAttackGameObject;
+    public GameObject SourceAttackGameObject;
 
 
     
