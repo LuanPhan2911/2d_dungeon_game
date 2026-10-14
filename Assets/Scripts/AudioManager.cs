@@ -40,10 +40,10 @@ public class AudioManager : MonoBehaviour
         SetMusicVolume(_musicVolume);
         SetSoundFxVolume(_soundFxVolume);
 
-        GameManager.Instance.OnGamePauseChanged += GameManager_OnGamePauseChanged;
+        GameManager.Instance.OnGamePaused += GameManager_OnGamePauseChanged;
     }
 
-    private void GameManager_OnGamePauseChanged(object sender, System.EventArgs e)
+    private void GameManager_OnGamePauseChanged()
     {
         if (GameManager.Instance.IsGamePaused)
         {

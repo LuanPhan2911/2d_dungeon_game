@@ -1,45 +1,42 @@
-using UnityEditor.Search;
+
+
+using System;
+using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.UI;
+using UnityEngine.UIElements;
+
 
 public class GamePauseUI : MonoBehaviour
 {
-    
-    [SerializeField] private Button _closeButton;
 
-    [SerializeField] private GameOptionPanel _gameOptionPanel;
+    [SerializeField] private GameObject _backgroundGameObject;
+    [SerializeField] private Panel _pausePanel;
+    [SerializeField] private Panel _optionPanel;
+    [SerializeField] private Panel _soundPanel;
+    [SerializeField] private Panel _controlPanel;
 
-    private void OnEnable()
-    {
-        _closeButton.onClick.AddListener(CloseButtonClick);
-    }
-    private void OnDisable()
-    {
-        _closeButton.onClick.RemoveListener(CloseButtonClick);
-    }
+    public InputSystem_Actions.UIActions UIActions => GameInputManager.Instance.UIActions;
+
+    private List<Panel> _pausePanelList = new List<Panel>();
+
+
+
+
 
     private void Start()
     {
-        GameManager.Instance.OnGamePauseChanged += GameManager_OnGamePauseChanged;
-
-        Hide();
+        _backgroundGameObject.SetActive(false);
+        GameManager.Instance.OnGamePaused += GameManager_OnGamePaused;
+        UIActions.Cancel.performed += GameInput_CancelPerformed;
     }
-
-    public void Show()
+    private void GameInput_CancelPerformed(UnityEngine.InputSystem.InputAction.CallbackContext obj)
     {
-        gameObject.SetActive(true);
-        _gameOptionPanel.Show();
         
+        RemoveCurrentPanel();
+       
     }
-    public void Hide()
-    {
-        gameObject.SetActive(false);
-    }
-    private void CloseButtonClick()
-    {
-        GameManager.Instance.Unpause();
-    }
-    private void GameManager_OnGamePauseChanged(object sender, System.EventArgs e)
+
+    private void GameManager_OnGamePaused()
     {
         if (GameManager.Instance.IsGamePaused)
         {
@@ -48,7 +45,84 @@ public class GamePauseUI : MonoBehaviour
         else
         {
             Hide();
-
         }
     }
+
+    private void AddPanel(Panel panel)
+    {
+        HideCurrentPanel();
+        _pausePanelList.Add(panel);
+        panel.Show();
+        UIActions.Enable();
+
+    }
+    private void ShowCurrentPanel()
+    {
+        if (_pausePanelList.Count > 0)
+        {
+            _pausePanelList[_pausePanelList.Count - 1].Show();
+        }
+    }
+    private void HideCurrentPanel()
+    {
+        if (_pausePanelList.Count > 0)
+        {
+            _pausePanelList[_pausePanelList.Count - 1].Hide();
+        }
+    }
+    private void RemoveCurrentPanel()
+    {
+       
+        if (_pausePanelList.Count > 0)
+        {
+            _pausePanelList[_pausePanelList.Count - 1].Hide();
+            _pausePanelList.RemoveAt(_pausePanelList.Count - 1);
+        }
+
+        ShowCurrentPanel();
+        if (_pausePanelList.Count == 0)
+        {
+            GameManager.Instance.Unpause();
+            UIActions.Cancel.Disable();
+        }
+
+    }
+
+    public void ResumeButtonClick()
+    {
+        GameManager.Instance.Unpause();
+    }
+    public void OptionButtonClick()
+    {
+        AddPanel(_optionPanel);
+    }
+    public void MainMenuClick()
+    {
+        Debug.Log("Go to main menu");
+    }
+    public void SoundButtonClick()
+    {
+        AddPanel(_soundPanel);
+    }
+    public void ControlButtonClick()
+    {
+        AddPanel(_controlPanel);
+    }
+
+
+    public void Show()
+    {
+       
+        gameObject.SetActive(true);
+        _backgroundGameObject.SetActive(true);
+        AddPanel(_pausePanel);
+
+
+    }
+    public void Hide()
+    {
+        _backgroundGameObject.SetActive(true);
+        gameObject.SetActive(false);
+    }
+
 }

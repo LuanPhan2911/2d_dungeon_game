@@ -2,7 +2,7 @@ using System;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class SoundControlPanel : MonoBehaviour
+public class SoundPanel : Panel
 {
     [SerializeField] private Slider _musicSlider;
     [SerializeField] private Slider _soundFxSlider;
@@ -19,10 +19,12 @@ public class SoundControlPanel : MonoBehaviour
         _soundFxSlider.onValueChanged.RemoveListener(SoundFxSliderChange);
        
     }
-    private void Start()
+    protected override void Start()
     {
         _musicSlider.value= AudioManager.Instance.GetMusicVolume();
         _soundFxSlider.value= AudioManager.Instance.GetSoundFxVolume();
+
+        base.Start();
        
     }
     private void MusicSliderChange(float value)
@@ -32,18 +34,5 @@ public class SoundControlPanel : MonoBehaviour
     private void SoundFxSliderChange(float value)
     {
         AudioManager.Instance.SetSoundFxVolume(value);
-    }
-    
- 
-    
-
-    public void Show()
-    {
-        gameObject.SetActive(true);
-        _musicSlider.Select();
-    }
-    public void Hide()
-    {
-        gameObject.SetActive(false);
     }
 }

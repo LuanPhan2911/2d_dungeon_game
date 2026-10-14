@@ -61,25 +61,7 @@ public class Switch : MonoBehaviour
 
 
 
-    private void OnTriggerEnter2D(Collider2D collision)
-    {
-        if (collision.TryGetComponent(out PlayerMovement player))
-        {
-            CanInteract = true;
-            _interactUI.Show();
-            _interactUI.SetInteractText(GameInputManager.Instance.GetBindingKey(GameInputManager.PlayerBindingAction.UpBinding));
-
-        }
-    }
-    private void OnTriggerExit2D(Collider2D collision)
-    {
-        if (collision.TryGetComponent(out PlayerMovement player))
-        {
-            CanInteract = false;
-            _interactUI.Hide();
-
-        }
-    }
+    
 
 
 }

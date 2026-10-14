@@ -15,15 +15,20 @@ public class GameManager : MonoBehaviour
 
 
     public bool IsGamePaused = false;
-
-    public event EventHandler OnGamePauseChanged;
+   
+    public event Action OnGamePaused;
 
 
     private void Start()
     {
-        //HideCursor();
+
+        GameInputManager.Instance.PlayerActions.Pause.performed += PausePerform;
     }
 
+    private void PausePerform(UnityEngine.InputSystem.InputAction.CallbackContext obj)
+    {
+        Pause();
+    }
 
     private void HideCursor()
     {
@@ -35,26 +40,23 @@ public class GameManager : MonoBehaviour
         Cursor.lockState = CursorLockMode.None;
         Cursor.visible = true;
     }
-
-
-
     public void Pause()
     {
        
         IsGamePaused= true;
         Time.timeScale= 0;
-        ShowCursor();
         GameInputManager.Instance.PlayerActions.Disable();
-        OnGamePauseChanged?.Invoke(this, EventArgs.Empty);
+
+        OnGamePaused?.Invoke();
+       
     
     }
     public void Unpause()
     {
         IsGamePaused = false;
         Time.timeScale = 1f;
-        //HideCursor();
         GameInputManager.Instance.PlayerActions.Enable();
-        OnGamePauseChanged?.Invoke(this, EventArgs.Empty);
+        OnGamePaused?.Invoke();
     }
 
 
