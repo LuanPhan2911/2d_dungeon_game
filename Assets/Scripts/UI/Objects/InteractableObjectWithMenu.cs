@@ -12,6 +12,7 @@ public class InteractableObjectWithMenu : MonoBehaviour
     [SerializeField] private GameObject _interactionPanel;   // Kéo Panel tổng vào đây
     [SerializeField] private Button _firstInteractButton;        // Kéo nút "Nhấn F" vào đây
     [SerializeField] private GameObject _menuContainer;      // Kéo Container chứa danh sách nút vào đây
+
     [SerializeField] private Button _firstMenuButtonToSelect;// Nút đầu tiên trong danh sách để tự động highlight
     private bool _isPlayerNearby = false;
     private bool _isInteracted = false;
@@ -19,7 +20,14 @@ public class InteractableObjectWithMenu : MonoBehaviour
     private void Start()
     {
         // Ẩn UI khi bắt đầu game
-        if (_interactionPanel != null) _interactionPanel.SetActive(false); 
+        if (_interactionPanel != null) _interactionPanel.SetActive(false);
+
+        GameInputManager.Instance.UIActions.Cancel.performed += GameInput_Cancel;
+    }
+
+    private void GameInput_Cancel(UnityEngine.InputSystem.InputAction.CallbackContext obj)
+    {
+        CloseMenu();
     }
 
     private void Update()
@@ -56,11 +64,8 @@ public class InteractableObjectWithMenu : MonoBehaviour
         {
             _isPlayerNearby = false;
             _isInteracted = false;
-            _interactionPanel.SetActive(false); 
-            if(EventSystem.current!= null)
-            {
-                EventSystem.current.SetSelectedGameObject(null);
-            }
+            _interactionPanel.SetActive(false);
+            EventSystem.current.SetSelectedGameObject(null);
         }
     }
 
@@ -69,22 +74,21 @@ public class InteractableObjectWithMenu : MonoBehaviour
         _firstInteractButton.gameObject.SetActive(false);
         _menuContainer.SetActive(true);
         _isInteracted = true;
+
         GameInputManager.Instance.PlayerActions.Disable();
-        
+        GameInputManager.Instance.UIActions.Cancel.Enable();
 
-
-        if (_firstMenuButtonToSelect!= null)
-        {
-            EventSystem.current.SetSelectedGameObject(null); // Reset select cũ
-            _firstMenuButtonToSelect.Select();
-        }
+        _firstMenuButtonToSelect.Select();
     }
     public void CloseMenu()
     {
         _firstInteractButton.gameObject.SetActive(true);
         _menuContainer.SetActive(false);
         _isInteracted = false;
+
         GameInputManager.Instance.PlayerActions.Enable();
+        GameInputManager.Instance.UIActions.Cancel.Disable();
+
         EventSystem.current.SetSelectedGameObject(_firstInteractButton.gameObject);
     }
 }

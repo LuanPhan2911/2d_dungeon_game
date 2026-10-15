@@ -13,5 +13,6 @@ MonoBehaviour:
   m_Name: GroundElement
   m_EditorClassIdentifier: Assembly-CSharp::ElementData
   elementName: Ground
+  sprite: {fileID: 21300000, guid: de4a1ba899e7e3e4db9367c551d0e9d2, type: 3}
   type: 5
   color: {r: 0.509434, g: 0.43995076, b: 0.33737984, a: 1}

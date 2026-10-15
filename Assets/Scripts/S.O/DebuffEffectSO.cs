@@ -7,7 +7,6 @@ public class DebuffEffectSO : ScriptableObject
 {
     public string effectName;
     public ElementSO elementSO;
-    public Sprite sprite;
     public DebuffEffectType type;
 
     [Header("Settings")]

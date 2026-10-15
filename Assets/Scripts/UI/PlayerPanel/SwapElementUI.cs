@@ -5,7 +5,7 @@ public class SwapElementUI : MonoBehaviour
 {
 
 
-    [SerializeField] private SelectElementButton _elementButtonPrefab;
+    [SerializeField] private SelectElementUI _elementButtonPrefab;
 
 
     private void Start()
@@ -17,7 +17,7 @@ public class SwapElementUI : MonoBehaviour
     {
         foreach (Transform child in transform)
         {
-            if(child.TryGetComponent(out SelectElementButton button))
+            if(child.TryGetComponent(out SelectElementUI button))
             {
                 button.SetInteract(!PlayerElement.Instance.IsElementSwapCooldown);
             }
@@ -35,7 +35,7 @@ public class SwapElementUI : MonoBehaviour
         int pos = 1;
         foreach (PlayerElementData playerElementData in PlayerElement.Instance.ElementArray)
         {
-            SelectElementButton button = Instantiate(_elementButtonPrefab, transform);
+            SelectElementUI button = Instantiate(_elementButtonPrefab, transform);
 
             button.SetElement(playerElementData.PlayerElementSO, pos);
             pos++;

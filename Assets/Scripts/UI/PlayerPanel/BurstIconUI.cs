@@ -2,7 +2,7 @@ using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class BurstSkillUI : MonoBehaviour
+public class BurstIconUI : MonoBehaviour
 {
     [SerializeField] private Image _energyImage;
     [SerializeField] private Image _cooldownImage;

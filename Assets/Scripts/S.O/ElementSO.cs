@@ -7,6 +7,7 @@ using UnityEngine;
 public class ElementSO : ScriptableObject
 {
     public string elementName;
+    public Sprite sprite;
     public ElementalType type =ElementalType.None;
     public Color color;
 

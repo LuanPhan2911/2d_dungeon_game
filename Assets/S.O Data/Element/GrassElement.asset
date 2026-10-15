@@ -13,5 +13,6 @@ MonoBehaviour:
   m_Name: GrassElement
   m_EditorClassIdentifier: Assembly-CSharp::ElementData
   elementName: Grass
+  sprite: {fileID: 21300000, guid: 1a67063fd24b2c04eac7f27e20544141, type: 3}
   type: 2
   color: {r: 0.25852156, g: 1, b: 0, a: 1}

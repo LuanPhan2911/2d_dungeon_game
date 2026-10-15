@@ -2,7 +2,7 @@ using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class SelectElementButton : MonoBehaviour
+public class SelectElementUI : MonoBehaviour
 {
 
     [SerializeField] private Button _button;
@@ -14,7 +14,7 @@ public class SelectElementButton : MonoBehaviour
     public void SetElement(PlayerElementSO data, int positionNumber)
     {
      
-        _image.color = data.element.color;
+        _image.sprite = data.element.sprite;
         _textMesh.text = $"{positionNumber}";
 
         

@@ -25,6 +25,7 @@ public class ControlPanel : Panel
     [Header("UI")]
 
     [SerializeField] private BindingKeyUI _submitBinding;
+    [SerializeField] private BindingKeyUI _cancelBinding;
     [SerializeField] private BindingKeyUI _characterBinding;
     [SerializeField] private BindingKeyUI _bagBinding;
     [SerializeField] private BindingKeyUI _mapBinding;
@@ -99,6 +100,7 @@ public class ControlPanel : Panel
         // UI
 
         _submitBinding.SetBindingText(GameInput.GetDisplayString(UIActions.Submit));
+        _cancelBinding.SetBindingText(GameInput.GetDisplayString(UIActions.Cancel));
         _characterBinding.SetBindingText(GameInput.GetDisplayString(UIActions.Character));
         _bagBinding.SetBindingText(GameInput.GetDisplayString(UIActions.Bag));
         _mapBinding.SetBindingText(GameInput.GetDisplayString(UIActions.Map));

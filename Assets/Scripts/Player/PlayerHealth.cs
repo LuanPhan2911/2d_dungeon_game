@@ -21,6 +21,7 @@ public class PlayerHealth : MonoBehaviour, IDamageable
 
 
     public float HealthRatio => _health / GetMaxHealth();
+    public float BaseHealthRatio => _health / _dataSO.baseHealth;
 
     public float CurrentHealth => _health;
 

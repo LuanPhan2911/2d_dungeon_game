@@ -13,5 +13,6 @@ MonoBehaviour:
   m_Name: SteelElement
   m_EditorClassIdentifier: Assembly-CSharp::ElementData
   elementName: Steel
+  sprite: {fileID: 21300000, guid: 8af1fa07da0470642b6343d86d26aea0, type: 3}
   type: 1
   color: {r: 1, g: 0.84313726, b: 0, a: 1}

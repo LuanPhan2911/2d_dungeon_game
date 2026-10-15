@@ -13,5 +13,6 @@ MonoBehaviour:
   m_Name: WaterElement
   m_EditorClassIdentifier: Assembly-CSharp::ElementData
   elementName: Water
+  sprite: {fileID: 21300000, guid: 51ff9888028a4174b9f89ed905c3e8de, type: 3}
   type: 3
   color: {r: 0, g: 0.49438763, b: 1, a: 1}

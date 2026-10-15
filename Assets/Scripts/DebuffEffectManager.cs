@@ -153,7 +153,7 @@ public class DebuffEffectManager : MonoBehaviour
     {
         if(effect.effectUIInstance.TryGetComponent(out StatusEffectUI statusEffectUI))
         {
-            statusEffectUI.SetImage(effect.effectSO.sprite);
+            statusEffectUI.SetImage(effect.effectSO.elementSO.sprite);
             statusEffectUI.SetFillAmount((float)effect.currentStacks / effect.effectSO.maxStacks);
         }
       
