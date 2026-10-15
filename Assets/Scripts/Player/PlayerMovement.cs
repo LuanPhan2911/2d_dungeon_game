@@ -105,11 +105,11 @@ public partial class PlayerMovement : MonoBehaviour
 
         }
 
-        if (GameInputManager.Instance.PlayerActions.Run.WasPressedThisFrame())
+        if (GameInputManager.Instance.PlayerActions.Sprint.WasPressedThisFrame())
         {
             _lastPressDashTimer = _dataSO.dashInputBufferTime;
         }
-        if (GameInputManager.Instance.PlayerActions.Run.WasReleasedThisFrame())
+        if (GameInputManager.Instance.PlayerActions.Sprint.WasReleasedThisFrame())
         {
             _canSprintAfterDash = false;
         }
@@ -401,7 +401,7 @@ public partial class PlayerMovement : MonoBehaviour
     private bool CanSprint()
     {
 
-        return GameInputManager.Instance.PlayerActions.Run.IsPressed() && IsGrounded
+        return GameInputManager.Instance.PlayerActions.Sprint.IsPressed() && IsGrounded
             && IsHorizontalMoving && _canSprintAfterDash;
 
     }

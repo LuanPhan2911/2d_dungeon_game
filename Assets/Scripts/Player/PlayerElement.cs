@@ -110,18 +110,15 @@ public class PlayerElement : MonoBehaviour
 
         if (!IsElementSwapCooldown)
         {
-            if (GameInputManager.Instance.PlayerActions.SwapElement1.WasPressedThisFrame())
+            if (GameInputManager.Instance.PlayerActions.First.WasPressedThisFrame())
             {
                 SetActivePlayerElement(FIRST_PLAYER_ELEMENT_INDEX);
             }
-            if (GameInputManager.Instance.PlayerActions.SwapElement2.WasPressedThisFrame())
+            if (GameInputManager.Instance.PlayerActions.Second.WasPressedThisFrame())
             {
                 SetActivePlayerElement(SECOND_PLAYER_ELEMENT_INDEX);
             }
-            if (GameInputManager.Instance.PlayerActions.SwapElement3.WasPressedThisFrame())
-            {
-                SetActivePlayerElement(THURD_PLAYER_ELEMENT_INDEX);
-            }
+           
         }
 
 
@@ -138,7 +135,7 @@ public class PlayerElement : MonoBehaviour
           
             _lastPressBurstSkillTimer = Mathf.Max(_lastPressBurstSkillTimer - Time.deltaTime, 0f);
 
-            if (GameInputManager.Instance.PlayerActions.BurstSkill.WasPressedThisFrame())
+            if (GameInputManager.Instance.PlayerActions.Burst.WasPressedThisFrame())
             {
                 _lastPressBurstSkillTimer = ActivePlayerElementSO.skillInputBuffer;
                
