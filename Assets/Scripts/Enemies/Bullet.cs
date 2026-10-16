@@ -2,12 +2,14 @@ using UnityEngine;
 
 public class Bullet : MonoBehaviour
 {
-    [SerializeField] private float _speed = 5f;
+    [SerializeField] private float _speed = 10f;
     [SerializeField] private float _lifeTime = 5f;
 
     [SerializeField] private LayerMask _obstacleLayer;
+   
 
     private Damage _damage;
+    private bool _isReflected = false;
 
 
     private Rigidbody2D _rb;
@@ -25,16 +27,50 @@ public class Bullet : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        if(collision.TryGetComponent(out PlayerHealth playerHealth))
+        if(!_isReflected && collision.TryGetComponent(out PlayerParry playerParry) )
         {
+            // parry success
+            if (playerParry.CheckParryValid(transform.position))
+            {
+               
+                ReflectProjectile();
+                return;
+            }
+            // parry fail
+            if (collision.TryGetComponent(out PlayerHealth playerHealth))
+            {
 
-            playerHealth.TakeDamage(_damage);
-            Destroy(gameObject);
+                playerHealth.TakeDamage(_damage);
+                Destroy(gameObject);
+            }
+
         }
-        else if(_obstacleLayer.Contains(collision.gameObject.layer))
+
+        // reflect bullet attack enemy
+        if(_isReflected && collision.TryGetComponent(out BaseEnemy enemy))
+        {
+            _damage.SourceAttackGameObject = PlayerHealth.Instance.gameObject;
+            _damage.CanCrit = false;
+
+            enemy.TakeDamage(_damage);
+            Destroy(gameObject);
+
+        }
+        
+       // bullet hit wall or ground 
+        
+        if(_obstacleLayer.Contains(collision.gameObject.layer))
         {
             Destroy(gameObject);
         }
+
+    }
+    private void ReflectProjectile()
+    {
+        _isReflected = true;
+        _rb.linearVelocity = -_rb.linearVelocity;
+
+        transform.localScale = new Vector3(-transform.localScale.x, transform.localScale.y, transform.localScale.z);
 
     }
 

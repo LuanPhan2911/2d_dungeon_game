@@ -168,9 +168,9 @@ MonoBehaviour:
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 5796ecb4c72e5aa4da8e3d102ac19a50, type: 3}
   m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::Buttle
-  _speed: 5
-  _lifeTime: 10
+  m_EditorClassIdentifier: Assembly-CSharp::Bullet
+  _speed: 10
+  _lifeTime: 5
   _obstacleLayer:
     serializedVersion: 2
     m_Bits: 64
