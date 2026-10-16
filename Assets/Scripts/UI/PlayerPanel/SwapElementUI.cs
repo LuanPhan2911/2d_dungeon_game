@@ -1,48 +1,36 @@
 using UnityEngine;
-using static PlayerElement;
+
 
 public class SwapElementUI : MonoBehaviour
 {
 
 
-    [SerializeField] private SelectElementUI _elementButtonPrefab;
+    [SerializeField] private SelectElementUI _firstElement;
+    [SerializeField] private SelectElementUI _secondElement;
 
-
-    private void Start()
-    {
-        UpdateUI();
-    }
+    public PlayerElement PElement => PlayerElement.Instance;
 
     private void Update()
     {
-        foreach (Transform child in transform)
-        {
-            if(child.TryGetComponent(out SelectElementUI button))
-            {
-                button.SetInteract(!PlayerElement.Instance.IsElementSwapCooldown);
-            }
+        _firstElement.SetElement(PElement.FirstPlayerElementData);
+        _secondElement.SetElement(PElement.SecondPlayerElementData);
 
+        if (PElement.FirstPlayerElementData!= null)
+        {
+            _firstElement.Show();  
+        }
+        else
+        {
+            _firstElement.Hide();
+        }
+
+        if(PElement.SecondPlayerElementData!= null)
+        {
+            _secondElement.Show(); 
+        }
+        else
+        {
+            _secondElement.Hide();
         }
     }
-
-    private void UpdateUI()
-    {
-        foreach(Transform child in transform)
-        {
-            Destroy(child.gameObject);
-
-        }
-        int pos = 1;
-        foreach (PlayerElementData playerElementData in PlayerElement.Instance.ElementArray)
-        {
-            SelectElementUI button = Instantiate(_elementButtonPrefab, transform);
-
-            button.SetElement(playerElementData.PlayerElementSO, pos);
-            pos++;
-
-        }
-    }
-
-
-
 }

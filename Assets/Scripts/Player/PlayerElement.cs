@@ -11,16 +11,11 @@ public class PlayerElement : MonoBehaviour
     public PlayerMovement PMovement => PlayerMovement.Instance;
     public PlayerHealth PHealth => PlayerHealth.Instance;
 
-    const int NONE_PLAYER_ELEMENT_INDEX = -1;
-    const int FIRST_PLAYER_ELEMENT_INDEX = 0;
-    const int SECOND_PLAYER_ELEMENT_INDEX = 1;
-    const int THURD_PLAYER_ELEMENT_INDEX = 2;
-
     [Header("Burst Skill")]
     [SerializeField] private SteelBurstSlash _steelBurstSlashPrefab;
 
     [SerializeField] private GroundBurstTornado _groundBurstTornadoPrefab;
-    [SerializeField] private float _infusedElementToWeaponDuration = 8.5f;
+    [SerializeField] private float _infusedElementToWeaponDuration = 10f;
 
 
     [Serializable]
@@ -31,24 +26,37 @@ public class PlayerElement : MonoBehaviour
         [HideInInspector] public float burstEnergy;
     }
 
-    public PlayerElementData[] ElementArray;
+    [Header("Player Element Slot")]
+    [SerializeField] PlayerElementData _firstPlayerElement;
+    [SerializeField] PlayerElementData _secondPlayerElement;
 
-    public ElementSO PhysicElementSO;
-    public ElementSO SteelElementSO;
-    public ElementSO GrassElementSO;
-    public ElementSO WaterElementSO;
-    public ElementSO FireElementSO;
-    public ElementSO GroundElementSO;
+    
 
+    public PlayerElementData FirstPlayerElementData => _firstPlayerElement;
+    public PlayerElementData SecondPlayerElementData => _secondPlayerElement;
 
+    [Header("Element")]
 
-    //public event Action OnElementArrayChanged;
+    [SerializeField] private ElementSO _physicElementSO;
+    [SerializeField] private ElementSO _steelElementSO;
+    [SerializeField] private ElementSO _grassElementSO;
+    [SerializeField] private ElementSO _waterElementSO;
+    [SerializeField] private ElementSO _firstElementSO;
+    [SerializeField] private ElementSO _groundElementSO;
+
+    public ElementSO PhysicElementSO=> _physicElementSO;
+    public ElementSO SteelElementSO=>_steelElementSO;
+    public ElementSO GrassElementSO=>_grassElementSO;
+    public ElementSO WaterElementSO=>_waterElementSO;
+    public ElementSO FireElementSO=>_firstElementSO;
+    public ElementSO GroundElementSO=>_groundElementSO;
+
 
     #region Active
-    public int ActiveIndex => _activeIndex;
+
     
-    public bool HasActive => _activeIndex != NONE_PLAYER_ELEMENT_INDEX;
-    public PlayerElementData ActivePlayerElement => ElementArray[_activeIndex];
+    public bool HasActive => _activePlayerElement != null;
+    public PlayerElementData ActivePlayerElement => _activePlayerElement;
     public ElementSO ActiveElementSO => ActivePlayerElement.PlayerElementSO.element;
     public PlayerElementSO ActivePlayerElementSO => ActivePlayerElement.PlayerElementSO;
     public float ActiveBurstTimer => ActivePlayerElement.burstTimer;
@@ -60,7 +68,8 @@ public class PlayerElement : MonoBehaviour
 
     public bool IsElementSwapCooldown => _elementSwapTimer > 0f;
     private float _elementSwapTimer;
-    private int _activeIndex = NONE_PLAYER_ELEMENT_INDEX;
+
+    private PlayerElementData _activePlayerElement;
     private float _elementSwapCooldown=0.5f;
 
 
@@ -112,11 +121,11 @@ public class PlayerElement : MonoBehaviour
         {
             if (GameInputManager.Instance.PlayerActions.First.WasPressedThisFrame())
             {
-                SetActivePlayerElement(FIRST_PLAYER_ELEMENT_INDEX);
+                SetActivePlayerElement(_firstPlayerElement);
             }
             if (GameInputManager.Instance.PlayerActions.Second.WasPressedThisFrame())
             {
-                SetActivePlayerElement(SECOND_PLAYER_ELEMENT_INDEX);
+                SetActivePlayerElement(_secondPlayerElement);
             }
            
         }
@@ -125,14 +134,12 @@ public class PlayerElement : MonoBehaviour
 
         if (HasActive)
         {
-            for (int i = 0; i < ElementArray.Length; i++)
-            {
-                float timer = ElementArray[i].burstTimer;
-                ElementArray[i].burstTimer =Mathf.Max(timer - Time.deltaTime, 0f);
-            }
+           
+            _firstPlayerElement.burstTimer = Mathf.Max(_firstPlayerElement.burstTimer - Time.deltaTime, 0f);
+            _secondPlayerElement.burstTimer = Mathf.Max(_secondPlayerElement.burstTimer - Time.deltaTime, 0f);
 
 
-          
+
             _lastPressBurstSkillTimer = Mathf.Max(_lastPressBurstSkillTimer - Time.deltaTime, 0f);
 
             if (GameInputManager.Instance.PlayerActions.Burst.WasPressedThisFrame())
@@ -141,9 +148,9 @@ public class PlayerElement : MonoBehaviour
                
             }
          
-            if (CanUseBurstSkill())
+            if (CanUseBurst())
             {
-                BurstSkillAttack();
+                BurstAttack();
                 InfuseElementToWeapon();
             }
         }
@@ -152,6 +159,13 @@ public class PlayerElement : MonoBehaviour
 
       
 
+    }
+
+    public bool HasBurst(PlayerElementData playerElementData)
+    {
+        if (playerElementData== null) return false;
+
+        return playerElementData.burstEnergy >= playerElementData.PlayerElementSO.burstEnergy;
     }
     public ElementSO GetElementInfuseToWeapon()
     {
@@ -164,14 +178,12 @@ public class PlayerElement : MonoBehaviour
        
         return ActiveElementSO;
     }
-    public void SetActivePlayerElement(int index)
+    public void SetActivePlayerElement(PlayerElementData playerElementData)
     {
-        if (index < 0 || index >= ElementArray.Length) return;
+        if (ActivePlayerElement == playerElementData) return;
 
-        if (index == _activeIndex) return;
+        _activePlayerElement = playerElementData;
 
-
-        _activeIndex = index;
         _elementSwapTimer = _elementSwapCooldown;
         StopInfuseElementToWeapon();
         OnElementSwapped?.Invoke();
@@ -183,17 +195,17 @@ public class PlayerElement : MonoBehaviour
         _infusedElementToWeaponTimer = 0f;
     }
    
-    private bool CanUseBurstSkill()
+    private bool CanUseBurst()
     {
         return _lastPressBurstSkillTimer > 0f && 
             ActivePlayerElement.burstEnergy >= ActivePlayerElementSO.burstEnergy &&
             !IsBurstCooldown;
     }
-    private void BurstSkillAttack()
+    private void BurstAttack()
     {
 
-        ElementArray[ActiveIndex].burstTimer = ActivePlayerElementSO.burstCooldown;
-        ElementArray[ActiveIndex].burstEnergy = 0f;
+        _activePlayerElement.burstTimer = ActivePlayerElementSO.burstCooldown;
+       _activePlayerElement.burstEnergy = 0f;
        
 
     

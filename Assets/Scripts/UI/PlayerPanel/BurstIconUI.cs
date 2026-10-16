@@ -57,7 +57,7 @@ public class BurstIconUI : MonoBehaviour
     private void ElementSwap()
     {
         _energyImage.color = PElement.ActiveElementSO.color;
-        _mainImage.sprite = PElement.ActivePlayerElementSO.burstSkillSprite;
+        _mainImage.sprite = PElement.ActivePlayerElementSO.burstSprite;
         Show();
     }
 
