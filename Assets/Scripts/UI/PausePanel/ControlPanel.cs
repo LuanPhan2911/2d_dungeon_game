@@ -20,6 +20,7 @@ public class ControlPanel : Panel
     [SerializeField] private BindingKeyUI _interactBinding;
     [SerializeField] private BindingKeyUI _firstElementBinding;
     [SerializeField] private BindingKeyUI _secondElementBinding;
+    [SerializeField] private BindingKeyUI _thirdElementBinding;
 
 
     [Header("UI")]
@@ -34,6 +35,8 @@ public class ControlPanel : Panel
 
     [SerializeField] private GameObject _overlayGameObject;
 
+    const int KEYBOARD_BINDING_INDEX = 0;
+
     public GameInputManager GameInput => GameInputManager.Instance;
     public InputSystem_Actions.PlayerActions PlayerActions => GameInput.PlayerActions;
     public InputSystem_Actions.UIActions UIActions => GameInput.UIActions;
@@ -42,8 +45,8 @@ public class ControlPanel : Panel
     {
         GameInput.OnRebindStarted += GameInputManager_RebindingStart;
         GameInput.OnRebindCompleted += GameInputManager_RebindingCompleted;
-        
-        
+
+        SetInputActionForBindingKey();
         UpdateUI();
 
         base.Start();
@@ -57,25 +60,38 @@ public class ControlPanel : Panel
         _overlayGameObject.SetActive(false);
         UpdateUI();
     }
-    public void UpRebinding()
+   
+    private void SetInputActionForBindingKey()
     {
-        GameInput.Rebinding(PlayerActions.Move, GameInputManager.UpBindingIndex );
-       
-    }
-    public void DownRebinding()
-    {
-        GameInput.Rebinding(PlayerActions.Move, GameInputManager.DownBindingIndex );
-       
-    }
-    public void LeftRebinding()
-    {
-        GameInput.Rebinding(PlayerActions.Move, GameInputManager.LeftBindingIndex );
-       
-    }
-    public void RightRebinding()
-    {
-        GameInput.Rebinding(PlayerActions.Move, GameInputManager.RightBindingIndex );
-       
+        // Player
+        _upBinding.SetInputAction(PlayerActions.Move, GameInputManager.UpBindingIndex);
+        _downBinding.SetInputAction(PlayerActions.Move, GameInputManager.DownBindingIndex);
+        _leftBinding.SetInputAction(PlayerActions.Move, GameInputManager.LeftBindingIndex);
+        _rightBinding.SetInputAction(PlayerActions.Move, GameInputManager.RightBindingIndex);
+
+        _jumpBinding.SetInputAction(PlayerActions.Jump, KEYBOARD_BINDING_INDEX);
+        _attackBinding.SetInputAction(PlayerActions.Attack, KEYBOARD_BINDING_INDEX);
+        _parryBinding.SetInputAction(PlayerActions.Parry, KEYBOARD_BINDING_INDEX);
+        _sprintBinding.SetInputAction(PlayerActions.Sprint, KEYBOARD_BINDING_INDEX);
+        _burstBinding.SetInputAction(PlayerActions.Burst, KEYBOARD_BINDING_INDEX);
+        _healBinding.SetInputAction(PlayerActions.Heal, KEYBOARD_BINDING_INDEX);
+        _interactBinding.SetInputAction(PlayerActions.Interact, KEYBOARD_BINDING_INDEX);
+
+        _firstElementBinding.SetInputAction(PlayerActions.First, KEYBOARD_BINDING_INDEX);
+        _secondElementBinding.SetInputAction(PlayerActions.Second, KEYBOARD_BINDING_INDEX);
+        _thirdElementBinding.SetInputAction(PlayerActions.Third, KEYBOARD_BINDING_INDEX);
+
+        // UI
+        _submitBinding.SetInputAction(UIActions.Submit, KEYBOARD_BINDING_INDEX);
+        _cancelBinding.SetInputAction(UIActions.Cancel, KEYBOARD_BINDING_INDEX);
+        _bagBinding.SetInputAction(UIActions.Bag, KEYBOARD_BINDING_INDEX);
+        _characterBinding.SetInputAction(UIActions.Character, KEYBOARD_BINDING_INDEX);
+        _mapBinding.SetInputAction(UIActions.Map, KEYBOARD_BINDING_INDEX);
+        
+
+
+
+
     }
 
     private void UpdateUI()
@@ -96,6 +112,7 @@ public class ControlPanel : Panel
 
         _firstElementBinding.SetBindingText(GameInput.GetDisplayString(PlayerActions.First));
         _secondElementBinding.SetBindingText(GameInput.GetDisplayString(PlayerActions.Second));
+        _thirdElementBinding.SetBindingText(GameInput.GetDisplayString(PlayerActions.Third));
 
         // UI
 

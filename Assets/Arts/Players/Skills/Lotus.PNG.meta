@@ -1,0 +1,516 @@
+fileFormatVersion: 2
+guid: 4a04e28bf581c444a94766af2e52b65e
+TextureImporter:
+  internalIDToNameTable:
+  - first:
+      213: -8317670610642348895
+    second: Lotus 1_0
+  - first:
+      213: -4066268144233781360
+    second: Lotus 1_1
+  - first:
+      213: -2701285658026127084
+    second: Lotus 1_2
+  - first:
+      213: 944110023710521621
+    second: Lotus 1_3
+  - first:
+      213: -2832808458853851536
+    second: Lotus 1_4
+  - first:
+      213: 7907805098214605957
+    second: Lotus 1_5
+  - first:
+      213: 2192645135462266123
+    second: Lotus 1_6
+  - first:
+      213: 6940850186814677257
+    second: Lotus 1_7
+  - first:
+      213: -650578801296332200
+    second: Lotus 1_8
+  - first:
+      213: 1037229047722382367
+    second: Lotus 1_9
+  - first:
+      213: -1281840064081378791
+    second: Lotus 1_10
+  - first:
+      213: -2984366299472479509
+    second: Lotus 1_11
+  - first:
+      213: -7972635623450738352
+    second: Lotus 1_12
+  - first:
+      213: -435784602471906621
+    second: Lotus 1_13
+  - first:
+      213: 5909449753326358611
+    second: Lotus 1_14
+  - first:
+      213: 4389447824058427894
+    second: Lotus 1_15
+  - first:
+      213: -4596700884777531483
+    second: Lotus 1_16
+  - first:
+      213: 1278686457461887088
+    second: Lotus 1_17
+  - first:
+      213: -6809167673418562887
+    second: Lotus 1_18
+  - first:
+      213: -335423746184681860
+    second: Lotus 1_19
+  - first:
+      213: -3035778219415695365
+    second: Lotus 1_20
+  - first:
+      213: -6734382276865580072
+    second: Lotus 1_21
+  - first:
+      213: -3772252512269015737
+    second: Lotus 1_22
+  - first:
+      213: -6613274282879999852
+    second: Lotus 1_23
+  - first:
+      213: -497013615166501425
+    second: Lotus 1_24
+  externalObjects: {}
+  serializedVersion: 13
+  mipmaps:
+    mipMapMode: 0
+    enableMipMap: 0
+    sRGBTexture: 1
+    linearTexture: 0
+    fadeOut: 0
+    borderMipMap: 0
+    mipMapsPreserveCoverage: 0
+    alphaTestReferenceValue: 0.5
+    mipMapFadeDistanceStart: 1
+    mipMapFadeDistanceEnd: 3
+  bumpmap:
+    convertToNormalMap: 0
+    externalNormalMap: 0
+    heightScale: 0.25
+    normalMapFilter: 0
+    flipGreenChannel: 0
+  isReadable: 0
+  streamingMipmaps: 0
+  streamingMipmapsPriority: 0
+  vTOnly: 0
+  ignoreMipmapLimit: 0
+  grayScaleToAlpha: 0
+  generateCubemap: 6
+  cubemapConvolution: 0
+  seamlessCubemap: 0
+  textureFormat: 1
+  maxTextureSize: 2048
+  textureSettings:
+    serializedVersion: 2
+    filterMode: 1
+    aniso: 1
+    mipBias: 0
+    wrapU: 1
+    wrapV: 1
+    wrapW: 1
+  nPOTScale: 0
+  lightmap: 0
+  compressionQuality: 50
+  spriteMode: 2
+  spriteExtrude: 1
+  spriteMeshType: 1
+  alignment: 0
+  spritePivot: {x: 0.5, y: 0.5}
+  spritePixelsToUnits: 100
+  spriteBorder: {x: 0, y: 0, z: 0, w: 0}
+  spriteGenerateFallbackPhysicsShape: 1
+  alphaUsage: 1
+  alphaIsTransparency: 1
+  spriteTessellationDetail: -1
+  textureType: 8
+  textureShape: 1
+  singleChannelComponent: 0
+  flipbookRows: 1
+  flipbookColumns: 1
+  maxTextureSizeSet: 0
+  compressionQualitySet: 0
+  textureFormatSet: 0
+  ignorePngGamma: 0
+  applyGammaDecoding: 0
+  swizzle: 50462976
+  cookieLightType: 0
+  platformSettings:
+  - serializedVersion: 4
+    buildTarget: DefaultTexturePlatform
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 4
+    buildTarget: Standalone
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  spriteSheet:
+    serializedVersion: 2
+    sprites:
+    - serializedVersion: 2
+      name: Lotus_0
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 233
+        width: 201
+        height: 233
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 6b072683215432342ae6acd90f38a3af
+      internalID: 933513718
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Lotus_1
+      rect:
+        serializedVersion: 2
+        x: 201
+        y: 233
+        width: 201
+        height: 233
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 91e3fcb447cf7294d92308b6eeb98000
+      internalID: -1114550130
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Lotus_2
+      rect:
+        serializedVersion: 2
+        x: 402
+        y: 233
+        width: 201
+        height: 233
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 38cba0134bd4e054c842ab71a6fb1a7b
+      internalID: -1484020523
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Lotus_3
+      rect:
+        serializedVersion: 2
+        x: 603
+        y: 233
+        width: 201
+        height: 233
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: e736d120becce5f46a4776c68d4d009c
+      internalID: 1385928603
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Lotus_4
+      rect:
+        serializedVersion: 2
+        x: 804
+        y: 233
+        width: 201
+        height: 233
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: c2037246e81e00545af09900905fc252
+      internalID: 2138768490
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Lotus_5
+      rect:
+        serializedVersion: 2
+        x: 1005
+        y: 233
+        width: 201
+        height: 233
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: f633261ca659fb344b8047bf0e159073
+      internalID: 1405694701
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Lotus_6
+      rect:
+        serializedVersion: 2
+        x: 1206
+        y: 233
+        width: 201
+        height: 233
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 83ab49b378f214c4da222d7ecee7a102
+      internalID: 727382794
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Lotus_7
+      rect:
+        serializedVersion: 2
+        x: 1
+        y: 31
+        width: 201
+        height: 202
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 1e7dba76eb5081b42a1109c186e141dc
+      internalID: 1479438841
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Lotus_8
+      rect:
+        serializedVersion: 2
+        x: 201
+        y: 31
+        width: 201
+        height: 202
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 5eb27ab79b537cb439c5be1b73c9e6d0
+      internalID: -638670696
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Lotus_9
+      rect:
+        serializedVersion: 2
+        x: 403
+        y: 32
+        width: 201
+        height: 201
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: c332c78b98b9d304d8b358b55dc9ddae
+      internalID: -1305726327
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Lotus_10
+      rect:
+        serializedVersion: 2
+        x: 603
+        y: 31
+        width: 201
+        height: 202
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: e8cdc7d5a3fb057499687aebc725b680
+      internalID: 403469501
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Lotus_11
+      rect:
+        serializedVersion: 2
+        x: 804
+        y: 33
+        width: 201
+        height: 200
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: e9c34223892c41043ade5093c7d70f29
+      internalID: 1538982301
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Lotus_12
+      rect:
+        serializedVersion: 2
+        x: 1005
+        y: 32
+        width: 201
+        height: 201
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: fa35223df9b7912459529b86b1c8323c
+      internalID: 1359376414
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Lotus_13
+      rect:
+        serializedVersion: 2
+        x: 1206
+        y: 33
+        width: 201
+        height: 200
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: b87551d28bef3e341b010356069dc784
+      internalID: 907024850
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    outline: []
+    customData: 
+    physicsShape: []
+    bones: []
+    spriteID: 3aaa235cd03ccca408523b37a0c46800
+    internalID: 0
+    vertices: []
+    indices: 
+    edges: []
+    weights: []
+    secondaryTextures: []
+    spriteCustomMetadata:
+      entries:
+      - key: SpriteEditor.SliceSettings
+        value: '{"sliceOnImport":false,"gridCellCount":{"x":7.0,"y":2.0},"gridSpriteSize":{"x":201.0,"y":233.0},"gridSpriteOffset":{"x":0.0,"y":0.0},"gridSpritePadding":{"x":0.0,"y":0.0},"pivot":{"x":0.5,"y":0.5},"pivotPixels":{"x":0.0,"y":0.0},"autoSlicingMethod":0,"spriteAlignment":0,"pivotUnitMode":0,"slicingType":2,"keepEmptyRects":false,"isAlternate":false}'
+    nameFileIdTable:
+      Lotus_0: 933513718
+      Lotus_1: -1114550130
+      Lotus_10: 403469501
+      Lotus_11: 1538982301
+      Lotus_12: 1359376414
+      Lotus_13: 907024850
+      Lotus_2: -1484020523
+      Lotus_3: 1385928603
+      Lotus_4: 2138768490
+      Lotus_5: 1405694701
+      Lotus_6: 727382794
+      Lotus_7: 1479438841
+      Lotus_8: -638670696
+      Lotus_9: -1305726327
+  mipmapLimitGroupName: 
+  pSDRemoveMatte: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

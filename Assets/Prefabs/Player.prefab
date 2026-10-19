@@ -830,7 +830,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &4729839839883884835
 Transform:
   m_ObjectHideFlags: 0
@@ -5736,6 +5736,7 @@ GameObject:
   - component: {fileID: 3610167816305384861}
   - component: {fileID: 5033102710396620486}
   - component: {fileID: 6271476450232353595}
+  - component: {fileID: 1887463839026415195}
   - component: {fileID: 3024244117808424973}
   - component: {fileID: 3735642507340127294}
   - component: {fileID: 6103680672220467978}
@@ -5901,8 +5902,8 @@ MonoBehaviour:
     m_Bits: 320
   _groundCheckPoint: {fileID: 8902876242943277303}
   _groundCheckSize: {x: 0.5, y: 0.1}
-  _data: {fileID: 11400000, guid: ca60778941745a945ad3e3df82d9e0f5, type: 2}
-  _UITransform: {fileID: 3888469632154140471}
+  _dataSO: {fileID: 11400000, guid: ca60778941745a945ad3e3df82d9e0f5, type: 2}
+  _canDashInAir: 0
   _dashFX: {fileID: 3610509746731027631}
 --- !u!114 &6271476450232353595
 MonoBehaviour:
@@ -5928,6 +5929,22 @@ MonoBehaviour:
     m_Bits: 1024
   _slashFxPrefab: {fileID: 134317312105848395, guid: fd115bff5e43681499674b1bc94213cd, type: 3}
   _chargeSlashFxPrefab: {fileID: 614633409195199339, guid: 30205a38c73ab0d4bb332dea2d5768e5, type: 3}
+  _chargeAttackFx: {fileID: 2030814996834479790}
+--- !u!114 &1887463839026415195
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5087166927145310186}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 92219f25c53055c41bbeba013b476c91, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::PlayerParry
+  _parryDuration: 0.2
+  _parryCooldown: 0.5
+  _dotValue: 0.3
 --- !u!114 &3024244117808424973
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -5941,7 +5958,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::PlayerHealth
   _dataSO: {fileID: 11400000, guid: 79e2963b548cdac48af76b43c54fe63c, type: 2}
-  _canvasParent: {fileID: 3888469632154140471}
+  IsInvincible: 0
 --- !u!114 &3735642507340127294
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -5957,22 +5974,20 @@ MonoBehaviour:
   _steelBurstSlashPrefab: {fileID: 202046149228580867, guid: 9c186c5923da49f4c908ab9ca8e99b99, type: 3}
   _groundBurstTornadoPrefab: {fileID: 2183549926405298608, guid: 4304f572dd00f1744911b5f42d3908f1, type: 3}
   _infusedElementToWeaponDuration: 50
-  ElementArray:
-  - PlayerElementSO: {fileID: 11400000, guid: 0b2240dbf9849fb4d9cfd932a830e79b, type: 2}
+  _firstPlayerElement:
+    PlayerElementSO: {fileID: 11400000, guid: 3d44151c6000a69419073cbefc0805aa, type: 2}
     burstTimer: 0
     burstEnergy: 0
-  - PlayerElementSO: {fileID: 11400000, guid: 076837a4ddcb06947864914692b19c4e, type: 2}
+  _secondPlayerElement:
+    PlayerElementSO: {fileID: 11400000, guid: 0b2240dbf9849fb4d9cfd932a830e79b, type: 2}
     burstTimer: 0
     burstEnergy: 0
-  - PlayerElementSO: {fileID: 11400000, guid: ace3080cbe0a13c4587f45b5aad1daa8, type: 2}
-    burstTimer: 0
-    burstEnergy: 0
-  PhysicElementSO: {fileID: 11400000, guid: fa41908be5b89654d95054a0484eb7d8, type: 2}
-  SteelElementSO: {fileID: 11400000, guid: 0fda099d69e02a14796aa32fe827c589, type: 2}
-  GrassElementSO: {fileID: 11400000, guid: db1905687a944cc4aa7e5287c2cc606a, type: 2}
-  WaterElementSO: {fileID: 11400000, guid: cfb9b5ebcdf62a842af790accf5fe130, type: 2}
-  FireElementSO: {fileID: 11400000, guid: 5f9787651436ec04fac44ee1fce84e5d, type: 2}
-  GroundElementSO: {fileID: 11400000, guid: 900a6a60b4ab0844d865b09c7e9b785f, type: 2}
+  _physicElementSO: {fileID: 11400000, guid: fa41908be5b89654d95054a0484eb7d8, type: 2}
+  _steelElementSO: {fileID: 11400000, guid: 0fda099d69e02a14796aa32fe827c589, type: 2}
+  _grassElementSO: {fileID: 11400000, guid: db1905687a944cc4aa7e5287c2cc606a, type: 2}
+  _waterElementSO: {fileID: 11400000, guid: cfb9b5ebcdf62a842af790accf5fe130, type: 2}
+  _firstElementSO: {fileID: 11400000, guid: 5f9787651436ec04fac44ee1fce84e5d, type: 2}
+  _groundElementSO: {fileID: 11400000, guid: 900a6a60b4ab0844d865b09c7e9b785f, type: 2}
 --- !u!114 &6103680672220467978
 MonoBehaviour:
   m_ObjectHideFlags: 0

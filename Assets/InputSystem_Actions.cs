@@ -201,6 +201,16 @@ public partial class @InputSystem_Actions: IInputActionCollection2, IDisposable
                     ""interactions"": """",
                     ""initialStateCheck"": false,
                     ""priority"": 0
+                },
+                {
+                    ""name"": ""Third"",
+                    ""type"": ""Button"",
+                    ""id"": ""ab43a21f-b72a-414c-966a-0286dd74181d"",
+                    ""expectedControlType"": """",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false,
+                    ""priority"": 0
                 }
             ],
             ""bindings"": [
@@ -366,6 +376,17 @@ public partial class @InputSystem_Actions: IInputActionCollection2, IDisposable
                     ""processors"": """",
                     ""groups"": """",
                     ""action"": ""Second"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""58978560-0c53-4412-a793-8adac191d9be"",
+                    ""path"": ""<Keyboard>/3"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Third"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
                 }
@@ -1037,6 +1058,7 @@ public partial class @InputSystem_Actions: IInputActionCollection2, IDisposable
         m_Player_Heal = m_Player.FindAction("Heal", throwIfNotFound: true);
         m_Player_First = m_Player.FindAction("First", throwIfNotFound: true);
         m_Player_Second = m_Player.FindAction("Second", throwIfNotFound: true);
+        m_Player_Third = m_Player.FindAction("Third", throwIfNotFound: true);
         // UI
         m_UI = asset.FindActionMap("UI", throwIfNotFound: true);
         m_UI_Navigate = m_UI.FindAction("Navigate", throwIfNotFound: true);
@@ -1144,6 +1166,7 @@ public partial class @InputSystem_Actions: IInputActionCollection2, IDisposable
     private readonly InputAction m_Player_Heal;
     private readonly InputAction m_Player_First;
     private readonly InputAction m_Player_Second;
+    private readonly InputAction m_Player_Third;
     /// <summary>
     /// Provides access to input actions defined in input action map "Player".
     /// </summary>
@@ -1199,6 +1222,10 @@ public partial class @InputSystem_Actions: IInputActionCollection2, IDisposable
         /// Provides access to the underlying input action "Player/Second".
         /// </summary>
         public InputAction @Second => m_Wrapper.m_Player_Second;
+        /// <summary>
+        /// Provides access to the underlying input action "Player/Third".
+        /// </summary>
+        public InputAction @Third => m_Wrapper.m_Player_Third;
         /// <summary>
         /// Provides access to the underlying input action map instance.
         /// </summary>
@@ -1258,6 +1285,9 @@ public partial class @InputSystem_Actions: IInputActionCollection2, IDisposable
             @Second.started += instance.OnSecond;
             @Second.performed += instance.OnSecond;
             @Second.canceled += instance.OnSecond;
+            @Third.started += instance.OnThird;
+            @Third.performed += instance.OnThird;
+            @Third.canceled += instance.OnThird;
         }
 
         /// <summary>
@@ -1302,6 +1332,9 @@ public partial class @InputSystem_Actions: IInputActionCollection2, IDisposable
             @Second.started -= instance.OnSecond;
             @Second.performed -= instance.OnSecond;
             @Second.canceled -= instance.OnSecond;
+            @Third.started -= instance.OnThird;
+            @Third.performed -= instance.OnThird;
+            @Third.canceled -= instance.OnThird;
         }
 
         /// <summary>
@@ -1712,6 +1745,13 @@ public partial class @InputSystem_Actions: IInputActionCollection2, IDisposable
         /// <seealso cref="UnityEngine.InputSystem.InputAction.performed" />
         /// <seealso cref="UnityEngine.InputSystem.InputAction.canceled" />
         void OnSecond(InputAction.CallbackContext context);
+        /// <summary>
+        /// Method invoked when associated input action "Third" is either <see cref="UnityEngine.InputSystem.InputAction.started" />, <see cref="UnityEngine.InputSystem.InputAction.performed" /> or <see cref="UnityEngine.InputSystem.InputAction.canceled" />.
+        /// </summary>
+        /// <seealso cref="UnityEngine.InputSystem.InputAction.started" />
+        /// <seealso cref="UnityEngine.InputSystem.InputAction.performed" />
+        /// <seealso cref="UnityEngine.InputSystem.InputAction.canceled" />
+        void OnThird(InputAction.CallbackContext context);
     }
     /// <summary>
     /// Interface to implement callback methods for all input action callbacks associated with input actions defined by "UI" which allows adding and removing callbacks.

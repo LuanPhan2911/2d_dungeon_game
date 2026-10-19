@@ -195,7 +195,7 @@ public class PlayerHealth : MonoBehaviour, IDamageable
                 Amount = amount,
                 CanCrit =false,
                 IsFromEffect = true,
-                ElementSO = PElement.SteelElementSO,
+                ElementSO = damage.ElementSO,
                 SourceAttackGameObject = gameObject
 
             };
@@ -211,7 +211,7 @@ public class PlayerHealth : MonoBehaviour, IDamageable
     {
         float multiplier = 1;
 
-        float resistance = PElement.GetResistanceByElement(element);
+        float resistance = GetResistanceByElement(element);
         if(resistance < 0)
         {
             multiplier = 1 - (resistance / 2);
@@ -251,5 +251,35 @@ public class PlayerHealth : MonoBehaviour, IDamageable
             _healPerDurationIntervalTimer = _healPerduration.interval;
         }
     }
-  
+
+
+    public float GetResistanceByElement(ElementSO element)
+    {
+        float value = 0f;
+        PlayerElementSlot onFieldPlayerElementSlot = PElement.GetOnFieldPlayerElementSlot();
+        if (PElement.HasPlayerElementSlot && onFieldPlayerElementSlot!= null)
+        {
+            float allResistances = _buffEffectManager.HasEffect(BuffEffectType.AllResistances) ?
+                     _buffEffectManager.GetValues(BuffEffectType.AllResistances) : 0f;
+
+            foreach (var item in onFieldPlayerElementSlot.PlayerElementType.DataSO.resistances)
+            {
+                if (item.element == element)
+                {
+                    value += item.resistance + allResistances;
+                    break;
+                }
+            }
+        }
+
+        foreach (var item in _buffEffectManager.GetResiatanceBonusArray())
+        {
+            if (item.element == element)
+            {
+                value += item.resistance;
+                break;
+            }
+        }
+        return value;
+    }
 }

@@ -1,0 +1,923 @@
+fileFormatVersion: 2
+guid: 07e71cdaac110f644ae42392067ea20b
+TextureImporter:
+  internalIDToNameTable:
+  - first:
+      213: 2765841815497842124
+    second: Fantasy Fire Magic VFX Sprite Sheet_0
+  - first:
+      213: 1009856971426952579
+    second: Fantasy Fire Magic VFX Sprite Sheet_1
+  - first:
+      213: -2070507079095876882
+    second: Fantasy Fire Magic VFX Sprite Sheet_2
+  - first:
+      213: -8254581777157760862
+    second: Fantasy Fire Magic VFX Sprite Sheet_3
+  - first:
+      213: 6025484660434863696
+    second: Fantasy Fire Magic VFX Sprite Sheet_4
+  - first:
+      213: 6297483386075592118
+    second: Fantasy Fire Magic VFX Sprite Sheet_5
+  - first:
+      213: 6189095866322211165
+    second: Fantasy Fire Magic VFX Sprite Sheet_6
+  - first:
+      213: 1636320288654841801
+    second: Fantasy Fire Magic VFX Sprite Sheet_7
+  - first:
+      213: -140561678452918728
+    second: Fantasy Fire Magic VFX Sprite Sheet_8
+  - first:
+      213: -6010632964659479743
+    second: Fantasy Fire Magic VFX Sprite Sheet_9
+  - first:
+      213: 1154974365242328832
+    second: Fantasy Fire Magic VFX Sprite Sheet_10
+  - first:
+      213: 8330343427673386393
+    second: Fantasy Fire Magic VFX Sprite Sheet_11
+  - first:
+      213: 1517700506480540965
+    second: Fantasy Fire Magic VFX Sprite Sheet_12
+  - first:
+      213: -1879189832126704901
+    second: Fantasy Fire Magic VFX Sprite Sheet_13
+  - first:
+      213: 2528119514434952270
+    second: Fantasy Fire Magic VFX Sprite Sheet_14
+  - first:
+      213: 2172973699303028265
+    second: Fantasy Fire Magic VFX Sprite Sheet_15
+  - first:
+      213: -3846530472368264880
+    second: Fantasy Fire Magic VFX Sprite Sheet_16
+  - first:
+      213: -7939575815463520234
+    second: Fantasy Fire Magic VFX Sprite Sheet_17
+  - first:
+      213: -8071315104417137550
+    second: Fantasy Fire Magic VFX Sprite Sheet_18
+  - first:
+      213: -5440358925805539432
+    second: Fantasy Fire Magic VFX Sprite Sheet_19
+  - first:
+      213: -3536981028904903237
+    second: Fantasy Fire Magic VFX Sprite Sheet_20
+  - first:
+      213: 5822941110754415392
+    second: Fantasy Fire Magic VFX Sprite Sheet_21
+  - first:
+      213: 8788642976267490998
+    second: Fantasy Fire Magic VFX Sprite Sheet_22
+  - first:
+      213: -8510812879060193682
+    second: Fantasy Fire Magic VFX Sprite Sheet_23
+  - first:
+      213: -4427757530864935510
+    second: Fantasy Fire Magic VFX Sprite Sheet_24
+  - first:
+      213: -2068152307630004991
+    second: Fantasy Fire Magic VFX Sprite Sheet_25
+  - first:
+      213: -2909087793240112884
+    second: Fantasy Fire Magic VFX Sprite Sheet_26
+  - first:
+      213: -3869608178080872829
+    second: Fantasy Fire Magic VFX Sprite Sheet_27
+  - first:
+      213: 4855448164016766814
+    second: Fantasy Fire Magic VFX Sprite Sheet_28
+  - first:
+      213: 9156809717330842050
+    second: Fantasy Fire Magic VFX Sprite Sheet_29
+  - first:
+      213: -318040738687648509
+    second: Fantasy Fire Magic VFX Sprite Sheet_30
+  - first:
+      213: -1028455521727241980
+    second: Fantasy Fire Magic VFX Sprite Sheet_31
+  - first:
+      213: 6209236706423432663
+    second: Fantasy Fire Magic VFX Sprite Sheet_32
+  - first:
+      213: 2247588500271329938
+    second: Fantasy Fire Magic VFX Sprite Sheet_33
+  - first:
+      213: 8048626082244207309
+    second: Fantasy Fire Magic VFX Sprite Sheet_34
+  - first:
+      213: -4320048161977036524
+    second: Fantasy Fire Magic VFX Sprite Sheet_35
+  - first:
+      213: 5383263093303824682
+    second: Fantasy Fire Magic VFX Sprite Sheet_36
+  - first:
+      213: -4843765430540580173
+    second: Fantasy Fire Magic VFX Sprite Sheet_37
+  - first:
+      213: -4018222193405923263
+    second: Fantasy Fire Magic VFX Sprite Sheet_38
+  - first:
+      213: -8520623220454777595
+    second: Fantasy Fire Magic VFX Sprite Sheet_39
+  - first:
+      213: -6072558134320012960
+    second: Fantasy Fire Magic VFX Sprite Sheet_40
+  - first:
+      213: -45432153131584672
+    second: Fantasy Fire Magic VFX Sprite Sheet_41
+  - first:
+      213: 3525778163796130143
+    second: Fantasy Fire Magic VFX Sprite Sheet_42
+  - first:
+      213: 3723645190330925983
+    second: Fantasy Fire Magic VFX Sprite Sheet_43
+  - first:
+      213: -1015031230088695758
+    second: Fantasy Fire Magic VFX Sprite Sheet_44
+  - first:
+      213: 7801947256341207986
+    second: Fantasy Fire Magic VFX Sprite Sheet_45
+  - first:
+      213: -8035370383547776660
+    second: Fantasy Fire Magic VFX Sprite Sheet_46
+  - first:
+      213: 229205063049901196
+    second: Fantasy Fire Magic VFX Sprite Sheet_47
+  - first:
+      213: -8130344847182281085
+    second: Fantasy Fire Magic VFX Sprite Sheet_48
+  - first:
+      213: -8418033710111520742
+    second: Fantasy Fire Magic VFX Sprite Sheet_49
+  - first:
+      213: -3239074124582288706
+    second: Fantasy Fire Magic VFX Sprite Sheet_50
+  - first:
+      213: -262649592415249882
+    second: Fantasy Fire Magic VFX Sprite Sheet_51
+  - first:
+      213: -6747737594670495071
+    second: Fantasy Fire Magic VFX Sprite Sheet_52
+  - first:
+      213: 4338246187294956003
+    second: Fantasy Fire Magic VFX Sprite Sheet_53
+  - first:
+      213: -517775331913234349
+    second: Fantasy Fire Magic VFX Sprite Sheet_54
+  - first:
+      213: 3924219154308483220
+    second: Fantasy Fire Magic VFX Sprite Sheet_55
+  - first:
+      213: -69283335722857895
+    second: Fantasy Fire Magic VFX Sprite Sheet_56
+  - first:
+      213: -3826716264047369447
+    second: Fantasy Fire Magic VFX Sprite Sheet_57
+  - first:
+      213: 1730051731024355081
+    second: Fantasy Fire Magic VFX Sprite Sheet_58
+  - first:
+      213: 8891842702764453755
+    second: Fantasy Fire Magic VFX Sprite Sheet_59
+  - first:
+      213: -8299965642182619028
+    second: Fantasy Fire Magic VFX Sprite Sheet_60
+  - first:
+      213: 6693572820219963607
+    second: Fantasy Fire Magic VFX Sprite Sheet_61
+  - first:
+      213: -5560200307110160296
+    second: Fantasy Fire Magic VFX Sprite Sheet_62
+  - first:
+      213: 6834275263219795415
+    second: Fantasy Fire Magic VFX Sprite Sheet_63
+  - first:
+      213: 8470147525660349020
+    second: Fantasy Fire Magic VFX Sprite Sheet_64
+  - first:
+      213: -5400165304712388403
+    second: Fantasy Fire Magic VFX Sprite Sheet_65
+  - first:
+      213: -4810624571940883148
+    second: Fantasy Fire Magic VFX Sprite Sheet_66
+  - first:
+      213: -2397873296345142899
+    second: Fantasy Fire Magic VFX Sprite Sheet_67
+  - first:
+      213: 7929224220953579213
+    second: Fantasy Fire Magic VFX Sprite Sheet_68
+  - first:
+      213: -3906314414556434934
+    second: Fantasy Fire Magic VFX Sprite Sheet_69
+  - first:
+      213: -7609568886217554782
+    second: Fantasy Fire Magic VFX Sprite Sheet_70
+  - first:
+      213: -239580517685611225
+    second: Fantasy Fire Magic VFX Sprite Sheet_71
+  - first:
+      213: 2233960722211568571
+    second: Fantasy Fire Magic VFX Sprite Sheet_72
+  - first:
+      213: 6969437419407619265
+    second: Fantasy Fire Magic VFX Sprite Sheet_73
+  - first:
+      213: -3845275895446176040
+    second: Fantasy Fire Magic VFX Sprite Sheet_74
+  - first:
+      213: -1565290025171416346
+    second: Fantasy Fire Magic VFX Sprite Sheet_75
+  - first:
+      213: 4033292018703866876
+    second: Fantasy Fire Magic VFX Sprite Sheet_76
+  - first:
+      213: -7506749928358333583
+    second: Fantasy Fire Magic VFX Sprite Sheet_77
+  - first:
+      213: -291597282538048571
+    second: Fantasy Fire Magic VFX Sprite Sheet_78
+  - first:
+      213: 8591261464162156226
+    second: Fantasy Fire Magic VFX Sprite Sheet_79
+  - first:
+      213: 71022936283608521
+    second: Fantasy Fire Magic VFX Sprite Sheet_80
+  - first:
+      213: 6864878333011378726
+    second: Fantasy Fire Magic VFX Sprite Sheet_81
+  - first:
+      213: 1378063839253819895
+    second: Fantasy Fire Magic VFX Sprite Sheet_82
+  - first:
+      213: -6319469579930467720
+    second: Fantasy Fire Magic VFX Sprite Sheet_83
+  - first:
+      213: -6467158565525117782
+    second: Fantasy Fire Magic VFX Sprite Sheet_84
+  - first:
+      213: -6870925726494028106
+    second: Fantasy Fire Magic VFX Sprite Sheet_85
+  - first:
+      213: 3447337074091163891
+    second: Fantasy Fire Magic VFX Sprite Sheet_86
+  - first:
+      213: -6589807614885772243
+    second: Fantasy Fire Magic VFX Sprite Sheet_87
+  - first:
+      213: -3107456351680374064
+    second: Fantasy Fire Magic VFX Sprite Sheet_88
+  - first:
+      213: 7497759604438570802
+    second: Fantasy Fire Magic VFX Sprite Sheet_89
+  - first:
+      213: -7745610020545643304
+    second: Fantasy Fire Magic VFX Sprite Sheet_90
+  - first:
+      213: 1409546530480712292
+    second: Fantasy Fire Magic VFX Sprite Sheet_91
+  - first:
+      213: -1434941371507670108
+    second: Fantasy Fire Magic VFX Sprite Sheet_92
+  - first:
+      213: -6018178887799393502
+    second: Fantasy Fire Magic VFX Sprite Sheet_93
+  - first:
+      213: -118181974633423661
+    second: Fantasy Fire Magic VFX Sprite Sheet_94
+  - first:
+      213: 2522049052392610589
+    second: Fantasy Fire Magic VFX Sprite Sheet_95
+  - first:
+      213: 5508528484452654150
+    second: Fantasy Fire Magic VFX Sprite Sheet_96
+  - first:
+      213: 3850112844463581069
+    second: Fantasy Fire Magic VFX Sprite Sheet_97
+  - first:
+      213: 8385388500426399966
+    second: Fantasy Fire Magic VFX Sprite Sheet_98
+  - first:
+      213: 5499496889193048091
+    second: Fantasy Fire Magic VFX Sprite Sheet_99
+  - first:
+      213: 4869398187398636173
+    second: Fantasy Fire Magic VFX Sprite Sheet_100
+  - first:
+      213: 6093790793121628123
+    second: Fantasy Fire Magic VFX Sprite Sheet_101
+  - first:
+      213: 3615375370452473933
+    second: Fantasy Fire Magic VFX Sprite Sheet_102
+  - first:
+      213: 608219641020810437
+    second: Fantasy Fire Magic VFX Sprite Sheet_103
+  - first:
+      213: 4466243073127387702
+    second: Fantasy Fire Magic VFX Sprite Sheet_104
+  - first:
+      213: 6160426155646878269
+    second: Fantasy Fire Magic VFX Sprite Sheet_105
+  - first:
+      213: -7507888868821194068
+    second: Fantasy Fire Magic VFX Sprite Sheet_106
+  - first:
+      213: 4962415295148972677
+    second: Fantasy Fire Magic VFX Sprite Sheet_107
+  - first:
+      213: 2533477289802509046
+    second: Fantasy Fire Magic VFX Sprite Sheet_108
+  - first:
+      213: -3368736855109923113
+    second: Fantasy Fire Magic VFX Sprite Sheet_109
+  - first:
+      213: -7266068914379737882
+    second: Fantasy Fire Magic VFX Sprite Sheet_110
+  - first:
+      213: 2144932324045548772
+    second: Fantasy Fire Magic VFX Sprite Sheet_111
+  - first:
+      213: 7181407869268545438
+    second: Fantasy Fire Magic VFX Sprite Sheet_112
+  - first:
+      213: 5562017059493534854
+    second: Fantasy Fire Magic VFX Sprite Sheet_113
+  - first:
+      213: 7483401587767206083
+    second: Fantasy Fire Magic VFX Sprite Sheet_114
+  - first:
+      213: -4329830488511063948
+    second: Fantasy Fire Magic VFX Sprite Sheet_115
+  - first:
+      213: 729466803850031467
+    second: Fantasy Fire Magic VFX Sprite Sheet_116
+  - first:
+      213: 7956500927163147095
+    second: Fantasy Fire Magic VFX Sprite Sheet_117
+  - first:
+      213: 2408135319401193303
+    second: Fantasy Fire Magic VFX Sprite Sheet_118
+  - first:
+      213: 6739728751416462225
+    second: Fantasy Fire Magic VFX Sprite Sheet_119
+  - first:
+      213: -3598419905158106086
+    second: Fantasy Fire Magic VFX Sprite Sheet_120
+  - first:
+      213: -7380147147671547430
+    second: Fantasy Fire Magic VFX Sprite Sheet_121
+  - first:
+      213: 2116412293230231709
+    second: Fantasy Fire Magic VFX Sprite Sheet_122
+  - first:
+      213: 2451637089093696946
+    second: Fantasy Fire Magic VFX Sprite Sheet_123
+  - first:
+      213: 7150018815269446602
+    second: Fantasy Fire Magic VFX Sprite Sheet_124
+  - first:
+      213: -5795116125173740958
+    second: Fantasy Fire Magic VFX Sprite Sheet_125
+  - first:
+      213: -4334649136412553201
+    second: Fantasy Fire Magic VFX Sprite Sheet_126
+  - first:
+      213: 322894273743820969
+    second: Fantasy Fire Magic VFX Sprite Sheet_127
+  - first:
+      213: 8782604611193659786
+    second: Fantasy Fire Magic VFX Sprite Sheet_128
+  - first:
+      213: 2172971782432688331
+    second: Fantasy Fire Magic VFX Sprite Sheet_129
+  externalObjects: {}
+  serializedVersion: 13
+  mipmaps:
+    mipMapMode: 0
+    enableMipMap: 0
+    sRGBTexture: 1
+    linearTexture: 0
+    fadeOut: 0
+    borderMipMap: 0
+    mipMapsPreserveCoverage: 0
+    alphaTestReferenceValue: 0.5
+    mipMapFadeDistanceStart: 1
+    mipMapFadeDistanceEnd: 3
+  bumpmap:
+    convertToNormalMap: 0
+    externalNormalMap: 0
+    heightScale: 0.25
+    normalMapFilter: 0
+    flipGreenChannel: 0
+  isReadable: 0
+  streamingMipmaps: 0
+  streamingMipmapsPriority: 0
+  vTOnly: 0
+  ignoreMipmapLimit: 0
+  grayScaleToAlpha: 0
+  generateCubemap: 6
+  cubemapConvolution: 0
+  seamlessCubemap: 0
+  textureFormat: 1
+  maxTextureSize: 2048
+  textureSettings:
+    serializedVersion: 2
+    filterMode: 1
+    aniso: 1
+    mipBias: 0
+    wrapU: 1
+    wrapV: 1
+    wrapW: 1
+  nPOTScale: 0
+  lightmap: 0
+  compressionQuality: 50
+  spriteMode: 2
+  spriteExtrude: 1
+  spriteMeshType: 1
+  alignment: 0
+  spritePivot: {x: 0.5, y: 0.5}
+  spritePixelsToUnits: 100
+  spriteBorder: {x: 0, y: 0, z: 0, w: 0}
+  spriteGenerateFallbackPhysicsShape: 1
+  alphaUsage: 1
+  alphaIsTransparency: 1
+  spriteTessellationDetail: -1
+  textureType: 8
+  textureShape: 1
+  singleChannelComponent: 0
+  flipbookRows: 1
+  flipbookColumns: 1
+  maxTextureSizeSet: 0
+  compressionQualitySet: 0
+  textureFormatSet: 0
+  ignorePngGamma: 0
+  applyGammaDecoding: 0
+  swizzle: 50462976
+  cookieLightType: 0
+  platformSettings:
+  - serializedVersion: 4
+    buildTarget: DefaultTexturePlatform
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 4
+    buildTarget: Standalone
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  spriteSheet:
+    serializedVersion: 2
+    sprites:
+    - serializedVersion: 2
+      name: Fantasy Fire Magic VFX Sprite Sheet_0
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 618
+        width: 283
+        height: 308
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: ccd9ba52a7e326620800000000000000
+      internalID: 2765841815497842124
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Fantasy Fire Magic VFX Sprite Sheet_1
+      rect:
+        serializedVersion: 2
+        x: 283
+        y: 618
+        width: 283
+        height: 308
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 385fad7a09bb30e00800000000000000
+      internalID: 1009856971426952579
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Fantasy Fire Magic VFX Sprite Sheet_2
+      rect:
+        serializedVersion: 2
+        x: 565
+        y: 639
+        width: 283
+        height: 287
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: ee20f8518c41443e0800000000000000
+      internalID: -2070507079095876882
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Fantasy Fire Magic VFX Sprite Sheet_3
+      rect:
+        serializedVersion: 2
+        x: 849
+        y: 640
+        width: 283
+        height: 286
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 03f738ff1d174ad4fbab581b44c5d9df
+      internalID: -8254581777157760862
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Fantasy Fire Magic VFX Sprite Sheet_4
+      rect:
+        serializedVersion: 2
+        x: 1132
+        y: 627
+        width: 283
+        height: 299
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 291bceaaf3e20db4ba77d926e76f4943
+      internalID: 6025484660434863696
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Fantasy Fire Magic VFX Sprite Sheet_5
+      rect:
+        serializedVersion: 2
+        x: 1415
+        y: 624
+        width: 283
+        height: 302
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 00e7b94a4e257e2498f1d20a2258577f
+      internalID: 6297483386075592118
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Fantasy Fire Magic VFX Sprite Sheet_6
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 310
+        width: 283
+        height: 308
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: cd339cb8df46564458899859d861448d
+      internalID: 6189095866322211165
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Fantasy Fire Magic VFX Sprite Sheet_7
+      rect:
+        serializedVersion: 2
+        x: 283
+        y: 310
+        width: 283
+        height: 308
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 25fba971232cec64e8e0d3aa9a59bf29
+      internalID: 1636320288654841801
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Fantasy Fire Magic VFX Sprite Sheet_8
+      rect:
+        serializedVersion: 2
+        x: 566
+        y: 310
+        width: 283
+        height: 308
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: a141b0fa6536c2348ae89b4e914178b1
+      internalID: -140561678452918728
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Fantasy Fire Magic VFX Sprite Sheet_9
+      rect:
+        serializedVersion: 2
+        x: 849
+        y: 310
+        width: 283
+        height: 308
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 219540c19655d5948ae32b683b0c5ec0
+      internalID: -6010632964659479743
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Fantasy Fire Magic VFX Sprite Sheet_10
+      rect:
+        serializedVersion: 2
+        x: 1132
+        y: 310
+        width: 283
+        height: 308
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 700ca697f439def48b41b992ca3ef83f
+      internalID: 1154974365242328832
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Fantasy Fire Magic VFX Sprite Sheet_11
+      rect:
+        serializedVersion: 2
+        x: 1415
+        y: 310
+        width: 283
+        height: 308
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: ab26d23134105b34395b0fdd6731a4de
+      internalID: 8330343427673386393
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Fantasy Fire Magic VFX Sprite Sheet_12
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 2
+        width: 283
+        height: 308
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 715a330e0647549459b6bd8939b2f530
+      internalID: 1517700506480540965
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Fantasy Fire Magic VFX Sprite Sheet_13
+      rect:
+        serializedVersion: 2
+        x: 283
+        y: 2
+        width: 283
+        height: 308
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: d7796b4181ae3044db2cf6e30aef0d2a
+      internalID: -1879189832126704901
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Fantasy Fire Magic VFX Sprite Sheet_14
+      rect:
+        serializedVersion: 2
+        x: 566
+        y: 2
+        width: 283
+        height: 308
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 8b622deeeb6fa4f4f8a82f3a6551b27b
+      internalID: 2528119514434952270
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Fantasy Fire Magic VFX Sprite Sheet_15
+      rect:
+        serializedVersion: 2
+        x: 849
+        y: 2
+        width: 283
+        height: 308
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: a9c69631582dfa94da17e2b4e20dade6
+      internalID: 2172973699303028265
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Fantasy Fire Magic VFX Sprite Sheet_16
+      rect:
+        serializedVersion: 2
+        x: 1132
+        y: 2
+        width: 283
+        height: 308
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: a7ea2cf0ad74f3d4da8a7087f7b28118
+      internalID: -3846530472368264880
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Fantasy Fire Magic VFX Sprite Sheet_17
+      rect:
+        serializedVersion: 2
+        x: 1415
+        y: 2
+        width: 283
+        height: 308
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 8c5f8a5ef7666f744aaa020d95936c73
+      internalID: -7939575815463520234
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    outline: []
+    customData: 
+    physicsShape: []
+    bones: []
+    spriteID: 44d7385382c6eca48a79873bcf671e3b
+    internalID: 0
+    vertices: []
+    indices: 
+    edges: []
+    weights: []
+    secondaryTextures: []
+    spriteCustomMetadata:
+      entries:
+      - key: SpriteEditor.SliceSettings
+        value: '{"sliceOnImport":false,"gridCellCount":{"x":6.0,"y":3.0},"gridSpriteSize":{"x":283.0,"y":308.0},"gridSpriteOffset":{"x":0.0,"y":0.0},"gridSpritePadding":{"x":0.0,"y":0.0},"pivot":{"x":0.5,"y":0.5},"pivotPixels":{"x":0.0,"y":0.0},"autoSlicingMethod":0,"spriteAlignment":0,"pivotUnitMode":0,"slicingType":2,"keepEmptyRects":false,"isAlternate":false}'
+    nameFileIdTable:
+      Fantasy Fire Magic VFX Sprite Sheet_0: 2765841815497842124
+      Fantasy Fire Magic VFX Sprite Sheet_1: 1009856971426952579
+      Fantasy Fire Magic VFX Sprite Sheet_10: 1154974365242328832
+      Fantasy Fire Magic VFX Sprite Sheet_11: 8330343427673386393
+      Fantasy Fire Magic VFX Sprite Sheet_12: 1517700506480540965
+      Fantasy Fire Magic VFX Sprite Sheet_13: -1879189832126704901
+      Fantasy Fire Magic VFX Sprite Sheet_14: 2528119514434952270
+      Fantasy Fire Magic VFX Sprite Sheet_15: 2172973699303028265
+      Fantasy Fire Magic VFX Sprite Sheet_16: -3846530472368264880
+      Fantasy Fire Magic VFX Sprite Sheet_17: -7939575815463520234
+      Fantasy Fire Magic VFX Sprite Sheet_2: -2070507079095876882
+      Fantasy Fire Magic VFX Sprite Sheet_3: -8254581777157760862
+      Fantasy Fire Magic VFX Sprite Sheet_4: 6025484660434863696
+      Fantasy Fire Magic VFX Sprite Sheet_5: 6297483386075592118
+      Fantasy Fire Magic VFX Sprite Sheet_6: 6189095866322211165
+      Fantasy Fire Magic VFX Sprite Sheet_7: 1636320288654841801
+      Fantasy Fire Magic VFX Sprite Sheet_8: -140561678452918728
+      Fantasy Fire Magic VFX Sprite Sheet_9: -6010632964659479743
+  mipmapLimitGroupName: 
+  pSDRemoveMatte: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

@@ -12,7 +12,6 @@ public class PlayerElementSO : ScriptableObject
     public float burstCooldown=20f;
     public float burstEnergy=40f;
 
-    public float skillInputBuffer = 0.2f;
     public Sprite burstSprite;
 
     [Header("Resisatance")]

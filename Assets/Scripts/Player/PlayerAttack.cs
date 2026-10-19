@@ -237,7 +237,7 @@ public class PlayerAttack : MonoBehaviour
             Damage damage = new Damage
             {
                 Amount = damageAmount,
-                ElementSO = PElement.GetElementInfuseToWeapon(),
+                ElementSO = PElement.GetElementInfusedToWeapon(),
                 SourceAttackGameObject= gameObject
 
             };
@@ -277,7 +277,7 @@ public class PlayerAttack : MonoBehaviour
         slashFx.transform.localScale = new Vector3(isFacingRight ? 1 : -1, 1, 1);
 
 
-        ElementSO elementDamage = PElement.GetElementInfuseToWeapon();
+        ElementSO elementDamage = PElement.GetElementInfusedToWeapon();
        
         slashFx.GetComponent<SlashFX>().SetColor(elementDamage.color);
         
@@ -293,7 +293,7 @@ public class PlayerAttack : MonoBehaviour
         Vector3 scale= slashFx.transform.localScale;
         slashFx.transform.localScale = new Vector3(isFacingRight ? scale.x : -scale.x, scale.y, scale.z);
 
-        ElementSO elementDamage = PElement.GetElementInfuseToWeapon();
+        ElementSO elementDamage = PElement.GetElementInfusedToWeapon();
        
         slashFx.GetComponent<SlashFX>().SetColor(elementDamage.color);
     }

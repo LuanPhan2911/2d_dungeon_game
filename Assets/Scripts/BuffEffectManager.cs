@@ -59,10 +59,7 @@ public class BuffEffectManager : MonoBehaviour
 
     public void ApplyEffect(ActiveBuffEffect effect)
     {
-       
-
         _activeEffects.Add(effect);
-
     }
 
     public bool HasEffect(BuffEffectType type)

@@ -86,20 +86,16 @@ public class GroundBurstTornado : MonoBehaviour
         
         if(hitEnemies.Length > 0)
         {
-            //Damage damage = new Damage
-            //{
-            //    amount = _damage.amount,
-            //    elementSO = _damage.elementSO,
-            //    canCrit = _damage.canCrit,
-            //    isCrit = _damage.isCrit,
-            //    isFromEffect = _damage.isFromEffect,
-            //    sourceAttackGameObject = _damage.sourceAttackGameObject
-            //};
             Damage damage = new Damage
             {
-                Amount = 1,
-                ElementSO= PlayerElement.Instance.GroundElementSO
+                Amount = _damage.Amount,
+                ElementSO = _damage.ElementSO,
+                CanCrit = _damage.CanCrit,
+                IsCrit = _damage.IsCrit,
+                IsFromEffect = _damage.IsFromEffect,
+                SourceAttackGameObject = _damage.SourceAttackGameObject
             };
+            
             foreach (Collider2D hit in hitEnemies)
             {
                 if (hit.TryGetComponent(out IDamageable damageable))
