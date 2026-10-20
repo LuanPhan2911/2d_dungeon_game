@@ -58,7 +58,7 @@ public class PlayerGroundBurst : PlayerBurst
         Damage damage = new Damage
         {
             Amount = damageAmount,
-            ElementSO = _dataSO.element,
+            ElementSO = _dataSO.elementSO,
             SourceAttackGameObject = gameObject
         };
         tornado.SetDamage(damage, damageInterval);

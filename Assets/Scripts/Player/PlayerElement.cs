@@ -9,6 +9,7 @@ public class PlayerElementType
     public PlayerElementSO DataSO;
     public PlayerBurst Burst;
     public bool IsActive;
+    public bool IsElementSlot;
 
 }
 [Serializable]
@@ -28,13 +29,15 @@ public class PlayerElement : MonoBehaviour
     [SerializeField] private ElementSO _physicElementSO;
 
     [Header("Elements")]
-    [SerializeField] private PlayerElementType[] PlayerElementTypeArray;
+    [SerializeField] private PlayerElementType[] _playerElementTypeArray;
 
     [Header("Player Element Slot")]
     private List<PlayerElementSlot> _playerElementSlotList= new List<PlayerElementSlot>();
     const int FIRST_PLAYER_ELEMENT_SLOT = 0;
     const int SECOND_PLAYER_ELEMENT_SLOT = 1;
     const int THIRD_PLAYER_ELEMENT_SLOT = 2;
+
+    const int MAX_PLAYER_ELEMENT_SLOT = 3;
 
     [Header("Burst Skill")]
     [SerializeField] private float _infusedElementToWeaponDuration = 10f;
@@ -43,15 +46,21 @@ public class PlayerElement : MonoBehaviour
     public bool HasPlayerElementSlot => _playerElementSlotList.Count > 0;
     public bool IsElementSwapCooldown => _elementSwapTimer > 0f;
     public bool IsInfusedElementToWeapon => _infusedElementToWeaponTimer > 0f;
+    public PlayerElementType[] PlayerElementTypeArray => _playerElementTypeArray;
     public PlayerElementSlot[] PlayerElementSlotArray => _playerElementSlotList.ToArray();
+
+    public bool IsMaxPlayerElementSlot => _playerElementSlotList.Count >= MAX_PLAYER_ELEMENT_SLOT;
 
     private float _lastPressBurstSkillTimer;
     private float _infusedElementToWeaponTimer;
     private float _elementSwapTimer;
     private float _elementSwapCooldown = 0.5f;
 
-    public event Action OnFieldPlayerElementSlotChanged;
+    public event Action OnPlayerElementTypeSelected;
     public event Action OnPlayerElementSlotChanged;
+    public event Action OnFieldPlayerElementSlotChanged;
+ 
+    
 
 
     private void Awake()
@@ -115,9 +124,18 @@ public class PlayerElement : MonoBehaviour
         }
     }
 
+    
+
+    public void SelectPlayerElementType()
+    {
+        OnPlayerElementTypeSelected?.Invoke();
+        int[] slotIndexArray = GetSlotIndexArray();
+        SetPlayerElemntSlot(slotIndexArray);
+    }
+
     public void ActivatePlayerElementType(PlayerElementSO dataSO)
     {
-        foreach (PlayerElementType playerElementType in PlayerElementTypeArray)
+        foreach (PlayerElementType playerElementType in _playerElementTypeArray)
         {
             if (playerElementType.DataSO == dataSO)
             {
@@ -126,13 +144,13 @@ public class PlayerElement : MonoBehaviour
             }
         }
     }
-    public void SetPlayerElemntSlot(int[] playerElementTypeIndexArray)
+    private void SetPlayerElemntSlot(int[] playerElementTypeIndexArray)
     {
         _playerElementSlotList.Clear();
         for (int i = 0; i < playerElementTypeIndexArray.Length; i++)
         {
             int index = playerElementTypeIndexArray[i];
-            PlayerElementType playerElementType = PlayerElementTypeArray[index];
+            PlayerElementType playerElementType = _playerElementTypeArray[index];
             PlayerElementSlot slot = new PlayerElementSlot
             {
                 PlayerElementType = playerElementType,
@@ -142,6 +160,18 @@ public class PlayerElement : MonoBehaviour
         }
         OnPlayerElementSlotChanged?.Invoke();
 
+    }
+    private int[] GetSlotIndexArray()
+    {
+        List<int> slotIndexList = new List<int>();
+        for(int i=0; i< _playerElementTypeArray.Length; i++)
+        {
+            if (_playerElementTypeArray[i].IsActive && _playerElementTypeArray[i].IsElementSlot)
+            {
+                slotIndexList.Add(i);
+            }
+        }
+        return slotIndexList.ToArray();
     }
     private void SetOnFieldPlayerElementSlot(int slotIndex)
     {
@@ -172,7 +202,7 @@ public class PlayerElement : MonoBehaviour
             return _physicElementSO;
         }
        
-        return onFieldPlayerElementSlot.PlayerElementType.DataSO.element;
+        return onFieldPlayerElementSlot.PlayerElementType.DataSO.elementSO;
     }
   
 

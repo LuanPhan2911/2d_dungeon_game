@@ -271,4 +271,4 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0f8606e4603dbb74fa634d2698e5f7eb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::SelectElementButton
-  _elementImage: {fileID: 0}
+  _elementImage: {fileID: 3931992569382470708}

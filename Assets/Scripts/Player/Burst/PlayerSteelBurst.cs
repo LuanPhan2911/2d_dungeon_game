@@ -16,7 +16,7 @@ public class PlayerSteelBurst : PlayerBurst
         Damage damage = new Damage
         {
             Amount = damageAmount,
-            ElementSO = _dataSO.element,
+            ElementSO = _dataSO.elementSO,
             SourceAttackGameObject = gameObject
         };
         slash.Launch(PlayerMovement.Instance.IsFacingRight, distance, duration);

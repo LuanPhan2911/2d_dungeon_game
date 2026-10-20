@@ -1,0 +1,4185 @@
+fileFormatVersion: 2
+guid: 94c3e1fbf5c54fd4e8275f8ab970dae6
+TextureImporter:
+  internalIDToNameTable:
+  - first:
+      213: -2947954915410579623
+    second: Five Elemental Gemstone Sigils_0
+  - first:
+      213: 3176082929381114361
+    second: Five Elemental Gemstone Sigils_1
+  - first:
+      213: -2295898136445885006
+    second: Five Elemental Gemstone Sigils_2
+  - first:
+      213: 1670132883713760378
+    second: Five Elemental Gemstone Sigils_3
+  - first:
+      213: -7997705028803933412
+    second: Five Elemental Gemstone Sigils_4
+  - first:
+      213: -1405101995467936535
+    second: Five Elemental Gemstone Sigils_5
+  - first:
+      213: 5490683671492700584
+    second: Five Elemental Gemstone Sigils_6
+  - first:
+      213: -6133319851483333587
+    second: Five Elemental Gemstone Sigils_7
+  - first:
+      213: -7332554725974858318
+    second: Five Elemental Gemstone Sigils_8
+  - first:
+      213: 6993462938299444070
+    second: Five Elemental Gemstone Sigils_9
+  - first:
+      213: 2476020982523027977
+    second: Five Elemental Gemstone Sigils_10
+  - first:
+      213: -2896302488712696598
+    second: Five Elemental Gemstone Sigils_11
+  - first:
+      213: 7818591034095522418
+    second: Five Elemental Gemstone Sigils_12
+  - first:
+      213: -4644998326002846725
+    second: Five Elemental Gemstone Sigils_13
+  - first:
+      213: 2407089598481005499
+    second: Five Elemental Gemstone Sigils_14
+  - first:
+      213: -4337136039583742196
+    second: Five Elemental Gemstone Sigils_15
+  - first:
+      213: 4032639586755821710
+    second: Five Elemental Gemstone Sigils_16
+  - first:
+      213: 2768878441546353193
+    second: Five Elemental Gemstone Sigils_17
+  - first:
+      213: 6163007442001450733
+    second: Five Elemental Gemstone Sigils_18
+  - first:
+      213: -9182750046078730475
+    second: Five Elemental Gemstone Sigils_19
+  - first:
+      213: -8648313984980244978
+    second: Five Elemental Gemstone Sigils_20
+  - first:
+      213: -5335672042987536021
+    second: Five Elemental Gemstone Sigils_21
+  - first:
+      213: -8605287137504956967
+    second: Five Elemental Gemstone Sigils_22
+  - first:
+      213: 6554583898536645139
+    second: Five Elemental Gemstone Sigils_23
+  - first:
+      213: -2625128186453971738
+    second: Five Elemental Gemstone Sigils_24
+  - first:
+      213: -1173384936403538464
+    second: Five Elemental Gemstone Sigils_25
+  - first:
+      213: 2315820084723655677
+    second: Five Elemental Gemstone Sigils_26
+  - first:
+      213: 3735943161814864084
+    second: Five Elemental Gemstone Sigils_27
+  - first:
+      213: 3918149472021234231
+    second: Five Elemental Gemstone Sigils_28
+  - first:
+      213: 8697024442186057594
+    second: Five Elemental Gemstone Sigils_29
+  - first:
+      213: 951825321282223859
+    second: Five Elemental Gemstone Sigils_30
+  - first:
+      213: -8911763617701458098
+    second: Five Elemental Gemstone Sigils_31
+  - first:
+      213: 1575827600963087338
+    second: Five Elemental Gemstone Sigils_32
+  - first:
+      213: -4497305851439957521
+    second: Five Elemental Gemstone Sigils_33
+  - first:
+      213: -8989385999514194429
+    second: Five Elemental Gemstone Sigils_34
+  - first:
+      213: -761089558389977396
+    second: Five Elemental Gemstone Sigils_35
+  - first:
+      213: 469729080765467947
+    second: Five Elemental Gemstone Sigils_36
+  - first:
+      213: 2350023732395723669
+    second: Five Elemental Gemstone Sigils_37
+  - first:
+      213: 6965135357491498191
+    second: Five Elemental Gemstone Sigils_38
+  - first:
+      213: 5827455126508754267
+    second: Five Elemental Gemstone Sigils_39
+  - first:
+      213: -5621812425309063421
+    second: Five Elemental Gemstone Sigils_40
+  - first:
+      213: -4095371502722917639
+    second: Five Elemental Gemstone Sigils_41
+  - first:
+      213: 5223472015142881948
+    second: Five Elemental Gemstone Sigils_42
+  - first:
+      213: -3070393614700590558
+    second: Five Elemental Gemstone Sigils_43
+  - first:
+      213: 9030300751034841483
+    second: Five Elemental Gemstone Sigils_44
+  - first:
+      213: -2940283962539509451
+    second: Five Elemental Gemstone Sigils_45
+  - first:
+      213: -5576128642640638022
+    second: Five Elemental Gemstone Sigils_46
+  - first:
+      213: -6900669138755386856
+    second: Five Elemental Gemstone Sigils_47
+  - first:
+      213: -2310051945074728722
+    second: Five Elemental Gemstone Sigils_48
+  - first:
+      213: 3724774083277468283
+    second: Five Elemental Gemstone Sigils_49
+  - first:
+      213: 8358430146471302969
+    second: Five Elemental Gemstone Sigils_50
+  - first:
+      213: 7394054545861272856
+    second: Five Elemental Gemstone Sigils_51
+  - first:
+      213: -4814589348725774674
+    second: Five Elemental Gemstone Sigils_52
+  - first:
+      213: 6977150323804479310
+    second: Five Elemental Gemstone Sigils_53
+  - first:
+      213: -5246984250603136518
+    second: Five Elemental Gemstone Sigils_54
+  - first:
+      213: -5609454909080146023
+    second: Five Elemental Gemstone Sigils_55
+  - first:
+      213: -9078198894284081512
+    second: Five Elemental Gemstone Sigils_56
+  - first:
+      213: -8554306594824761532
+    second: Five Elemental Gemstone Sigils_57
+  - first:
+      213: 3668853037041207598
+    second: Five Elemental Gemstone Sigils_58
+  - first:
+      213: 1816378396707408528
+    second: Five Elemental Gemstone Sigils_59
+  - first:
+      213: -6401009057148871559
+    second: Five Elemental Gemstone Sigils_60
+  - first:
+      213: 7178188916940338667
+    second: Five Elemental Gemstone Sigils_61
+  - first:
+      213: -1295536896142093406
+    second: Five Elemental Gemstone Sigils_62
+  - first:
+      213: 7238341644039311835
+    second: Five Elemental Gemstone Sigils_63
+  - first:
+      213: 541421764160103812
+    second: Five Elemental Gemstone Sigils_64
+  - first:
+      213: -884515360860258807
+    second: Five Elemental Gemstone Sigils_65
+  - first:
+      213: 4297097669720432813
+    second: Five Elemental Gemstone Sigils_66
+  - first:
+      213: 2216086557216474458
+    second: Five Elemental Gemstone Sigils_67
+  - first:
+      213: 3547791046937594435
+    second: Five Elemental Gemstone Sigils_68
+  - first:
+      213: 273092358375732961
+    second: Five Elemental Gemstone Sigils_69
+  - first:
+      213: -8595869971434054580
+    second: Five Elemental Gemstone Sigils_70
+  - first:
+      213: 4207972789659480995
+    second: Five Elemental Gemstone Sigils_71
+  - first:
+      213: 3468507767231196395
+    second: Five Elemental Gemstone Sigils_72
+  - first:
+      213: 3615296355856101305
+    second: Five Elemental Gemstone Sigils_73
+  - first:
+      213: 8656832512454662365
+    second: Five Elemental Gemstone Sigils_74
+  - first:
+      213: -5013138010814037122
+    second: Five Elemental Gemstone Sigils_75
+  - first:
+      213: -7558632666011877896
+    second: Five Elemental Gemstone Sigils_76
+  - first:
+      213: 8090548956184895498
+    second: Five Elemental Gemstone Sigils_77
+  - first:
+      213: -1827881656668763601
+    second: Five Elemental Gemstone Sigils_78
+  - first:
+      213: 7241988496821787413
+    second: Five Elemental Gemstone Sigils_79
+  - first:
+      213: -8041762376636030615
+    second: Five Elemental Gemstone Sigils_80
+  - first:
+      213: -7547084947297679918
+    second: Five Elemental Gemstone Sigils_81
+  - first:
+      213: 2991876923251785843
+    second: Five Elemental Gemstone Sigils_82
+  - first:
+      213: -1368067571505457581
+    second: Five Elemental Gemstone Sigils_83
+  - first:
+      213: -5496806202436204458
+    second: Five Elemental Gemstone Sigils_84
+  - first:
+      213: -7166137575065304164
+    second: Five Elemental Gemstone Sigils_85
+  - first:
+      213: 2343130858280842805
+    second: Five Elemental Gemstone Sigils_86
+  - first:
+      213: 5477597719520405680
+    second: Five Elemental Gemstone Sigils_87
+  - first:
+      213: -7325913302772070385
+    second: Five Elemental Gemstone Sigils_88
+  - first:
+      213: -8715309228742851875
+    second: Five Elemental Gemstone Sigils_89
+  - first:
+      213: 3216843923338814634
+    second: Five Elemental Gemstone Sigils_90
+  - first:
+      213: -8564988628359566226
+    second: Five Elemental Gemstone Sigils_91
+  - first:
+      213: -1176271714077479706
+    second: Five Elemental Gemstone Sigils_92
+  - first:
+      213: -8736262528153964164
+    second: Five Elemental Gemstone Sigils_93
+  - first:
+      213: -4283959940074334824
+    second: Five Elemental Gemstone Sigils_94
+  - first:
+      213: 2353481748690148798
+    second: Five Elemental Gemstone Sigils_95
+  - first:
+      213: 8251281351411443848
+    second: Five Elemental Gemstone Sigils_96
+  - first:
+      213: 2784845290289337309
+    second: Five Elemental Gemstone Sigils_97
+  - first:
+      213: 2566558599271347521
+    second: Five Elemental Gemstone Sigils_98
+  - first:
+      213: -3430327627394569939
+    second: Five Elemental Gemstone Sigils_99
+  - first:
+      213: 2970955717676384096
+    second: Five Elemental Gemstone Sigils_100
+  - first:
+      213: -7005880965599658400
+    second: Five Elemental Gemstone Sigils_101
+  - first:
+      213: -3509719674921164257
+    second: Five Elemental Gemstone Sigils_102
+  - first:
+      213: 2461948286994266147
+    second: Five Elemental Gemstone Sigils_103
+  - first:
+      213: -6554518684267474018
+    second: Five Elemental Gemstone Sigils_104
+  - first:
+      213: 1252615337195920450
+    second: Five Elemental Gemstone Sigils_105
+  - first:
+      213: 5418445653387308853
+    second: Five Elemental Gemstone Sigils_106
+  - first:
+      213: -3858202269109988618
+    second: Five Elemental Gemstone Sigils_107
+  - first:
+      213: 3537160521913938987
+    second: Five Elemental Gemstone Sigils_108
+  - first:
+      213: -4208507820107874581
+    second: Five Elemental Gemstone Sigils_109
+  - first:
+      213: -6072129270727689476
+    second: Five Elemental Gemstone Sigils_110
+  - first:
+      213: -3234567234183432789
+    second: Five Elemental Gemstone Sigils_111
+  - first:
+      213: 8710576544111533898
+    second: Five Elemental Gemstone Sigils_112
+  - first:
+      213: -5037587757294253915
+    second: Five Elemental Gemstone Sigils_113
+  - first:
+      213: -8584349805146578478
+    second: Five Elemental Gemstone Sigils_114
+  - first:
+      213: 787873490476641584
+    second: Five Elemental Gemstone Sigils_115
+  - first:
+      213: -3088253797238130957
+    second: Five Elemental Gemstone Sigils_116
+  - first:
+      213: 1711565654004364202
+    second: Five Elemental Gemstone Sigils_117
+  - first:
+      213: -8251852958397075902
+    second: Five Elemental Gemstone Sigils_118
+  - first:
+      213: -5892262604820032168
+    second: Five Elemental Gemstone Sigils_119
+  - first:
+      213: -5636951487394008693
+    second: Five Elemental Gemstone Sigils_120
+  - first:
+      213: 2495305310603308682
+    second: Five Elemental Gemstone Sigils_121
+  - first:
+      213: 5477676980583518283
+    second: Five Elemental Gemstone Sigils_122
+  - first:
+      213: 378373637732286553
+    second: Five Elemental Gemstone Sigils_123
+  - first:
+      213: 7387343378368922367
+    second: Five Elemental Gemstone Sigils_124
+  - first:
+      213: -6964821285537327078
+    second: Five Elemental Gemstone Sigils_125
+  - first:
+      213: 6859742350232639177
+    second: Five Elemental Gemstone Sigils_126
+  - first:
+      213: -467931351684132517
+    second: Five Elemental Gemstone Sigils_127
+  - first:
+      213: -6160041974726663194
+    second: Five Elemental Gemstone Sigils_128
+  - first:
+      213: -714205492611957662
+    second: Five Elemental Gemstone Sigils_129
+  - first:
+      213: -3660127506114014456
+    second: Five Elemental Gemstone Sigils_130
+  - first:
+      213: -6444530568352668382
+    second: Five Elemental Gemstone Sigils_131
+  - first:
+      213: 4032679891250704979
+    second: Five Elemental Gemstone Sigils_132
+  - first:
+      213: 2182112652481225778
+    second: Five Elemental Gemstone Sigils_133
+  - first:
+      213: 979621981572288440
+    second: Five Elemental Gemstone Sigils_134
+  - first:
+      213: -4798714565151424276
+    second: Five Elemental Gemstone Sigils_135
+  - first:
+      213: 1077544101556332346
+    second: Five Elemental Gemstone Sigils_136
+  - first:
+      213: -7369428144826489210
+    second: Five Elemental Gemstone Sigils_137
+  - first:
+      213: -130945260330360555
+    second: Five Elemental Gemstone Sigils_138
+  - first:
+      213: 7468240832100577357
+    second: Five Elemental Gemstone Sigils_139
+  - first:
+      213: -5935720383879623886
+    second: Five Elemental Gemstone Sigils_140
+  - first:
+      213: -6253565950458831107
+    second: Five Elemental Gemstone Sigils_141
+  - first:
+      213: 8930293573153280378
+    second: Five Elemental Gemstone Sigils_142
+  - first:
+      213: 6917406889349717193
+    second: Five Elemental Gemstone Sigils_143
+  - first:
+      213: 2354826532393319993
+    second: Five Elemental Gemstone Sigils_144
+  - first:
+      213: -6985218563581195393
+    second: Five Elemental Gemstone Sigils_145
+  - first:
+      213: 9025146489693688623
+    second: Five Elemental Gemstone Sigils_146
+  - first:
+      213: -8516669670310186342
+    second: Five Elemental Gemstone Sigils_147
+  - first:
+      213: 8656367735373704047
+    second: Five Elemental Gemstone Sigils_148
+  - first:
+      213: -3256204763417590480
+    second: Five Elemental Gemstone Sigils_149
+  - first:
+      213: -8410427995917566834
+    second: Five Elemental Gemstone Sigils_150
+  - first:
+      213: -1250001000945433653
+    second: Five Elemental Gemstone Sigils_151
+  - first:
+      213: -4102361740610143532
+    second: Five Elemental Gemstone Sigils_152
+  - first:
+      213: -222537864683987621
+    second: Five Elemental Gemstone Sigils_153
+  - first:
+      213: 3594413720897199123
+    second: Five Elemental Gemstone Sigils_154
+  - first:
+      213: -6913649686410021307
+    second: Five Elemental Gemstone Sigils_155
+  - first:
+      213: -3664039509053572720
+    second: Five Elemental Gemstone Sigils_156
+  - first:
+      213: 8535843331232609760
+    second: Five Elemental Gemstone Sigils_157
+  - first:
+      213: -4417338412154801368
+    second: Five Elemental Gemstone Sigils_158
+  - first:
+      213: 6734011904766606237
+    second: Five Elemental Gemstone Sigils_159
+  - first:
+      213: 5983921379167038456
+    second: Five Elemental Gemstone Sigils_160
+  - first:
+      213: -268799220398498958
+    second: Five Elemental Gemstone Sigils_161
+  - first:
+      213: 8920117809211832487
+    second: Five Elemental Gemstone Sigils_162
+  - first:
+      213: -7442207841611718173
+    second: Five Elemental Gemstone Sigils_163
+  - first:
+      213: -2079022629427147852
+    second: Five Elemental Gemstone Sigils_164
+  - first:
+      213: -1493373696947443881
+    second: Five Elemental Gemstone Sigils_165
+  - first:
+      213: -6989471814819558569
+    second: Five Elemental Gemstone Sigils_166
+  - first:
+      213: 4775267265968936794
+    second: Five Elemental Gemstone Sigils_167
+  - first:
+      213: 6843061353453971372
+    second: Five Elemental Gemstone Sigils_168
+  - first:
+      213: -2205615479033551125
+    second: Five Elemental Gemstone Sigils_169
+  - first:
+      213: -6106669044089150563
+    second: Five Elemental Gemstone Sigils_170
+  - first:
+      213: -2763366109312048708
+    second: Five Elemental Gemstone Sigils_171
+  - first:
+      213: -9058096717281735272
+    second: Five Elemental Gemstone Sigils_172
+  - first:
+      213: 4479857786766514067
+    second: Five Elemental Gemstone Sigils_173
+  - first:
+      213: 5673325244849056416
+    second: Five Elemental Gemstone Sigils_174
+  - first:
+      213: 5701710412980080628
+    second: Five Elemental Gemstone Sigils_175
+  - first:
+      213: 2803009572250899460
+    second: Five Elemental Gemstone Sigils_176
+  - first:
+      213: -6122316871493519207
+    second: Five Elemental Gemstone Sigils_177
+  - first:
+      213: -5374764965859370741
+    second: Five Elemental Gemstone Sigils_178
+  - first:
+      213: -5616538063017727703
+    second: Five Elemental Gemstone Sigils_179
+  - first:
+      213: 624886597379867212
+    second: Five Elemental Gemstone Sigils_180
+  - first:
+      213: 5845501392932572623
+    second: Five Elemental Gemstone Sigils_181
+  - first:
+      213: 8440974720540174609
+    second: Five Elemental Gemstone Sigils_182
+  - first:
+      213: -2906878114587824525
+    second: Five Elemental Gemstone Sigils_183
+  - first:
+      213: 5320999250575918135
+    second: Five Elemental Gemstone Sigils_184
+  - first:
+      213: 1012488463312374179
+    second: Five Elemental Gemstone Sigils_185
+  - first:
+      213: -3193830107335336985
+    second: Five Elemental Gemstone Sigils_186
+  - first:
+      213: -8581964850453808466
+    second: Five Elemental Gemstone Sigils_187
+  - first:
+      213: 4530963685301936521
+    second: Five Elemental Gemstone Sigils_188
+  - first:
+      213: 1630643786908739546
+    second: Five Elemental Gemstone Sigils_189
+  - first:
+      213: -5063239307677983880
+    second: Five Elemental Gemstone Sigils_190
+  - first:
+      213: 6331138641697468597
+    second: Five Elemental Gemstone Sigils_191
+  - first:
+      213: 1677012765374440444
+    second: Five Elemental Gemstone Sigils_192
+  - first:
+      213: -7268699304152974483
+    second: Five Elemental Gemstone Sigils_193
+  - first:
+      213: -6766085284203924543
+    second: Five Elemental Gemstone Sigils_194
+  - first:
+      213: -1897662595889987796
+    second: Five Elemental Gemstone Sigils_195
+  - first:
+      213: -2972244000644890420
+    second: Five Elemental Gemstone Sigils_196
+  - first:
+      213: -8639820811156527099
+    second: Five Elemental Gemstone Sigils_197
+  - first:
+      213: 528807259607150331
+    second: Five Elemental Gemstone Sigils_198
+  - first:
+      213: -6533885011676252547
+    second: Five Elemental Gemstone Sigils_199
+  - first:
+      213: 5346536737554576672
+    second: Five Elemental Gemstone Sigils_200
+  - first:
+      213: -1484865519443435751
+    second: Five Elemental Gemstone Sigils_201
+  - first:
+      213: 4077733520897174886
+    second: Five Elemental Gemstone Sigils_202
+  - first:
+      213: -8929341757103847265
+    second: Five Elemental Gemstone Sigils_203
+  - first:
+      213: -5467812034443096265
+    second: Five Elemental Gemstone Sigils_204
+  - first:
+      213: 1215427906863078865
+    second: Five Elemental Gemstone Sigils_205
+  - first:
+      213: -4484576874316426829
+    second: Five Elemental Gemstone Sigils_206
+  - first:
+      213: -6903412731129075055
+    second: Five Elemental Gemstone Sigils_207
+  - first:
+      213: 639593161570163032
+    second: Five Elemental Gemstone Sigils_208
+  - first:
+      213: -31710818727524293
+    second: Five Elemental Gemstone Sigils_209
+  - first:
+      213: 8747862330173421726
+    second: Five Elemental Gemstone Sigils_210
+  - first:
+      213: -3603284230910419819
+    second: Five Elemental Gemstone Sigils_211
+  - first:
+      213: 5166750728279260996
+    second: Five Elemental Gemstone Sigils_212
+  - first:
+      213: -3806650889291318489
+    second: Five Elemental Gemstone Sigils_213
+  - first:
+      213: 2334620869669929136
+    second: Five Elemental Gemstone Sigils_214
+  - first:
+      213: 5484071838041326573
+    second: Five Elemental Gemstone Sigils_215
+  - first:
+      213: 2996094902859980266
+    second: Five Elemental Gemstone Sigils_216
+  - first:
+      213: 3665002577447458533
+    second: Five Elemental Gemstone Sigils_217
+  - first:
+      213: 7394509042565384047
+    second: Five Elemental Gemstone Sigils_218
+  - first:
+      213: -4069926018172473979
+    second: Five Elemental Gemstone Sigils_219
+  - first:
+      213: 9157309101222970169
+    second: Five Elemental Gemstone Sigils_220
+  - first:
+      213: 8543952720195512234
+    second: Five Elemental Gemstone Sigils_221
+  - first:
+      213: -6605532120141215649
+    second: Five Elemental Gemstone Sigils_222
+  - first:
+      213: -4946065434462942867
+    second: Five Elemental Gemstone Sigils_223
+  - first:
+      213: -8235994452259010823
+    second: Five Elemental Gemstone Sigils_224
+  - first:
+      213: 2889546781762728538
+    second: Five Elemental Gemstone Sigils_225
+  - first:
+      213: 8930291370121464874
+    second: Five Elemental Gemstone Sigils_226
+  - first:
+      213: -8668487873990039018
+    second: Five Elemental Gemstone Sigils_227
+  - first:
+      213: -3065461275022360116
+    second: Five Elemental Gemstone Sigils_228
+  - first:
+      213: 7111750182808157135
+    second: Five Elemental Gemstone Sigils_229
+  - first:
+      213: -834422594719221929
+    second: Five Elemental Gemstone Sigils_230
+  - first:
+      213: 7726645298013176038
+    second: Five Elemental Gemstone Sigils_231
+  - first:
+      213: -9086233844168143118
+    second: Five Elemental Gemstone Sigils_232
+  - first:
+      213: 5003075093891385566
+    second: Five Elemental Gemstone Sigils_233
+  - first:
+      213: -535455933632439485
+    second: Five Elemental Gemstone Sigils_234
+  - first:
+      213: 7495309642158245469
+    second: Five Elemental Gemstone Sigils_235
+  - first:
+      213: -4561616634178980851
+    second: Five Elemental Gemstone Sigils_236
+  - first:
+      213: 4613419377495536771
+    second: Five Elemental Gemstone Sigils_237
+  - first:
+      213: -6716795519396416898
+    second: Five Elemental Gemstone Sigils_238
+  - first:
+      213: 2652004971994142632
+    second: Five Elemental Gemstone Sigils_239
+  - first:
+      213: -8276911310237061213
+    second: Five Elemental Gemstone Sigils_240
+  - first:
+      213: -3505954447741824987
+    second: Five Elemental Gemstone Sigils_241
+  - first:
+      213: -4714045775293881435
+    second: Five Elemental Gemstone Sigils_242
+  - first:
+      213: -5016547033175141772
+    second: Five Elemental Gemstone Sigils_243
+  - first:
+      213: -1314235993202685705
+    second: Five Elemental Gemstone Sigils_244
+  - first:
+      213: -1373552405034393701
+    second: Five Elemental Gemstone Sigils_245
+  - first:
+      213: -7003864877788916433
+    second: Five Elemental Gemstone Sigils_246
+  - first:
+      213: 4987023324536165894
+    second: Five Elemental Gemstone Sigils_247
+  - first:
+      213: -5015235296785907739
+    second: Five Elemental Gemstone Sigils_248
+  - first:
+      213: -5555420346058619527
+    second: Five Elemental Gemstone Sigils_249
+  - first:
+      213: -1835042097045983635
+    second: Five Elemental Gemstone Sigils_250
+  - first:
+      213: -7277629502863788837
+    second: Five Elemental Gemstone Sigils_251
+  - first:
+      213: 3789759667690851948
+    second: Five Elemental Gemstone Sigils_252
+  - first:
+      213: 1774920918520280249
+    second: Five Elemental Gemstone Sigils_253
+  - first:
+      213: -2958729185908055046
+    second: Five Elemental Gemstone Sigils_254
+  - first:
+      213: -4964238121705916568
+    second: Five Elemental Gemstone Sigils_255
+  - first:
+      213: 3625841274100288324
+    second: Five Elemental Gemstone Sigils_256
+  - first:
+      213: 1879323048557894749
+    second: Five Elemental Gemstone Sigils_257
+  - first:
+      213: -1095890676696225867
+    second: Five Elemental Gemstone Sigils_258
+  - first:
+      213: -2227664094422483143
+    second: Five Elemental Gemstone Sigils_259
+  - first:
+      213: -3812513487814011727
+    second: Five Elemental Gemstone Sigils_260
+  - first:
+      213: 5200092655759528879
+    second: Five Elemental Gemstone Sigils_261
+  - first:
+      213: 5813830844809595779
+    second: Five Elemental Gemstone Sigils_262
+  - first:
+      213: 6836945851952985970
+    second: Five Elemental Gemstone Sigils_263
+  - first:
+      213: -4244320532865145524
+    second: Five Elemental Gemstone Sigils_264
+  - first:
+      213: 6825338134782124938
+    second: Five Elemental Gemstone Sigils_265
+  - first:
+      213: 5535911296236957949
+    second: Five Elemental Gemstone Sigils_266
+  - first:
+      213: -8991357131749509348
+    second: Five Elemental Gemstone Sigils_267
+  - first:
+      213: -3377422987362736755
+    second: Five Elemental Gemstone Sigils_268
+  - first:
+      213: 6974103453675755693
+    second: Five Elemental Gemstone Sigils_269
+  - first:
+      213: -7127627954688827609
+    second: Five Elemental Gemstone Sigils_270
+  - first:
+      213: -9024575179666777528
+    second: Five Elemental Gemstone Sigils_271
+  - first:
+      213: 6200917186094727728
+    second: Five Elemental Gemstone Sigils_272
+  - first:
+      213: -1561540969968129396
+    second: Five Elemental Gemstone Sigils_273
+  - first:
+      213: 617111094796384896
+    second: Five Elemental Gemstone Sigils_274
+  - first:
+      213: -2148996090079743735
+    second: Five Elemental Gemstone Sigils_275
+  - first:
+      213: 4317606077133392157
+    second: Five Elemental Gemstone Sigils_276
+  - first:
+      213: 900034491471561546
+    second: Five Elemental Gemstone Sigils_277
+  - first:
+      213: 2443888551443538083
+    second: Five Elemental Gemstone Sigils_278
+  - first:
+      213: -6335046083811132058
+    second: Five Elemental Gemstone Sigils_279
+  - first:
+      213: 3690271124328442004
+    second: Five Elemental Gemstone Sigils_280
+  - first:
+      213: -5318683012222566490
+    second: Five Elemental Gemstone Sigils_281
+  - first:
+      213: 1176688111398544630
+    second: Five Elemental Gemstone Sigils_282
+  - first:
+      213: 8845717379508987570
+    second: Five Elemental Gemstone Sigils_283
+  - first:
+      213: -5562808197321634718
+    second: Five Elemental Gemstone Sigils_284
+  - first:
+      213: -7386349983062520613
+    second: Five Elemental Gemstone Sigils_285
+  - first:
+      213: 4456400472293116599
+    second: Five Elemental Gemstone Sigils_286
+  - first:
+      213: 3199271126607727540
+    second: Five Elemental Gemstone Sigils_287
+  - first:
+      213: -4110233659684739464
+    second: Five Elemental Gemstone Sigils_288
+  - first:
+      213: 4137319698766620878
+    second: Five Elemental Gemstone Sigils_289
+  - first:
+      213: 3770238487213219910
+    second: Five Elemental Gemstone Sigils_290
+  - first:
+      213: -2215260101006659706
+    second: Five Elemental Gemstone Sigils_291
+  - first:
+      213: 5777465177795291406
+    second: Five Elemental Gemstone Sigils_292
+  - first:
+      213: -6676710016552195707
+    second: Five Elemental Gemstone Sigils_293
+  - first:
+      213: 3603942070415090404
+    second: Five Elemental Gemstone Sigils_294
+  - first:
+      213: 5528766988271912275
+    second: Five Elemental Gemstone Sigils_295
+  - first:
+      213: 2844764793817815096
+    second: Five Elemental Gemstone Sigils_296
+  - first:
+      213: 8170759146726406908
+    second: Five Elemental Gemstone Sigils_297
+  - first:
+      213: -4974066878468795267
+    second: Five Elemental Gemstone Sigils_298
+  - first:
+      213: 7847832565319626007
+    second: Five Elemental Gemstone Sigils_299
+  - first:
+      213: 4125806020132749955
+    second: Five Elemental Gemstone Sigils_300
+  - first:
+      213: -579616757582938295
+    second: Five Elemental Gemstone Sigils_301
+  - first:
+      213: -4260673080591206101
+    second: Five Elemental Gemstone Sigils_302
+  - first:
+      213: -4059769807942965701
+    second: Five Elemental Gemstone Sigils_303
+  - first:
+      213: 401498511139829688
+    second: Five Elemental Gemstone Sigils_304
+  - first:
+      213: 8104245474847860276
+    second: Five Elemental Gemstone Sigils_305
+  - first:
+      213: 8623943974812448926
+    second: Five Elemental Gemstone Sigils_306
+  - first:
+      213: 1391987540580194651
+    second: Five Elemental Gemstone Sigils_307
+  - first:
+      213: -5266162550350203201
+    second: Five Elemental Gemstone Sigils_308
+  - first:
+      213: 4073146881803171961
+    second: Five Elemental Gemstone Sigils_309
+  - first:
+      213: -6578535821252460015
+    second: Five Elemental Gemstone Sigils_310
+  - first:
+      213: -1098925715999775361
+    second: Five Elemental Gemstone Sigils_311
+  - first:
+      213: -3461636781872493827
+    second: Five Elemental Gemstone Sigils_312
+  - first:
+      213: 9190317410547436013
+    second: Five Elemental Gemstone Sigils_313
+  - first:
+      213: -4822373171889539673
+    second: Five Elemental Gemstone Sigils_314
+  - first:
+      213: -2371650397958234132
+    second: Five Elemental Gemstone Sigils_315
+  - first:
+      213: -5645525161943591851
+    second: Five Elemental Gemstone Sigils_316
+  - first:
+      213: 3522778272012295030
+    second: Five Elemental Gemstone Sigils_317
+  - first:
+      213: -7410415396619629900
+    second: Five Elemental Gemstone Sigils_318
+  - first:
+      213: 6971062274313603264
+    second: Five Elemental Gemstone Sigils_319
+  - first:
+      213: -3466287129425047029
+    second: Five Elemental Gemstone Sigils_320
+  - first:
+      213: -2238892952259178034
+    second: Five Elemental Gemstone Sigils_321
+  - first:
+      213: -1318409712527147177
+    second: Five Elemental Gemstone Sigils_322
+  - first:
+      213: 1860034461468742875
+    second: Five Elemental Gemstone Sigils_323
+  - first:
+      213: -5697600530756488929
+    second: Five Elemental Gemstone Sigils_324
+  - first:
+      213: -5027785166207871402
+    second: Five Elemental Gemstone Sigils_325
+  - first:
+      213: 6180703861811929795
+    second: Five Elemental Gemstone Sigils_326
+  - first:
+      213: -7821681640231107316
+    second: Five Elemental Gemstone Sigils_327
+  - first:
+      213: 7646981789549055307
+    second: Five Elemental Gemstone Sigils_328
+  - first:
+      213: 2818022016772365311
+    second: Five Elemental Gemstone Sigils_329
+  - first:
+      213: -602618070255128228
+    second: Five Elemental Gemstone Sigils_330
+  - first:
+      213: 3494846948422024200
+    second: Five Elemental Gemstone Sigils_331
+  - first:
+      213: -5923662756120640018
+    second: Five Elemental Gemstone Sigils_332
+  - first:
+      213: 7498628832009391431
+    second: Five Elemental Gemstone Sigils_333
+  - first:
+      213: -3312686314081652627
+    second: Five Elemental Gemstone Sigils_334
+  - first:
+      213: 7334861193354759578
+    second: Five Elemental Gemstone Sigils_335
+  - first:
+      213: -3083754546272509035
+    second: Five Elemental Gemstone Sigils_336
+  - first:
+      213: -4572730637052726117
+    second: Five Elemental Gemstone Sigils_337
+  - first:
+      213: -2971123005304218269
+    second: Five Elemental Gemstone Sigils_338
+  - first:
+      213: -8025476903867092206
+    second: Five Elemental Gemstone Sigils_339
+  - first:
+      213: -2187118913325941786
+    second: Five Elemental Gemstone Sigils_340
+  - first:
+      213: -8701382923920495215
+    second: Five Elemental Gemstone Sigils_341
+  - first:
+      213: 7302723582684880700
+    second: Five Elemental Gemstone Sigils_342
+  - first:
+      213: 7864440471172526248
+    second: Five Elemental Gemstone Sigils_343
+  - first:
+      213: -8612920986080913049
+    second: Five Elemental Gemstone Sigils_344
+  - first:
+      213: -711795279292282794
+    second: Five Elemental Gemstone Sigils_345
+  - first:
+      213: 2152630311537715415
+    second: Five Elemental Gemstone Sigils_346
+  - first:
+      213: -1186771378981652988
+    second: Five Elemental Gemstone Sigils_347
+  - first:
+      213: 4720027226637143619
+    second: Five Elemental Gemstone Sigils_348
+  - first:
+      213: -520229753774959689
+    second: Five Elemental Gemstone Sigils_349
+  - first:
+      213: -4750386994022519652
+    second: Five Elemental Gemstone Sigils_350
+  - first:
+      213: 5878984367792174928
+    second: Five Elemental Gemstone Sigils_351
+  - first:
+      213: 8205977841212736129
+    second: Five Elemental Gemstone Sigils_352
+  - first:
+      213: -3893425695859780795
+    second: Five Elemental Gemstone Sigils_353
+  - first:
+      213: 8040191695540924484
+    second: Five Elemental Gemstone Sigils_354
+  - first:
+      213: 995909806498387066
+    second: Five Elemental Gemstone Sigils_355
+  - first:
+      213: -6529422968473676932
+    second: Five Elemental Gemstone Sigils_356
+  - first:
+      213: -7018653494885125590
+    second: Five Elemental Gemstone Sigils_357
+  - first:
+      213: -4455181358899906334
+    second: Five Elemental Gemstone Sigils_358
+  - first:
+      213: 6251702891330163995
+    second: Five Elemental Gemstone Sigils_359
+  - first:
+      213: 3913775485582823657
+    second: Five Elemental Gemstone Sigils_360
+  - first:
+      213: 8312579136047648402
+    second: Five Elemental Gemstone Sigils_361
+  - first:
+      213: 849051903461923183
+    second: Five Elemental Gemstone Sigils_362
+  - first:
+      213: -3212298648846777734
+    second: Five Elemental Gemstone Sigils_363
+  - first:
+      213: -6504142363903948078
+    second: Five Elemental Gemstone Sigils_364
+  - first:
+      213: 8169921711081997660
+    second: Five Elemental Gemstone Sigils_365
+  - first:
+      213: 6755374805751418772
+    second: Five Elemental Gemstone Sigils_366
+  - first:
+      213: 7109746353648689942
+    second: Five Elemental Gemstone Sigils_367
+  - first:
+      213: -2238217498854339177
+    second: Five Elemental Gemstone Sigils_368
+  - first:
+      213: -8624382407086623185
+    second: Five Elemental Gemstone Sigils_369
+  - first:
+      213: 4249645339835304858
+    second: Five Elemental Gemstone Sigils_370
+  - first:
+      213: 3582730988227114880
+    second: Five Elemental Gemstone Sigils_371
+  - first:
+      213: -4018895493921205047
+    second: Five Elemental Gemstone Sigils_372
+  - first:
+      213: -3312618245096573090
+    second: Five Elemental Gemstone Sigils_373
+  - first:
+      213: -2026435774188491662
+    second: Five Elemental Gemstone Sigils_374
+  - first:
+      213: -2636629806480739358
+    second: Five Elemental Gemstone Sigils_375
+  - first:
+      213: -2412926548188936183
+    second: Five Elemental Gemstone Sigils_376
+  - first:
+      213: 8882280331350201904
+    second: Five Elemental Gemstone Sigils_377
+  - first:
+      213: 8194522759221231304
+    second: Five Elemental Gemstone Sigils_378
+  - first:
+      213: 2591872438729853565
+    second: Five Elemental Gemstone Sigils_379
+  - first:
+      213: 7561891049310695783
+    second: Five Elemental Gemstone Sigils_380
+  - first:
+      213: 7776699950308144632
+    second: Five Elemental Gemstone Sigils_381
+  - first:
+      213: 101731883603637231
+    second: Five Elemental Gemstone Sigils_382
+  - first:
+      213: -4400986278936754822
+    second: Five Elemental Gemstone Sigils_383
+  - first:
+      213: 8110285457569113644
+    second: Five Elemental Gemstone Sigils_384
+  - first:
+      213: -1912745892978657419
+    second: Five Elemental Gemstone Sigils_385
+  - first:
+      213: 1684043214630703951
+    second: Five Elemental Gemstone Sigils_386
+  - first:
+      213: 6808706353896797345
+    second: Five Elemental Gemstone Sigils_387
+  - first:
+      213: -7460645256447746953
+    second: Five Elemental Gemstone Sigils_388
+  - first:
+      213: 3321852713900617264
+    second: Five Elemental Gemstone Sigils_389
+  - first:
+      213: 221390227488352547
+    second: Five Elemental Gemstone Sigils_390
+  - first:
+      213: 1435162584180839166
+    second: Five Elemental Gemstone Sigils_391
+  - first:
+      213: -8973713421013008458
+    second: Five Elemental Gemstone Sigils_392
+  - first:
+      213: 7889020228495453383
+    second: Five Elemental Gemstone Sigils_393
+  - first:
+      213: -3845739781035728001
+    second: Five Elemental Gemstone Sigils_394
+  - first:
+      213: -6943929333785632515
+    second: Five Elemental Gemstone Sigils_395
+  - first:
+      213: -2569338659130284385
+    second: Five Elemental Gemstone Sigils_396
+  - first:
+      213: -4584251602095233973
+    second: Five Elemental Gemstone Sigils_397
+  - first:
+      213: -6190964183093102293
+    second: Five Elemental Gemstone Sigils_398
+  - first:
+      213: -2283130989075650544
+    second: Five Elemental Gemstone Sigils_399
+  - first:
+      213: 3103685525333819099
+    second: Five Elemental Gemstone Sigils_400
+  - first:
+      213: 4874152169104241733
+    second: Five Elemental Gemstone Sigils_401
+  - first:
+      213: 6075486254644050115
+    second: Five Elemental Gemstone Sigils_402
+  - first:
+      213: 2405248478223887686
+    second: Five Elemental Gemstone Sigils_403
+  - first:
+      213: -1537545523968677320
+    second: Five Elemental Gemstone Sigils_404
+  - first:
+      213: -6934054219387337677
+    second: Five Elemental Gemstone Sigils_405
+  - first:
+      213: -1126450176698206645
+    second: Five Elemental Gemstone Sigils_406
+  - first:
+      213: -1633273290825413552
+    second: Five Elemental Gemstone Sigils_407
+  - first:
+      213: 7047007636997432215
+    second: Five Elemental Gemstone Sigils_408
+  - first:
+      213: 2376896491195018137
+    second: Five Elemental Gemstone Sigils_409
+  - first:
+      213: -5579456622485707655
+    second: Five Elemental Gemstone Sigils_410
+  - first:
+      213: -1833049409037796253
+    second: Five Elemental Gemstone Sigils_411
+  - first:
+      213: -3896596687303841796
+    second: Five Elemental Gemstone Sigils_412
+  - first:
+      213: 8557601192444731994
+    second: Five Elemental Gemstone Sigils_413
+  - first:
+      213: -2367055784366381139
+    second: Five Elemental Gemstone Sigils_414
+  - first:
+      213: 9133876222266576315
+    second: Five Elemental Gemstone Sigils_415
+  - first:
+      213: -8645761449433629137
+    second: Five Elemental Gemstone Sigils_416
+  - first:
+      213: -8618358022019002570
+    second: Five Elemental Gemstone Sigils_417
+  - first:
+      213: -2270305439410925759
+    second: Five Elemental Gemstone Sigils_418
+  - first:
+      213: 1937302028802830825
+    second: Five Elemental Gemstone Sigils_419
+  - first:
+      213: 1991319457287538378
+    second: Five Elemental Gemstone Sigils_420
+  - first:
+      213: 8908996339489490481
+    second: Five Elemental Gemstone Sigils_421
+  - first:
+      213: 8012105273998426561
+    second: Five Elemental Gemstone Sigils_422
+  - first:
+      213: 1187386147267346000
+    second: Five Elemental Gemstone Sigils_423
+  - first:
+      213: 3910598847117318866
+    second: Five Elemental Gemstone Sigils_424
+  - first:
+      213: 8354688112379440074
+    second: Five Elemental Gemstone Sigils_425
+  - first:
+      213: -6571080283381809504
+    second: Five Elemental Gemstone Sigils_426
+  - first:
+      213: 6221763708787766065
+    second: Five Elemental Gemstone Sigils_427
+  - first:
+      213: -7602742377269106595
+    second: Five Elemental Gemstone Sigils_428
+  - first:
+      213: -5424040446051278114
+    second: Five Elemental Gemstone Sigils_429
+  - first:
+      213: -5565764592310438416
+    second: Five Elemental Gemstone Sigils_430
+  - first:
+      213: 8600544917414622614
+    second: Five Elemental Gemstone Sigils_431
+  - first:
+      213: -6431049889078115216
+    second: Five Elemental Gemstone Sigils_432
+  - first:
+      213: -2650202874499564690
+    second: Five Elemental Gemstone Sigils_433
+  - first:
+      213: 5304522097547807384
+    second: Five Elemental Gemstone Sigils_434
+  - first:
+      213: -8623576939200946288
+    second: Five Elemental Gemstone Sigils_435
+  - first:
+      213: 325131127108649246
+    second: Five Elemental Gemstone Sigils_436
+  - first:
+      213: 6254928115653342517
+    second: Five Elemental Gemstone Sigils_437
+  - first:
+      213: 3115054546413234050
+    second: Five Elemental Gemstone Sigils_438
+  - first:
+      213: -5153533893282400168
+    second: Five Elemental Gemstone Sigils_439
+  - first:
+      213: 8052108265284208899
+    second: Five Elemental Gemstone Sigils_440
+  - first:
+      213: -4893206601562764587
+    second: Five Elemental Gemstone Sigils_441
+  - first:
+      213: -9112706498194745485
+    second: Five Elemental Gemstone Sigils_442
+  - first:
+      213: 2305916055957154608
+    second: Five Elemental Gemstone Sigils_443
+  - first:
+      213: -4575790785703039556
+    second: Five Elemental Gemstone Sigils_444
+  - first:
+      213: 1186768631476229312
+    second: Five Elemental Gemstone Sigils_445
+  - first:
+      213: 2849468415206544754
+    second: Five Elemental Gemstone Sigils_446
+  - first:
+      213: 3559300937955969205
+    second: Five Elemental Gemstone Sigils_447
+  - first:
+      213: 7665164198664620190
+    second: Five Elemental Gemstone Sigils_448
+  - first:
+      213: 7197598874777631208
+    second: Five Elemental Gemstone Sigils_449
+  - first:
+      213: -2699786459186572663
+    second: Five Elemental Gemstone Sigils_450
+  - first:
+      213: 7220491163114807218
+    second: Five Elemental Gemstone Sigils_451
+  - first:
+      213: 3858383713908021034
+    second: Five Elemental Gemstone Sigils_452
+  - first:
+      213: 5494779539833015454
+    second: Five Elemental Gemstone Sigils_453
+  - first:
+      213: 1298857067323800403
+    second: Five Elemental Gemstone Sigils_454
+  - first:
+      213: -9146372953170973541
+    second: Five Elemental Gemstone Sigils_455
+  - first:
+      213: -7969720633701154248
+    second: Five Elemental Gemstone Sigils_456
+  - first:
+      213: 6584853073396303337
+    second: Five Elemental Gemstone Sigils_457
+  - first:
+      213: -8784431265231861765
+    second: Five Elemental Gemstone Sigils_458
+  - first:
+      213: -284175108443675200
+    second: Five Elemental Gemstone Sigils_459
+  - first:
+      213: 3959776630874180225
+    second: Five Elemental Gemstone Sigils_460
+  - first:
+      213: 1422635210486512839
+    second: Five Elemental Gemstone Sigils_461
+  - first:
+      213: 7959543965838009039
+    second: Five Elemental Gemstone Sigils_462
+  - first:
+      213: -1930492150968939541
+    second: Five Elemental Gemstone Sigils_463
+  - first:
+      213: -3964913114672464803
+    second: Five Elemental Gemstone Sigils_464
+  - first:
+      213: -583972620035533262
+    second: Five Elemental Gemstone Sigils_465
+  - first:
+      213: 2969029014091669754
+    second: Five Elemental Gemstone Sigils_466
+  - first:
+      213: 2966371297895199792
+    second: Five Elemental Gemstone Sigils_467
+  - first:
+      213: 8162364611106682894
+    second: Five Elemental Gemstone Sigils_468
+  - first:
+      213: 1782944452084718746
+    second: Five Elemental Gemstone Sigils_469
+  - first:
+      213: -3243792904536786235
+    second: Five Elemental Gemstone Sigils_470
+  - first:
+      213: 3105893080764624805
+    second: Five Elemental Gemstone Sigils_471
+  - first:
+      213: 3844561037852555340
+    second: Five Elemental Gemstone Sigils_472
+  - first:
+      213: 2893916877064914257
+    second: Five Elemental Gemstone Sigils_473
+  - first:
+      213: 3715332213774446371
+    second: Five Elemental Gemstone Sigils_474
+  - first:
+      213: -5087975199372013804
+    second: Five Elemental Gemstone Sigils_475
+  - first:
+      213: 2450011416692477226
+    second: Five Elemental Gemstone Sigils_476
+  - first:
+      213: -9102534069123175964
+    second: Five Elemental Gemstone Sigils_477
+  - first:
+      213: -542853720128277016
+    second: Five Elemental Gemstone Sigils_478
+  - first:
+      213: -8164620053120622244
+    second: Five Elemental Gemstone Sigils_479
+  - first:
+      213: 7962645423652711364
+    second: Five Elemental Gemstone Sigils_480
+  - first:
+      213: -5686487936506160682
+    second: Five Elemental Gemstone Sigils_481
+  - first:
+      213: 2275412801682089893
+    second: Five Elemental Gemstone Sigils_482
+  - first:
+      213: 2761789815545366105
+    second: Five Elemental Gemstone Sigils_483
+  - first:
+      213: -795132568534127574
+    second: Five Elemental Gemstone Sigils_484
+  - first:
+      213: -3741890108375010690
+    second: Five Elemental Gemstone Sigils_485
+  - first:
+      213: 7469998767998815013
+    second: Five Elemental Gemstone Sigils_486
+  - first:
+      213: 2703304732031127632
+    second: Five Elemental Gemstone Sigils_487
+  - first:
+      213: 1395225553481302712
+    second: Five Elemental Gemstone Sigils_488
+  - first:
+      213: -4127414060340131116
+    second: Five Elemental Gemstone Sigils_489
+  - first:
+      213: -2486460169895018827
+    second: Five Elemental Gemstone Sigils_490
+  - first:
+      213: 5735844376604640938
+    second: Five Elemental Gemstone Sigils_491
+  - first:
+      213: -6571416629596639850
+    second: Five Elemental Gemstone Sigils_492
+  - first:
+      213: -5558527405851782936
+    second: Five Elemental Gemstone Sigils_493
+  - first:
+      213: 5366005019395121728
+    second: Five Elemental Gemstone Sigils_494
+  - first:
+      213: 2872628895309258298
+    second: Five Elemental Gemstone Sigils_495
+  - first:
+      213: 8743587297963395758
+    second: Five Elemental Gemstone Sigils_496
+  - first:
+      213: 7959554414033904554
+    second: Five Elemental Gemstone Sigils_497
+  - first:
+      213: 930201904275222257
+    second: Five Elemental Gemstone Sigils_498
+  - first:
+      213: -2966697077470582204
+    second: Five Elemental Gemstone Sigils_499
+  - first:
+      213: 1259787079019277927
+    second: Five Elemental Gemstone Sigils_500
+  - first:
+      213: 8266515665218328418
+    second: Five Elemental Gemstone Sigils_501
+  - first:
+      213: 9196402783942609867
+    second: Five Elemental Gemstone Sigils_502
+  - first:
+      213: 3782196922649615647
+    second: Five Elemental Gemstone Sigils_503
+  - first:
+      213: 9075504305027138401
+    second: Five Elemental Gemstone Sigils_504
+  - first:
+      213: -2928789684855262086
+    second: Five Elemental Gemstone Sigils_505
+  - first:
+      213: 1025051419698728681
+    second: Five Elemental Gemstone Sigils_506
+  - first:
+      213: -884890017834124901
+    second: Five Elemental Gemstone Sigils_507
+  - first:
+      213: -7161276204749768251
+    second: Five Elemental Gemstone Sigils_508
+  - first:
+      213: 1635457285501712472
+    second: Five Elemental Gemstone Sigils_509
+  - first:
+      213: -5951036455461839328
+    second: Five Elemental Gemstone Sigils_510
+  - first:
+      213: -5304311863672988307
+    second: Five Elemental Gemstone Sigils_511
+  - first:
+      213: -6048594068533980721
+    second: Five Elemental Gemstone Sigils_512
+  - first:
+      213: -473779691642358161
+    second: Five Elemental Gemstone Sigils_513
+  - first:
+      213: -6430205688171941950
+    second: Five Elemental Gemstone Sigils_514
+  - first:
+      213: 3635273556402511659
+    second: Five Elemental Gemstone Sigils_515
+  - first:
+      213: 3880810110306803383
+    second: Five Elemental Gemstone Sigils_516
+  - first:
+      213: -6105036513860825895
+    second: Five Elemental Gemstone Sigils_517
+  - first:
+      213: 6590489063974888549
+    second: Five Elemental Gemstone Sigils_518
+  - first:
+      213: 7357224460258865617
+    second: Five Elemental Gemstone Sigils_519
+  - first:
+      213: 3654829218002633520
+    second: Five Elemental Gemstone Sigils_520
+  - first:
+      213: 7714784310634954715
+    second: Five Elemental Gemstone Sigils_521
+  - first:
+      213: 5961592182377827867
+    second: Five Elemental Gemstone Sigils_522
+  - first:
+      213: 7699210325254652877
+    second: Five Elemental Gemstone Sigils_523
+  - first:
+      213: 4229851933883367859
+    second: Five Elemental Gemstone Sigils_524
+  - first:
+      213: 3942610933498968017
+    second: Five Elemental Gemstone Sigils_525
+  - first:
+      213: -3494388074551144798
+    second: Five Elemental Gemstone Sigils_526
+  - first:
+      213: 8163358790867349043
+    second: Five Elemental Gemstone Sigils_527
+  - first:
+      213: 9069098013582217510
+    second: Five Elemental Gemstone Sigils_528
+  - first:
+      213: -341593018624112647
+    second: Five Elemental Gemstone Sigils_529
+  - first:
+      213: 1312078537247887934
+    second: Five Elemental Gemstone Sigils_530
+  - first:
+      213: 8578633966958386501
+    second: Five Elemental Gemstone Sigils_531
+  - first:
+      213: 3720812294230062401
+    second: Five Elemental Gemstone Sigils_532
+  - first:
+      213: -6804706319890082293
+    second: Five Elemental Gemstone Sigils_533
+  - first:
+      213: 5247941131712914552
+    second: Five Elemental Gemstone Sigils_534
+  - first:
+      213: -7238023740094911356
+    second: Five Elemental Gemstone Sigils_535
+  - first:
+      213: -7026744716469502961
+    second: Five Elemental Gemstone Sigils_536
+  - first:
+      213: 7593004463478385465
+    second: Five Elemental Gemstone Sigils_537
+  - first:
+      213: 7944824183293737393
+    second: Five Elemental Gemstone Sigils_538
+  - first:
+      213: -829460693362763278
+    second: Five Elemental Gemstone Sigils_539
+  - first:
+      213: 8797242870252944230
+    second: Five Elemental Gemstone Sigils_540
+  - first:
+      213: -6729347443477230044
+    second: Five Elemental Gemstone Sigils_541
+  - first:
+      213: 6758484210487992747
+    second: Five Elemental Gemstone Sigils_542
+  - first:
+      213: -8901740537765065791
+    second: Five Elemental Gemstone Sigils_543
+  - first:
+      213: 7687020429435450037
+    second: Five Elemental Gemstone Sigils_544
+  - first:
+      213: -3924634402520797438
+    second: Five Elemental Gemstone Sigils_545
+  - first:
+      213: 5573451151007232787
+    second: Five Elemental Gemstone Sigils_546
+  - first:
+      213: 2313059596202711431
+    second: Five Elemental Gemstone Sigils_547
+  - first:
+      213: -994995607623278573
+    second: Five Elemental Gemstone Sigils_548
+  - first:
+      213: -2253298917338403602
+    second: Five Elemental Gemstone Sigils_549
+  - first:
+      213: 1966839562073838569
+    second: Five Elemental Gemstone Sigils_550
+  - first:
+      213: -6519738912990827807
+    second: Five Elemental Gemstone Sigils_551
+  - first:
+      213: 3982984397346712682
+    second: Five Elemental Gemstone Sigils_552
+  - first:
+      213: -7278742947583406194
+    second: Five Elemental Gemstone Sigils_553
+  - first:
+      213: -1385064840485791504
+    second: Five Elemental Gemstone Sigils_554
+  - first:
+      213: -6238000624193997278
+    second: Five Elemental Gemstone Sigils_555
+  - first:
+      213: -7397055884164155589
+    second: Five Elemental Gemstone Sigils_556
+  - first:
+      213: -4602961653939028632
+    second: Five Elemental Gemstone Sigils_557
+  - first:
+      213: 7370111499542695403
+    second: Five Elemental Gemstone Sigils_558
+  - first:
+      213: 1099767657043794650
+    second: Five Elemental Gemstone Sigils_559
+  - first:
+      213: 7401789425108662695
+    second: Five Elemental Gemstone Sigils_560
+  - first:
+      213: -4481468924431706013
+    second: Five Elemental Gemstone Sigils_561
+  - first:
+      213: 2107743275304205554
+    second: Five Elemental Gemstone Sigils_562
+  - first:
+      213: 7357666187397608010
+    second: Five Elemental Gemstone Sigils_563
+  - first:
+      213: -5856008151366929404
+    second: Five Elemental Gemstone Sigils_564
+  - first:
+      213: 1683079446382644730
+    second: Five Elemental Gemstone Sigils_565
+  - first:
+      213: -6944886368853007769
+    second: Five Elemental Gemstone Sigils_566
+  - first:
+      213: -6619687885485659878
+    second: Five Elemental Gemstone Sigils_567
+  - first:
+      213: 6184146015533648295
+    second: Five Elemental Gemstone Sigils_568
+  - first:
+      213: 4018129352383360428
+    second: Five Elemental Gemstone Sigils_569
+  - first:
+      213: 6392634328230167073
+    second: Five Elemental Gemstone Sigils_570
+  - first:
+      213: 999029425825778121
+    second: Five Elemental Gemstone Sigils_571
+  - first:
+      213: -4420350385207681919
+    second: Five Elemental Gemstone Sigils_572
+  - first:
+      213: -6816244588042927531
+    second: Five Elemental Gemstone Sigils_573
+  - first:
+      213: -3339081856943517844
+    second: Five Elemental Gemstone Sigils_574
+  - first:
+      213: 4065248559099870129
+    second: Five Elemental Gemstone Sigils_575
+  - first:
+      213: -5637979985818035874
+    second: Five Elemental Gemstone Sigils_576
+  - first:
+      213: -2046146700786023644
+    second: Five Elemental Gemstone Sigils_577
+  - first:
+      213: -7301303889616550422
+    second: Five Elemental Gemstone Sigils_578
+  - first:
+      213: 3671842268251227120
+    second: Five Elemental Gemstone Sigils_579
+  - first:
+      213: -9084184310284122227
+    second: Five Elemental Gemstone Sigils_580
+  - first:
+      213: 9149535499910737862
+    second: Five Elemental Gemstone Sigils_581
+  - first:
+      213: -9076544251130260446
+    second: Five Elemental Gemstone Sigils_582
+  - first:
+      213: -825177646782434979
+    second: Five Elemental Gemstone Sigils_583
+  - first:
+      213: 2301851659056791758
+    second: Five Elemental Gemstone Sigils_584
+  - first:
+      213: 2810060425454977947
+    second: Five Elemental Gemstone Sigils_585
+  - first:
+      213: 396300632102881163
+    second: Five Elemental Gemstone Sigils_586
+  - first:
+      213: -676417474424643860
+    second: Five Elemental Gemstone Sigils_587
+  - first:
+      213: 6026680833080092018
+    second: Five Elemental Gemstone Sigils_588
+  - first:
+      213: 4649453182367321180
+    second: Five Elemental Gemstone Sigils_589
+  - first:
+      213: -4133605620747969260
+    second: Five Elemental Gemstone Sigils_590
+  - first:
+      213: 5189504202927148422
+    second: Five Elemental Gemstone Sigils_591
+  - first:
+      213: 1282236217065588507
+    second: Five Elemental Gemstone Sigils_592
+  - first:
+      213: -8489740664222518709
+    second: Five Elemental Gemstone Sigils_593
+  - first:
+      213: 705351512138029348
+    second: Five Elemental Gemstone Sigils_594
+  - first:
+      213: 7249052853778750479
+    second: Five Elemental Gemstone Sigils_595
+  - first:
+      213: -7683412157071594059
+    second: Five Elemental Gemstone Sigils_596
+  - first:
+      213: -1940411976495215177
+    second: Five Elemental Gemstone Sigils_597
+  - first:
+      213: 5936677828190159725
+    second: Five Elemental Gemstone Sigils_598
+  - first:
+      213: 7257210912857824543
+    second: Five Elemental Gemstone Sigils_599
+  - first:
+      213: -8038766182296920081
+    second: Five Elemental Gemstone Sigils_600
+  - first:
+      213: 3662478554960123769
+    second: Five Elemental Gemstone Sigils_601
+  - first:
+      213: -1173753929198342395
+    second: Five Elemental Gemstone Sigils_602
+  - first:
+      213: -3075488571206402011
+    second: Five Elemental Gemstone Sigils_603
+  - first:
+      213: -6067444991440958531
+    second: Five Elemental Gemstone Sigils_604
+  - first:
+      213: 442313714653313025
+    second: Five Elemental Gemstone Sigils_605
+  - first:
+      213: 237432575769946202
+    second: Five Elemental Gemstone Sigils_606
+  - first:
+      213: 745127964872819021
+    second: Five Elemental Gemstone Sigils_607
+  - first:
+      213: 5392028921138934028
+    second: Five Elemental Gemstone Sigils_608
+  - first:
+      213: 2055310756341204046
+    second: Five Elemental Gemstone Sigils_609
+  - first:
+      213: -3934213109847526721
+    second: Five Elemental Gemstone Sigils_610
+  - first:
+      213: 6017279562740557911
+    second: Five Elemental Gemstone Sigils_611
+  - first:
+      213: -4402795378169297462
+    second: Five Elemental Gemstone Sigils_612
+  - first:
+      213: 7832860739200983090
+    second: Five Elemental Gemstone Sigils_613
+  - first:
+      213: -3156851382412957779
+    second: Five Elemental Gemstone Sigils_614
+  - first:
+      213: 2147344236999412127
+    second: Five Elemental Gemstone Sigils_615
+  - first:
+      213: -3062737673123691700
+    second: Five Elemental Gemstone Sigils_616
+  - first:
+      213: -1334771764039847760
+    second: Five Elemental Gemstone Sigils_617
+  - first:
+      213: 2907151694602138085
+    second: Five Elemental Gemstone Sigils_618
+  - first:
+      213: 1863300260270730019
+    second: Five Elemental Gemstone Sigils_619
+  - first:
+      213: -8608036983497835053
+    second: Five Elemental Gemstone Sigils_620
+  - first:
+      213: 425838142092143064
+    second: Five Elemental Gemstone Sigils_621
+  - first:
+      213: 7473273452648699485
+    second: Five Elemental Gemstone Sigils_622
+  - first:
+      213: -7276195503412081822
+    second: Five Elemental Gemstone Sigils_623
+  - first:
+      213: -7549384600023051175
+    second: Five Elemental Gemstone Sigils_624
+  - first:
+      213: 1970317158977328414
+    second: Five Elemental Gemstone Sigils_625
+  - first:
+      213: 4069398292781599605
+    second: Five Elemental Gemstone Sigils_626
+  - first:
+      213: 8770315027783529568
+    second: Five Elemental Gemstone Sigils_627
+  - first:
+      213: 1593492948944980900
+    second: Five Elemental Gemstone Sigils_628
+  - first:
+      213: -3550088986479344828
+    second: Five Elemental Gemstone Sigils_629
+  - first:
+      213: -1482141073723262893
+    second: Five Elemental Gemstone Sigils_630
+  - first:
+      213: 216391046557930275
+    second: Five Elemental Gemstone Sigils_631
+  - first:
+      213: -3645364462594305488
+    second: Five Elemental Gemstone Sigils_632
+  - first:
+      213: -8013787107396299452
+    second: Five Elemental Gemstone Sigils_633
+  - first:
+      213: 4209913432571754038
+    second: Five Elemental Gemstone Sigils_634
+  - first:
+      213: 8274094125987469358
+    second: Five Elemental Gemstone Sigils_635
+  - first:
+      213: 5951110739093293644
+    second: Five Elemental Gemstone Sigils_636
+  - first:
+      213: -2442778882594011208
+    second: Five Elemental Gemstone Sigils_637
+  - first:
+      213: 5998011915027194842
+    second: Five Elemental Gemstone Sigils_638
+  - first:
+      213: -1286480098562517710
+    second: Five Elemental Gemstone Sigils_639
+  - first:
+      213: 5902785063987954533
+    second: Five Elemental Gemstone Sigils_640
+  - first:
+      213: -5931943178558241088
+    second: Five Elemental Gemstone Sigils_641
+  - first:
+      213: 5757795490339134993
+    second: Five Elemental Gemstone Sigils_642
+  - first:
+      213: 4624013622242889477
+    second: Five Elemental Gemstone Sigils_643
+  - first:
+      213: 3652225870137894352
+    second: Five Elemental Gemstone Sigils_644
+  - first:
+      213: -3434446860935660264
+    second: Five Elemental Gemstone Sigils_645
+  - first:
+      213: 6873524610912867362
+    second: Five Elemental Gemstone Sigils_646
+  - first:
+      213: -4035421340623027873
+    second: Five Elemental Gemstone Sigils_647
+  - first:
+      213: -6544621546409208008
+    second: Five Elemental Gemstone Sigils_648
+  - first:
+      213: -8303972856674316270
+    second: Five Elemental Gemstone Sigils_649
+  - first:
+      213: 5867761517209210807
+    second: Five Elemental Gemstone Sigils_650
+  - first:
+      213: 5315403150139508367
+    second: Five Elemental Gemstone Sigils_651
+  - first:
+      213: 2857189694131801078
+    second: Five Elemental Gemstone Sigils_652
+  - first:
+      213: 3645468774066127964
+    second: Five Elemental Gemstone Sigils_653
+  - first:
+      213: -8748524845012361499
+    second: Five Elemental Gemstone Sigils_654
+  - first:
+      213: 7389254802515774107
+    second: Five Elemental Gemstone Sigils_655
+  - first:
+      213: -3669871916817703118
+    second: Five Elemental Gemstone Sigils_656
+  - first:
+      213: -8313188173287302018
+    second: Five Elemental Gemstone Sigils_657
+  - first:
+      213: -8291454522454039921
+    second: Five Elemental Gemstone Sigils_658
+  - first:
+      213: -1890546888680538843
+    second: Five Elemental Gemstone Sigils_659
+  - first:
+      213: -1029817850615727004
+    second: Five Elemental Gemstone Sigils_660
+  - first:
+      213: -7391417794933502444
+    second: Five Elemental Gemstone Sigils_661
+  - first:
+      213: -5696802874579024257
+    second: Five Elemental Gemstone Sigils_662
+  - first:
+      213: 4506708382161399463
+    second: Five Elemental Gemstone Sigils_663
+  - first:
+      213: 8644211719272666376
+    second: Five Elemental Gemstone Sigils_664
+  - first:
+      213: -4513272482454595563
+    second: Five Elemental Gemstone Sigils_665
+  - first:
+      213: -2384172012816492079
+    second: Five Elemental Gemstone Sigils_666
+  - first:
+      213: 6475802356229363271
+    second: Five Elemental Gemstone Sigils_667
+  - first:
+      213: -7055858614399597825
+    second: Five Elemental Gemstone Sigils_668
+  - first:
+      213: -451789375702283224
+    second: Five Elemental Gemstone Sigils_669
+  - first:
+      213: -8398258489813993897
+    second: Five Elemental Gemstone Sigils_670
+  - first:
+      213: -1451117219429543610
+    second: Five Elemental Gemstone Sigils_671
+  - first:
+      213: 7620663685826540418
+    second: Five Elemental Gemstone Sigils_672
+  - first:
+      213: 7837133598278791206
+    second: Five Elemental Gemstone Sigils_673
+  - first:
+      213: 4324808982085174622
+    second: Five Elemental Gemstone Sigils_674
+  - first:
+      213: 4513013937474013309
+    second: Five Elemental Gemstone Sigils_675
+  - first:
+      213: 7159956822280029206
+    second: Five Elemental Gemstone Sigils_676
+  - first:
+      213: 2117965881926134667
+    second: Five Elemental Gemstone Sigils_677
+  - first:
+      213: 5757459394365624271
+    second: Five Elemental Gemstone Sigils_678
+  - first:
+      213: -7384661941560207838
+    second: Five Elemental Gemstone Sigils_679
+  - first:
+      213: -6182088072101282164
+    second: Five Elemental Gemstone Sigils_680
+  - first:
+      213: 2973534050509380378
+    second: Five Elemental Gemstone Sigils_681
+  - first:
+      213: 4383060855886469818
+    second: Five Elemental Gemstone Sigils_682
+  - first:
+      213: 1527856383036948894
+    second: Five Elemental Gemstone Sigils_683
+  - first:
+      213: 467548217442081906
+    second: Five Elemental Gemstone Sigils_684
+  - first:
+      213: -6063364581072552640
+    second: Five Elemental Gemstone Sigils_685
+  - first:
+      213: -6360891370248073567
+    second: Five Elemental Gemstone Sigils_686
+  - first:
+      213: 9082983321618270288
+    second: Five Elemental Gemstone Sigils_687
+  - first:
+      213: -717081408862820136
+    second: Five Elemental Gemstone Sigils_688
+  - first:
+      213: -3616106168856921404
+    second: Five Elemental Gemstone Sigils_689
+  - first:
+      213: 3664174939689377812
+    second: Five Elemental Gemstone Sigils_690
+  - first:
+      213: -4709448997805039485
+    second: Five Elemental Gemstone Sigils_691
+  - first:
+      213: -2535353757909340215
+    second: Five Elemental Gemstone Sigils_692
+  - first:
+      213: -2581670900209591578
+    second: Five Elemental Gemstone Sigils_693
+  - first:
+      213: -8772538348480747214
+    second: Five Elemental Gemstone Sigils_694
+  - first:
+      213: -511388497993409019
+    second: Five Elemental Gemstone Sigils_695
+  - first:
+      213: -678567698732708361
+    second: Five Elemental Gemstone Sigils_696
+  - first:
+      213: 630634304977970371
+    second: Five Elemental Gemstone Sigils_697
+  - first:
+      213: -538530103927789242
+    second: Five Elemental Gemstone Sigils_698
+  - first:
+      213: -3241271666714744570
+    second: Five Elemental Gemstone Sigils_699
+  - first:
+      213: 5030758472429404384
+    second: Five Elemental Gemstone Sigils_700
+  - first:
+      213: -4266431739394970949
+    second: Five Elemental Gemstone Sigils_701
+  - first:
+      213: 1525857379444370152
+    second: Five Elemental Gemstone Sigils_702
+  - first:
+      213: 1042479639680611838
+    second: Five Elemental Gemstone Sigils_703
+  - first:
+      213: 3399856161883478207
+    second: Five Elemental Gemstone Sigils_704
+  - first:
+      213: 8420727492568199246
+    second: Five Elemental Gemstone Sigils_705
+  - first:
+      213: -2510834252506494241
+    second: Five Elemental Gemstone Sigils_706
+  - first:
+      213: 1623777392599138749
+    second: Five Elemental Gemstone Sigils_707
+  - first:
+      213: -3474546143973417102
+    second: Five Elemental Gemstone Sigils_708
+  - first:
+      213: -7055113585982627970
+    second: Five Elemental Gemstone Sigils_709
+  - first:
+      213: -4968861152405737314
+    second: Five Elemental Gemstone Sigils_710
+  - first:
+      213: -1009768885609649482
+    second: Five Elemental Gemstone Sigils_711
+  - first:
+      213: -6215006284989878060
+    second: Five Elemental Gemstone Sigils_712
+  - first:
+      213: -8924559388589760174
+    second: Five Elemental Gemstone Sigils_713
+  - first:
+      213: 1645966797002046535
+    second: Five Elemental Gemstone Sigils_714
+  - first:
+      213: -6602414620547398024
+    second: Five Elemental Gemstone Sigils_715
+  - first:
+      213: -8523350379048395253
+    second: Five Elemental Gemstone Sigils_716
+  - first:
+      213: 6299069475509161056
+    second: Five Elemental Gemstone Sigils_717
+  - first:
+      213: 2665916094430939693
+    second: Five Elemental Gemstone Sigils_718
+  - first:
+      213: 3427597273548292747
+    second: Five Elemental Gemstone Sigils_719
+  - first:
+      213: -2492197316025527477
+    second: Five Elemental Gemstone Sigils_720
+  - first:
+      213: -47911697549557657
+    second: Five Elemental Gemstone Sigils_721
+  - first:
+      213: 1770696690772587148
+    second: Five Elemental Gemstone Sigils_722
+  - first:
+      213: 8527620454796978895
+    second: Five Elemental Gemstone Sigils_723
+  - first:
+      213: 564103598998620155
+    second: Five Elemental Gemstone Sigils_724
+  - first:
+      213: 6267489456698277909
+    second: Five Elemental Gemstone Sigils_725
+  - first:
+      213: 879908804680946863
+    second: Five Elemental Gemstone Sigils_726
+  - first:
+      213: -7234806494161783305
+    second: Five Elemental Gemstone Sigils_727
+  - first:
+      213: 3720958758707715221
+    second: Five Elemental Gemstone Sigils_728
+  - first:
+      213: -5393923207707163371
+    second: Five Elemental Gemstone Sigils_729
+  - first:
+      213: -673231223925274669
+    second: Five Elemental Gemstone Sigils_730
+  - first:
+      213: -1087491179288895629
+    second: Five Elemental Gemstone Sigils_731
+  - first:
+      213: -8871681488133608187
+    second: Five Elemental Gemstone Sigils_732
+  - first:
+      213: 6495404464995537019
+    second: Five Elemental Gemstone Sigils_733
+  - first:
+      213: -8476624461009534950
+    second: Five Elemental Gemstone Sigils_734
+  - first:
+      213: 5130358917743570278
+    second: Five Elemental Gemstone Sigils_735
+  - first:
+      213: -4466501861336066857
+    second: Five Elemental Gemstone Sigils_736
+  - first:
+      213: -223343540557961
+    second: Five Elemental Gemstone Sigils_737
+  - first:
+      213: -67876171941949796
+    second: Five Elemental Gemstone Sigils_738
+  - first:
+      213: -7255851321269994053
+    second: Five Elemental Gemstone Sigils_739
+  - first:
+      213: -624530298099809638
+    second: Five Elemental Gemstone Sigils_740
+  - first:
+      213: -7137129239648994828
+    second: Five Elemental Gemstone Sigils_741
+  - first:
+      213: -4820711024598703749
+    second: Five Elemental Gemstone Sigils_742
+  - first:
+      213: -5685008153777385368
+    second: Five Elemental Gemstone Sigils_743
+  - first:
+      213: 8006736758088235593
+    second: Five Elemental Gemstone Sigils_744
+  - first:
+      213: 2579042384360975542
+    second: Five Elemental Gemstone Sigils_745
+  - first:
+      213: -2674022637336225187
+    second: Five Elemental Gemstone Sigils_746
+  - first:
+      213: 8812856366184696635
+    second: Five Elemental Gemstone Sigils_747
+  - first:
+      213: -215488319834591884
+    second: Five Elemental Gemstone Sigils_748
+  - first:
+      213: -1482170127722684626
+    second: Five Elemental Gemstone Sigils_749
+  - first:
+      213: 3924661161303856106
+    second: Five Elemental Gemstone Sigils_750
+  - first:
+      213: -8438405161358930351
+    second: Five Elemental Gemstone Sigils_751
+  - first:
+      213: 5366039443509358427
+    second: Five Elemental Gemstone Sigils_752
+  - first:
+      213: -551267301191386338
+    second: Five Elemental Gemstone Sigils_753
+  - first:
+      213: 6573796561174456395
+    second: Five Elemental Gemstone Sigils_754
+  - first:
+      213: 4424716715302105163
+    second: Five Elemental Gemstone Sigils_755
+  - first:
+      213: -8426577438952818115
+    second: Five Elemental Gemstone Sigils_756
+  - first:
+      213: 4929398084241815162
+    second: Five Elemental Gemstone Sigils_757
+  - first:
+      213: 5703827932145386345
+    second: Five Elemental Gemstone Sigils_758
+  - first:
+      213: -5894223834577863365
+    second: Five Elemental Gemstone Sigils_759
+  - first:
+      213: 7537665488136269089
+    second: Five Elemental Gemstone Sigils_760
+  - first:
+      213: -9198903013788078561
+    second: Five Elemental Gemstone Sigils_761
+  - first:
+      213: 5173823291190202728
+    second: Five Elemental Gemstone Sigils_762
+  - first:
+      213: -1888070460454692449
+    second: Five Elemental Gemstone Sigils_763
+  - first:
+      213: -640984550336453626
+    second: Five Elemental Gemstone Sigils_764
+  - first:
+      213: -7021763566314117209
+    second: Five Elemental Gemstone Sigils_765
+  - first:
+      213: -8432686540371360648
+    second: Five Elemental Gemstone Sigils_766
+  - first:
+      213: -5001264658003802185
+    second: Five Elemental Gemstone Sigils_767
+  - first:
+      213: 8419569315109532086
+    second: Five Elemental Gemstone Sigils_768
+  - first:
+      213: 1430980089744793515
+    second: Five Elemental Gemstone Sigils_769
+  - first:
+      213: -5232016285220126865
+    second: Five Elemental Gemstone Sigils_770
+  - first:
+      213: -1935852986848569348
+    second: Five Elemental Gemstone Sigils_771
+  - first:
+      213: 3191617134089318341
+    second: Five Elemental Gemstone Sigils_772
+  - first:
+      213: -5100170870863522940
+    second: Five Elemental Gemstone Sigils_773
+  - first:
+      213: -1267940667013342300
+    second: Five Elemental Gemstone Sigils_774
+  - first:
+      213: 3002614486367269615
+    second: Five Elemental Gemstone Sigils_775
+  - first:
+      213: 4427732308993693988
+    second: Five Elemental Gemstone Sigils_776
+  - first:
+      213: 4139532592272660641
+    second: Five Elemental Gemstone Sigils_777
+  - first:
+      213: -2985766206673159454
+    second: Five Elemental Gemstone Sigils_778
+  - first:
+      213: 293474685462984032
+    second: Five Elemental Gemstone Sigils_779
+  - first:
+      213: -6874399737855843585
+    second: Five Elemental Gemstone Sigils_780
+  - first:
+      213: 5751612485813353282
+    second: Five Elemental Gemstone Sigils_781
+  - first:
+      213: 353902172882681865
+    second: Five Elemental Gemstone Sigils_782
+  - first:
+      213: -2838315435163861412
+    second: Five Elemental Gemstone Sigils_783
+  - first:
+      213: 6319039200144602450
+    second: Five Elemental Gemstone Sigils_784
+  - first:
+      213: 8427543162170190832
+    second: Five Elemental Gemstone Sigils_785
+  - first:
+      213: -4675074129921463264
+    second: Five Elemental Gemstone Sigils_786
+  - first:
+      213: -8568205590271716667
+    second: Five Elemental Gemstone Sigils_787
+  - first:
+      213: 4457494678093434510
+    second: Five Elemental Gemstone Sigils_788
+  - first:
+      213: -6077233010963379972
+    second: Five Elemental Gemstone Sigils_789
+  - first:
+      213: -4552281950487738308
+    second: Five Elemental Gemstone Sigils_790
+  - first:
+      213: 8806108448098723506
+    second: Five Elemental Gemstone Sigils_791
+  - first:
+      213: 3625303801426571811
+    second: Five Elemental Gemstone Sigils_792
+  - first:
+      213: 3338412726575480083
+    second: Five Elemental Gemstone Sigils_793
+  - first:
+      213: 5406347734635094098
+    second: Five Elemental Gemstone Sigils_794
+  - first:
+      213: 7002211047748069320
+    second: Five Elemental Gemstone Sigils_795
+  - first:
+      213: 7325774939679580794
+    second: Five Elemental Gemstone Sigils_796
+  - first:
+      213: 4160098129107586586
+    second: Five Elemental Gemstone Sigils_797
+  - first:
+      213: -3001069179767100272
+    second: Five Elemental Gemstone Sigils_798
+  - first:
+      213: -5292771360117909704
+    second: Five Elemental Gemstone Sigils_799
+  - first:
+      213: 1579930499337455799
+    second: Five Elemental Gemstone Sigils_800
+  - first:
+      213: 3118857423079629401
+    second: Five Elemental Gemstone Sigils_801
+  - first:
+      213: -4345515728661145741
+    second: Five Elemental Gemstone Sigils_802
+  - first:
+      213: 4881854409418939182
+    second: Five Elemental Gemstone Sigils_803
+  - first:
+      213: 7559848774720132068
+    second: Five Elemental Gemstone Sigils_804
+  - first:
+      213: -4728955605824388774
+    second: Five Elemental Gemstone Sigils_805
+  - first:
+      213: 6811070373908137743
+    second: Five Elemental Gemstone Sigils_806
+  - first:
+      213: 7021861117597032590
+    second: Five Elemental Gemstone Sigils_807
+  - first:
+      213: -2535395420956690080
+    second: Five Elemental Gemstone Sigils_808
+  - first:
+      213: 660632328566327299
+    second: Five Elemental Gemstone Sigils_809
+  - first:
+      213: -9192986051616032670
+    second: Five Elemental Gemstone Sigils_810
+  - first:
+      213: -3625540178585447739
+    second: Five Elemental Gemstone Sigils_811
+  - first:
+      213: 5219289912057762065
+    second: Five Elemental Gemstone Sigils_812
+  - first:
+      213: 1148946149414885276
+    second: Five Elemental Gemstone Sigils_813
+  - first:
+      213: 704711715063804242
+    second: Five Elemental Gemstone Sigils_814
+  - first:
+      213: -1837296819747590064
+    second: Five Elemental Gemstone Sigils_815
+  - first:
+      213: -4809091057677368642
+    second: Five Elemental Gemstone Sigils_816
+  - first:
+      213: -6908780872272725809
+    second: Five Elemental Gemstone Sigils_817
+  - first:
+      213: -4393914493504753640
+    second: Five Elemental Gemstone Sigils_818
+  - first:
+      213: -4691192524280651698
+    second: Five Elemental Gemstone Sigils_819
+  - first:
+      213: -7203832370815767250
+    second: Five Elemental Gemstone Sigils_820
+  - first:
+      213: -7200762183843366775
+    second: Five Elemental Gemstone Sigils_821
+  - first:
+      213: 7653450747040270067
+    second: Five Elemental Gemstone Sigils_822
+  - first:
+      213: -5078100015551958027
+    second: Five Elemental Gemstone Sigils_823
+  - first:
+      213: -2407405589629197957
+    second: Five Elemental Gemstone Sigils_824
+  - first:
+      213: -4121850654362892511
+    second: Five Elemental Gemstone Sigils_825
+  - first:
+      213: -8799124377836402286
+    second: Five Elemental Gemstone Sigils_826
+  - first:
+      213: -119063576080066236
+    second: Five Elemental Gemstone Sigils_827
+  - first:
+      213: 6104898365291509789
+    second: Five Elemental Gemstone Sigils_828
+  - first:
+      213: -5231077296446058975
+    second: Five Elemental Gemstone Sigils_829
+  - first:
+      213: 528403545138513711
+    second: Five Elemental Gemstone Sigils_830
+  - first:
+      213: -8832774990936848074
+    second: Five Elemental Gemstone Sigils_831
+  - first:
+      213: -3094238949521211739
+    second: Five Elemental Gemstone Sigils_832
+  - first:
+      213: 1896736792235957127
+    second: Five Elemental Gemstone Sigils_833
+  - first:
+      213: 6430073074711117996
+    second: Five Elemental Gemstone Sigils_834
+  - first:
+      213: 3552236336227013685
+    second: Five Elemental Gemstone Sigils_835
+  - first:
+      213: 1572121367130805179
+    second: Five Elemental Gemstone Sigils_836
+  - first:
+      213: -4996911686321510525
+    second: Five Elemental Gemstone Sigils_837
+  - first:
+      213: -4864038419202585614
+    second: Five Elemental Gemstone Sigils_838
+  - first:
+      213: -189873039215760917
+    second: Five Elemental Gemstone Sigils_839
+  - first:
+      213: -5772120438177680602
+    second: Five Elemental Gemstone Sigils_840
+  - first:
+      213: 7007459684192775511
+    second: Five Elemental Gemstone Sigils_841
+  - first:
+      213: -5860657220804387871
+    second: Five Elemental Gemstone Sigils_842
+  - first:
+      213: 6505232434688752510
+    second: Five Elemental Gemstone Sigils_843
+  - first:
+      213: -3908417446152265339
+    second: Five Elemental Gemstone Sigils_844
+  - first:
+      213: 7054910059074293991
+    second: Five Elemental Gemstone Sigils_845
+  - first:
+      213: 8589109228697048199
+    second: Five Elemental Gemstone Sigils_846
+  - first:
+      213: -3321469378574999176
+    second: Five Elemental Gemstone Sigils_847
+  - first:
+      213: 5212860178959595025
+    second: Five Elemental Gemstone Sigils_848
+  - first:
+      213: 8198732254901555061
+    second: Five Elemental Gemstone Sigils_849
+  - first:
+      213: 553799178319371175
+    second: Five Elemental Gemstone Sigils_850
+  - first:
+      213: 969132749307994145
+    second: Five Elemental Gemstone Sigils_851
+  - first:
+      213: -4067567529308492796
+    second: Five Elemental Gemstone Sigils_852
+  - first:
+      213: -9053786505686474361
+    second: Five Elemental Gemstone Sigils_853
+  - first:
+      213: 8692858040793059937
+    second: Five Elemental Gemstone Sigils_854
+  - first:
+      213: 1012642075974560514
+    second: Five Elemental Gemstone Sigils_855
+  - first:
+      213: -8409996967685912414
+    second: Five Elemental Gemstone Sigils_856
+  - first:
+      213: -7972760032357248224
+    second: Five Elemental Gemstone Sigils_857
+  - first:
+      213: 1355938711626508468
+    second: Five Elemental Gemstone Sigils_858
+  - first:
+      213: 6254210947213901197
+    second: Five Elemental Gemstone Sigils_859
+  - first:
+      213: -4952885257818216000
+    second: Five Elemental Gemstone Sigils_860
+  - first:
+      213: 1329518232807054734
+    second: Five Elemental Gemstone Sigils_861
+  - first:
+      213: -4474526715598143297
+    second: Five Elemental Gemstone Sigils_862
+  - first:
+      213: -4561264894022078013
+    second: Five Elemental Gemstone Sigils_863
+  - first:
+      213: -5817412510701058557
+    second: Five Elemental Gemstone Sigils_864
+  - first:
+      213: -2334456042162109734
+    second: Five Elemental Gemstone Sigils_865
+  - first:
+      213: -5458794839572825379
+    second: Five Elemental Gemstone Sigils_866
+  - first:
+      213: 5427026716969051244
+    second: Five Elemental Gemstone Sigils_867
+  - first:
+      213: 8937768432780658132
+    second: Five Elemental Gemstone Sigils_868
+  - first:
+      213: 8274221086136341317
+    second: Five Elemental Gemstone Sigils_869
+  - first:
+      213: 2722798817297637528
+    second: Five Elemental Gemstone Sigils_870
+  - first:
+      213: -2003109448038383189
+    second: Five Elemental Gemstone Sigils_871
+  - first:
+      213: -8772816091476001717
+    second: Five Elemental Gemstone Sigils_872
+  - first:
+      213: -6391455246987363942
+    second: Five Elemental Gemstone Sigils_873
+  - first:
+      213: 3508785371579921601
+    second: Five Elemental Gemstone Sigils_874
+  - first:
+      213: 6052577360801892171
+    second: Five Elemental Gemstone Sigils_875
+  - first:
+      213: -5385606334543094250
+    second: Five Elemental Gemstone Sigils_876
+  - first:
+      213: 4609340291449724847
+    second: Five Elemental Gemstone Sigils_877
+  - first:
+      213: -8910352841102253263
+    second: Five Elemental Gemstone Sigils_878
+  - first:
+      213: -3989275177576870771
+    second: Five Elemental Gemstone Sigils_879
+  - first:
+      213: 3385964692965380512
+    second: Five Elemental Gemstone Sigils_880
+  - first:
+      213: 5824615622885703868
+    second: Five Elemental Gemstone Sigils_881
+  - first:
+      213: -1246439481105484365
+    second: Five Elemental Gemstone Sigils_882
+  - first:
+      213: -6215108390048677868
+    second: Five Elemental Gemstone Sigils_883
+  - first:
+      213: -8173317602073704809
+    second: Five Elemental Gemstone Sigils_884
+  - first:
+      213: -7705415127438008291
+    second: Five Elemental Gemstone Sigils_885
+  - first:
+      213: -7699193578524785893
+    second: Five Elemental Gemstone Sigils_886
+  - first:
+      213: 3827877962891610987
+    second: Five Elemental Gemstone Sigils_887
+  - first:
+      213: 5851248427919902572
+    second: Five Elemental Gemstone Sigils_888
+  - first:
+      213: 534795728207749966
+    second: Five Elemental Gemstone Sigils_889
+  - first:
+      213: 208378447840813754
+    second: Five Elemental Gemstone Sigils_890
+  - first:
+      213: -3578299535819743258
+    second: Five Elemental Gemstone Sigils_891
+  - first:
+      213: 7518512441945817669
+    second: Five Elemental Gemstone Sigils_892
+  - first:
+      213: 3161061446863303783
+    second: Five Elemental Gemstone Sigils_893
+  - first:
+      213: 2061379540853952243
+    second: Five Elemental Gemstone Sigils_894
+  - first:
+      213: -7466621161667276601
+    second: Five Elemental Gemstone Sigils_895
+  - first:
+      213: 8849405643758097166
+    second: Five Elemental Gemstone Sigils_896
+  - first:
+      213: 5485083882162043543
+    second: Five Elemental Gemstone Sigils_897
+  - first:
+      213: 2118271207675310985
+    second: Five Elemental Gemstone Sigils_898
+  - first:
+      213: 8900194782113397546
+    second: Five Elemental Gemstone Sigils_899
+  - first:
+      213: 4171848214940054723
+    second: Five Elemental Gemstone Sigils_900
+  - first:
+      213: 307795155120782390
+    second: Five Elemental Gemstone Sigils_901
+  - first:
+      213: -2961662443496412040
+    second: Five Elemental Gemstone Sigils_902
+  - first:
+      213: -5793557062362143051
+    second: Five Elemental Gemstone Sigils_903
+  - first:
+      213: 2476049177986532080
+    second: Five Elemental Gemstone Sigils_904
+  - first:
+      213: 5900513116071791718
+    second: Five Elemental Gemstone Sigils_905
+  - first:
+      213: -7557215294103202995
+    second: Five Elemental Gemstone Sigils_906
+  - first:
+      213: 4933176514995394034
+    second: Five Elemental Gemstone Sigils_907
+  - first:
+      213: -1719517820835562170
+    second: Five Elemental Gemstone Sigils_908
+  - first:
+      213: 936810046334757911
+    second: Five Elemental Gemstone Sigils_909
+  - first:
+      213: -5078408439821423208
+    second: Five Elemental Gemstone Sigils_910
+  - first:
+      213: 5411988187483480097
+    second: Five Elemental Gemstone Sigils_911
+  - first:
+      213: 2199767654194317536
+    second: Five Elemental Gemstone Sigils_912
+  - first:
+      213: 9001617177569981024
+    second: Five Elemental Gemstone Sigils_913
+  - first:
+      213: 3820221603243088255
+    second: Five Elemental Gemstone Sigils_914
+  - first:
+      213: 6504544283559423132
+    second: Five Elemental Gemstone Sigils_915
+  - first:
+      213: 5640639865966249260
+    second: Five Elemental Gemstone Sigils_916
+  - first:
+      213: 8406350528614309957
+    second: Five Elemental Gemstone Sigils_917
+  - first:
+      213: 2151287079877970896
+    second: Five Elemental Gemstone Sigils_918
+  - first:
+      213: 397008338418241717
+    second: Five Elemental Gemstone Sigils_919
+  - first:
+      213: -5528759567065419872
+    second: Five Elemental Gemstone Sigils_920
+  - first:
+      213: -675410800561291744
+    second: Five Elemental Gemstone Sigils_921
+  - first:
+      213: 6995396079087010980
+    second: Five Elemental Gemstone Sigils_922
+  - first:
+      213: -5593144422621578105
+    second: Five Elemental Gemstone Sigils_923
+  - first:
+      213: -1554601057156050358
+    second: Five Elemental Gemstone Sigils_924
+  - first:
+      213: -8093151563694757171
+    second: Five Elemental Gemstone Sigils_925
+  - first:
+      213: 7994111145129722591
+    second: Five Elemental Gemstone Sigils_926
+  - first:
+      213: -3590745008506074203
+    second: Five Elemental Gemstone Sigils_927
+  - first:
+      213: 4551465346036620141
+    second: Five Elemental Gemstone Sigils_928
+  - first:
+      213: 7210481379321103045
+    second: Five Elemental Gemstone Sigils_929
+  - first:
+      213: 203936462437024434
+    second: Five Elemental Gemstone Sigils_930
+  - first:
+      213: 661571793747050949
+    second: Five Elemental Gemstone Sigils_931
+  - first:
+      213: 2025109534639527874
+    second: Five Elemental Gemstone Sigils_932
+  - first:
+      213: 3673403239131484673
+    second: Five Elemental Gemstone Sigils_933
+  - first:
+      213: 5347663413736983357
+    second: Five Elemental Gemstone Sigils_934
+  - first:
+      213: -1466523366640280767
+    second: Five Elemental Gemstone Sigils_935
+  - first:
+      213: 5348583953671014100
+    second: Five Elemental Gemstone Sigils_936
+  - first:
+      213: -2916226020102113871
+    second: Five Elemental Gemstone Sigils_937
+  - first:
+      213: -1847025041724304668
+    second: Five Elemental Gemstone Sigils_938
+  - first:
+      213: -195897877359223305
+    second: Five Elemental Gemstone Sigils_939
+  - first:
+      213: 4123473940678694296
+    second: Five Elemental Gemstone Sigils_940
+  - first:
+      213: 6334323943681667357
+    second: Five Elemental Gemstone Sigils_941
+  - first:
+      213: -7939644962742432568
+    second: Five Elemental Gemstone Sigils_942
+  - first:
+      213: 3027035295138788231
+    second: Five Elemental Gemstone Sigils_943
+  - first:
+      213: -4571257840106430146
+    second: Five Elemental Gemstone Sigils_944
+  - first:
+      213: 8695724360109206890
+    second: Five Elemental Gemstone Sigils_945
+  - first:
+      213: 6365132926148873707
+    second: Five Elemental Gemstone Sigils_946
+  - first:
+      213: -7795564664668481290
+    second: Five Elemental Gemstone Sigils_947
+  - first:
+      213: -687968586729104717
+    second: Five Elemental Gemstone Sigils_948
+  - first:
+      213: -7935227937541853329
+    second: Five Elemental Gemstone Sigils_949
+  - first:
+      213: -3852629018327530028
+    second: Five Elemental Gemstone Sigils_950
+  - first:
+      213: 721822134776938917
+    second: Five Elemental Gemstone Sigils_951
+  - first:
+      213: -1831839393360027377
+    second: Five Elemental Gemstone Sigils_952
+  - first:
+      213: -1555934502488163023
+    second: Five Elemental Gemstone Sigils_953
+  - first:
+      213: -469719543566431883
+    second: Five Elemental Gemstone Sigils_954
+  - first:
+      213: -2735141695325332442
+    second: Five Elemental Gemstone Sigils_955
+  - first:
+      213: -7013102924803720614
+    second: Five Elemental Gemstone Sigils_956
+  - first:
+      213: -123713327971970579
+    second: Five Elemental Gemstone Sigils_957
+  - first:
+      213: 3841879880139074484
+    second: Five Elemental Gemstone Sigils_958
+  - first:
+      213: 1839562725873934207
+    second: Five Elemental Gemstone Sigils_959
+  - first:
+      213: -4057305727351174113
+    second: Five Elemental Gemstone Sigils_960
+  - first:
+      213: 7248009548169218413
+    second: Five Elemental Gemstone Sigils_961
+  - first:
+      213: -691563482350252402
+    second: Five Elemental Gemstone Sigils_962
+  - first:
+      213: 5519135417098622324
+    second: Five Elemental Gemstone Sigils_963
+  - first:
+      213: 7973368045469481053
+    second: Five Elemental Gemstone Sigils_964
+  - first:
+      213: 4350317617074970321
+    second: Five Elemental Gemstone Sigils_965
+  - first:
+      213: -1939869097886178706
+    second: Five Elemental Gemstone Sigils_966
+  - first:
+      213: -1681838195881589220
+    second: Five Elemental Gemstone Sigils_967
+  - first:
+      213: 4458008871843048519
+    second: Five Elemental Gemstone Sigils_968
+  - first:
+      213: 8190703805913945691
+    second: Five Elemental Gemstone Sigils_969
+  - first:
+      213: 850300755458460849
+    second: Five Elemental Gemstone Sigils_970
+  - first:
+      213: -3158757420193554070
+    second: Five Elemental Gemstone Sigils_971
+  - first:
+      213: -3988379973203848089
+    second: Five Elemental Gemstone Sigils_972
+  - first:
+      213: -6068162327752691317
+    second: Five Elemental Gemstone Sigils_973
+  - first:
+      213: 3354920191814431574
+    second: Five Elemental Gemstone Sigils_974
+  - first:
+      213: 3092516842988593091
+    second: Five Elemental Gemstone Sigils_975
+  - first:
+      213: 4423979381099167751
+    second: Five Elemental Gemstone Sigils_976
+  - first:
+      213: -3729726340931060874
+    second: Five Elemental Gemstone Sigils_977
+  - first:
+      213: -3223655134135163105
+    second: Five Elemental Gemstone Sigils_978
+  - first:
+      213: 3471738260660104838
+    second: Five Elemental Gemstone Sigils_979
+  - first:
+      213: -8630352130153434291
+    second: Five Elemental Gemstone Sigils_980
+  - first:
+      213: 7413120738576999809
+    second: Five Elemental Gemstone Sigils_981
+  - first:
+      213: -7665465931798218999
+    second: Five Elemental Gemstone Sigils_982
+  - first:
+      213: -4709859024811910408
+    second: Five Elemental Gemstone Sigils_983
+  - first:
+      213: 3697892523775688821
+    second: Five Elemental Gemstone Sigils_984
+  - first:
+      213: -8858577749670128440
+    second: Five Elemental Gemstone Sigils_985
+  - first:
+      213: -1501490838618585884
+    second: Five Elemental Gemstone Sigils_986
+  - first:
+      213: 8419065159310965051
+    second: Five Elemental Gemstone Sigils_987
+  - first:
+      213: 5227843729404417139
+    second: Five Elemental Gemstone Sigils_988
+  - first:
+      213: 8258633728127444556
+    second: Five Elemental Gemstone Sigils_989
+  - first:
+      213: -5643810796595952472
+    second: Five Elemental Gemstone Sigils_990
+  - first:
+      213: -7922494357076658222
+    second: Five Elemental Gemstone Sigils_991
+  - first:
+      213: -7009095956458291083
+    second: Five Elemental Gemstone Sigils_992
+  - first:
+      213: -5642687878247903391
+    second: Five Elemental Gemstone Sigils_993
+  - first:
+      213: -5890505342379613695
+    second: Five Elemental Gemstone Sigils_994
+  - first:
+      213: 3154131571459603345
+    second: Five Elemental Gemstone Sigils_995
+  - first:
+      213: -6677342216288018830
+    second: Five Elemental Gemstone Sigils_996
+  - first:
+      213: -6247434361261867228
+    second: Five Elemental Gemstone Sigils_997
+  - first:
+      213: -3582931192191782555
+    second: Five Elemental Gemstone Sigils_998
+  - first:
+      213: -514428768250304790
+    second: Five Elemental Gemstone Sigils_999
+  - first:
+      213: 8530724721527651922
+    second: Five Elemental Gemstone Sigils_1000
+  - first:
+      213: -8325442112190095410
+    second: Five Elemental Gemstone Sigils_1001
+  - first:
+      213: 23479746216313033
+    second: Five Elemental Gemstone Sigils_1002
+  - first:
+      213: 2844712574627810104
+    second: Five Elemental Gemstone Sigils_1003
+  - first:
+      213: 8435131265733285959
+    second: Five Elemental Gemstone Sigils_1004
+  - first:
+      213: -3479562485783749916
+    second: Five Elemental Gemstone Sigils_1005
+  - first:
+      213: 2735798999947606493
+    second: Five Elemental Gemstone Sigils_1006
+  - first:
+      213: 7600084869377889921
+    second: Five Elemental Gemstone Sigils_1007
+  - first:
+      213: -6115667081568406325
+    second: Five Elemental Gemstone Sigils_1008
+  - first:
+      213: -9202696180585432035
+    second: Five Elemental Gemstone Sigils_1009
+  - first:
+      213: -3716828866952742394
+    second: Five Elemental Gemstone Sigils_1010
+  - first:
+      213: -1458280039852574510
+    second: Five Elemental Gemstone Sigils_1011
+  - first:
+      213: -4907603792014523193
+    second: Five Elemental Gemstone Sigils_1012
+  - first:
+      213: -2066478849113551630
+    second: Five Elemental Gemstone Sigils_1013
+  - first:
+      213: -4667139489628563290
+    second: Five Elemental Gemstone Sigils_1014
+  - first:
+      213: 6616933240746743258
+    second: Five Elemental Gemstone Sigils_1015
+  - first:
+      213: -2952827474357949160
+    second: Five Elemental Gemstone Sigils_1016
+  - first:
+      213: -6790081547686572583
+    second: Five Elemental Gemstone Sigils_1017
+  - first:
+      213: 457804654688018809
+    second: Five Elemental Gemstone Sigils_1018
+  - first:
+      213: 5121104488909551284
+    second: Five Elemental Gemstone Sigils_1019
+  - first:
+      213: 3076908106592096012
+    second: Five Elemental Gemstone Sigils_1020
+  - first:
+      213: 2173372477226572784
+    second: Five Elemental Gemstone Sigils_1021
+  - first:
+      213: -9007671125900808121
+    second: Five Elemental Gemstone Sigils_1022
+  - first:
+      213: 6963567152751511498
+    second: Five Elemental Gemstone Sigils_1023
+  - first:
+      213: -4200828760350112147
+    second: Five Elemental Gemstone Sigils_1024
+  - first:
+      213: 3313522369649925977
+    second: Five Elemental Gemstone Sigils_1025
+  - first:
+      213: -2411853163810584634
+    second: Five Elemental Gemstone Sigils_1026
+  - first:
+      213: -8830599921836229721
+    second: Five Elemental Gemstone Sigils_1027
+  - first:
+      213: 8169894984928360291
+    second: Five Elemental Gemstone Sigils_1028
+  - first:
+      213: -4652383470065656947
+    second: Five Elemental Gemstone Sigils_1029
+  - first:
+      213: 1135740040044536350
+    second: Five Elemental Gemstone Sigils_1030
+  - first:
+      213: 2993976001974245720
+    second: Five Elemental Gemstone Sigils_1031
+  - first:
+      213: 853352016910069481
+    second: Five Elemental Gemstone Sigils_1032
+  - first:
+      213: -6928774657829069232
+    second: Five Elemental Gemstone Sigils_1033
+  - first:
+      213: 8662534843384563296
+    second: Five Elemental Gemstone Sigils_1034
+  - first:
+      213: 1820323031801710927
+    second: Five Elemental Gemstone Sigils_1035
+  - first:
+      213: 9191289096439621056
+    second: Five Elemental Gemstone Sigils_1036
+  - first:
+      213: -2115261316033623041
+    second: Five Elemental Gemstone Sigils_1037
+  - first:
+      213: -4490133550929861303
+    second: Five Elemental Gemstone Sigils_1038
+  - first:
+      213: -7063280850140468426
+    second: Five Elemental Gemstone Sigils_1039
+  - first:
+      213: -4676802170095065792
+    second: Five Elemental Gemstone Sigils_1040
+  - first:
+      213: 9179045278511284727
+    second: Five Elemental Gemstone Sigils_1041
+  - first:
+      213: -1778552312225722238
+    second: Five Elemental Gemstone Sigils_1042
+  - first:
+      213: 7811849350458479523
+    second: Five Elemental Gemstone Sigils_1043
+  - first:
+      213: 1513159302780212276
+    second: Five Elemental Gemstone Sigils_1044
+  - first:
+      213: 3212900715818017603
+    second: Five Elemental Gemstone Sigils_1045
+  - first:
+      213: -566134315157157103
+    second: Five Elemental Gemstone Sigils_1046
+  - first:
+      213: -1939629605018276954
+    second: Five Elemental Gemstone Sigils_1047
+  - first:
+      213: -1306739527711894562
+    second: Five Elemental Gemstone Sigils_1048
+  - first:
+      213: 3505980110281506997
+    second: Five Elemental Gemstone Sigils_1049
+  - first:
+      213: -3910378102898427811
+    second: Five Elemental Gemstone Sigils_1050
+  - first:
+      213: 3909485929634042418
+    second: Five Elemental Gemstone Sigils_1051
+  - first:
+      213: 1340087149913064274
+    second: Five Elemental Gemstone Sigils_1052
+  - first:
+      213: -7964040338214810147
+    second: Five Elemental Gemstone Sigils_1053
+  - first:
+      213: -6288889208503099248
+    second: Five Elemental Gemstone Sigils_1054
+  - first:
+      213: -3368565654284660188
+    second: Five Elemental Gemstone Sigils_1055
+  - first:
+      213: 37234346279687058
+    second: Five Elemental Gemstone Sigils_1056
+  - first:
+      213: -4941596006215334561
+    second: Five Elemental Gemstone Sigils_1057
+  - first:
+      213: -3730610124167726276
+    second: Five Elemental Gemstone Sigils_1058
+  - first:
+      213: 6503385558822608590
+    second: Five Elemental Gemstone Sigils_1059
+  - first:
+      213: 5173746762991768898
+    second: Five Elemental Gemstone Sigils_1060
+  - first:
+      213: -755793237745752569
+    second: Five Elemental Gemstone Sigils_1061
+  - first:
+      213: -9184661815213395130
+    second: Five Elemental Gemstone Sigils_1062
+  - first:
+      213: -662854392280048336
+    second: Five Elemental Gemstone Sigils_1063
+  - first:
+      213: -6451282673690995506
+    second: Five Elemental Gemstone Sigils_1064
+  - first:
+      213: 891348366391342946
+    second: Five Elemental Gemstone Sigils_1065
+  - first:
+      213: 2119750187518571005
+    second: Five Elemental Gemstone Sigils_1066
+  - first:
+      213: -1849000026463023356
+    second: Five Elemental Gemstone Sigils_1067
+  - first:
+      213: -3120347655249716340
+    second: Five Elemental Gemstone Sigils_1068
+  - first:
+      213: -5733351889063705762
+    second: Five Elemental Gemstone Sigils_1069
+  - first:
+      213: 6875639438545922319
+    second: Five Elemental Gemstone Sigils_1070
+  - first:
+      213: 6960126336320158912
+    second: Five Elemental Gemstone Sigils_1071
+  - first:
+      213: 5826182833549227875
+    second: Five Elemental Gemstone Sigils_1072
+  - first:
+      213: 5284563522291868968
+    second: Five Elemental Gemstone Sigils_1073
+  - first:
+      213: 7603230660025531684
+    second: Five Elemental Gemstone Sigils_1074
+  - first:
+      213: -2269528852042533353
+    second: Five Elemental Gemstone Sigils_1075
+  - first:
+      213: 8017763205732293152
+    second: Five Elemental Gemstone Sigils_1076
+  - first:
+      213: -2179131499462421696
+    second: Five Elemental Gemstone Sigils_1077
+  - first:
+      213: 5048245224436047769
+    second: Five Elemental Gemstone Sigils_1078
+  - first:
+      213: -4398628191017067212
+    second: Five Elemental Gemstone Sigils_1079
+  - first:
+      213: 8455087637517126929
+    second: Five Elemental Gemstone Sigils_1080
+  - first:
+      213: 539091714570019159
+    second: Five Elemental Gemstone Sigils_1081
+  - first:
+      213: 5472906243616731057
+    second: Five Elemental Gemstone Sigils_1082
+  - first:
+      213: 5738253741438636933
+    second: Five Elemental Gemstone Sigils_1083
+  - first:
+      213: -4122259827656237188
+    second: Five Elemental Gemstone Sigils_1084
+  - first:
+      213: 5908152129275524634
+    second: Five Elemental Gemstone Sigils_1085
+  - first:
+      213: -2934511619497624340
+    second: Five Elemental Gemstone Sigils_1086
+  - first:
+      213: -4040197485245410278
+    second: Five Elemental Gemstone Sigils_1087
+  - first:
+      213: -8336902899719394713
+    second: Five Elemental Gemstone Sigils_1088
+  - first:
+      213: -1677326043879177222
+    second: Five Elemental Gemstone Sigils_1089
+  - first:
+      213: 2600893765452414022
+    second: Five Elemental Gemstone Sigils_1090
+  - first:
+      213: -2431147393957758218
+    second: Five Elemental Gemstone Sigils_1091
+  - first:
+      213: 2713528092377127525
+    second: Five Elemental Gemstone Sigils_1092
+  - first:
+      213: -6024718945867453029
+    second: Five Elemental Gemstone Sigils_1093
+  - first:
+      213: -5468917889312707981
+    second: Five Elemental Gemstone Sigils_1094
+  - first:
+      213: 1778944353794793178
+    second: Five Elemental Gemstone Sigils_1095
+  - first:
+      213: -6093898471928463481
+    second: Five Elemental Gemstone Sigils_1096
+  - first:
+      213: 5708261311616977161
+    second: Five Elemental Gemstone Sigils_1097
+  - first:
+      213: -6132018978217766330
+    second: Five Elemental Gemstone Sigils_1098
+  - first:
+      213: 3758981943359758261
+    second: Five Elemental Gemstone Sigils_1099
+  - first:
+      213: -4532443779979958114
+    second: Five Elemental Gemstone Sigils_1100
+  - first:
+      213: 6332874541163191747
+    second: Five Elemental Gemstone Sigils_1101
+  - first:
+      213: 6324918484664532729
+    second: Five Elemental Gemstone Sigils_1102
+  - first:
+      213: -7931625828303569295
+    second: Five Elemental Gemstone Sigils_1103
+  - first:
+      213: 4136776689216928008
+    second: Five Elemental Gemstone Sigils_1104
+  - first:
+      213: 4560565848629353812
+    second: Five Elemental Gemstone Sigils_1105
+  - first:
+      213: 5725017723118086473
+    second: Five Elemental Gemstone Sigils_1106
+  - first:
+      213: -5264065309941453418
+    second: Five Elemental Gemstone Sigils_1107
+  - first:
+      213: 795987669036710844
+    second: Five Elemental Gemstone Sigils_1108
+  - first:
+      213: -5288687439229681423
+    second: Five Elemental Gemstone Sigils_1109
+  - first:
+      213: -6013193807919968218
+    second: Five Elemental Gemstone Sigils_1110
+  - first:
+      213: -8514235168912994422
+    second: Five Elemental Gemstone Sigils_1111
+  - first:
+      213: -7173528756303131035
+    second: Five Elemental Gemstone Sigils_1112
+  - first:
+      213: 2933824464376601491
+    second: Five Elemental Gemstone Sigils_1113
+  - first:
+      213: 3661214348322103588
+    second: Five Elemental Gemstone Sigils_1114
+  - first:
+      213: 8978825818115197739
+    second: Five Elemental Gemstone Sigils_1115
+  - first:
+      213: -6556921321645153732
+    second: Five Elemental Gemstone Sigils_1116
+  - first:
+      213: 2119391998979197185
+    second: Five Elemental Gemstone Sigils_1117
+  - first:
+      213: 6882443392476072287
+    second: Five Elemental Gemstone Sigils_1118
+  - first:
+      213: 6244582382703035348
+    second: Five Elemental Gemstone Sigils_1119
+  - first:
+      213: 1864147389827527200
+    second: Five Elemental Gemstone Sigils_1120
+  - first:
+      213: 5697214365049094426
+    second: Five Elemental Gemstone Sigils_1121
+  - first:
+      213: -1047406597160240807
+    second: Five Elemental Gemstone Sigils_1122
+  - first:
+      213: 1241123321326150648
+    second: Five Elemental Gemstone Sigils_1123
+  - first:
+      213: 589190369410928648
+    second: Five Elemental Gemstone Sigils_1124
+  - first:
+      213: -4208674710292181066
+    second: Five Elemental Gemstone Sigils_1125
+  - first:
+      213: -6227918275965597302
+    second: Five Elemental Gemstone Sigils_1126
+  - first:
+      213: -2391717281516029713
+    second: Five Elemental Gemstone Sigils_1127
+  - first:
+      213: 7917024881129443761
+    second: Five Elemental Gemstone Sigils_1128
+  - first:
+      213: 2161445949467361086
+    second: Five Elemental Gemstone Sigils_1129
+  - first:
+      213: 1468932297722554089
+    second: Five Elemental Gemstone Sigils_1130
+  - first:
+      213: -7062559348825357689
+    second: Five Elemental Gemstone Sigils_1131
+  - first:
+      213: -4828183241357658378
+    second: Five Elemental Gemstone Sigils_1132
+  - first:
+      213: 635293588596183901
+    second: Five Elemental Gemstone Sigils_1133
+  - first:
+      213: 2246484871207496624
+    second: Five Elemental Gemstone Sigils_1134
+  - first:
+      213: -5848432419411361685
+    second: Five Elemental Gemstone Sigils_1135
+  - first:
+      213: 570031810841236596
+    second: Five Elemental Gemstone Sigils_1136
+  - first:
+      213: -879669679502465550
+    second: Five Elemental Gemstone Sigils_1137
+  - first:
+      213: 6374944486023287905
+    second: Five Elemental Gemstone Sigils_1138
+  - first:
+      213: -7733754585343316473
+    second: Five Elemental Gemstone Sigils_1139
+  - first:
+      213: 443904884975388853
+    second: Five Elemental Gemstone Sigils_1140
+  - first:
+      213: -2443664244010249953
+    second: Five Elemental Gemstone Sigils_1141
+  - first:
+      213: -6172185282086925389
+    second: Five Elemental Gemstone Sigils_1142
+  - first:
+      213: -6418112174269114791
+    second: Five Elemental Gemstone Sigils_1143
+  - first:
+      213: 4294734678428636709
+    second: Five Elemental Gemstone Sigils_1144
+  - first:
+      213: 3001433824111575426
+    second: Five Elemental Gemstone Sigils_1145
+  - first:
+      213: -8511424827146590233
+    second: Five Elemental Gemstone Sigils_1146
+  - first:
+      213: -2941170558450865934
+    second: Five Elemental Gemstone Sigils_1147
+  - first:
+      213: 5147534952517870832
+    second: Five Elemental Gemstone Sigils_1148
+  - first:
+      213: 4268729414177199510
+    second: Five Elemental Gemstone Sigils_1149
+  - first:
+      213: 1779986885051161616
+    second: Five Elemental Gemstone Sigils_1150
+  - first:
+      213: -908541125573684413
+    second: Five Elemental Gemstone Sigils_1151
+  - first:
+      213: 4333988541294556313
+    second: Five Elemental Gemstone Sigils_1152
+  - first:
+      213: 6854125499553535540
+    second: Five Elemental Gemstone Sigils_1153
+  - first:
+      213: -5136758604033980538
+    second: Five Elemental Gemstone Sigils_1154
+  - first:
+      213: -4211069030081339884
+    second: Five Elemental Gemstone Sigils_1155
+  - first:
+      213: -2557814324230446031
+    second: Five Elemental Gemstone Sigils_1156
+  - first:
+      213: 7376681593382686146
+    second: Five Elemental Gemstone Sigils_1157
+  - first:
+      213: -8200190044172187245
+    second: Five Elemental Gemstone Sigils_1158
+  - first:
+      213: 2168107987345945093
+    second: Five Elemental Gemstone Sigils_1159
+  - first:
+      213: 7129354906642920075
+    second: Five Elemental Gemstone Sigils_1160
+  - first:
+      213: -7395330463906238573
+    second: Five Elemental Gemstone Sigils_1161
+  - first:
+      213: 4971232806220269321
+    second: Five Elemental Gemstone Sigils_1162
+  - first:
+      213: 5743059812633049831
+    second: Five Elemental Gemstone Sigils_1163
+  - first:
+      213: -6740405038700180305
+    second: Five Elemental Gemstone Sigils_1164
+  - first:
+      213: 1152022786968603135
+    second: Five Elemental Gemstone Sigils_1165
+  - first:
+      213: -2840166268673395759
+    second: Five Elemental Gemstone Sigils_1166
+  - first:
+      213: -3572287332467904761
+    second: Five Elemental Gemstone Sigils_1167
+  - first:
+      213: -2111850484591398137
+    second: Five Elemental Gemstone Sigils_1168
+  - first:
+      213: -6279237361418300829
+    second: Five Elemental Gemstone Sigils_1169
+  - first:
+      213: 8866551070989239065
+    second: Five Elemental Gemstone Sigils_1170
+  - first:
+      213: 281168332073221215
+    second: Five Elemental Gemstone Sigils_1171
+  - first:
+      213: 1985846655376874162
+    second: Five Elemental Gemstone Sigils_1172
+  - first:
+      213: -8836298136486927925
+    second: Five Elemental Gemstone Sigils_1173
+  - first:
+      213: -280071645329636896
+    second: Five Elemental Gemstone Sigils_1174
+  - first:
+      213: -8773862689333608210
+    second: Five Elemental Gemstone Sigils_1175
+  - first:
+      213: -3761084358293538142
+    second: Five Elemental Gemstone Sigils_1176
+  - first:
+      213: -3397390486923078939
+    second: Five Elemental Gemstone Sigils_1177
+  - first:
+      213: 4773994569647448881
+    second: Five Elemental Gemstone Sigils_1178
+  - first:
+      213: -6358515248486282445
+    second: Five Elemental Gemstone Sigils_1179
+  - first:
+      213: 6789081490969305119
+    second: Five Elemental Gemstone Sigils_1180
+  - first:
+      213: -7522700466941582605
+    second: Five Elemental Gemstone Sigils_1181
+  - first:
+      213: 6084469954119900789
+    second: Five Elemental Gemstone Sigils_1182
+  - first:
+      213: 847904968580276899
+    second: Five Elemental Gemstone Sigils_1183
+  - first:
+      213: -217288186267672536
+    second: Five Elemental Gemstone Sigils_1184
+  - first:
+      213: -7490600990264072889
+    second: Five Elemental Gemstone Sigils_1185
+  - first:
+      213: 8521464792127189676
+    second: Five Elemental Gemstone Sigils_1186
+  - first:
+      213: -3148997446332934219
+    second: Five Elemental Gemstone Sigils_1187
+  - first:
+      213: -764536352108444795
+    second: Five Elemental Gemstone Sigils_1188
+  - first:
+      213: 8532395234403096718
+    second: Five Elemental Gemstone Sigils_1189
+  - first:
+      213: -6223892377920001028
+    second: Five Elemental Gemstone Sigils_1190
+  - first:
+      213: -7750573386958088515
+    second: Five Elemental Gemstone Sigils_1191
+  - first:
+      213: -297663871462066939
+    second: Five Elemental Gemstone Sigils_1192
+  - first:
+      213: -562928370855357231
+    second: Five Elemental Gemstone Sigils_1193
+  - first:
+      213: 8761636503382357552
+    second: Five Elemental Gemstone Sigils_1194
+  - first:
+      213: 540500561640413787
+    second: Five Elemental Gemstone Sigils_1195
+  - first:
+      213: -7046478817528042136
+    second: Five Elemental Gemstone Sigils_1196
+  - first:
+      213: -2318479537810474666
+    second: Five Elemental Gemstone Sigils_1197
+  - first:
+      213: 1249819204469055861
+    second: Five Elemental Gemstone Sigils_1198
+  - first:
+      213: 1003599266576063197
+    second: Five Elemental Gemstone Sigils_1199
+  - first:
+      213: 2785025418603781778
+    second: Five Elemental Gemstone Sigils_1200
+  - first:
+      213: 4837424152059637313
+    second: Five Elemental Gemstone Sigils_1201
+  - first:
+      213: -8128674526338308232
+    second: Five Elemental Gemstone Sigils_1202
+  - first:
+      213: 9039829291374420330
+    second: Five Elemental Gemstone Sigils_1203
+  - first:
+      213: 8263220572372225082
+    second: Five Elemental Gemstone Sigils_1204
+  - first:
+      213: 8494192819631684398
+    second: Five Elemental Gemstone Sigils_1205
+  - first:
+      213: 7464331381033615140
+    second: Five Elemental Gemstone Sigils_1206
+  - first:
+      213: 6037344732676629195
+    second: Five Elemental Gemstone Sigils_1207
+  - first:
+      213: 9078408339577327519
+    second: Five Elemental Gemstone Sigils_1208
+  - first:
+      213: 2961130223817802373
+    second: Five Elemental Gemstone Sigils_1209
+  - first:
+      213: -4232192701707042932
+    second: Five Elemental Gemstone Sigils_1210
+  - first:
+      213: 9110518642981097286
+    second: Five Elemental Gemstone Sigils_1211
+  - first:
+      213: -805197243428212273
+    second: Five Elemental Gemstone Sigils_1212
+  - first:
+      213: 77260600370877544
+    second: Five Elemental Gemstone Sigils_1213
+  - first:
+      213: 4982604291885777060
+    second: Five Elemental Gemstone Sigils_1214
+  - first:
+      213: 3992822963904443529
+    second: Five Elemental Gemstone Sigils_1215
+  - first:
+      213: 9035576690435420149
+    second: Five Elemental Gemstone Sigils_1216
+  - first:
+      213: 8790816236410115687
+    second: Five Elemental Gemstone Sigils_1217
+  - first:
+      213: 4267769429426647376
+    second: Five Elemental Gemstone Sigils_1218
+  - first:
+      213: -5735429852289220945
+    second: Five Elemental Gemstone Sigils_1219
+  - first:
+      213: -5321955057436178774
+    second: Five Elemental Gemstone Sigils_1220
+  - first:
+      213: 3442201160192972094
+    second: Five Elemental Gemstone Sigils_1221
+  - first:
+      213: -7734066593018691299
+    second: Five Elemental Gemstone Sigils_1222
+  - first:
+      213: 4256383577815944807
+    second: Five Elemental Gemstone Sigils_1223
+  - first:
+      213: -6177476633805878527
+    second: Five Elemental Gemstone Sigils_1224
+  - first:
+      213: 7092781252515803383
+    second: Five Elemental Gemstone Sigils_1225
+  - first:
+      213: -2668434469125167426
+    second: Five Elemental Gemstone Sigils_1226
+  - first:
+      213: 567643838408842930
+    second: Five Elemental Gemstone Sigils_1227
+  - first:
+      213: 2919799511491823263
+    second: Five Elemental Gemstone Sigils_1228
+  - first:
+      213: -3209752332912759573
+    second: Five Elemental Gemstone Sigils_1229
+  - first:
+      213: 822581904216170758
+    second: Five Elemental Gemstone Sigils_1230
+  - first:
+      213: -9044725398030545382
+    second: Five Elemental Gemstone Sigils_1231
+  - first:
+      213: -4997311482640527034
+    second: Five Elemental Gemstone Sigils_1232
+  - first:
+      213: 6250812576263593806
+    second: Five Elemental Gemstone Sigils_1233
+  - first:
+      213: 3043883707371562081
+    second: Five Elemental Gemstone Sigils_1234
+  - first:
+      213: -3766025332476686001
+    second: Five Elemental Gemstone Sigils_1235
+  - first:
+      213: 12207869724369675
+    second: Five Elemental Gemstone Sigils_1236
+  - first:
+      213: 4889246145046504236
+    second: Five Elemental Gemstone Sigils_1237
+  - first:
+      213: -8905170695204520888
+    second: Five Elemental Gemstone Sigils_1238
+  - first:
+      213: -112418953015367002
+    second: Five Elemental Gemstone Sigils_1239
+  - first:
+      213: -2795545992890000116
+    second: Five Elemental Gemstone Sigils_1240
+  - first:
+      213: -5074313710021711150
+    second: Five Elemental Gemstone Sigils_1241
+  - first:
+      213: -2504234939911498386
+    second: Five Elemental Gemstone Sigils_1242
+  - first:
+      213: 7354938120617338552
+    second: Five Elemental Gemstone Sigils_1243
+  - first:
+      213: 6146943281019008266
+    second: Five Elemental Gemstone Sigils_1244
+  - first:
+      213: -6077120029298200015
+    second: Five Elemental Gemstone Sigils_1245
+  - first:
+      213: -228749586615948955
+    second: Five Elemental Gemstone Sigils_1246
+  - first:
+      213: -7151665685956851378
+    second: Five Elemental Gemstone Sigils_1247
+  - first:
+      213: 5479817275201078645
+    second: Five Elemental Gemstone Sigils_1248
+  - first:
+      213: -4104208211567602811
+    second: Five Elemental Gemstone Sigils_1249
+  - first:
+      213: 3559859452798392041
+    second: Five Elemental Gemstone Sigils_1250
+  - first:
+      213: -7441207275342115461
+    second: Five Elemental Gemstone Sigils_1251
+  - first:
+      213: -6542023035627557639
+    second: Five Elemental Gemstone Sigils_1252
+  - first:
+      213: 3151462498872968678
+    second: Five Elemental Gemstone Sigils_1253
+  - first:
+      213: 533328018398991725
+    second: Five Elemental Gemstone Sigils_1254
+  - first:
+      213: 8629891076120008764
+    second: Five Elemental Gemstone Sigils_1255
+  - first:
+      213: 527964751460555793
+    second: Five Elemental Gemstone Sigils_1256
+  - first:
+      213: -5317471935965160975
+    second: Five Elemental Gemstone Sigils_1257
+  - first:
+      213: 4301463982967734546
+    second: Five Elemental Gemstone Sigils_1258
+  - first:
+      213: -7548455605139951198
+    second: Five Elemental Gemstone Sigils_1259
+  - first:
+      213: -1151810789218910775
+    second: Five Elemental Gemstone Sigils_1260
+  - first:
+      213: 7102278460205930087
+    second: Five Elemental Gemstone Sigils_1261
+  - first:
+      213: 85682937871710079
+    second: Five Elemental Gemstone Sigils_1262
+  - first:
+      213: 981038707542623907
+    second: Five Elemental Gemstone Sigils_1263
+  - first:
+      213: -6291244480778268220
+    second: Five Elemental Gemstone Sigils_1264
+  - first:
+      213: 5797594189862191750
+    second: Five Elemental Gemstone Sigils_1265
+  - first:
+      213: 6751168953405350679
+    second: Five Elemental Gemstone Sigils_1266
+  - first:
+      213: 9107840168223378284
+    second: Five Elemental Gemstone Sigils_1267
+  - first:
+      213: -366320686537560507
+    second: Five Elemental Gemstone Sigils_1268
+  - first:
+      213: 4073880134658753412
+    second: Five Elemental Gemstone Sigils_1269
+  - first:
+      213: -2326837529119654940
+    second: Five Elemental Gemstone Sigils_1270
+  - first:
+      213: -3319927522897033949
+    second: Five Elemental Gemstone Sigils_1271
+  - first:
+      213: -6096314757189748036
+    second: Five Elemental Gemstone Sigils_1272
+  - first:
+      213: -3399154391548857957
+    second: Five Elemental Gemstone Sigils_1273
+  - first:
+      213: 8986774525102670456
+    second: Five Elemental Gemstone Sigils_1274
+  - first:
+      213: 8188740450826802674
+    second: Five Elemental Gemstone Sigils_1275
+  - first:
+      213: 2806963698948699575
+    second: Five Elemental Gemstone Sigils_1276
+  - first:
+      213: -5810217496285512602
+    second: Five Elemental Gemstone Sigils_1277
+  - first:
+      213: -6730861187353493200
+    second: Five Elemental Gemstone Sigils_1278
+  - first:
+      213: 7376686807956693413
+    second: Five Elemental Gemstone Sigils_1279
+  - first:
+      213: 5353333452595117907
+    second: Five Elemental Gemstone Sigils_1280
+  - first:
+      213: 7854967215689943657
+    second: Five Elemental Gemstone Sigils_1281
+  - first:
+      213: 7941748681911269100
+    second: Five Elemental Gemstone Sigils_1282
+  - first:
+      213: -6097518795291101518
+    second: Five Elemental Gemstone Sigils_1283
+  - first:
+      213: 5391672699503192666
+    second: Five Elemental Gemstone Sigils_1284
+  - first:
+      213: -1897650146528155207
+    second: Five Elemental Gemstone Sigils_1285
+  - first:
+      213: -8233180705414006408
+    second: Five Elemental Gemstone Sigils_1286
+  - first:
+      213: -8325517218008283421
+    second: Five Elemental Gemstone Sigils_1287
+  - first:
+      213: -3825996397004209586
+    second: Five Elemental Gemstone Sigils_1288
+  - first:
+      213: -5200576086713243632
+    second: Five Elemental Gemstone Sigils_1289
+  - first:
+      213: -6730652713871589264
+    second: Five Elemental Gemstone Sigils_1290
+  - first:
+      213: 342255458820583257
+    second: Five Elemental Gemstone Sigils_1291
+  - first:
+      213: -6174045183836431425
+    second: Five Elemental Gemstone Sigils_1292
+  - first:
+      213: 8127986187205713748
+    second: Five Elemental Gemstone Sigils_1293
+  - first:
+      213: -1918473924690042819
+    second: Five Elemental Gemstone Sigils_1294
+  - first:
+      213: -5953836843118010543
+    second: Five Elemental Gemstone Sigils_1295
+  - first:
+      213: 1751102278577144127
+    second: Five Elemental Gemstone Sigils_1296
+  - first:
+      213: 5390234314045261016
+    second: Five Elemental Gemstone Sigils_1297
+  - first:
+      213: -3622950172297254379
+    second: Five Elemental Gemstone Sigils_1298
+  - first:
+      213: 2226061053315474876
+    second: Five Elemental Gemstone Sigils_1299
+  - first:
+      213: -1315374377296539309
+    second: Five Elemental Gemstone Sigils_1300
+  - first:
+      213: -7648326866962008739
+    second: Five Elemental Gemstone Sigils_1301
+  - first:
+      213: -7353285954091697873
+    second: Five Elemental Gemstone Sigils_1302
+  - first:
+      213: 4043063475274793893
+    second: Five Elemental Gemstone Sigils_1303
+  - first:
+      213: 8621223463365206483
+    second: Five Elemental Gemstone Sigils_1304
+  - first:
+      213: -3728667381989966417
+    second: Five Elemental Gemstone Sigils_1305
+  - first:
+      213: 5976256390331002738
+    second: Five Elemental Gemstone Sigils_1306
+  - first:
+      213: 2713455313570692077
+    second: Five Elemental Gemstone Sigils_1307
+  - first:
+      213: 6833911471997106845
+    second: Five Elemental Gemstone Sigils_1308
+  - first:
+      213: 5611941900588128604
+    second: Five Elemental Gemstone Sigils_1309
+  - first:
+      213: -2764574878680992418
+    second: Five Elemental Gemstone Sigils_1310
+  - first:
+      213: -257761838111302832
+    second: Five Elemental Gemstone Sigils_1311
+  - first:
+      213: 7329762855460671195
+    second: Five Elemental Gemstone Sigils_1312
+  - first:
+      213: -7681600246506647290
+    second: Five Elemental Gemstone Sigils_1313
+  - first:
+      213: -569501526978813633
+    second: Five Elemental Gemstone Sigils_1314
+  - first:
+      213: -2491550645781611025
+    second: Five Elemental Gemstone Sigils_1315
+  - first:
+      213: -4576667810076556320
+    second: Five Elemental Gemstone Sigils_1316
+  externalObjects: {}
+  serializedVersion: 13
+  mipmaps:
+    mipMapMode: 0
+    enableMipMap: 0
+    sRGBTexture: 1
+    linearTexture: 0
+    fadeOut: 0
+    borderMipMap: 0
+    mipMapsPreserveCoverage: 0
+    alphaTestReferenceValue: 0.5
+    mipMapFadeDistanceStart: 1
+    mipMapFadeDistanceEnd: 3
+  bumpmap:
+    convertToNormalMap: 0
+    externalNormalMap: 0
+    heightScale: 0.25
+    normalMapFilter: 0
+    flipGreenChannel: 0
+  isReadable: 0
+  streamingMipmaps: 0
+  streamingMipmapsPriority: 0
+  vTOnly: 0
+  ignoreMipmapLimit: 0
+  grayScaleToAlpha: 0
+  generateCubemap: 6
+  cubemapConvolution: 0
+  seamlessCubemap: 0
+  textureFormat: 1
+  maxTextureSize: 2048
+  textureSettings:
+    serializedVersion: 2
+    filterMode: 1
+    aniso: 1
+    mipBias: 0
+    wrapU: 1
+    wrapV: 1
+    wrapW: 1
+  nPOTScale: 0
+  lightmap: 0
+  compressionQuality: 50
+  spriteMode: 2
+  spriteExtrude: 1
+  spriteMeshType: 1
+  alignment: 0
+  spritePivot: {x: 0.5, y: 0.5}
+  spritePixelsToUnits: 100
+  spriteBorder: {x: 0, y: 0, z: 0, w: 0}
+  spriteGenerateFallbackPhysicsShape: 1
+  alphaUsage: 1
+  alphaIsTransparency: 1
+  spriteTessellationDetail: -1
+  textureType: 8
+  textureShape: 1
+  singleChannelComponent: 0
+  flipbookRows: 1
+  flipbookColumns: 1
+  maxTextureSizeSet: 0
+  compressionQualitySet: 0
+  textureFormatSet: 0
+  ignorePngGamma: 0
+  applyGammaDecoding: 0
+  swizzle: 50462976
+  cookieLightType: 0
+  platformSettings:
+  - serializedVersion: 4
+    buildTarget: DefaultTexturePlatform
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 4
+    buildTarget: Standalone
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  spriteSheet:
+    serializedVersion: 2
+    sprites:
+    - serializedVersion: 2
+      name: Five Elemental Gemstone Sigils_0
+      rect:
+        serializedVersion: 2
+        x: 156
+        y: 819
+        width: 347
+        height: 378
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 95fe5159f92c617d0800000000000000
+      internalID: -2947954915410579623
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Five Elemental Gemstone Sigils_1
+      rect:
+        serializedVersion: 2
+        x: 740
+        y: 797
+        width: 361
+        height: 431
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: d71b1f3fb42d66c40aec717c47ee41b6
+      internalID: 3176082929381114361
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Five Elemental Gemstone Sigils_2
+      rect:
+        serializedVersion: 2
+        x: 459
+        y: 472
+        width: 337
+        height: 424
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: afb8b5a913fc83742b4f77ca8a013bdf
+      internalID: -2295898136445885006
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Five Elemental Gemstone Sigils_3
+      rect:
+        serializedVersion: 2
+        x: 160
+        y: 115
+        width: 353
+        height: 448
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: aff0821dd2063e045b672fc319d07f17
+      internalID: 1670132883713760378
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Five Elemental Gemstone Sigils_4
+      rect:
+        serializedVersion: 2
+        x: 728
+        y: 105
+        width: 374
+        height: 454
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 2ae6c3543c6eb77499a30f7b26845c5a
+      internalID: -7997705028803933412
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    outline: []
+    customData: 
+    physicsShape: []
+    bones: []
+    spriteID: f745c7637004a5d4fbd77abf100c7b73
+    internalID: 0
+    vertices: []
+    indices: 
+    edges: []
+    weights: []
+    secondaryTextures: []
+    spriteCustomMetadata:
+      entries:
+      - key: SpriteEditor.SliceSettings
+        value: '{"sliceOnImport":false,"gridCellCount":{"x":1.0,"y":1.0},"gridSpriteSize":{"x":1254.0,"y":1254.0},"gridSpriteOffset":{"x":0.0,"y":0.0},"gridSpritePadding":{"x":0.0,"y":0.0},"pivot":{"x":0.5,"y":0.5},"pivotPixels":{"x":0.0,"y":0.0},"autoSlicingMethod":0,"spriteAlignment":0,"pivotUnitMode":0,"slicingType":2,"keepEmptyRects":false,"isAlternate":false}'
+    nameFileIdTable:
+      Five Elemental Gemstone Sigils_0: -2947954915410579623
+      Five Elemental Gemstone Sigils_1: 3176082929381114361
+      Five Elemental Gemstone Sigils_2: -2295898136445885006
+      Five Elemental Gemstone Sigils_3: 1670132883713760378
+      Five Elemental Gemstone Sigils_4: -7997705028803933412
+  mipmapLimitGroupName: 
+  pSDRemoveMatte: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

@@ -3,7 +3,8 @@ using UnityEngine;
 
 public class PlayerElementSO : ScriptableObject
 {
-    public ElementSO element;
+    public ElementSO elementSO;
+    public Sprite elementStoneSprite;
 
 
 

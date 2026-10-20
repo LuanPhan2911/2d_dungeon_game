@@ -38,7 +38,7 @@ public class BurstUI : MonoBehaviour
         if(OnFieldPlayerElementSlot!= null)
         {
 
-            _energyImage.color = OnFieldPlayerElementSlot.PlayerElementType.DataSO.element.color;
+            _energyImage.color = OnFieldPlayerElementSlot.PlayerElementType.DataSO.elementSO.color;
             _mainImage.sprite = OnFieldPlayerElementSlot.PlayerElementType.DataSO.burstSprite;
         }
        

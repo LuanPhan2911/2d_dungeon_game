@@ -12,10 +12,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6006b6c75220afa4c89bdde535564bfb, type: 3}
   m_Name: Grass Player Element
   m_EditorClassIdentifier: Assembly-CSharp::PlayerElementGrassSO
-  element: {fileID: 11400000, guid: db1905687a944cc4aa7e5287c2cc606a, type: 2}
+  elementSO: {fileID: 11400000, guid: db1905687a944cc4aa7e5287c2cc606a, type: 2}
+  elementStoneSprite: {fileID: 3176082929381114361, guid: 94c3e1fbf5c54fd4e8275f8ab970dae6, type: 3}
   burstCooldown: 15
   burstEnergy: 15
-  skillInputBuffer: 0.2
   burstSprite: {fileID: 21300000, guid: 1a67063fd24b2c04eac7f27e20544141, type: 3}
   resistances:
   - element: {fileID: 11400000, guid: fa41908be5b89654d95054a0484eb7d8, type: 2}
