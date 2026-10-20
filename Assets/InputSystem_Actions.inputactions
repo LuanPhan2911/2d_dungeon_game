@@ -411,9 +411,19 @@
                     "priority": 0
                 },
                 {
-                    "name": "Character",
+                    "name": "State",
                     "type": "Button",
                     "id": "afe2d075-d739-4669-bede-547ccc00cd5b",
+                    "expectedControlType": "",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false,
+                    "priority": 0
+                },
+                {
+                    "name": "Weapon",
+                    "type": "Button",
+                    "id": "9f4d17b6-b89f-43fa-9cf5-d68b860e7236",
                     "expectedControlType": "",
                     "processors": "",
                     "interactions": "",
@@ -431,9 +441,39 @@
                     "priority": 0
                 },
                 {
+                    "name": "Skill",
+                    "type": "Button",
+                    "id": "5545f7d1-fdfb-42ac-95f8-9bd597c8ccb1",
+                    "expectedControlType": "",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false,
+                    "priority": 0
+                },
+                {
                     "name": "Map",
                     "type": "Button",
                     "id": "c3646870-7359-4ac1-84d9-201ea678ef34",
+                    "expectedControlType": "",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false,
+                    "priority": 0
+                },
+                {
+                    "name": "Prev",
+                    "type": "Button",
+                    "id": "27105f6f-d641-457c-9e76-0b90d86e0e43",
+                    "expectedControlType": "",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false,
+                    "priority": 0
+                },
+                {
+                    "name": "Next",
+                    "type": "Button",
+                    "id": "f7e609e2-0dd3-46b5-8068-3c0026a23bdb",
                     "expectedControlType": "",
                     "processors": "",
                     "interactions": "",
@@ -867,7 +907,29 @@
                     "interactions": "",
                     "processors": "",
                     "groups": "",
-                    "action": "Character",
+                    "action": "State",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "1cd12655-1930-438d-9acc-add59654a108",
+                    "path": "<Keyboard>/v",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Weapon",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "37af044b-2107-438a-8139-170b536c9cf6",
+                    "path": "<Keyboard>/n",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Skill",
                     "isComposite": false,
                     "isPartOfComposite": false
                 },
@@ -890,6 +952,28 @@
                     "processors": "",
                     "groups": "",
                     "action": "Map",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "93b44b9a-9b27-4577-9072-24300f980de9",
+                    "path": "<Keyboard>/q",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Prev",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "a9b1e833-297a-4a16-b9e1-edbb4ee17e8c",
+                    "path": "<Keyboard>/e",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Next",
                     "isComposite": false,
                     "isPartOfComposite": false
                 }

@@ -48,11 +48,26 @@ public class GameInputManager : MonoBehaviour
         PlayerActions.Enable();
 
         UIActions.Enable();
+        DisableControlUI();
 
-        UIActions.Cancel.Disable();
+
+
     }
 
 
+    public void EnableControlUI()
+    {
+        UIActions.Cancel.Enable();
+        UIActions.Prev.Enable();
+        UIActions.Next.Enable();
+    }
+
+    public void DisableControlUI()
+    {
+        UIActions.Cancel.Disable();
+        UIActions.Prev.Disable();
+        UIActions.Next.Disable();
+    }
    
     
 

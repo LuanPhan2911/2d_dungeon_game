@@ -25,11 +25,16 @@ public class ControlPanel : Panel
 
     [Header("UI")]
 
+  
+    [SerializeField] private BindingKeyUI _stateBinding;
+    [SerializeField] private BindingKeyUI _weaponBinding;
+ 
+    [SerializeField] private BindingKeyUI _bagBinding;
+    [SerializeField] private BindingKeyUI _skillBinding;
+    [SerializeField] private BindingKeyUI _mapBinding;
+
     [SerializeField] private BindingKeyUI _submitBinding;
     [SerializeField] private BindingKeyUI _cancelBinding;
-    [SerializeField] private BindingKeyUI _characterBinding;
-    [SerializeField] private BindingKeyUI _bagBinding;
-    [SerializeField] private BindingKeyUI _mapBinding;
 
 
 
@@ -84,8 +89,11 @@ public class ControlPanel : Panel
         // UI
         _submitBinding.SetInputAction(UIActions.Submit, KEYBOARD_BINDING_INDEX);
         _cancelBinding.SetInputAction(UIActions.Cancel, KEYBOARD_BINDING_INDEX);
+       
+        _stateBinding.SetInputAction(UIActions.State, KEYBOARD_BINDING_INDEX);
+        _weaponBinding.SetInputAction(UIActions.Weapon, KEYBOARD_BINDING_INDEX);
         _bagBinding.SetInputAction(UIActions.Bag, KEYBOARD_BINDING_INDEX);
-        _characterBinding.SetInputAction(UIActions.Character, KEYBOARD_BINDING_INDEX);
+        _skillBinding.SetInputAction(UIActions.Skill, KEYBOARD_BINDING_INDEX);
         _mapBinding.SetInputAction(UIActions.Map, KEYBOARD_BINDING_INDEX);
         
 
@@ -118,8 +126,10 @@ public class ControlPanel : Panel
 
         _submitBinding.SetBindingText(GameInput.GetDisplayString(UIActions.Submit));
         _cancelBinding.SetBindingText(GameInput.GetDisplayString(UIActions.Cancel));
-        _characterBinding.SetBindingText(GameInput.GetDisplayString(UIActions.Character));
+        _stateBinding.SetBindingText(GameInput.GetDisplayString(UIActions.State));
+        _weaponBinding.SetBindingText(GameInput.GetDisplayString(UIActions.Weapon));
         _bagBinding.SetBindingText(GameInput.GetDisplayString(UIActions.Bag));
+        _skillBinding.SetBindingText(GameInput.GetDisplayString(UIActions.Skill));
         _mapBinding.SetBindingText(GameInput.GetDisplayString(UIActions.Map));
 
 
