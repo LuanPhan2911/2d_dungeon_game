@@ -14,6 +14,7 @@ public class PlayerElementSO : ScriptableObject
     public float burstEnergy=40f;
 
     public Sprite burstSprite;
+    public string burstDescription;
 
     [Header("Resisatance")]
     public ElementalResistance[] resistances;

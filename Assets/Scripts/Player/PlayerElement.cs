@@ -55,8 +55,6 @@ public class PlayerElement : MonoBehaviour
     private float _infusedElementToWeaponTimer;
     private float _elementSwapTimer;
     private float _elementSwapCooldown = 0.5f;
-
-    public event Action OnPlayerElementTypeSelected;
     public event Action OnPlayerElementSlotChanged;
     public event Action OnFieldPlayerElementSlotChanged;
  
@@ -126,11 +124,33 @@ public class PlayerElement : MonoBehaviour
 
     
 
-    public void SelectPlayerElementType()
+   
+    public void AddPlayerElementSlot(PlayerElementType playerElementType)
     {
-        OnPlayerElementTypeSelected?.Invoke();
-        int[] slotIndexArray = GetSlotIndexArray();
-        SetPlayerElemntSlot(slotIndexArray);
+        PlayerElementSlot slot = new PlayerElementSlot
+        {
+            PlayerElementType = playerElementType,
+        };
+        _playerElementSlotList.Add(slot);
+        SetFirstIndexOnFieldPlayerElementSlot();
+        OnPlayerElementSlotChanged?.Invoke();
+    }
+    public void RemovePlayerElementSlot(PlayerElementType playerElementType)
+    {
+        PlayerElementSlot slot = _playerElementSlotList.Find(el => el.PlayerElementType == playerElementType);
+        if(slot!= null)
+        {
+            _playerElementSlotList.Remove(slot);
+            SetFirstIndexOnFieldPlayerElementSlot();
+            OnPlayerElementSlotChanged?.Invoke();
+        }
+    }
+    private void SetFirstIndexOnFieldPlayerElementSlot()
+    {
+        for(int i=0; i< _playerElementSlotList.Count; i++)
+        {
+            _playerElementSlotList[i].IsOnField = i == 0;
+        }
     }
 
     public void ActivatePlayerElementType(PlayerElementSO dataSO)
@@ -143,35 +163,6 @@ public class PlayerElement : MonoBehaviour
                 break;
             }
         }
-    }
-    private void SetPlayerElemntSlot(int[] playerElementTypeIndexArray)
-    {
-        _playerElementSlotList.Clear();
-        for (int i = 0; i < playerElementTypeIndexArray.Length; i++)
-        {
-            int index = playerElementTypeIndexArray[i];
-            PlayerElementType playerElementType = _playerElementTypeArray[index];
-            PlayerElementSlot slot = new PlayerElementSlot
-            {
-                PlayerElementType = playerElementType,
-                IsOnField = i == 0
-            };
-            _playerElementSlotList.Add(slot);
-        }
-        OnPlayerElementSlotChanged?.Invoke();
-
-    }
-    private int[] GetSlotIndexArray()
-    {
-        List<int> slotIndexList = new List<int>();
-        for(int i=0; i< _playerElementTypeArray.Length; i++)
-        {
-            if (_playerElementTypeArray[i].IsActive && _playerElementTypeArray[i].IsElementSlot)
-            {
-                slotIndexList.Add(i);
-            }
-        }
-        return slotIndexList.ToArray();
     }
     private void SetOnFieldPlayerElementSlot(int slotIndex)
     {

@@ -6,6 +6,9 @@ public class PlayerStateUI : MonoBehaviour
 
     [SerializeField] private TabSystem _tabSystem;
 
+    public bool IsSubMenuOpened;
+    public GameObject SubMenuGameObject;
+
     const int STATE_TAB_INDEX= 0;
     const int WEAPON_TAB_INDEX = 1;
     const int BAG_TAB_INDEX = 2;
@@ -56,8 +59,21 @@ public class PlayerStateUI : MonoBehaviour
 
     private void Cancel_Performed(UnityEngine.InputSystem.InputAction.CallbackContext obj)
     {
-       
+        if (IsSubMenuOpened)
+        {
+            CloseSubMenu();
+            return;
+        }
+        
         Hide();
+    }
+    private void CloseSubMenu()
+    {
+        if(SubMenuGameObject!= null)
+        {
+            SubMenuGameObject.SetActive(false);
+            IsSubMenuOpened = false;
+        }
     }
 
     private void PrevTab_Performed(UnityEngine.InputSystem.InputAction.CallbackContext obj)

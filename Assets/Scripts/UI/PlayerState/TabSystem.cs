@@ -6,7 +6,7 @@ public class TabSystem : MonoBehaviour
 
     [SerializeField] private Button[] _tabButtonArray;
 
-    [SerializeField] private GameObject[] _contentPanelGameObjectArray;
+    [SerializeField] private TabContent[] _contentPanelGameObjectArray;
 
     private Color _activeTabColor = Color.green;
     private Color _tabColor = Color.white;
@@ -47,12 +47,12 @@ public class TabSystem : MonoBehaviour
             {
                 _currentTabIndex = index;
                 _tabButtonArray[i].GetComponent<Image>().color = _activeTabColor;
-                _contentPanelGameObjectArray[i].SetActive(true);
+                _contentPanelGameObjectArray[i].Show();
             }
             else
             {
                 _tabButtonArray[i].GetComponent<Image>().color = _tabColor;
-                _contentPanelGameObjectArray[i].SetActive(false);
+                _contentPanelGameObjectArray[i].Hide();
             }
         }
     }

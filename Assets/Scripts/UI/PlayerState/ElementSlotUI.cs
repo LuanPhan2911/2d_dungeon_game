@@ -11,6 +11,8 @@ public class ElementSlotUI : MonoBehaviour, ISelectHandler, IDeselectHandler
 
     private PlayerElementType _playerElementType;
 
+    public PlayerElementType PlayerElementType => _playerElementType;
+
 
     public void SetPlayerElementType(PlayerElementType playerElementType)
     {
@@ -19,6 +21,8 @@ public class ElementSlotUI : MonoBehaviour, ISelectHandler, IDeselectHandler
    
     public void ToggleSelect()
     {
+        if (_playerElementType == null) return;
+
         if(!_playerElementType.IsElementSlot && PlayerElement.Instance.IsMaxPlayerElementSlot)
         {
             Debug.Log("Max Player Element Slot");
@@ -28,7 +32,17 @@ public class ElementSlotUI : MonoBehaviour, ISelectHandler, IDeselectHandler
         if(_playerElementType!= null && _playerElementType.IsActive)
         {
             _playerElementType.IsElementSlot = !_playerElementType.IsElementSlot;
-            PlayerElement.Instance.SelectPlayerElementType();
+
+            if (_playerElementType.IsElementSlot)
+            {
+                // add player element slot
+                PlayerElement.Instance.AddPlayerElementSlot(_playerElementType);
+            }
+            else
+            {
+                PlayerElement.Instance.RemovePlayerElementSlot(_playerElementType);
+                // remove player elemnt slot
+            }
         }
      
     }
@@ -36,12 +50,7 @@ public class ElementSlotUI : MonoBehaviour, ISelectHandler, IDeselectHandler
     public void SetImage(Sprite sprite)
     {
         _image.sprite = sprite;
-    }
-    public void SelectSlot()
-    {
-        EventSystem.current.SetSelectedGameObject(gameObject);
-    }
-   
+    }  
     public void MakeSlotEmpty()
     {
         _image.sprite = _emptySprite;
