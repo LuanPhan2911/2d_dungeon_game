@@ -45,7 +45,9 @@ public class AttributePanel : MonoBehaviour
 
     private void ShowBurstInfo(GameObject currentSelectedSlotGamObject)
     {
-        if(currentSelectedSlotGamObject!= null&&
+        _burstImage.gameObject.SetActive(false);
+        _burstDescriptionText.gameObject.SetActive(false);
+        if (currentSelectedSlotGamObject!= null&&
             currentSelectedSlotGamObject.TryGetComponent(out ElementSlotUI slot))
         {
             if(slot.PlayerElementType!= null)
@@ -56,17 +58,9 @@ public class AttributePanel : MonoBehaviour
                 _burstImage.sprite = slot.PlayerElementType.DataSO.burstSprite;
                 _burstDescriptionText.text = slot.PlayerElementType.DataSO.burstDescription;
             }
-            else
-            {
-                _burstImage.gameObject.SetActive(false);
-                _burstDescriptionText.gameObject.SetActive(false);
-            }
+           
         }
-        else
-        {
-            _burstImage.gameObject.SetActive(false);
-            _burstDescriptionText.gameObject.SetActive(false);
-        }
+       
     }
    
 

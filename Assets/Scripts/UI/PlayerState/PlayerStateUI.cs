@@ -71,8 +71,10 @@ public class PlayerStateUI : MonoBehaviour
     {
         if(SubMenuGameObject!= null)
         {
+
             SubMenuGameObject.SetActive(false);
             IsSubMenuOpened = false;
+            SubMenuGameObject = null;
         }
     }
 

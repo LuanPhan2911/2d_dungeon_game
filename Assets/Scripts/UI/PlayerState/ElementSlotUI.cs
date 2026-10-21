@@ -1,13 +1,11 @@
-using Unity.VisualScripting;
 using UnityEngine;
-using UnityEngine.EventSystems;
 using UnityEngine.UI;
 
-public class ElementSlotUI : MonoBehaviour, ISelectHandler, IDeselectHandler
+public class ElementSlotUI : MonoBehaviour
 {
     [SerializeField] private Sprite _emptySprite;
     [SerializeField] private Image _image;
-    [SerializeField] private GameObject _selectedGameObject;
+  
 
     private PlayerElementType _playerElementType;
 
@@ -57,13 +55,5 @@ public class ElementSlotUI : MonoBehaviour, ISelectHandler, IDeselectHandler
         _playerElementType = null;
     }
 
-    public void OnDeselect(BaseEventData eventData)
-    {
-        _selectedGameObject.SetActive(false);
-    }
-
-    public void OnSelect(BaseEventData eventData)
-    {
-        _selectedGameObject.SetActive(true);
-    }
+   
 }

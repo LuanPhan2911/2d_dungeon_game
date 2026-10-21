@@ -10,6 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4487268842172962947}
   - component: {fileID: 7199013051746115961}
+  - component: {fileID: 3160990013233175365}
   - component: {fileID: 1384845930976347436}
   - component: {fileID: 6627042183215573103}
   m_Layer: 5
@@ -54,7 +55,19 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::ElementSlotUI
   _emptySprite: {fileID: 21300000, guid: 0e4ce05d36eeeb54aa19d495c6bd5efa, type: 3}
   _image: {fileID: 4198034464035259470}
-  _selectedGameObject: {fileID: 2791335231900902788}
+--- !u!114 &3160990013233175365
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 338988191292102376}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8eb15ff51aad7f4448bafa12090a8783, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::SelectUI
+  _selectGameObject: {fileID: 2791335231900902788}
 --- !u!114 &1384845930976347436
 MonoBehaviour:
   m_ObjectHideFlags: 0

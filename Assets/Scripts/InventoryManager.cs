@@ -1,15 +1,16 @@
+using System;
 using System.Collections.Generic;
 using UnityEngine;
 
 [System.Serializable]
 public class InventoryItem
 {
-    public ItemSO data;
+    public ItemSO dataSO;
     public int amount;
 
     public InventoryItem(ItemSO item, int amount)
     {
-        data = item;
+        dataSO = item;
         this.amount = amount;
     }
 }
@@ -17,6 +18,12 @@ public class InventoryManager : MonoBehaviour
 {
 
     public static InventoryManager Instance { get; private set; }
+    [SerializeField] private List<InventoryItem> _inventoryItemList = new List<InventoryItem>();
+
+
+    public event Action OnInventoryChanged;
+
+    public InventoryItem[] InventoryItemArray => _inventoryItemList.ToArray();
 
 
     private void Awake()
@@ -30,14 +37,14 @@ public class InventoryManager : MonoBehaviour
         Instance = this;
     }
 
-    [SerializeField] private List<InventoryItem> _inventoryItemList = new List<InventoryItem>();
+   
 
 
     public bool AddItem(ItemSO itemData, int amount = 1)
     {
         if (itemData.isStackable)
         {
-            InventoryItem exisitingItem = _inventoryItemList.Find(x => x.data == itemData);
+            InventoryItem exisitingItem = _inventoryItemList.Find(x => x.dataSO == itemData);
 
             if (exisitingItem != null)
             {
@@ -47,12 +54,13 @@ public class InventoryManager : MonoBehaviour
         }
 
         _inventoryItemList.Add(new InventoryItem(itemData, amount));
+        OnInventoryChanged?.Invoke();
         return true;
     }
 
     public bool HasItem(ItemSO itemData, int amount = 1)
     {
-        InventoryItem exisitingItem = _inventoryItemList.Find(el => el.data == itemData);
+        InventoryItem exisitingItem = _inventoryItemList.Find(el => el.dataSO == itemData);
 
         if (exisitingItem == null) return false;
 
@@ -61,7 +69,7 @@ public class InventoryManager : MonoBehaviour
     }
     public bool RemoveItem(ItemSO itemData, int amount = 1)
     {
-        InventoryItem exisitingItem = _inventoryItemList.Find(el => el.data == itemData);
+        InventoryItem exisitingItem = _inventoryItemList.Find(el => el.dataSO == itemData);
 
         if (exisitingItem == null) return false;
 
@@ -74,6 +82,7 @@ public class InventoryManager : MonoBehaviour
             _inventoryItemList.Remove(exisitingItem);
         }
 
+        OnInventoryChanged?.Invoke();
         return true;
 
     }

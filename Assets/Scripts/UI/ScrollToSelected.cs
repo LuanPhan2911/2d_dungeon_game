@@ -5,6 +5,7 @@ using UnityEngine.UI;
 [RequireComponent(typeof(ScrollRect))]
 public class ScrollToSelected : MonoBehaviour
 {
+    [SerializeField] private float _smoothSpeed=5f;
     private ScrollRect scrollRect;
     private RectTransform viewportRect;
 
@@ -51,6 +52,7 @@ public class ScrollToSelected : MonoBehaviour
         float normalizedY = 1f - Mathf.Clamp(targetY / scrollableHeight, 0f, 1f);
 
         // Instantly snap to the position (or use Mathf.Lerp for a smooth scroll)
-        scrollRect.verticalNormalizedPosition = normalizedY;
+        scrollRect.verticalNormalizedPosition = 
+            Mathf.Lerp(scrollRect.verticalNormalizedPosition, normalizedY, Time.unscaledDeltaTime * _smoothSpeed);
     }
 }
