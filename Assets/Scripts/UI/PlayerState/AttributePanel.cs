@@ -13,8 +13,6 @@ public class AttributePanel : MonoBehaviour
     [SerializeField] private TextMeshProUGUI _healthText;
     [SerializeField] private TextMeshProUGUI _attackText;
     [SerializeField] private TextMeshProUGUI _defendText;
-
-    [SerializeField] private Image _burstImage;
     [SerializeField] private TextMeshProUGUI _burstDescriptionText;
 
 
@@ -45,17 +43,15 @@ public class AttributePanel : MonoBehaviour
 
     private void ShowBurstInfo(GameObject currentSelectedSlotGamObject)
     {
-        _burstImage.gameObject.SetActive(false);
+    
         _burstDescriptionText.gameObject.SetActive(false);
         if (currentSelectedSlotGamObject!= null&&
             currentSelectedSlotGamObject.TryGetComponent(out ElementSlotUI slot))
         {
             if(slot.PlayerElementType!= null)
             {
-                _burstImage.gameObject.SetActive(true);
+             
                 _burstDescriptionText.gameObject.SetActive(true);
-
-                _burstImage.sprite = slot.PlayerElementType.DataSO.burstSprite;
                 _burstDescriptionText.text = slot.PlayerElementType.DataSO.burstDescription;
             }
            
