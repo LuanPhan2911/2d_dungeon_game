@@ -12,8 +12,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 96d36c268fef4984d8b3bca1662c8b76, type: 3}
   m_Name: Potion
   m_EditorClassIdentifier: Assembly-CSharp::ItemSO
-  itemName: 
-  sprite: {fileID: 0}
-  description: 
+  itemName: Potion
+  sprite: {fileID: 21300000, guid: 7cb5b3a43c7cf3945b0ac2b1137362b7, type: 3}
+  description: Potion
   isStackable: 1
-  canBeUsed: 0
+  canBeUsed: 1

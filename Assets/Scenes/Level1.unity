@@ -127,6 +127,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 320391583}
     m_Modifications:
+    - target: {fileID: 624404536410891847, guid: 28501a7fb3b15fa488953917f058c352, type: 3}
+      propertyPath: _confirmUseItem
+      value: 
+      objectReference: {fileID: 99278185}
     - target: {fileID: 2511014084699667004, guid: 28501a7fb3b15fa488953917f058c352, type: 3}
       propertyPath: m_Name
       value: BagSlot_91
@@ -393,6 +397,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 320391583}
     m_Modifications:
+    - target: {fileID: 624404536410891847, guid: 28501a7fb3b15fa488953917f058c352, type: 3}
+      propertyPath: _confirmUseItem
+      value: 
+      objectReference: {fileID: 99278185}
     - target: {fileID: 2511014084699667004, guid: 28501a7fb3b15fa488953917f058c352, type: 3}
       propertyPath: m_Name
       value: BagSlot_55
@@ -935,6 +943,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 320391583}
     m_Modifications:
+    - target: {fileID: 624404536410891847, guid: 28501a7fb3b15fa488953917f058c352, type: 3}
+      propertyPath: _confirmUseItem
+      value: 
+      objectReference: {fileID: 99278185}
     - target: {fileID: 2511014084699667004, guid: 28501a7fb3b15fa488953917f058c352, type: 3}
       propertyPath: m_Name
       value: BagSlot_19
@@ -1464,6 +1476,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 320391583}
     m_Modifications:
+    - target: {fileID: 624404536410891847, guid: 28501a7fb3b15fa488953917f058c352, type: 3}
+      propertyPath: _confirmUseItem
+      value: 
+      objectReference: {fileID: 99278185}
     - target: {fileID: 2511014084699667004, guid: 28501a7fb3b15fa488953917f058c352, type: 3}
       propertyPath: m_Name
       value: BagSlot_53
@@ -1699,13 +1715,14 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 99278184}
+  - component: {fileID: 99278185}
   m_Layer: 5
   m_Name: ConfirmUseItem
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &99278184
 RectTransform:
   m_ObjectHideFlags: 0
@@ -1731,6 +1748,21 @@ RectTransform:
   m_AnchoredPosition: {x: -62.847168, y: -94.20917}
   m_SizeDelta: {x: 722.8875, y: 288.4183}
   m_Pivot: {x: 0.5, y: 0.5}
+--- !u!114 &99278185
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 99278183}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ac7327fc3aaf77d41b0d968470955bbd, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::ConfirmUseItem
+  _playerState: {fileID: 22585080}
+  _amountText: {fileID: 1413618065}
+  _slider: {fileID: 2068816730}
 --- !u!1 &99992390 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 2511014084699667004, guid: 28501a7fb3b15fa488953917f058c352, type: 3}
@@ -1744,6 +1776,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 320391583}
     m_Modifications:
+    - target: {fileID: 624404536410891847, guid: 28501a7fb3b15fa488953917f058c352, type: 3}
+      propertyPath: _confirmUseItem
+      value: 
+      objectReference: {fileID: 99278185}
     - target: {fileID: 2511014084699667004, guid: 28501a7fb3b15fa488953917f058c352, type: 3}
       propertyPath: m_Name
       value: BagSlot_47
@@ -1841,6 +1877,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 320391583}
     m_Modifications:
+    - target: {fileID: 624404536410891847, guid: 28501a7fb3b15fa488953917f058c352, type: 3}
+      propertyPath: _confirmUseItem
+      value: 
+      objectReference: {fileID: 99278185}
     - target: {fileID: 2511014084699667004, guid: 28501a7fb3b15fa488953917f058c352, type: 3}
       propertyPath: m_Name
       value: BagSlot_89
@@ -2241,6 +2281,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 320391583}
     m_Modifications:
+    - target: {fileID: 624404536410891847, guid: 28501a7fb3b15fa488953917f058c352, type: 3}
+      propertyPath: _confirmUseItem
+      value: 
+      objectReference: {fileID: 99278185}
     - target: {fileID: 2511014084699667004, guid: 28501a7fb3b15fa488953917f058c352, type: 3}
       propertyPath: m_Name
       value: BagSlot_30
@@ -2338,6 +2382,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 320391583}
     m_Modifications:
+    - target: {fileID: 624404536410891847, guid: 28501a7fb3b15fa488953917f058c352, type: 3}
+      propertyPath: _confirmUseItem
+      value: 
+      objectReference: {fileID: 99278185}
     - target: {fileID: 2511014084699667004, guid: 28501a7fb3b15fa488953917f058c352, type: 3}
       propertyPath: m_Name
       value: BagSlot_21
@@ -2653,6 +2701,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 320391583}
     m_Modifications:
+    - target: {fileID: 624404536410891847, guid: 28501a7fb3b15fa488953917f058c352, type: 3}
+      propertyPath: _confirmUseItem
+      value: 
+      objectReference: {fileID: 99278185}
     - target: {fileID: 2511014084699667004, guid: 28501a7fb3b15fa488953917f058c352, type: 3}
       propertyPath: m_Name
       value: BagSlot_7
@@ -2750,6 +2802,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 320391583}
     m_Modifications:
+    - target: {fileID: 624404536410891847, guid: 28501a7fb3b15fa488953917f058c352, type: 3}
+      propertyPath: _confirmUseItem
+      value: 
+      objectReference: {fileID: 99278185}
     - target: {fileID: 2511014084699667004, guid: 28501a7fb3b15fa488953917f058c352, type: 3}
       propertyPath: m_Name
       value: BagSlot_99
@@ -2868,6 +2924,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 320391583}
     m_Modifications:
+    - target: {fileID: 624404536410891847, guid: 28501a7fb3b15fa488953917f058c352, type: 3}
+      propertyPath: _confirmUseItem
+      value: 
+      objectReference: {fileID: 99278185}
     - target: {fileID: 2511014084699667004, guid: 28501a7fb3b15fa488953917f058c352, type: 3}
       propertyPath: m_Name
       value: BagSlot_97
@@ -2965,6 +3025,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 320391583}
     m_Modifications:
+    - target: {fileID: 624404536410891847, guid: 28501a7fb3b15fa488953917f058c352, type: 3}
+      propertyPath: _confirmUseItem
+      value: 
+      objectReference: {fileID: 99278185}
     - target: {fileID: 2511014084699667004, guid: 28501a7fb3b15fa488953917f058c352, type: 3}
       propertyPath: m_Name
       value: BagSlot_33
@@ -3062,6 +3126,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 320391583}
     m_Modifications:
+    - target: {fileID: 624404536410891847, guid: 28501a7fb3b15fa488953917f058c352, type: 3}
+      propertyPath: _confirmUseItem
+      value: 
+      objectReference: {fileID: 99278185}
     - target: {fileID: 2511014084699667004, guid: 28501a7fb3b15fa488953917f058c352, type: 3}
       propertyPath: m_Name
       value: BagSlot_54
@@ -3159,6 +3227,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 320391583}
     m_Modifications:
+    - target: {fileID: 624404536410891847, guid: 28501a7fb3b15fa488953917f058c352, type: 3}
+      propertyPath: _confirmUseItem
+      value: 
+      objectReference: {fileID: 99278185}
     - target: {fileID: 2511014084699667004, guid: 28501a7fb3b15fa488953917f058c352, type: 3}
       propertyPath: m_Name
       value: BagSlot_3
@@ -3421,6 +3493,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 320391583}
     m_Modifications:
+    - target: {fileID: 624404536410891847, guid: 28501a7fb3b15fa488953917f058c352, type: 3}
+      propertyPath: _confirmUseItem
+      value: 
+      objectReference: {fileID: 99278185}
     - target: {fileID: 2511014084699667004, guid: 28501a7fb3b15fa488953917f058c352, type: 3}
       propertyPath: m_Name
       value: BagSlot_75
@@ -3582,6 +3658,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 320391583}
     m_Modifications:
+    - target: {fileID: 624404536410891847, guid: 28501a7fb3b15fa488953917f058c352, type: 3}
+      propertyPath: _confirmUseItem
+      value: 
+      objectReference: {fileID: 99278185}
     - target: {fileID: 2511014084699667004, guid: 28501a7fb3b15fa488953917f058c352, type: 3}
       propertyPath: m_Name
       value: BagSlot_98
@@ -3908,6 +3988,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 320391583}
     m_Modifications:
+    - target: {fileID: 624404536410891847, guid: 28501a7fb3b15fa488953917f058c352, type: 3}
+      propertyPath: _confirmUseItem
+      value: 
+      objectReference: {fileID: 99278185}
     - target: {fileID: 2511014084699667004, guid: 28501a7fb3b15fa488953917f058c352, type: 3}
       propertyPath: m_Name
       value: BagSlot_4
@@ -4005,6 +4089,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 320391583}
     m_Modifications:
+    - target: {fileID: 624404536410891847, guid: 28501a7fb3b15fa488953917f058c352, type: 3}
+      propertyPath: _confirmUseItem
+      value: 
+      objectReference: {fileID: 99278185}
     - target: {fileID: 2511014084699667004, guid: 28501a7fb3b15fa488953917f058c352, type: 3}
       propertyPath: m_Name
       value: BagSlot_8
@@ -4260,6 +4348,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 320391583}
     m_Modifications:
+    - target: {fileID: 624404536410891847, guid: 28501a7fb3b15fa488953917f058c352, type: 3}
+      propertyPath: _confirmUseItem
+      value: 
+      objectReference: {fileID: 99278185}
     - target: {fileID: 2511014084699667004, guid: 28501a7fb3b15fa488953917f058c352, type: 3}
       propertyPath: m_Name
       value: BagSlot_77
@@ -4531,6 +4623,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 320391583}
     m_Modifications:
+    - target: {fileID: 624404536410891847, guid: 28501a7fb3b15fa488953917f058c352, type: 3}
+      propertyPath: _confirmUseItem
+      value: 
+      objectReference: {fileID: 99278185}
     - target: {fileID: 2511014084699667004, guid: 28501a7fb3b15fa488953917f058c352, type: 3}
       propertyPath: m_Name
       value: BagSlot_76
@@ -4789,6 +4885,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 320391583}
     m_Modifications:
+    - target: {fileID: 624404536410891847, guid: 28501a7fb3b15fa488953917f058c352, type: 3}
+      propertyPath: _confirmUseItem
+      value: 
+      objectReference: {fileID: 99278185}
     - target: {fileID: 2511014084699667004, guid: 28501a7fb3b15fa488953917f058c352, type: 3}
       propertyPath: m_Name
       value: BagSlot_93
@@ -4886,6 +4986,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 320391583}
     m_Modifications:
+    - target: {fileID: 624404536410891847, guid: 28501a7fb3b15fa488953917f058c352, type: 3}
+      propertyPath: _confirmUseItem
+      value: 
+      objectReference: {fileID: 99278185}
     - target: {fileID: 2511014084699667004, guid: 28501a7fb3b15fa488953917f058c352, type: 3}
       propertyPath: m_Name
       value: BagSlot_81
@@ -5132,6 +5236,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 320391583}
     m_Modifications:
+    - target: {fileID: 624404536410891847, guid: 28501a7fb3b15fa488953917f058c352, type: 3}
+      propertyPath: _confirmUseItem
+      value: 
+      objectReference: {fileID: 99278185}
     - target: {fileID: 2511014084699667004, guid: 28501a7fb3b15fa488953917f058c352, type: 3}
       propertyPath: m_Name
       value: BagSlot_13
@@ -6021,6 +6129,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 320391583}
     m_Modifications:
+    - target: {fileID: 624404536410891847, guid: 28501a7fb3b15fa488953917f058c352, type: 3}
+      propertyPath: _confirmUseItem
+      value: 
+      objectReference: {fileID: 99278185}
     - target: {fileID: 2511014084699667004, guid: 28501a7fb3b15fa488953917f058c352, type: 3}
       propertyPath: m_Name
       value: BagSlot_68
@@ -6393,6 +6505,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 320391583}
     m_Modifications:
+    - target: {fileID: 624404536410891847, guid: 28501a7fb3b15fa488953917f058c352, type: 3}
+      propertyPath: _confirmUseItem
+      value: 
+      objectReference: {fileID: 99278185}
     - target: {fileID: 2511014084699667004, guid: 28501a7fb3b15fa488953917f058c352, type: 3}
       propertyPath: m_Name
       value: BagSlot_41
@@ -6535,6 +6651,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 320391583}
     m_Modifications:
+    - target: {fileID: 624404536410891847, guid: 28501a7fb3b15fa488953917f058c352, type: 3}
+      propertyPath: _confirmUseItem
+      value: 
+      objectReference: {fileID: 99278185}
     - target: {fileID: 2511014084699667004, guid: 28501a7fb3b15fa488953917f058c352, type: 3}
       propertyPath: m_Name
       value: BagSlot_73
@@ -6648,6 +6768,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 320391583}
     m_Modifications:
+    - target: {fileID: 624404536410891847, guid: 28501a7fb3b15fa488953917f058c352, type: 3}
+      propertyPath: _confirmUseItem
+      value: 
+      objectReference: {fileID: 99278185}
     - target: {fileID: 2511014084699667004, guid: 28501a7fb3b15fa488953917f058c352, type: 3}
       propertyPath: m_Name
       value: BagSlot_48
@@ -6761,6 +6885,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 320391583}
     m_Modifications:
+    - target: {fileID: 624404536410891847, guid: 28501a7fb3b15fa488953917f058c352, type: 3}
+      propertyPath: _confirmUseItem
+      value: 
+      objectReference: {fileID: 99278185}
     - target: {fileID: 2511014084699667004, guid: 28501a7fb3b15fa488953917f058c352, type: 3}
       propertyPath: m_Name
       value: BagSlot_27
@@ -7047,6 +7175,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 320391583}
     m_Modifications:
+    - target: {fileID: 624404536410891847, guid: 28501a7fb3b15fa488953917f058c352, type: 3}
+      propertyPath: _confirmUseItem
+      value: 
+      objectReference: {fileID: 99278185}
     - target: {fileID: 2511014084699667004, guid: 28501a7fb3b15fa488953917f058c352, type: 3}
       propertyPath: m_Name
       value: BagSlot_85
@@ -7148,7 +7280,7 @@ GameObject:
   - component: {fileID: 452449724}
   - component: {fileID: 452449723}
   m_Layer: 5
-  m_Name: Text (TMP)
+  m_Name: Title
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -7718,6 +7850,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 320391583}
     m_Modifications:
+    - target: {fileID: 624404536410891847, guid: 28501a7fb3b15fa488953917f058c352, type: 3}
+      propertyPath: _confirmUseItem
+      value: 
+      objectReference: {fileID: 99278185}
     - target: {fileID: 2511014084699667004, guid: 28501a7fb3b15fa488953917f058c352, type: 3}
       propertyPath: m_Name
       value: BagSlot_45
@@ -7815,6 +7951,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 320391583}
     m_Modifications:
+    - target: {fileID: 624404536410891847, guid: 28501a7fb3b15fa488953917f058c352, type: 3}
+      propertyPath: _confirmUseItem
+      value: 
+      objectReference: {fileID: 99278185}
     - target: {fileID: 2511014084699667004, guid: 28501a7fb3b15fa488953917f058c352, type: 3}
       propertyPath: m_Name
       value: BagSlot_25
@@ -8285,6 +8425,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 320391583}
     m_Modifications:
+    - target: {fileID: 624404536410891847, guid: 28501a7fb3b15fa488953917f058c352, type: 3}
+      propertyPath: _confirmUseItem
+      value: 
+      objectReference: {fileID: 99278185}
     - target: {fileID: 2511014084699667004, guid: 28501a7fb3b15fa488953917f058c352, type: 3}
       propertyPath: m_Name
       value: BagSlot_90
@@ -8382,6 +8526,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 320391583}
     m_Modifications:
+    - target: {fileID: 624404536410891847, guid: 28501a7fb3b15fa488953917f058c352, type: 3}
+      propertyPath: _confirmUseItem
+      value: 
+      objectReference: {fileID: 99278185}
     - target: {fileID: 2511014084699667004, guid: 28501a7fb3b15fa488953917f058c352, type: 3}
       propertyPath: m_Name
       value: BagSlot_9
@@ -8701,6 +8849,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 320391583}
     m_Modifications:
+    - target: {fileID: 624404536410891847, guid: 28501a7fb3b15fa488953917f058c352, type: 3}
+      propertyPath: _confirmUseItem
+      value: 
+      objectReference: {fileID: 99278185}
     - target: {fileID: 2511014084699667004, guid: 28501a7fb3b15fa488953917f058c352, type: 3}
       propertyPath: m_Name
       value: BagSlot_2
@@ -9267,6 +9419,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 320391583}
     m_Modifications:
+    - target: {fileID: 624404536410891847, guid: 28501a7fb3b15fa488953917f058c352, type: 3}
+      propertyPath: _confirmUseItem
+      value: 
+      objectReference: {fileID: 99278185}
     - target: {fileID: 2511014084699667004, guid: 28501a7fb3b15fa488953917f058c352, type: 3}
       propertyPath: m_Name
       value: BagSlot_16
@@ -9466,6 +9622,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 320391583}
     m_Modifications:
+    - target: {fileID: 624404536410891847, guid: 28501a7fb3b15fa488953917f058c352, type: 3}
+      propertyPath: _confirmUseItem
+      value: 
+      objectReference: {fileID: 99278185}
     - target: {fileID: 2511014084699667004, guid: 28501a7fb3b15fa488953917f058c352, type: 3}
       propertyPath: m_Name
       value: BagSlot_20
@@ -9991,6 +10151,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 320391583}
     m_Modifications:
+    - target: {fileID: 624404536410891847, guid: 28501a7fb3b15fa488953917f058c352, type: 3}
+      propertyPath: _confirmUseItem
+      value: 
+      objectReference: {fileID: 99278185}
     - target: {fileID: 2511014084699667004, guid: 28501a7fb3b15fa488953917f058c352, type: 3}
       propertyPath: m_Name
       value: BagSlot_71
@@ -10088,6 +10252,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 320391583}
     m_Modifications:
+    - target: {fileID: 624404536410891847, guid: 28501a7fb3b15fa488953917f058c352, type: 3}
+      propertyPath: _confirmUseItem
+      value: 
+      objectReference: {fileID: 99278185}
     - target: {fileID: 2511014084699667004, guid: 28501a7fb3b15fa488953917f058c352, type: 3}
       propertyPath: m_Name
       value: BagSlot_22
@@ -10185,6 +10353,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 320391583}
     m_Modifications:
+    - target: {fileID: 624404536410891847, guid: 28501a7fb3b15fa488953917f058c352, type: 3}
+      propertyPath: _confirmUseItem
+      value: 
+      objectReference: {fileID: 99278185}
     - target: {fileID: 2511014084699667004, guid: 28501a7fb3b15fa488953917f058c352, type: 3}
       propertyPath: m_Name
       value: BagSlot_37
@@ -10298,6 +10470,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 320391583}
     m_Modifications:
+    - target: {fileID: 624404536410891847, guid: 28501a7fb3b15fa488953917f058c352, type: 3}
+      propertyPath: _confirmUseItem
+      value: 
+      objectReference: {fileID: 99278185}
     - target: {fileID: 2511014084699667004, guid: 28501a7fb3b15fa488953917f058c352, type: 3}
       propertyPath: m_Name
       value: BagSlot_31
@@ -10395,6 +10571,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 320391583}
     m_Modifications:
+    - target: {fileID: 624404536410891847, guid: 28501a7fb3b15fa488953917f058c352, type: 3}
+      propertyPath: _confirmUseItem
+      value: 
+      objectReference: {fileID: 99278185}
     - target: {fileID: 2511014084699667004, guid: 28501a7fb3b15fa488953917f058c352, type: 3}
       propertyPath: m_Name
       value: BagSlot_35
@@ -10621,6 +10801,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 320391583}
     m_Modifications:
+    - target: {fileID: 624404536410891847, guid: 28501a7fb3b15fa488953917f058c352, type: 3}
+      propertyPath: _confirmUseItem
+      value: 
+      objectReference: {fileID: 99278185}
     - target: {fileID: 2511014084699667004, guid: 28501a7fb3b15fa488953917f058c352, type: 3}
       propertyPath: m_Name
       value: BagSlot_61
@@ -10844,6 +11028,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 320391583}
     m_Modifications:
+    - target: {fileID: 624404536410891847, guid: 28501a7fb3b15fa488953917f058c352, type: 3}
+      propertyPath: _confirmUseItem
+      value: 
+      objectReference: {fileID: 99278185}
     - target: {fileID: 2511014084699667004, guid: 28501a7fb3b15fa488953917f058c352, type: 3}
       propertyPath: m_Name
       value: BagSlot_44
@@ -10941,6 +11129,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 320391583}
     m_Modifications:
+    - target: {fileID: 624404536410891847, guid: 28501a7fb3b15fa488953917f058c352, type: 3}
+      propertyPath: _confirmUseItem
+      value: 
+      objectReference: {fileID: 99278185}
     - target: {fileID: 2511014084699667004, guid: 28501a7fb3b15fa488953917f058c352, type: 3}
       propertyPath: m_Name
       value: BagSlot_87
@@ -11129,6 +11321,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 320391583}
     m_Modifications:
+    - target: {fileID: 624404536410891847, guid: 28501a7fb3b15fa488953917f058c352, type: 3}
+      propertyPath: _confirmUseItem
+      value: 
+      objectReference: {fileID: 99278185}
     - target: {fileID: 2511014084699667004, guid: 28501a7fb3b15fa488953917f058c352, type: 3}
       propertyPath: m_Name
       value: BagSlot_67
@@ -11598,6 +11794,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 320391583}
     m_Modifications:
+    - target: {fileID: 624404536410891847, guid: 28501a7fb3b15fa488953917f058c352, type: 3}
+      propertyPath: _confirmUseItem
+      value: 
+      objectReference: {fileID: 99278185}
     - target: {fileID: 2511014084699667004, guid: 28501a7fb3b15fa488953917f058c352, type: 3}
       propertyPath: m_Name
       value: BagSlot_11
@@ -11727,6 +11927,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 320391583}
     m_Modifications:
+    - target: {fileID: 624404536410891847, guid: 28501a7fb3b15fa488953917f058c352, type: 3}
+      propertyPath: _confirmUseItem
+      value: 
+      objectReference: {fileID: 99278185}
     - target: {fileID: 2511014084699667004, guid: 28501a7fb3b15fa488953917f058c352, type: 3}
       propertyPath: m_Name
       value: BagSlot_18
@@ -12190,6 +12394,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 320391583}
     m_Modifications:
+    - target: {fileID: 624404536410891847, guid: 28501a7fb3b15fa488953917f058c352, type: 3}
+      propertyPath: _confirmUseItem
+      value: 
+      objectReference: {fileID: 99278185}
     - target: {fileID: 2511014084699667004, guid: 28501a7fb3b15fa488953917f058c352, type: 3}
       propertyPath: m_Name
       value: BagSlot_62
@@ -12409,6 +12617,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 320391583}
     m_Modifications:
+    - target: {fileID: 624404536410891847, guid: 28501a7fb3b15fa488953917f058c352, type: 3}
+      propertyPath: _confirmUseItem
+      value: 
+      objectReference: {fileID: 99278185}
     - target: {fileID: 2511014084699667004, guid: 28501a7fb3b15fa488953917f058c352, type: 3}
       propertyPath: m_Name
       value: BagSlot_24
@@ -13235,6 +13447,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 320391583}
     m_Modifications:
+    - target: {fileID: 624404536410891847, guid: 28501a7fb3b15fa488953917f058c352, type: 3}
+      propertyPath: _confirmUseItem
+      value: 
+      objectReference: {fileID: 99278185}
     - target: {fileID: 2511014084699667004, guid: 28501a7fb3b15fa488953917f058c352, type: 3}
       propertyPath: m_Name
       value: BagSlot_14
@@ -13497,6 +13713,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 320391583}
     m_Modifications:
+    - target: {fileID: 624404536410891847, guid: 28501a7fb3b15fa488953917f058c352, type: 3}
+      propertyPath: _confirmUseItem
+      value: 
+      objectReference: {fileID: 99278185}
     - target: {fileID: 2511014084699667004, guid: 28501a7fb3b15fa488953917f058c352, type: 3}
       propertyPath: m_Name
       value: BagSlot_94
@@ -13747,6 +13967,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 320391583}
     m_Modifications:
+    - target: {fileID: 624404536410891847, guid: 28501a7fb3b15fa488953917f058c352, type: 3}
+      propertyPath: _confirmUseItem
+      value: 
+      objectReference: {fileID: 99278185}
     - target: {fileID: 2511014084699667004, guid: 28501a7fb3b15fa488953917f058c352, type: 3}
       propertyPath: m_Name
       value: BagSlot_26
@@ -13844,6 +14068,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 320391583}
     m_Modifications:
+    - target: {fileID: 624404536410891847, guid: 28501a7fb3b15fa488953917f058c352, type: 3}
+      propertyPath: _confirmUseItem
+      value: 
+      objectReference: {fileID: 99278185}
     - target: {fileID: 2511014084699667004, guid: 28501a7fb3b15fa488953917f058c352, type: 3}
       propertyPath: m_Name
       value: BagSlot_74
@@ -14179,6 +14407,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 320391583}
     m_Modifications:
+    - target: {fileID: 624404536410891847, guid: 28501a7fb3b15fa488953917f058c352, type: 3}
+      propertyPath: _confirmUseItem
+      value: 
+      objectReference: {fileID: 99278185}
     - target: {fileID: 2511014084699667004, guid: 28501a7fb3b15fa488953917f058c352, type: 3}
       propertyPath: m_Name
       value: BagSlot_29
@@ -14397,6 +14629,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 320391583}
     m_Modifications:
+    - target: {fileID: 624404536410891847, guid: 28501a7fb3b15fa488953917f058c352, type: 3}
+      propertyPath: _confirmUseItem
+      value: 
+      objectReference: {fileID: 99278185}
     - target: {fileID: 2511014084699667004, guid: 28501a7fb3b15fa488953917f058c352, type: 3}
       propertyPath: m_Name
       value: BagSlot_38
@@ -14652,6 +14888,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 320391583}
     m_Modifications:
+    - target: {fileID: 624404536410891847, guid: 28501a7fb3b15fa488953917f058c352, type: 3}
+      propertyPath: _confirmUseItem
+      value: 
+      objectReference: {fileID: 99278185}
     - target: {fileID: 2511014084699667004, guid: 28501a7fb3b15fa488953917f058c352, type: 3}
       propertyPath: m_Name
       value: BagSlot_79
@@ -15174,6 +15414,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 320391583}
     m_Modifications:
+    - target: {fileID: 624404536410891847, guid: 28501a7fb3b15fa488953917f058c352, type: 3}
+      propertyPath: _confirmUseItem
+      value: 
+      objectReference: {fileID: 99278185}
     - target: {fileID: 2511014084699667004, guid: 28501a7fb3b15fa488953917f058c352, type: 3}
       propertyPath: m_Name
       value: BagSlot_80
@@ -15462,6 +15706,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 320391583}
     m_Modifications:
+    - target: {fileID: 624404536410891847, guid: 28501a7fb3b15fa488953917f058c352, type: 3}
+      propertyPath: _confirmUseItem
+      value: 
+      objectReference: {fileID: 99278185}
     - target: {fileID: 2511014084699667004, guid: 28501a7fb3b15fa488953917f058c352, type: 3}
       propertyPath: m_Name
       value: BagSlot_95
@@ -15697,6 +15945,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 320391583}
     m_Modifications:
+    - target: {fileID: 624404536410891847, guid: 28501a7fb3b15fa488953917f058c352, type: 3}
+      propertyPath: _confirmUseItem
+      value: 
+      objectReference: {fileID: 99278185}
     - target: {fileID: 2511014084699667004, guid: 28501a7fb3b15fa488953917f058c352, type: 3}
       propertyPath: m_Name
       value: BagSlot_63
@@ -16381,6 +16633,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 320391583}
     m_Modifications:
+    - target: {fileID: 624404536410891847, guid: 28501a7fb3b15fa488953917f058c352, type: 3}
+      propertyPath: _confirmUseItem
+      value: 
+      objectReference: {fileID: 99278185}
     - target: {fileID: 2511014084699667004, guid: 28501a7fb3b15fa488953917f058c352, type: 3}
       propertyPath: m_Name
       value: BagSlot_66
@@ -16478,6 +16734,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 320391583}
     m_Modifications:
+    - target: {fileID: 624404536410891847, guid: 28501a7fb3b15fa488953917f058c352, type: 3}
+      propertyPath: _confirmUseItem
+      value: 
+      objectReference: {fileID: 99278185}
     - target: {fileID: 2511014084699667004, guid: 28501a7fb3b15fa488953917f058c352, type: 3}
       propertyPath: m_Name
       value: BagSlot_92
@@ -16575,6 +16835,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 320391583}
     m_Modifications:
+    - target: {fileID: 624404536410891847, guid: 28501a7fb3b15fa488953917f058c352, type: 3}
+      propertyPath: _confirmUseItem
+      value: 
+      objectReference: {fileID: 99278185}
     - target: {fileID: 2511014084699667004, guid: 28501a7fb3b15fa488953917f058c352, type: 3}
       propertyPath: m_Name
       value: BagSlot_86
@@ -16672,6 +16936,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 320391583}
     m_Modifications:
+    - target: {fileID: 624404536410891847, guid: 28501a7fb3b15fa488953917f058c352, type: 3}
+      propertyPath: _confirmUseItem
+      value: 
+      objectReference: {fileID: 99278185}
     - target: {fileID: 2511014084699667004, guid: 28501a7fb3b15fa488953917f058c352, type: 3}
       propertyPath: m_Name
       value: BagSlot_40
@@ -16785,6 +17053,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 320391583}
     m_Modifications:
+    - target: {fileID: 624404536410891847, guid: 28501a7fb3b15fa488953917f058c352, type: 3}
+      propertyPath: _confirmUseItem
+      value: 
+      objectReference: {fileID: 99278185}
     - target: {fileID: 2511014084699667004, guid: 28501a7fb3b15fa488953917f058c352, type: 3}
       propertyPath: m_Name
       value: BagSlot_96
@@ -16882,6 +17154,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 320391583}
     m_Modifications:
+    - target: {fileID: 624404536410891847, guid: 28501a7fb3b15fa488953917f058c352, type: 3}
+      propertyPath: _confirmUseItem
+      value: 
+      objectReference: {fileID: 99278185}
     - target: {fileID: 2511014084699667004, guid: 28501a7fb3b15fa488953917f058c352, type: 3}
       propertyPath: m_Name
       value: BagSlot_72
@@ -17032,6 +17308,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 320391583}
     m_Modifications:
+    - target: {fileID: 624404536410891847, guid: 28501a7fb3b15fa488953917f058c352, type: 3}
+      propertyPath: _confirmUseItem
+      value: 
+      objectReference: {fileID: 99278185}
     - target: {fileID: 2511014084699667004, guid: 28501a7fb3b15fa488953917f058c352, type: 3}
       propertyPath: m_Name
       value: BagSlot_28
@@ -17530,6 +17810,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 320391583}
     m_Modifications:
+    - target: {fileID: 624404536410891847, guid: 28501a7fb3b15fa488953917f058c352, type: 3}
+      propertyPath: _confirmUseItem
+      value: 
+      objectReference: {fileID: 99278185}
     - target: {fileID: 2511014084699667004, guid: 28501a7fb3b15fa488953917f058c352, type: 3}
       propertyPath: m_Name
       value: BagSlot_69
@@ -17852,6 +18136,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 320391583}
     m_Modifications:
+    - target: {fileID: 624404536410891847, guid: 28501a7fb3b15fa488953917f058c352, type: 3}
+      propertyPath: _confirmUseItem
+      value: 
+      objectReference: {fileID: 99278185}
     - target: {fileID: 2511014084699667004, guid: 28501a7fb3b15fa488953917f058c352, type: 3}
       propertyPath: m_Name
       value: BagSlot_42
@@ -17981,6 +18269,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 320391583}
     m_Modifications:
+    - target: {fileID: 624404536410891847, guid: 28501a7fb3b15fa488953917f058c352, type: 3}
+      propertyPath: _confirmUseItem
+      value: 
+      objectReference: {fileID: 99278185}
     - target: {fileID: 2511014084699667004, guid: 28501a7fb3b15fa488953917f058c352, type: 3}
       propertyPath: m_Name
       value: BagSlot_51
@@ -18215,6 +18507,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 320391583}
     m_Modifications:
+    - target: {fileID: 624404536410891847, guid: 28501a7fb3b15fa488953917f058c352, type: 3}
+      propertyPath: _confirmUseItem
+      value: 
+      objectReference: {fileID: 99278185}
     - target: {fileID: 2511014084699667004, guid: 28501a7fb3b15fa488953917f058c352, type: 3}
       propertyPath: m_Name
       value: BagSlot_46
@@ -18890,6 +19186,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 320391583}
     m_Modifications:
+    - target: {fileID: 624404536410891847, guid: 28501a7fb3b15fa488953917f058c352, type: 3}
+      propertyPath: _confirmUseItem
+      value: 
+      objectReference: {fileID: 99278185}
     - target: {fileID: 2511014084699667004, guid: 28501a7fb3b15fa488953917f058c352, type: 3}
       propertyPath: m_Name
       value: BagSlot_58
@@ -18987,6 +19287,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 320391583}
     m_Modifications:
+    - target: {fileID: 624404536410891847, guid: 28501a7fb3b15fa488953917f058c352, type: 3}
+      propertyPath: _confirmUseItem
+      value: 
+      objectReference: {fileID: 99278185}
     - target: {fileID: 2511014084699667004, guid: 28501a7fb3b15fa488953917f058c352, type: 3}
       propertyPath: m_Name
       value: BagSlot_12
@@ -19084,6 +19388,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 320391583}
     m_Modifications:
+    - target: {fileID: 624404536410891847, guid: 28501a7fb3b15fa488953917f058c352, type: 3}
+      propertyPath: _confirmUseItem
+      value: 
+      objectReference: {fileID: 99278185}
     - target: {fileID: 2511014084699667004, guid: 28501a7fb3b15fa488953917f058c352, type: 3}
       propertyPath: m_Name
       value: BagSlot_5
@@ -19436,6 +19744,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 320391583}
     m_Modifications:
+    - target: {fileID: 624404536410891847, guid: 28501a7fb3b15fa488953917f058c352, type: 3}
+      propertyPath: _confirmUseItem
+      value: 
+      objectReference: {fileID: 99278185}
     - target: {fileID: 2511014084699667004, guid: 28501a7fb3b15fa488953917f058c352, type: 3}
       propertyPath: m_Name
       value: BagSlot_43
@@ -20193,6 +20505,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 320391583}
     m_Modifications:
+    - target: {fileID: 624404536410891847, guid: 28501a7fb3b15fa488953917f058c352, type: 3}
+      propertyPath: _confirmUseItem
+      value: 
+      objectReference: {fileID: 99278185}
     - target: {fileID: 2511014084699667004, guid: 28501a7fb3b15fa488953917f058c352, type: 3}
       propertyPath: m_Name
       value: BagSlot_39
@@ -20290,6 +20606,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 320391583}
     m_Modifications:
+    - target: {fileID: 624404536410891847, guid: 28501a7fb3b15fa488953917f058c352, type: 3}
+      propertyPath: _confirmUseItem
+      value: 
+      objectReference: {fileID: 99278185}
     - target: {fileID: 2511014084699667004, guid: 28501a7fb3b15fa488953917f058c352, type: 3}
       propertyPath: m_Name
       value: BagSlot_1
@@ -20516,6 +20836,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 320391583}
     m_Modifications:
+    - target: {fileID: 624404536410891847, guid: 28501a7fb3b15fa488953917f058c352, type: 3}
+      propertyPath: _confirmUseItem
+      value: 
+      objectReference: {fileID: 99278185}
     - target: {fileID: 2511014084699667004, guid: 28501a7fb3b15fa488953917f058c352, type: 3}
       propertyPath: m_Name
       value: BagSlot_34
@@ -20613,6 +20937,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 320391583}
     m_Modifications:
+    - target: {fileID: 624404536410891847, guid: 28501a7fb3b15fa488953917f058c352, type: 3}
+      propertyPath: _confirmUseItem
+      value: 
+      objectReference: {fileID: 99278185}
     - target: {fileID: 2511014084699667004, guid: 28501a7fb3b15fa488953917f058c352, type: 3}
       propertyPath: m_Name
       value: BagSlot_70
@@ -21057,7 +21385,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: Confirm
+  m_text: Use
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
@@ -21145,6 +21473,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 320391583}
     m_Modifications:
+    - target: {fileID: 624404536410891847, guid: 28501a7fb3b15fa488953917f058c352, type: 3}
+      propertyPath: _confirmUseItem
+      value: 
+      objectReference: {fileID: 99278185}
     - target: {fileID: 2511014084699667004, guid: 28501a7fb3b15fa488953917f058c352, type: 3}
       propertyPath: m_Name
       value: BagSlot_60
@@ -22551,6 +22883,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 320391583}
     m_Modifications:
+    - target: {fileID: 624404536410891847, guid: 28501a7fb3b15fa488953917f058c352, type: 3}
+      propertyPath: _confirmUseItem
+      value: 
+      objectReference: {fileID: 99278185}
     - target: {fileID: 2511014084699667004, guid: 28501a7fb3b15fa488953917f058c352, type: 3}
       propertyPath: m_Name
       value: BagSlot_50
@@ -22664,6 +23000,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 320391583}
     m_Modifications:
+    - target: {fileID: 624404536410891847, guid: 28501a7fb3b15fa488953917f058c352, type: 3}
+      propertyPath: _confirmUseItem
+      value: 
+      objectReference: {fileID: 99278185}
     - target: {fileID: 2511014084699667004, guid: 28501a7fb3b15fa488953917f058c352, type: 3}
       propertyPath: m_Name
       value: BagSlot_88
@@ -22777,6 +23117,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 320391583}
     m_Modifications:
+    - target: {fileID: 624404536410891847, guid: 28501a7fb3b15fa488953917f058c352, type: 3}
+      propertyPath: _confirmUseItem
+      value: 
+      objectReference: {fileID: 99278185}
     - target: {fileID: 2511014084699667004, guid: 28501a7fb3b15fa488953917f058c352, type: 3}
       propertyPath: m_Name
       value: BagSlot_15
@@ -22901,6 +23245,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 320391583}
     m_Modifications:
+    - target: {fileID: 624404536410891847, guid: 28501a7fb3b15fa488953917f058c352, type: 3}
+      propertyPath: _confirmUseItem
+      value: 
+      objectReference: {fileID: 99278185}
     - target: {fileID: 2511014084699667004, guid: 28501a7fb3b15fa488953917f058c352, type: 3}
       propertyPath: m_Name
       value: BagSlot_57
@@ -23163,6 +23511,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 320391583}
     m_Modifications:
+    - target: {fileID: 624404536410891847, guid: 28501a7fb3b15fa488953917f058c352, type: 3}
+      propertyPath: _confirmUseItem
+      value: 
+      objectReference: {fileID: 99278185}
     - target: {fileID: 2511014084699667004, guid: 28501a7fb3b15fa488953917f058c352, type: 3}
       propertyPath: m_Name
       value: BagSlot_59
@@ -23453,18 +23805,18 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: UnityEngine.UI::UnityEngine.UI.Button
   m_Navigation:
-    m_Mode: 3
+    m_Mode: 4
     m_WrapAround: 0
-    m_SelectOnUp: {fileID: 0}
+    m_SelectOnUp: {fileID: 2068816730}
     m_SelectOnDown: {fileID: 0}
     m_SelectOnLeft: {fileID: 0}
-    m_SelectOnRight: {fileID: 0}
+    m_SelectOnRight: {fileID: 1935127957}
   m_Transition: 1
   m_Colors:
     m_NormalColor: {r: 1, g: 1, b: 1, a: 1}
     m_HighlightedColor: {r: 0.9607843, g: 0.9607843, b: 0.9607843, a: 1}
     m_PressedColor: {r: 0.78431374, g: 0.78431374, b: 0.78431374, a: 1}
-    m_SelectedColor: {r: 0.9607843, g: 0.9607843, b: 0.9607843, a: 1}
+    m_SelectedColor: {r: 0.1960784, g: 0.8039216, b: 0.1960784, a: 1}
     m_DisabledColor: {r: 0.78431374, g: 0.78431374, b: 0.78431374, a: 0.5019608}
     m_ColorMultiplier: 1
     m_FadeDuration: 0.1
@@ -23483,7 +23835,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 1715426751}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 99278185}
+        m_TargetAssemblyTypeName: ConfirmUseItem, Assembly-CSharp
+        m_MethodName: Confirm
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &1715426751
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -23688,6 +24052,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 320391583}
     m_Modifications:
+    - target: {fileID: 624404536410891847, guid: 28501a7fb3b15fa488953917f058c352, type: 3}
+      propertyPath: _confirmUseItem
+      value: 
+      objectReference: {fileID: 99278185}
     - target: {fileID: 2511014084699667004, guid: 28501a7fb3b15fa488953917f058c352, type: 3}
       propertyPath: m_Name
       value: BagSlot_64
@@ -23962,6 +24330,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 320391583}
     m_Modifications:
+    - target: {fileID: 624404536410891847, guid: 28501a7fb3b15fa488953917f058c352, type: 3}
+      propertyPath: _confirmUseItem
+      value: 
+      objectReference: {fileID: 99278185}
     - target: {fileID: 2511014084699667004, guid: 28501a7fb3b15fa488953917f058c352, type: 3}
       propertyPath: m_Name
       value: BagSlot_36
@@ -24149,6 +24521,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 320391583}
     m_Modifications:
+    - target: {fileID: 624404536410891847, guid: 28501a7fb3b15fa488953917f058c352, type: 3}
+      propertyPath: _confirmUseItem
+      value: 
+      objectReference: {fileID: 99278185}
     - target: {fileID: 2511014084699667004, guid: 28501a7fb3b15fa488953917f058c352, type: 3}
       propertyPath: m_Name
       value: BagSlot_17
@@ -24750,6 +25126,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 320391583}
     m_Modifications:
+    - target: {fileID: 624404536410891847, guid: 28501a7fb3b15fa488953917f058c352, type: 3}
+      propertyPath: _confirmUseItem
+      value: 
+      objectReference: {fileID: 99278185}
     - target: {fileID: 2511014084699667004, guid: 28501a7fb3b15fa488953917f058c352, type: 3}
       propertyPath: m_Name
       value: BagSlot_83
@@ -24847,6 +25227,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 320391583}
     m_Modifications:
+    - target: {fileID: 624404536410891847, guid: 28501a7fb3b15fa488953917f058c352, type: 3}
+      propertyPath: _confirmUseItem
+      value: 
+      objectReference: {fileID: 99278185}
     - target: {fileID: 2511014084699667004, guid: 28501a7fb3b15fa488953917f058c352, type: 3}
       propertyPath: m_Name
       value: BagSlot_32
@@ -24944,6 +25328,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 320391583}
     m_Modifications:
+    - target: {fileID: 624404536410891847, guid: 28501a7fb3b15fa488953917f058c352, type: 3}
+      propertyPath: _confirmUseItem
+      value: 
+      objectReference: {fileID: 99278185}
     - target: {fileID: 2511014084699667004, guid: 28501a7fb3b15fa488953917f058c352, type: 3}
       propertyPath: m_Name
       value: BagSlot_52
@@ -25747,6 +26135,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 320391583}
     m_Modifications:
+    - target: {fileID: 624404536410891847, guid: 28501a7fb3b15fa488953917f058c352, type: 3}
+      propertyPath: _confirmUseItem
+      value: 
+      objectReference: {fileID: 99278185}
     - target: {fileID: 2511014084699667004, guid: 28501a7fb3b15fa488953917f058c352, type: 3}
       propertyPath: m_Name
       value: BagSlot_10
@@ -26243,6 +26635,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 320391583}
     m_Modifications:
+    - target: {fileID: 624404536410891847, guid: 28501a7fb3b15fa488953917f058c352, type: 3}
+      propertyPath: _confirmUseItem
+      value: 
+      objectReference: {fileID: 99278185}
     - target: {fileID: 2511014084699667004, guid: 28501a7fb3b15fa488953917f058c352, type: 3}
       propertyPath: m_Name
       value: BagSlot_56
@@ -26627,6 +27023,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 320391583}
     m_Modifications:
+    - target: {fileID: 624404536410891847, guid: 28501a7fb3b15fa488953917f058c352, type: 3}
+      propertyPath: _confirmUseItem
+      value: 
+      objectReference: {fileID: 99278185}
     - target: {fileID: 2511014084699667004, guid: 28501a7fb3b15fa488953917f058c352, type: 3}
       propertyPath: m_Name
       value: BagSlot_65
@@ -27056,18 +27456,18 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: UnityEngine.UI::UnityEngine.UI.Button
   m_Navigation:
-    m_Mode: 3
+    m_Mode: 4
     m_WrapAround: 0
-    m_SelectOnUp: {fileID: 0}
+    m_SelectOnUp: {fileID: 2068816730}
     m_SelectOnDown: {fileID: 0}
-    m_SelectOnLeft: {fileID: 0}
+    m_SelectOnLeft: {fileID: 1715426750}
     m_SelectOnRight: {fileID: 0}
   m_Transition: 1
   m_Colors:
     m_NormalColor: {r: 1, g: 1, b: 1, a: 1}
     m_HighlightedColor: {r: 0.9607843, g: 0.9607843, b: 0.9607843, a: 1}
     m_PressedColor: {r: 0.78431374, g: 0.78431374, b: 0.78431374, a: 1}
-    m_SelectedColor: {r: 0.9607843, g: 0.9607843, b: 0.9607843, a: 1}
+    m_SelectedColor: {r: 0.1960784, g: 0.8039216, b: 0.1960784, a: 1}
     m_DisabledColor: {r: 0.78431374, g: 0.78431374, b: 0.78431374, a: 0.5019608}
     m_ColorMultiplier: 1
     m_FadeDuration: 0.1
@@ -27086,7 +27486,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 1935127958}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 99278185}
+        m_TargetAssemblyTypeName: ConfirmUseItem, Assembly-CSharp
+        m_MethodName: Cancel
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &1935127958
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -27191,6 +27603,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 320391583}
     m_Modifications:
+    - target: {fileID: 624404536410891847, guid: 28501a7fb3b15fa488953917f058c352, type: 3}
+      propertyPath: _confirmUseItem
+      value: 
+      objectReference: {fileID: 99278185}
     - target: {fileID: 2511014084699667004, guid: 28501a7fb3b15fa488953917f058c352, type: 3}
       propertyPath: m_Name
       value: BagSlot_78
@@ -27357,6 +27773,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 320391583}
     m_Modifications:
+    - target: {fileID: 624404536410891847, guid: 28501a7fb3b15fa488953917f058c352, type: 3}
+      propertyPath: _confirmUseItem
+      value: 
+      objectReference: {fileID: 99278185}
     - target: {fileID: 2511014084699667004, guid: 28501a7fb3b15fa488953917f058c352, type: 3}
       propertyPath: m_Name
       value: BagSlot_6
@@ -28083,6 +28503,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 320391583}
     m_Modifications:
+    - target: {fileID: 624404536410891847, guid: 28501a7fb3b15fa488953917f058c352, type: 3}
+      propertyPath: _confirmUseItem
+      value: 
+      objectReference: {fileID: 99278185}
     - target: {fileID: 2511014084699667004, guid: 28501a7fb3b15fa488953917f058c352, type: 3}
       propertyPath: m_Name
       value: BagSlot_23
@@ -28266,7 +28690,55 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4515516264253465214, guid: 1bfb54b3d9f5d724bad001e5ffc6dc6f, type: 3}
       propertyPath: m_Value
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4515516264253465214, guid: 1bfb54b3d9f5d724bad001e5ffc6dc6f, type: 3}
+      propertyPath: m_MaxValue
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 4515516264253465214, guid: 1bfb54b3d9f5d724bad001e5ffc6dc6f, type: 3}
+      propertyPath: m_MinValue
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4515516264253465214, guid: 1bfb54b3d9f5d724bad001e5ffc6dc6f, type: 3}
+      propertyPath: m_WholeNumbers
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4515516264253465214, guid: 1bfb54b3d9f5d724bad001e5ffc6dc6f, type: 3}
+      propertyPath: m_Navigation.m_Mode
+      value: 4
+      objectReference: {fileID: 0}
+    - target: {fileID: 4515516264253465214, guid: 1bfb54b3d9f5d724bad001e5ffc6dc6f, type: 3}
+      propertyPath: m_Navigation.m_SelectOnDown
+      value: 
+      objectReference: {fileID: 1715426750}
+    - target: {fileID: 4515516264253465214, guid: 1bfb54b3d9f5d724bad001e5ffc6dc6f, type: 3}
+      propertyPath: m_OnValueChanged.m_PersistentCalls.m_Calls.Array.size
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4515516264253465214, guid: 1bfb54b3d9f5d724bad001e5ffc6dc6f, type: 3}
+      propertyPath: m_OnValueChanged.m_PersistentCalls.m_Calls.Array.data[0].m_Mode
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 4515516264253465214, guid: 1bfb54b3d9f5d724bad001e5ffc6dc6f, type: 3}
+      propertyPath: m_OnValueChanged.m_PersistentCalls.m_Calls.Array.data[0].m_Target
+      value: 
+      objectReference: {fileID: 99278185}
+    - target: {fileID: 4515516264253465214, guid: 1bfb54b3d9f5d724bad001e5ffc6dc6f, type: 3}
+      propertyPath: m_OnValueChanged.m_PersistentCalls.m_Calls.Array.data[0].m_CallState
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 4515516264253465214, guid: 1bfb54b3d9f5d724bad001e5ffc6dc6f, type: 3}
+      propertyPath: m_OnValueChanged.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: SetUseAmount
+      objectReference: {fileID: 0}
+    - target: {fileID: 4515516264253465214, guid: 1bfb54b3d9f5d724bad001e5ffc6dc6f, type: 3}
+      propertyPath: m_OnValueChanged.m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
+      value: ConfirmUseItem, Assembly-CSharp
+      objectReference: {fileID: 0}
+    - target: {fileID: 4515516264253465214, guid: 1bfb54b3d9f5d724bad001e5ffc6dc6f, type: 3}
+      propertyPath: m_OnValueChanged.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_ObjectArgumentAssemblyTypeName
+      value: UnityEngine.Object, UnityEngine
       objectReference: {fileID: 0}
     - target: {fileID: 5683212170098266757, guid: 1bfb54b3d9f5d724bad001e5ffc6dc6f, type: 3}
       propertyPath: m_AnchorMax.x
@@ -28274,7 +28746,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5683212170098266757, guid: 1bfb54b3d9f5d724bad001e5ffc6dc6f, type: 3}
       propertyPath: m_AnchorMax.y
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 8698160929790103894, guid: 1bfb54b3d9f5d724bad001e5ffc6dc6f, type: 3}
       propertyPath: m_AnchorMax.x
@@ -28282,7 +28754,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8698160929790103894, guid: 1bfb54b3d9f5d724bad001e5ffc6dc6f, type: 3}
       propertyPath: m_AnchorMax.y
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 8698160929790103894, guid: 1bfb54b3d9f5d724bad001e5ffc6dc6f, type: 3}
       propertyPath: m_AnchorMin.x
@@ -28298,6 +28770,17 @@ RectTransform:
   m_CorrespondingSourceObject: {fileID: 4407152986316581927, guid: 1bfb54b3d9f5d724bad001e5ffc6dc6f, type: 3}
   m_PrefabInstance: {fileID: 2068816728}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &2068816730 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 4515516264253465214, guid: 1bfb54b3d9f5d724bad001e5ffc6dc6f, type: 3}
+  m_PrefabInstance: {fileID: 2068816728}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 67db9e8f0e2ae9c40bc1e2b64352a6b4, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: UnityEngine.UI::UnityEngine.UI.Slider
 --- !u!1001 &2083090340
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -28306,6 +28789,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 320391583}
     m_Modifications:
+    - target: {fileID: 624404536410891847, guid: 28501a7fb3b15fa488953917f058c352, type: 3}
+      propertyPath: _confirmUseItem
+      value: 
+      objectReference: {fileID: 99278185}
     - target: {fileID: 2511014084699667004, guid: 28501a7fb3b15fa488953917f058c352, type: 3}
       propertyPath: m_Name
       value: BagSlot_82
@@ -42369,6 +42856,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 320391583}
     m_Modifications:
+    - target: {fileID: 624404536410891847, guid: 28501a7fb3b15fa488953917f058c352, type: 3}
+      propertyPath: _confirmUseItem
+      value: 
+      objectReference: {fileID: 99278185}
     - target: {fileID: 2511014084699667004, guid: 28501a7fb3b15fa488953917f058c352, type: 3}
       propertyPath: m_Name
       value: BagSlot_49
@@ -42493,6 +42984,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 320391583}
     m_Modifications:
+    - target: {fileID: 624404536410891847, guid: 28501a7fb3b15fa488953917f058c352, type: 3}
+      propertyPath: _confirmUseItem
+      value: 
+      objectReference: {fileID: 99278185}
     - target: {fileID: 2511014084699667004, guid: 28501a7fb3b15fa488953917f058c352, type: 3}
       propertyPath: m_Name
       value: BagSlot_84
@@ -43332,7 +43827,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e1ab20bea06cdb94a9b7ba278391be1f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::InventoryManager
-  _inventoryItemList: []
+  _inventoryItemList:
+  - dataSO: {fileID: 11400000, guid: c4b3f18e462d46c40a5d7f09fa43d1b7, type: 2}
+    amount: 5
 --- !u!224 &2661484734404089312 stripped
 RectTransform:
   m_CorrespondingSourceObject: {fileID: 4559412208290445923, guid: 1ad4413df4c019f48b5727bb29d719b4, type: 3}
@@ -43455,6 +43952,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 320391583}
     m_Modifications:
+    - target: {fileID: 624404536410891847, guid: 28501a7fb3b15fa488953917f058c352, type: 3}
+      propertyPath: _confirmUseItem
+      value: 
+      objectReference: {fileID: 99278185}
     - target: {fileID: 2511014084699667004, guid: 28501a7fb3b15fa488953917f058c352, type: 3}
       propertyPath: m_Name
       value: BagSlot
@@ -45120,7 +45621,10 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: 1056475953021787138, guid: 523e1f14885f3df4cbcde949cdf98e38, type: 3}
       insertIndex: -1
       addedObject: {fileID: 2088315875}
-    m_AddedComponents: []
+    m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 5087166927145310186, guid: 523e1f14885f3df4cbcde949cdf98e38, type: 3}
+      insertIndex: 11
+      addedObject: {fileID: 7956069889846286623}
   m_SourcePrefab: {fileID: 100100000, guid: 523e1f14885f3df4cbcde949cdf98e38, type: 3}
 --- !u!4 &7685517063792763009 stripped
 Transform:
@@ -45132,7 +45636,7 @@ MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 199725680284618576, guid: 523e1f14885f3df4cbcde949cdf98e38, type: 3}
   m_PrefabInstance: {fileID: 7685517063792763008}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
+  m_GameObject: {fileID: 7685517063792763012}
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 47d1d120cf61f5846bd2933e3650fe2b, type: 3}
@@ -45143,12 +45647,17 @@ MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 6103680672220467978, guid: 523e1f14885f3df4cbcde949cdf98e38, type: 3}
   m_PrefabInstance: {fileID: 7685517063792763008}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
+  m_GameObject: {fileID: 7685517063792763012}
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 2a2d82f7221108b4eb01d1cd32dcdf82, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::DebuffEffectManager
+--- !u!1 &7685517063792763012 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 5087166927145310186, guid: 523e1f14885f3df4cbcde949cdf98e38, type: 3}
+  m_PrefabInstance: {fileID: 7685517063792763008}
+  m_PrefabAsset: {fileID: 0}
 --- !u!82 &7751669744603835350
 AudioSource:
   m_ObjectHideFlags: 0
@@ -45368,6 +45877,22 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 3212656722255811958, guid: 523e1f14885f3df4cbcde949cdf98e38, type: 3}
   m_PrefabInstance: {fileID: 7685517063792763008}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &7956069889846286623
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7685517063792763012}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 14228bc5776094144bbdb6f3dc5c1502, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::PlayerLevel
+  _dataSO: {fileID: 11400000, guid: e03b2f515f6e2da4ab7633bc3f7112be, type: 2}
+  _level: 1
+  _breakthroughCount: 0
+  _currentExp: 0
 --- !u!1 &8044859023848327084
 GameObject:
   m_ObjectHideFlags: 0
