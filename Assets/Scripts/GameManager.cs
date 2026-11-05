@@ -19,35 +19,15 @@ public class GameManager : MonoBehaviour
     public event Action OnGamePaused;
 
 
-    private void Start()
-    {
+   
 
-        GameInputManager.Instance.PlayerActions.Pause.performed += PausePerform;
-    }
-
-    private void PausePerform(UnityEngine.InputSystem.InputAction.CallbackContext obj)
-    {
-        Pause();
-    }
-
-    private void HideCursor()
-    {
-        Cursor.lockState = CursorLockMode.Locked;
-        Cursor.visible = false;
-    }
-    private void ShowCursor()
-    {
-        Cursor.lockState = CursorLockMode.None;
-        Cursor.visible = true;
-    }
     public void Pause()
     {
        
         IsGamePaused= true;
         Time.timeScale= 0;
-        GameInputManager.Instance.PlayerActions.Disable();
-
-        OnGamePaused?.Invoke();
+        GameInputManager.Instance.DisablePlayerInput();
+     
        
     
     }
@@ -55,8 +35,8 @@ public class GameManager : MonoBehaviour
     {
         IsGamePaused = false;
         Time.timeScale = 1f;
-        GameInputManager.Instance.PlayerActions.Enable();
-        OnGamePaused?.Invoke();
+        GameInputManager.Instance.EnablePlayerInput();
+        
     }
 
 

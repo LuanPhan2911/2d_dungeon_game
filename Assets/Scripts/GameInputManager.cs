@@ -5,19 +5,28 @@ using static UnityEngine.InputSystem.InputActionRebindingExtensions;
 
 public class GameInputManager : MonoBehaviour
 {
-   public static GameInputManager Instance;
-
-
+    public static GameInputManager Instance;
     private InputSystem_Actions _inputActions;
-
-
     public InputSystem_Actions.PlayerActions PlayerActions => _inputActions.Player;
     public InputSystem_Actions.UIActions UIActions => _inputActions.UI;
 
-    public  const int UpBindingIndex = 1;
-    public const int DownBindingIndex = 2;
-    public const int LeftBindingIndex = 3;
-    public const int RightBindingIndex = 4;
+    public const string UP_BINDING = "Up";
+    public const string DOWN_BINDING = "Down";
+    public const string LEFT_BINDING = "Left";
+    public const string RIGHT_BINDING = "Right";
+
+
+    public const string LEFT_MOUSE_STRING = "Left Button";
+    public const string RIGHT_MOUSE_STRING = "Right Button";
+    public const string MIDDLE_MOUSE_STRING = "Middle Button";
+    public const string BACKWARD_MOUSE_STRING = "Back";
+    public const string FORWARD_MOUSE_STRING = "Forward";
+    public const string NONE_STRING = "None";
+
+
+    public const string KEYBOARD_SCHEME = "Keyboard&Mouse";
+    public const int KEYBOARD_BINDING_INDEX = 0;
+
 
     private const string PLAYER_PREFS_BINDINGS = "PlayerPrefsBinding";
 
@@ -29,6 +38,8 @@ public class GameInputManager : MonoBehaviour
     public event System.Action OnRebindCompleted;
 
 
+   
+
     private void Awake()
     {
         if (Instance != null && Instance!= this)
@@ -39,6 +50,7 @@ public class GameInputManager : MonoBehaviour
         }
         Instance = this;
         _inputActions = new InputSystem_Actions();
+       
 
         if (PlayerPrefs.HasKey(PLAYER_PREFS_BINDINGS))
         {
@@ -46,36 +58,37 @@ public class GameInputManager : MonoBehaviour
         }
 
         PlayerActions.Enable();
-
         UIActions.Enable();
-        DisableControlUI();
+
+        UIActions.Prev.Disable();
+        UIActions.Next.Disable();
+
 
 
 
     }
+   
 
 
-    public void EnableControlUI()
+
+
+    public void DisablePlayerInput()
     {
-        UIActions.Cancel.Enable();
+        PlayerActions.Disable();
         UIActions.Prev.Enable();
         UIActions.Next.Enable();
     }
 
-    public void DisableControlUI()
+    public void EnablePlayerInput()
     {
-        UIActions.Cancel.Disable();
+        PlayerActions.Enable();
         UIActions.Prev.Disable();
         UIActions.Next.Disable();
     }
    
     
 
-    private void Start()
-    {
-       
-
-    }
+  
     private void OnDestroy()
     {
         _inputActions.Dispose();
@@ -110,11 +123,10 @@ public class GameInputManager : MonoBehaviour
         return PlayerActions.Move.ReadValue<Vector2>().x > 0;
     }
 
+    
    
 
-
-   
-    public void Rebinding(InputAction action, int bindingIndex=0)
+    public void Rebind(InputAction action, string expectedControlType, int bindingIndex)
     {
         // 1. Disable the action before modifying its bindings
         _inputActions.Disable();
@@ -123,6 +135,7 @@ public class GameInputManager : MonoBehaviour
 
         // 2. Configure and start the interactive rebind
         action.PerformInteractiveRebinding()
+            .WithExpectedControlType(expectedControlType)
             .WithTargetBinding(bindingIndex)
             // Optional: Prevent assigning the Escape key (commonly used to cancel)
             .WithCancelingThrough("<Keyboard>/escape")
@@ -162,14 +175,59 @@ public class GameInputManager : MonoBehaviour
         OnRebindCompleted?.Invoke();
         Debug.Log("Rebinding canceled.");
     }
-
-    public string GetDisplayString(InputAction action, int bindingIndex=0)
+    public int GetBindingIndexOfCompositeAction(InputAction action, string controlType, string partName)
     {
-        if (bindingIndex < 0 || bindingIndex >= action.bindings.Count)
+        for (int i = 0; i < action.bindings.Count; i++)
         {
-            Debug.LogError($"Invalid binding index: {bindingIndex} for action: {action.name}");
-            return string.Empty;
+            InputBinding binding = action.bindings[i];
+            if (binding.isPartOfComposite && binding.name.ToLower() == partName.ToLower()
+                && binding.groups.Contains(controlType))
+            {
+                return i;
+            }
         }
-        return action.GetBindingDisplayString(bindingIndex);
+        Debug.LogError($"Binding part '{partName}' not found in action '{action.name}'.");
+
+        return -1; // Return -1 if not found
+    }
+    public int GetBindingIndexOfAction(InputAction action, string controlType)
+    {
+        for (int i = 0; i < action.bindings.Count; i++)
+        {
+            InputBinding binding = action.bindings[i];
+            if (!binding.isPartOfComposite && binding.groups.Contains(controlType))
+            {
+                return i;
+            }
+        }
+        Debug.LogError($"Binding for control type '{controlType}' not found in action '{action.name}'.");
+        return -1; // Return -1 if not found
+    }
+
+
+
+
+    private string GetDisplayString(InputAction action, string controlType, string partName=null)
+    {
+        int bindingIndex = partName != null ? 
+            GetBindingIndexOfCompositeAction(action, controlType, partName) : 
+            GetBindingIndexOfAction(action, controlType);
+
+        if (bindingIndex== -1)
+        {
+            return NONE_STRING;
+        }
+        string displayString = action.GetBindingDisplayString(bindingIndex, InputBinding.DisplayStringOptions.DontUseShortDisplayNames);
+       
+        if(string.IsNullOrEmpty(displayString))
+        {
+            return NONE_STRING;
+        }
+        return displayString;
+    }
+
+    public string GetKeyboardDisplayString(InputAction action, string partName = null)
+    {
+        return GetDisplayString(action, KEYBOARD_SCHEME, partName);
     }
 }

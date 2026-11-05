@@ -1,24 +1,32 @@
 using UnityEngine;
 using UnityEngine.EventSystems;
-using UnityEngine.UI;
 
-public abstract class Panel : MonoBehaviour
+
+public class Panel : MonoBehaviour
 {
     [SerializeField] private GameObject _firstSelectGameObject;
+    [SerializeField] private Panel _backPanel;
 
-    protected virtual void Start()
-    {
-        Hide();
-    }
+    public bool HasBackPanel => _backPanel != null;
 
     public void Show()
     {
+        
         gameObject.SetActive(true);
-      
-        EventSystem.current.SetSelectedGameObject(_firstSelectGameObject);
+        if(EventSystem.current != null)
+        {
+            EventSystem.current.SetSelectedGameObject(_firstSelectGameObject);
+        }
     }
     public void Hide()
     {
+      
         gameObject.SetActive(false);
+      
+    }
+    public void BackPanel()
+    {
+        Hide();
+        _backPanel.Show();
     }
 }

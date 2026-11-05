@@ -75,8 +75,8 @@ public class InteractableObjectWithMenu : MonoBehaviour
         _menuContainer.SetActive(true);
         _isInteracted = true;
 
-        GameInputManager.Instance.PlayerActions.Disable();
-        GameInputManager.Instance.EnableControlUI();
+     
+        GameInputManager.Instance.DisablePlayerInput();
 
         _firstMenuButtonToSelect.Select();
     }
@@ -86,8 +86,8 @@ public class InteractableObjectWithMenu : MonoBehaviour
         _menuContainer.SetActive(false);
         _isInteracted = false;
 
-        GameInputManager.Instance.PlayerActions.Enable();
-        GameInputManager.Instance.DisableControlUI();
+       
+        GameInputManager.Instance.EnablePlayerInput();
 
         EventSystem.current.SetSelectedGameObject(_firstInteractButton.gameObject);
     }

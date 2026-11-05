@@ -98,9 +98,9 @@ public class PlayerStateUI : MonoBehaviour
         }
 
         Time.timeScale = 0;
-        GameInput.PlayerActions.Disable();
+     
 
-        GameInput.EnableControlUI();
+        GameInput.DisablePlayerInput();
       
         _backgroundGameObject.SetActive(true);
 
@@ -111,8 +111,8 @@ public class PlayerStateUI : MonoBehaviour
     private void Hide()
     {
         Time.timeScale = 1f;
-        GameInput.PlayerActions.Enable();
-        GameInput.DisableControlUI();
+      
+        GameInput.EnablePlayerInput();
 
         _backgroundGameObject.SetActive(false);
         _tabSystem.Hide();

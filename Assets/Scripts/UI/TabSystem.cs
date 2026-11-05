@@ -3,30 +3,29 @@ using UnityEngine.UI;
 
 public class TabSystem : MonoBehaviour
 {
-
     [SerializeField] private Button[] _tabButtonArray;
 
-    [SerializeField] private TabContent[] _contentPanelGameObjectArray;
+    [SerializeField] private TabContent[] _tabContentArray;
 
-    private Color _activeTabColor = Color.green;
-    private Color _tabColor = Color.white;
-    private int _currentTabIndex = -1;
-
+    private int _currentTabIndex = 0;
     public int CurrentTabIndex => _currentTabIndex;
 
 
-    private void Start()
+    private void Awake()
     {
         for(int i=0; i< _tabButtonArray.Length; i++)
         {
             int index = i;
-            _tabButtonArray[i].onClick.AddListener(() => OnTabSelected(index));
+            _tabButtonArray[i].onClick.AddListener(() =>
+            {
+                OnTabSelected(index);
+            });
         }
     }
 
     public void NextTab()
     {
-        if (_currentTabIndex < _contentPanelGameObjectArray.Length-1)
+        if (_currentTabIndex < _tabContentArray.Length-1)
         {
             OnTabSelected(_currentTabIndex + 1);
         }
@@ -41,18 +40,17 @@ public class TabSystem : MonoBehaviour
 
     public void OnTabSelected(int index)
     {
-        for(int i=0; i< _contentPanelGameObjectArray.Length; i++)
+     
+        for (int i=0; i< _tabContentArray.Length; i++)
         {
             if(i== index)
             {
                 _currentTabIndex = index;
-                _tabButtonArray[i].GetComponent<Image>().color = _activeTabColor;
-                _contentPanelGameObjectArray[i].Show();
+                _tabContentArray[i].Show();
             }
             else
             {
-                _tabButtonArray[i].GetComponent<Image>().color = _tabColor;
-                _contentPanelGameObjectArray[i].Hide();
+                _tabContentArray[i].Hide();
             }
         }
     }
@@ -63,7 +61,7 @@ public class TabSystem : MonoBehaviour
     }
     public void Hide()
     {
-        _currentTabIndex = -1;
+        _currentTabIndex = 0;
         gameObject.SetActive(false);
     }
 
