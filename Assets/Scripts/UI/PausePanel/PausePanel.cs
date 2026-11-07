@@ -22,15 +22,20 @@ public class PausePanel : Panel
 
     private void Start()
     {
-      
         Hide();
+    }
+  
+    public override void Hide()
+    {
+        base.Hide();
+        GameManager.Instance.Unpause();
     }
 
 
     private void ContinueButtonClick()
     {
         Hide();
-        UIManager.Instance.ResumeGame();
+       
     }
     private void SettingButtonClick()
     {

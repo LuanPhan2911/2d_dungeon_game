@@ -7,8 +7,11 @@ public class KeyboardTabContent : TabContent
 {
 
     [SerializeField] private GameObject _overlayGameObject;
-    [SerializeField] private TabSystem _tabSystem;
    
+
+    [SerializeField] private Button _resetPlayerInputButton;
+    [SerializeField] private Button _resetUIInputButton;
+
 
     [Header("Mouse")]
     [SerializeField] private Sprite _leftMouseSprite;
@@ -80,13 +83,26 @@ public class KeyboardTabContent : TabContent
         }
     }
 
+    private void Awake()
+    {
+        _resetPlayerInputButton.onClick.AddListener(() =>
+        {
+            GameInput.ResetPlayerInput(GameInputManager.KEYBOARD_SCHEME);
+            UpdateUI();
+        });
+
+        _resetUIInputButton.onClick.AddListener(() =>
+        {
+            GameInput.ResetUIInput(GameInputManager.KEYBOARD_SCHEME);
+            UpdateUI();
+        }); 
+    }
+
     private void Start()
     {
         GameInput.OnRebindStarted += GameInputManager_RebindingStart;
         GameInput.OnRebindCompleted += GameInputManager_RebindingCompleted;
 
-
-        _tabSystem.OnTabSelected(_tabSystem.CurrentTabIndex);
         SetInputActionForBindingKey();
         UpdateUI();
     }
@@ -194,8 +210,11 @@ public class KeyboardTabContent : TabContent
     }
     private void SetInputAction(BindingKeyUI bindingKeyUI, InputAction action, string partName = null)
     {
-        int bindingIndex = partName != null ? GameInput.GetBindingIndexOfCompositeAction(action, GameInputManager.KEYBOARD_SCHEME, partName) : GameInput.GetBindingIndexOfAction(action, GameInputManager.KEYBOARD_SCHEME);
+        int bindingIndex = partName != null ? 
+            GameInput.GetBindingIndexOfCompositeAction(action, GameInputManager.KEYBOARD_SCHEME, partName) : 
+            GameInput.GetBindingIndexOfAction(action, GameInputManager.KEYBOARD_SCHEME);
 
+      
         bindingKeyUI.SetInputAction(action, bindingIndex);
     }
 

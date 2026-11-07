@@ -22,8 +22,7 @@ public class BindingKeyUI : MonoBehaviour
     {
         
         _button.onClick.AddListener(
-            () => GameInputManager.Instance.Rebind(_action,
-            GameInputManager.KEYBOARD_SCHEME, _index));
+            () => GameInputManager.Instance.Rebind(_action, _index));
        
     }
 

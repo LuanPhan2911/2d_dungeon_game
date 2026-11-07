@@ -67,9 +67,9 @@ public class GameInputManager : MonoBehaviour
 
 
     }
+
+
    
-
-
 
 
     public void DisablePlayerInput()
@@ -126,7 +126,7 @@ public class GameInputManager : MonoBehaviour
     
    
 
-    public void Rebind(InputAction action, string expectedControlType, int bindingIndex)
+    public void Rebind(InputAction action, int bindingIndex)
     {
         // 1. Disable the action before modifying its bindings
         _inputActions.Disable();
@@ -135,7 +135,6 @@ public class GameInputManager : MonoBehaviour
 
         // 2. Configure and start the interactive rebind
         action.PerformInteractiveRebinding()
-            .WithExpectedControlType(expectedControlType)
             .WithTargetBinding(bindingIndex)
             // Optional: Prevent assigning the Escape key (commonly used to cancel)
             .WithCancelingThrough("<Keyboard>/escape")
@@ -159,12 +158,16 @@ public class GameInputManager : MonoBehaviour
         OnRebindCompleted?.Invoke();
 
 
+        SaveBinding();
+
+        Debug.Log($"New binding applied");
+    }
+    private void SaveBinding()
+    {
         string bindingJson = _inputActions.SaveBindingOverridesAsJson();
 
         PlayerPrefs.SetString(PLAYER_PREFS_BINDINGS, bindingJson);
         PlayerPrefs.Save();
-
-        Debug.Log($"New binding applied");
     }
 
     private void CancelRebinding(RebindingOperation rebindingOperation)
@@ -229,5 +232,56 @@ public class GameInputManager : MonoBehaviour
     public string GetKeyboardDisplayString(InputAction action, string partName = null)
     {
         return GetDisplayString(action, KEYBOARD_SCHEME, partName);
+    }
+
+    private void RemoveBindingOverride(InputAction action, string controlType, string partName = null)
+    {
+        int bindingIndex = partName != null ?
+            GetBindingIndexOfCompositeAction(action, controlType, partName) :
+            GetBindingIndexOfAction(action, controlType);
+        if (bindingIndex != -1)
+        {
+            action.RemoveBindingOverride(bindingIndex);
+        }
+    }
+
+    public void ResetPlayerInput(string controlType)
+    {
+        RemoveBindingOverride(PlayerActions.Move, controlType, UP_BINDING);
+        RemoveBindingOverride(PlayerActions.Move, controlType, DOWN_BINDING);
+        RemoveBindingOverride(PlayerActions.Move, controlType, LEFT_BINDING);
+        RemoveBindingOverride(PlayerActions.Move, controlType, RIGHT_BINDING);
+
+        RemoveBindingOverride(PlayerActions.Jump, controlType);
+        RemoveBindingOverride(PlayerActions.Attack, controlType);
+        RemoveBindingOverride(PlayerActions.Parry, controlType);
+        RemoveBindingOverride(PlayerActions.Sprint, controlType);
+
+        RemoveBindingOverride(PlayerActions.Burst, controlType);
+        RemoveBindingOverride(PlayerActions.Heal, controlType);
+        RemoveBindingOverride(PlayerActions.Interact, controlType);
+
+        RemoveBindingOverride(PlayerActions.First, controlType);
+        RemoveBindingOverride(PlayerActions.Second, controlType);
+        RemoveBindingOverride(PlayerActions.Third, controlType);
+
+
+
+        SaveBinding();
+    }
+
+    public void ResetUIInput(string controlType)
+    {
+        RemoveBindingOverride(UIActions.Submit, controlType);
+        RemoveBindingOverride(UIActions.Cancel, controlType);
+        RemoveBindingOverride(UIActions.State, controlType);
+        RemoveBindingOverride(UIActions.Weapon, controlType);
+        RemoveBindingOverride(UIActions.Bag, controlType);
+        RemoveBindingOverride(UIActions.Skill, controlType);
+        RemoveBindingOverride(UIActions.Map, controlType);
+
+
+
+        SaveBinding();
     }
 }

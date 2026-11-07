@@ -14,6 +14,7 @@ public class UIManager : MonoBehaviour
 
 
 
+
     private void Awake()
     {
         Instance = this;
@@ -26,50 +27,33 @@ public class UIManager : MonoBehaviour
 
     private void CancelPerform(UnityEngine.InputSystem.InputAction.CallbackContext context)
     {
-        Panel activePanel= GetActivePanel();
-        if (activePanel != null)
+        if(_panelList.Count > 0)
         {
-            activePanel.Hide();
-            if(activePanel.HasBackPanel)
-            {
-                activePanel.BackPanel();
-            }
-            return;
-        }
-
-        if (GameManager.Instance.IsGamePaused)
-        {
-            ResumeGame();
+            Panel topPanel = _panelList[_panelList.Count - 1];  
+            topPanel.Hide();
         }
         else
         {
-            PauseGame();
+            _pausePanel.Show();
         }
 
     }
 
-    public void ResumeGame()
+ 
+    public void PushPanel(Panel panel)
     {
-        _pausePanel.Hide();
-        GameManager.Instance.Unpause();
-    }
-    public void PauseGame()
-    {
-        _pausePanel.Show();
-        GameManager.Instance.Pause();
-    }
-
-    private Panel GetActivePanel()
-    {
-        foreach (var panel in _panelList)
+        if(_panelList.Contains(panel) == false)
         {
-            if (panel.gameObject.activeSelf)
-            {
-                return panel;
-            }
+            _panelList.Add(panel);
         }
-        return null;
-    }   
+    }
+    public void PopPanel(Panel panel)
+    {
+        if (_panelList.Contains(panel))
+        {
+            _panelList.Remove(panel);
+        }
+    }
 
 
 
