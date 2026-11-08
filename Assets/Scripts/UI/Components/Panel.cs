@@ -6,7 +6,7 @@ public class Panel : MonoBehaviour
 {
     [SerializeField] private GameObject _firstSelectGameObject;
     [SerializeField] private Panel _backPanel;
-    [SerializeField] private bool _isNeedPauseGame=true;
+    [SerializeField] private bool _isNeedPauseGame;
 
     public bool HasBackPanel => _backPanel != null;
 
@@ -29,13 +29,19 @@ public class Panel : MonoBehaviour
     {
         
         gameObject.SetActive(true);
-        if(EventSystem.current != null)
-        {
-            EventSystem.current.SetSelectedGameObject(_firstSelectGameObject);
-        }
+
+        SetFirstSelectedGameObject();
+
         if (_isNeedPauseGame)
         {
             GameManager.Instance.Pause();
+        }
+    }
+    public void SetFirstSelectedGameObject()
+    {
+        if (EventSystem.current != null && _firstSelectGameObject != null)
+        {
+            EventSystem.current.SetSelectedGameObject(_firstSelectGameObject);
         }
     }
 

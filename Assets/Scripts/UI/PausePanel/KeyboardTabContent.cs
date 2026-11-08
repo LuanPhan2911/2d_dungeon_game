@@ -12,6 +12,9 @@ public class KeyboardTabContent : TabContent
     [SerializeField] private Button _resetPlayerInputButton;
     [SerializeField] private Button _resetUIInputButton;
 
+    [SerializeField] private string _confirmResetPlayerInputText;
+    [SerializeField] private string _confirmResetUIInputText;
+
 
     [Header("Mouse")]
     [SerializeField] private Sprite _leftMouseSprite;
@@ -87,14 +90,29 @@ public class KeyboardTabContent : TabContent
     {
         _resetPlayerInputButton.onClick.AddListener(() =>
         {
-            GameInput.ResetPlayerInput(GameInputManager.KEYBOARD_SCHEME);
-            UpdateUI();
+            ConfirmDialog.Instance.Show(_confirmResetPlayerInputText, () =>
+            {
+                GameInput.ResetPlayerInput(GameInputManager.KEYBOARD_SCHEME);
+                UpdateUI();
+                _resetPlayerInputButton.Select();
+            }, () =>
+            {
+                _resetPlayerInputButton.Select();
+            });
         });
 
         _resetUIInputButton.onClick.AddListener(() =>
         {
-            GameInput.ResetUIInput(GameInputManager.KEYBOARD_SCHEME);
-            UpdateUI();
+            ConfirmDialog.Instance.Show(_confirmResetUIInputText, () =>
+            {
+                GameInput.ResetUIInput(GameInputManager.KEYBOARD_SCHEME);
+                UpdateUI();
+                _resetUIInputButton.Select();
+            }, () =>
+            {
+                _resetUIInputButton.Select();
+            });
+           
         }); 
     }
 
