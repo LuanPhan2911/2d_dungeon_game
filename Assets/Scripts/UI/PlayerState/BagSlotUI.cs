@@ -22,10 +22,10 @@ public class BagSlotUI : MonoBehaviour
     {
         if (_item == null || !_item.dataSO.canBeUsed) return;
 
-        _confirmUseItem.SetItem(_item);
-        _confirmUseItem.SetMaxAmount(_item.amount);
-        _confirmUseItem.SetLastSelectedGameObject(gameObject);
-        _confirmUseItem.Show();
+        //_confirmUseItem.SetItem(_item);
+        //_confirmUseItem.SetMaxAmount(_item.amount);
+        //_confirmUseItem.SetLastSelectedGameObject(gameObject);
+        //_confirmUseItem.Show();
 
     }
 

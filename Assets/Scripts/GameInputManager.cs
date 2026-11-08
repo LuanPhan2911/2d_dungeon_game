@@ -274,10 +274,9 @@ public class GameInputManager : MonoBehaviour
     {
         RemoveBindingOverride(UIActions.Submit, controlType);
         RemoveBindingOverride(UIActions.Cancel, controlType);
-        RemoveBindingOverride(UIActions.State, controlType);
-        RemoveBindingOverride(UIActions.Weapon, controlType);
+        RemoveBindingOverride(UIActions.Attribute, controlType);
+        RemoveBindingOverride(UIActions.Charm, controlType);
         RemoveBindingOverride(UIActions.Bag, controlType);
-        RemoveBindingOverride(UIActions.Skill, controlType);
         RemoveBindingOverride(UIActions.Map, controlType);
 
 

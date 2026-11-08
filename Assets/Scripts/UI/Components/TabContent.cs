@@ -7,7 +7,7 @@ public class TabContent : MonoBehaviour
     [SerializeField] private GameObject _firstSelectedGameObject;
 
 
-    public void SelectFirstSelectedGameObject()
+    public void SetFirstSelectedGameObject()
     {
         if (EventSystem.current != null && _firstSelectedGameObject != null)
         {

@@ -497,7 +497,7 @@ public partial class @InputSystem_Actions: IInputActionCollection2, IDisposable
                     ""priority"": 0
                 },
                 {
-                    ""name"": ""State"",
+                    ""name"": ""Attribute"",
                     ""type"": ""Button"",
                     ""id"": ""afe2d075-d739-4669-bede-547ccc00cd5b"",
                     ""expectedControlType"": """",
@@ -507,7 +507,7 @@ public partial class @InputSystem_Actions: IInputActionCollection2, IDisposable
                     ""priority"": 0
                 },
                 {
-                    ""name"": ""Weapon"",
+                    ""name"": ""Charm"",
                     ""type"": ""Button"",
                     ""id"": ""9f4d17b6-b89f-43fa-9cf5-d68b860e7236"",
                     ""expectedControlType"": """",
@@ -520,16 +520,6 @@ public partial class @InputSystem_Actions: IInputActionCollection2, IDisposable
                     ""name"": ""Bag"",
                     ""type"": ""Button"",
                     ""id"": ""68e7c0ec-445d-487b-9de9-3daae28089a9"",
-                    ""expectedControlType"": """",
-                    ""processors"": """",
-                    ""interactions"": """",
-                    ""initialStateCheck"": false,
-                    ""priority"": 0
-                },
-                {
-                    ""name"": ""Skill"",
-                    ""type"": ""Button"",
-                    ""id"": ""5545f7d1-fdfb-42ac-95f8-9bd597c8ccb1"",
                     ""expectedControlType"": """",
                     ""processors"": """",
                     ""interactions"": """",
@@ -993,7 +983,7 @@ public partial class @InputSystem_Actions: IInputActionCollection2, IDisposable
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": "";Keyboard;Keyboard&Mouse"",
-                    ""action"": ""State"",
+                    ""action"": ""Attribute"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
                 },
@@ -1004,18 +994,7 @@ public partial class @InputSystem_Actions: IInputActionCollection2, IDisposable
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": "";Keyboard;Keyboard&Mouse"",
-                    ""action"": ""Weapon"",
-                    ""isComposite"": false,
-                    ""isPartOfComposite"": false
-                },
-                {
-                    ""name"": """",
-                    ""id"": ""37af044b-2107-438a-8139-170b536c9cf6"",
-                    ""path"": ""<Keyboard>/n"",
-                    ""interactions"": """",
-                    ""processors"": """",
-                    ""groups"": "";Keyboard;Keyboard&Mouse"",
-                    ""action"": ""Skill"",
+                    ""action"": ""Charm"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
                 },
@@ -1155,10 +1134,9 @@ public partial class @InputSystem_Actions: IInputActionCollection2, IDisposable
         m_UI_ScrollWheel = m_UI.FindAction("ScrollWheel", throwIfNotFound: true);
         m_UI_TrackedDevicePosition = m_UI.FindAction("TrackedDevicePosition", throwIfNotFound: true);
         m_UI_TrackedDeviceOrientation = m_UI.FindAction("TrackedDeviceOrientation", throwIfNotFound: true);
-        m_UI_State = m_UI.FindAction("State", throwIfNotFound: true);
-        m_UI_Weapon = m_UI.FindAction("Weapon", throwIfNotFound: true);
+        m_UI_Attribute = m_UI.FindAction("Attribute", throwIfNotFound: true);
+        m_UI_Charm = m_UI.FindAction("Charm", throwIfNotFound: true);
         m_UI_Bag = m_UI.FindAction("Bag", throwIfNotFound: true);
-        m_UI_Skill = m_UI.FindAction("Skill", throwIfNotFound: true);
         m_UI_Map = m_UI.FindAction("Map", throwIfNotFound: true);
         m_UI_Prev = m_UI.FindAction("Prev", throwIfNotFound: true);
         m_UI_Next = m_UI.FindAction("Next", throwIfNotFound: true);
@@ -1470,10 +1448,9 @@ public partial class @InputSystem_Actions: IInputActionCollection2, IDisposable
     private readonly InputAction m_UI_ScrollWheel;
     private readonly InputAction m_UI_TrackedDevicePosition;
     private readonly InputAction m_UI_TrackedDeviceOrientation;
-    private readonly InputAction m_UI_State;
-    private readonly InputAction m_UI_Weapon;
+    private readonly InputAction m_UI_Attribute;
+    private readonly InputAction m_UI_Charm;
     private readonly InputAction m_UI_Bag;
-    private readonly InputAction m_UI_Skill;
     private readonly InputAction m_UI_Map;
     private readonly InputAction m_UI_Prev;
     private readonly InputAction m_UI_Next;
@@ -1529,21 +1506,17 @@ public partial class @InputSystem_Actions: IInputActionCollection2, IDisposable
         /// </summary>
         public InputAction @TrackedDeviceOrientation => m_Wrapper.m_UI_TrackedDeviceOrientation;
         /// <summary>
-        /// Provides access to the underlying input action "UI/State".
+        /// Provides access to the underlying input action "UI/Attribute".
         /// </summary>
-        public InputAction @State => m_Wrapper.m_UI_State;
+        public InputAction @Attribute => m_Wrapper.m_UI_Attribute;
         /// <summary>
-        /// Provides access to the underlying input action "UI/Weapon".
+        /// Provides access to the underlying input action "UI/Charm".
         /// </summary>
-        public InputAction @Weapon => m_Wrapper.m_UI_Weapon;
+        public InputAction @Charm => m_Wrapper.m_UI_Charm;
         /// <summary>
         /// Provides access to the underlying input action "UI/Bag".
         /// </summary>
         public InputAction @Bag => m_Wrapper.m_UI_Bag;
-        /// <summary>
-        /// Provides access to the underlying input action "UI/Skill".
-        /// </summary>
-        public InputAction @Skill => m_Wrapper.m_UI_Skill;
         /// <summary>
         /// Provides access to the underlying input action "UI/Map".
         /// </summary>
@@ -1612,18 +1585,15 @@ public partial class @InputSystem_Actions: IInputActionCollection2, IDisposable
             @TrackedDeviceOrientation.started += instance.OnTrackedDeviceOrientation;
             @TrackedDeviceOrientation.performed += instance.OnTrackedDeviceOrientation;
             @TrackedDeviceOrientation.canceled += instance.OnTrackedDeviceOrientation;
-            @State.started += instance.OnState;
-            @State.performed += instance.OnState;
-            @State.canceled += instance.OnState;
-            @Weapon.started += instance.OnWeapon;
-            @Weapon.performed += instance.OnWeapon;
-            @Weapon.canceled += instance.OnWeapon;
+            @Attribute.started += instance.OnAttribute;
+            @Attribute.performed += instance.OnAttribute;
+            @Attribute.canceled += instance.OnAttribute;
+            @Charm.started += instance.OnCharm;
+            @Charm.performed += instance.OnCharm;
+            @Charm.canceled += instance.OnCharm;
             @Bag.started += instance.OnBag;
             @Bag.performed += instance.OnBag;
             @Bag.canceled += instance.OnBag;
-            @Skill.started += instance.OnSkill;
-            @Skill.performed += instance.OnSkill;
-            @Skill.canceled += instance.OnSkill;
             @Map.started += instance.OnMap;
             @Map.performed += instance.OnMap;
             @Map.canceled += instance.OnMap;
@@ -1674,18 +1644,15 @@ public partial class @InputSystem_Actions: IInputActionCollection2, IDisposable
             @TrackedDeviceOrientation.started -= instance.OnTrackedDeviceOrientation;
             @TrackedDeviceOrientation.performed -= instance.OnTrackedDeviceOrientation;
             @TrackedDeviceOrientation.canceled -= instance.OnTrackedDeviceOrientation;
-            @State.started -= instance.OnState;
-            @State.performed -= instance.OnState;
-            @State.canceled -= instance.OnState;
-            @Weapon.started -= instance.OnWeapon;
-            @Weapon.performed -= instance.OnWeapon;
-            @Weapon.canceled -= instance.OnWeapon;
+            @Attribute.started -= instance.OnAttribute;
+            @Attribute.performed -= instance.OnAttribute;
+            @Attribute.canceled -= instance.OnAttribute;
+            @Charm.started -= instance.OnCharm;
+            @Charm.performed -= instance.OnCharm;
+            @Charm.canceled -= instance.OnCharm;
             @Bag.started -= instance.OnBag;
             @Bag.performed -= instance.OnBag;
             @Bag.canceled -= instance.OnBag;
-            @Skill.started -= instance.OnSkill;
-            @Skill.performed -= instance.OnSkill;
-            @Skill.canceled -= instance.OnSkill;
             @Map.started -= instance.OnMap;
             @Map.performed -= instance.OnMap;
             @Map.canceled -= instance.OnMap;
@@ -1963,19 +1930,19 @@ public partial class @InputSystem_Actions: IInputActionCollection2, IDisposable
         /// <seealso cref="UnityEngine.InputSystem.InputAction.canceled" />
         void OnTrackedDeviceOrientation(InputAction.CallbackContext context);
         /// <summary>
-        /// Method invoked when associated input action "State" is either <see cref="UnityEngine.InputSystem.InputAction.started" />, <see cref="UnityEngine.InputSystem.InputAction.performed" /> or <see cref="UnityEngine.InputSystem.InputAction.canceled" />.
+        /// Method invoked when associated input action "Attribute" is either <see cref="UnityEngine.InputSystem.InputAction.started" />, <see cref="UnityEngine.InputSystem.InputAction.performed" /> or <see cref="UnityEngine.InputSystem.InputAction.canceled" />.
         /// </summary>
         /// <seealso cref="UnityEngine.InputSystem.InputAction.started" />
         /// <seealso cref="UnityEngine.InputSystem.InputAction.performed" />
         /// <seealso cref="UnityEngine.InputSystem.InputAction.canceled" />
-        void OnState(InputAction.CallbackContext context);
+        void OnAttribute(InputAction.CallbackContext context);
         /// <summary>
-        /// Method invoked when associated input action "Weapon" is either <see cref="UnityEngine.InputSystem.InputAction.started" />, <see cref="UnityEngine.InputSystem.InputAction.performed" /> or <see cref="UnityEngine.InputSystem.InputAction.canceled" />.
+        /// Method invoked when associated input action "Charm" is either <see cref="UnityEngine.InputSystem.InputAction.started" />, <see cref="UnityEngine.InputSystem.InputAction.performed" /> or <see cref="UnityEngine.InputSystem.InputAction.canceled" />.
         /// </summary>
         /// <seealso cref="UnityEngine.InputSystem.InputAction.started" />
         /// <seealso cref="UnityEngine.InputSystem.InputAction.performed" />
         /// <seealso cref="UnityEngine.InputSystem.InputAction.canceled" />
-        void OnWeapon(InputAction.CallbackContext context);
+        void OnCharm(InputAction.CallbackContext context);
         /// <summary>
         /// Method invoked when associated input action "Bag" is either <see cref="UnityEngine.InputSystem.InputAction.started" />, <see cref="UnityEngine.InputSystem.InputAction.performed" /> or <see cref="UnityEngine.InputSystem.InputAction.canceled" />.
         /// </summary>
@@ -1983,13 +1950,6 @@ public partial class @InputSystem_Actions: IInputActionCollection2, IDisposable
         /// <seealso cref="UnityEngine.InputSystem.InputAction.performed" />
         /// <seealso cref="UnityEngine.InputSystem.InputAction.canceled" />
         void OnBag(InputAction.CallbackContext context);
-        /// <summary>
-        /// Method invoked when associated input action "Skill" is either <see cref="UnityEngine.InputSystem.InputAction.started" />, <see cref="UnityEngine.InputSystem.InputAction.performed" /> or <see cref="UnityEngine.InputSystem.InputAction.canceled" />.
-        /// </summary>
-        /// <seealso cref="UnityEngine.InputSystem.InputAction.started" />
-        /// <seealso cref="UnityEngine.InputSystem.InputAction.performed" />
-        /// <seealso cref="UnityEngine.InputSystem.InputAction.canceled" />
-        void OnSkill(InputAction.CallbackContext context);
         /// <summary>
         /// Method invoked when associated input action "Map" is either <see cref="UnityEngine.InputSystem.InputAction.started" />, <see cref="UnityEngine.InputSystem.InputAction.performed" /> or <see cref="UnityEngine.InputSystem.InputAction.canceled" />.
         /// </summary>

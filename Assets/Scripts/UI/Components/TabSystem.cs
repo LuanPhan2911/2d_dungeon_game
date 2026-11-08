@@ -1,16 +1,21 @@
+using System;
 using UnityEngine;
 using UnityEngine.EventSystems;
 using UnityEngine.UI;
 
 public class TabSystem : MonoBehaviour
 {
+    [SerializeField] private bool _isHorizontalTab = false;
+    [SerializeField] private int _defaultShowTabIndex = -1;
+
+
     [SerializeField] private TabButton[] _tabButtonArray;
 
     [SerializeField] private TabContent[] _tabContentArray;
-    [SerializeField] private bool _isHorizontalTab = false;
-
-    private int _currentTabIndex = 0;
+   
+    private int _currentTabIndex;
     public int CurrentTabIndex => _currentTabIndex;
+    public bool HasDefaultShowTab => _defaultShowTabIndex != -1;
 
     private void OnEnable()
     {
@@ -50,6 +55,10 @@ public class TabSystem : MonoBehaviour
     }
     public virtual void Start()
     {
+        if (HasDefaultShowTab)
+        {
+            _currentTabIndex = _defaultShowTabIndex;
+        }
         OnTabSelected(_currentTabIndex);
     }
 
@@ -59,10 +68,7 @@ public class TabSystem : MonoBehaviour
         {
             int index = _currentTabIndex + 1;
             OnTabSelected(index);
-            if(EventSystem.current!= null)
-            {
-                EventSystem.current.SetSelectedGameObject(_tabButtonArray[index].gameObject);
-            }
+            SetSelectedTabButton(index);
         }
     }
     public void PrevTab()
@@ -71,21 +77,27 @@ public class TabSystem : MonoBehaviour
         {
             int index = _currentTabIndex - 1;
             OnTabSelected(index);
-            if (EventSystem.current != null)
-            {
-                EventSystem.current.SetSelectedGameObject(_tabButtonArray[index].gameObject);
-            }
+            SetSelectedTabButton(index);
+        }
+    }
+   
+    public void SetSelectedTabButton(int tabIndex)
+    {
+        if(EventSystem.current!= null && 
+            EventSystem.current.currentSelectedGameObject!= _tabButtonArray[tabIndex].gameObject)
+        {
+            EventSystem.current.SetSelectedGameObject(_tabButtonArray[tabIndex].gameObject);
         }
     }
 
-    public void OnTabSelected(int index)
+    public void OnTabSelected(int tabIndex)
     {
      
         for (int i=0; i< _tabContentArray.Length; i++)
         {
-            if(i== index)
+            if(i== tabIndex)
             {
-                _currentTabIndex = index;
+                _currentTabIndex = tabIndex;
                 _tabContentArray[i].Show();
                 
             }
@@ -97,7 +109,7 @@ public class TabSystem : MonoBehaviour
     }
     public void OnTabClicked(int index)
     {
-        _tabContentArray[index].SelectFirstSelectedGameObject();
+        _tabContentArray[index].SetFirstSelectedGameObject();
     }
 
     public void Show()
@@ -106,7 +118,7 @@ public class TabSystem : MonoBehaviour
     }
     public void Hide()
     {
-        _currentTabIndex = 0;
+        _currentTabIndex = _defaultShowTabIndex;
         gameObject.SetActive(false);
     }
 

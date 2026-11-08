@@ -411,7 +411,7 @@
                     "priority": 0
                 },
                 {
-                    "name": "State",
+                    "name": "Attribute",
                     "type": "Button",
                     "id": "afe2d075-d739-4669-bede-547ccc00cd5b",
                     "expectedControlType": "",
@@ -421,7 +421,7 @@
                     "priority": 0
                 },
                 {
-                    "name": "Weapon",
+                    "name": "Charm",
                     "type": "Button",
                     "id": "9f4d17b6-b89f-43fa-9cf5-d68b860e7236",
                     "expectedControlType": "",
@@ -434,16 +434,6 @@
                     "name": "Bag",
                     "type": "Button",
                     "id": "68e7c0ec-445d-487b-9de9-3daae28089a9",
-                    "expectedControlType": "",
-                    "processors": "",
-                    "interactions": "",
-                    "initialStateCheck": false,
-                    "priority": 0
-                },
-                {
-                    "name": "Skill",
-                    "type": "Button",
-                    "id": "5545f7d1-fdfb-42ac-95f8-9bd597c8ccb1",
                     "expectedControlType": "",
                     "processors": "",
                     "interactions": "",
@@ -907,7 +897,7 @@
                     "interactions": "",
                     "processors": "",
                     "groups": ";Keyboard;Keyboard&Mouse",
-                    "action": "State",
+                    "action": "Attribute",
                     "isComposite": false,
                     "isPartOfComposite": false
                 },
@@ -918,18 +908,7 @@
                     "interactions": "",
                     "processors": "",
                     "groups": ";Keyboard;Keyboard&Mouse",
-                    "action": "Weapon",
-                    "isComposite": false,
-                    "isPartOfComposite": false
-                },
-                {
-                    "name": "",
-                    "id": "37af044b-2107-438a-8139-170b536c9cf6",
-                    "path": "<Keyboard>/n",
-                    "interactions": "",
-                    "processors": "",
-                    "groups": ";Keyboard;Keyboard&Mouse",
-                    "action": "Skill",
+                    "action": "Charm",
                     "isComposite": false,
                     "isPartOfComposite": false
                 },

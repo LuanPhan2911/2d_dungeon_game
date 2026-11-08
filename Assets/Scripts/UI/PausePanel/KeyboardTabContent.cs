@@ -49,7 +49,6 @@ public class KeyboardTabContent : TabContent
     [SerializeField] private BindingKeyUI _weaponBinding;
  
     [SerializeField] private BindingKeyUI _bagBinding;
-    [SerializeField] private BindingKeyUI _skillBinding;
     [SerializeField] private BindingKeyUI _mapBinding;
 
     [SerializeField] private BindingKeyUI _submitBinding;
@@ -158,10 +157,9 @@ public class KeyboardTabContent : TabContent
         SetInputAction(_submitBinding, UIActions.Submit);
         SetInputAction(_cancelBinding, UIActions.Cancel);
        
-        SetInputAction(_stateBinding, UIActions.State);
-        SetInputAction(_weaponBinding, UIActions.Weapon);
+        SetInputAction(_stateBinding, UIActions.Attribute);
+        SetInputAction(_weaponBinding, UIActions.Charm);
         SetInputAction(_bagBinding, UIActions.Bag);
-        SetInputAction(_skillBinding, UIActions.Skill);
         SetInputAction(_mapBinding, UIActions.Map);
         
 
@@ -194,10 +192,9 @@ public class KeyboardTabContent : TabContent
 
         SetText(_submitBinding, UIActions.Submit);
         SetText(_cancelBinding, UIActions.Cancel);
-        SetText(_stateBinding, UIActions.State);
-        SetText(_weaponBinding, UIActions.Weapon);
+        SetText(_stateBinding, UIActions.Attribute);
+        SetText(_weaponBinding, UIActions.Charm);
         SetText(_bagBinding, UIActions.Bag);
-        SetText(_skillBinding, UIActions.Skill);
         SetText(_mapBinding, UIActions.Map);
 
 

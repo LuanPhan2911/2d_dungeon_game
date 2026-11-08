@@ -2,11 +2,12 @@ using TMPro;
 using UnityEngine;
 using UnityEngine.EventSystems;
 
-public class BagPanel : MonoBehaviour
+public class BagTabContent : TabContent
 {
     [SerializeField] private BagSlotUI[] _bagSlotArray;
     [SerializeField] private TextMeshProUGUI _itemNameText;
     [SerializeField] private TextMeshProUGUI _itemDescriptionText;
+
 
     private GameObject _lastSelectedSlotGameObject;
 
