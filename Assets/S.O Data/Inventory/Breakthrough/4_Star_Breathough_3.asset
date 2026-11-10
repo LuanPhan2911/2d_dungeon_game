@@ -10,10 +10,11 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 96d36c268fef4984d8b3bca1662c8b76, type: 3}
-  m_Name: ExpBook
+  m_Name: 4_Star_Breathough_3
   m_EditorClassIdentifier: Assembly-CSharp::ItemSO
-  itemName: EXP Book
+  itemName: 
   sprite: {fileID: 7482667652216324306, guid: 48e93eef0688c4a259cb0eddcd8661f7, type: 3}
-  description: EXP Book
+  description: 
   isStackable: 1
   canBeUsed: 0
+  isImportant: 1

@@ -1,0 +1,22 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c6e62b934fc11634f9f103ad52b534a8, type: 3}
+  m_Name: 2 Star
+  m_EditorClassIdentifier: Assembly-CSharp::BreakthroughSO
+  title: "Huy\u1EBFt t\u1ED9c nam t\u01B0\u1EDBc"
+  ItemArray:
+  - dataSO: {fileID: 11400000, guid: 772bb7991d1256f40a4425bec8f88dd4, type: 2}
+    amount: 1
+  - dataSO: {fileID: 11400000, guid: e7bf278892e783f4abdcc2c7779877fa, type: 2}
+    amount: 1
+  - dataSO: {fileID: 11400000, guid: 0bf95f2846a23444eb95f72a44208bf2, type: 2}
+    amount: 1

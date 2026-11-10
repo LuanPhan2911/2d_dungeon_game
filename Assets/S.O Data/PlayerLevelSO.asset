@@ -12,6 +12,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 99374ba65cd66014b855d133ac134112, type: 3}
   m_Name: PlayerLevelSO
   m_EditorClassIdentifier: Assembly-CSharp::PlayerLevelSO
+  lv0_HP: 25
+  lv0_ATK: 7
+  lv0_DEF: 3
+  lv0_BreakthroughSO: {fileID: 11400000, guid: b2fd116c8e2a43c439257b5e33102972, type: 2}
   maxLevel: 30
   breakthroughLevelNumber: 5
   baseExpToLevelUp: 1000
@@ -24,3 +28,10 @@ MonoBehaviour:
   hpBreakthrough: 45
   atkBreakthrough: 10
   defBreakthrough: 20
+  breakthroughSOArray:
+  - {fileID: 11400000, guid: 702aa4fd13730f64a9593cce121d729b, type: 2}
+  - {fileID: 11400000, guid: 2a0a046fcb137d14e8a9def3bbe098d8, type: 2}
+  - {fileID: 11400000, guid: bc3744f1a83c11044b6e1034fae641c8, type: 2}
+  - {fileID: 11400000, guid: 8263bd027c7e1124cbfdc6718dcb060b, type: 2}
+  - {fileID: 11400000, guid: d31c4a5c68c8c604aa976b2c27da4d7b, type: 2}
+  - {fileID: 11400000, guid: b2b6c87dde5754449bcf82eb01435f32, type: 2}

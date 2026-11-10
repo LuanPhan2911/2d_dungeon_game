@@ -1,6 +1,5 @@
 using System;
 using System.Collections.Generic;
-using System.Globalization;
 using UnityEngine;
 
 [System.Serializable]
@@ -16,25 +15,18 @@ public class InventoryItem
     }
 }
 [Serializable]
-public class Currency
-{
-    public string currencyName;
-    public Sprite sprite;
-    public int amount;
-}
+
 public class InventoryManager : MonoBehaviour
 {
 
     public static InventoryManager Instance { get; private set; }
     [SerializeField] private List<InventoryItem> _inventoryItemList = new List<InventoryItem>();
-    [SerializeField] private Currency _currency;
-
+   
 
 
 
     public event Action OnInventoryChanged;
-    public event Action OnCurrencyChanged;
-    public Currency Currency;
+    public event Action OnInportantItemAdded;
     public InventoryItem[] InventoryItemArray => _inventoryItemList.ToArray();
 
 
@@ -48,19 +40,6 @@ public class InventoryManager : MonoBehaviour
 
         Instance = this;
     }
-
-    public void AddCurrency(int amount)
-    {
-        _currency.amount += amount;
-        OnCurrencyChanged?.Invoke();
-    }
-    public void MinusCurrency(int amount)
-    {
-        if (_currency.amount < amount) return;
-        _currency.amount -= amount;
-        OnCurrencyChanged?.Invoke();
-    }
-   
 
 
     public bool AddItem(ItemSO itemData, int amount = 1)
@@ -78,6 +57,10 @@ public class InventoryManager : MonoBehaviour
 
         _inventoryItemList.Add(new InventoryItem(itemData, amount));
         OnInventoryChanged?.Invoke();
+        if (itemData.isImportant)
+        {
+            OnInportantItemAdded?.Invoke();
+        }
         return true;
     }
 
@@ -89,6 +72,14 @@ public class InventoryManager : MonoBehaviour
 
 
         return exisitingItem.amount >= amount;
+    }
+    public int GetItemQuantity(ItemSO itemData)
+    {
+        InventoryItem exisitingItem = _inventoryItemList.Find(el => el.dataSO == itemData);
+
+        if (exisitingItem == null) return 0;
+
+        return exisitingItem.amount;
     }
     public bool RemoveItem(ItemSO itemData, int amount = 1)
     {

@@ -8,4 +8,5 @@ public class ItemSO : ScriptableObject
     public string description;
     public bool isStackable = true;
     public bool canBeUsed = false;
+    public bool isImportant = false;
 }
