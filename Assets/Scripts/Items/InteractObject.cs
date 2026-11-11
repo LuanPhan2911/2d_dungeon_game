@@ -1,45 +1,43 @@
-using System;
-using TMPro;
+using Unity.VisualScripting;
 using UnityEngine;
-using UnityEngine.InputSystem;
+
 
 public class InteractObject : MonoBehaviour
 {
-    [SerializeField] private ItemSO _needItemData;
-
-    [SerializeField] private InteractUI _interactUI;
-
+    [SerializeField] private InteractKeyUI _interactKeyUI;
     public bool CanInteract;
 
-  
-    public event EventHandler InteractSuccessAction;
-    public event EventHandler InteractFailAction;
-    
 
-    private void Update()
+    public virtual void Update()
     {
-        if (CanInteract )
+        if (CanInteract)
         {
-            if(GameInputManager.Instance.PlayerActions.Move.WasPressedThisFrame() &&
-                GameInputManager.Instance.IsUpPressed())
-            {
-                if (InventoryManager.Instance.HasItem(_needItemData))
-                {
-                    InteractSuccessAction?.Invoke(this, EventArgs.Empty);
-                }
-                else
-                {
-                    Debug.Log("Need required item");
-                    InteractFailAction?.Invoke(this, EventArgs.Empty);
-                }
-            }
-           
+            _interactKeyUI.Show();
+        }
+        else
+        {
+            _interactKeyUI.Hide();
+        }
+    }
+
+    private void OnTriggerEnter2D(Collider2D collision)
+    {
+        if (collision.CompareTag("Player"))
+        {
+            CanInteract = true;
+        }
+    }
+    private void OnTriggerExit2D(Collider2D collision)
+    {
+        if (collision.CompareTag("Player"))
+        {
+            CanInteract = false;
         }
     }
 
 
-   
 
-   
+
+
 
 }

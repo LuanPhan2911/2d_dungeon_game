@@ -56,9 +56,4 @@ public class PlayerStatePanel : Panel
        
 
     }
-    public override void Hide()
-    {
-        base.Hide();
-        GameManager.Instance.Unpause();
-    }
 }

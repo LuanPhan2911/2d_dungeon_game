@@ -25,17 +25,21 @@ public class GameInputManager : MonoBehaviour
 
 
     public const string KEYBOARD_SCHEME = "Keyboard&Mouse";
-    public const int KEYBOARD_BINDING_INDEX = 0;
-
-
     private const string PLAYER_PREFS_BINDINGS = "PlayerPrefsBinding";
 
 
+    public const int KEYBOARD_BINDING_INDEX = 0;
 
 
 
     public event System.Action OnRebindStarted;
     public event System.Action OnRebindCompleted;
+
+
+    private int _currentBindingIndex;
+
+    public int CurrentBindingIndex => _currentBindingIndex;
+
 
 
    
@@ -56,6 +60,7 @@ public class GameInputManager : MonoBehaviour
         {
             _inputActions.LoadBindingOverridesFromJson(PlayerPrefs.GetString(PLAYER_PREFS_BINDINGS));
         }
+        _currentBindingIndex = KEYBOARD_BINDING_INDEX;
 
         PlayerActions.Enable();
         UIActions.Enable();

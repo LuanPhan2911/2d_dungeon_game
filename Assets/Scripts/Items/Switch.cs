@@ -16,7 +16,7 @@ public class Switch : MonoBehaviour
     private SpriteRenderer _currentSprite;
     private float _delayCounter = 0f;
 
-    [SerializeField] private InteractUI _interactUI;
+
 
  
 

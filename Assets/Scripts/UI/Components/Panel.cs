@@ -50,10 +50,18 @@ public class Panel : MonoBehaviour
     {
         gameObject.SetActive(false);
 
+        if (_isNeedPauseGame)
+        {
+            GameManager.Instance.Unpause();
+        }
+
         if (HasBackPanel)
         {
             _backPanel.Show();
         }
-      
+
+
+       
+
     }
 }

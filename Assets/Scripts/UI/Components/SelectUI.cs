@@ -6,6 +6,14 @@ public class SelectUI : MonoBehaviour, ISelectHandler, IDeselectHandler
 {
     [SerializeField] private Image _selectImage;
 
+    private void OnEnable()
+    {
+        if(EventSystem.current!= null && EventSystem.current.currentSelectedGameObject== gameObject)
+        {
+            _selectImage.enabled = true;
+        }
+    }
+
     private void OnDisable()
     {
         _selectImage.enabled = false;

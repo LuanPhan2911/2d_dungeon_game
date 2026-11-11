@@ -25,13 +25,7 @@ public class PausePanel : Panel
         Hide();
     }
   
-    public override void Hide()
-    {
-        base.Hide();
-        GameManager.Instance.Unpause();
-    }
-
-
+   
     private void ContinueButtonClick()
     {
         Hide();
