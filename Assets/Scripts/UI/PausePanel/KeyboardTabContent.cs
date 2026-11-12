@@ -16,14 +16,6 @@ public class KeyboardTabContent : TabContent
     [SerializeField] private string _confirmResetUIInputText;
 
 
-    [Header("Mouse")]
-    [SerializeField] private Sprite _leftMouseSprite;
-    [SerializeField] private Sprite _rightMouseSprite;
-    [SerializeField] private Sprite _middleMouseSprite;
-    [SerializeField] private Sprite _backwardMouseSprite;
-    [SerializeField] private Sprite _forwardMouseSprite;
-
-
     [Header("Player")]
     [SerializeField] private BindingKeyUI _upBinding;
     [SerializeField] private BindingKeyUI _downBinding;
@@ -66,30 +58,12 @@ public class KeyboardTabContent : TabContent
 
 
 
-    public Sprite GetMouseSprite(string mouseBinding)
-    {
-        switch (mouseBinding)
-        {
-            case GameInputManager.LEFT_MOUSE_STRING:
-                return _leftMouseSprite;
-            case GameInputManager.RIGHT_MOUSE_STRING:
-                return _rightMouseSprite;
-            case GameInputManager.MIDDLE_MOUSE_STRING:
-                return _middleMouseSprite;
-            case GameInputManager.BACKWARD_MOUSE_STRING:
-                return _backwardMouseSprite;
-            case GameInputManager.FORWARD_MOUSE_STRING:
-                return _forwardMouseSprite;
-            default:
-                return null;
-        }
-    }
 
     private void Awake()
     {
         _resetPlayerInputButton.onClick.AddListener(() =>
         {
-            ConfirmDialog.Instance.Show(_confirmResetPlayerInputText, () =>
+            ConfirmationDialog.Instance.Show(_confirmResetPlayerInputText, () =>
             {
                 GameInput.ResetPlayerInput(GameInputManager.KEYBOARD_SCHEME);
                 UpdateUI();
@@ -102,7 +76,7 @@ public class KeyboardTabContent : TabContent
 
         _resetUIInputButton.onClick.AddListener(() =>
         {
-            ConfirmDialog.Instance.Show(_confirmResetUIInputText, () =>
+            ConfirmationDialog.Instance.Show(_confirmResetUIInputText, () =>
             {
                 GameInput.ResetUIInput(GameInputManager.KEYBOARD_SCHEME);
                 UpdateUI();

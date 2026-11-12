@@ -4,11 +4,7 @@ using UnityEngine;
 public class PlayerLevelSO : ScriptableObject
 {
 
-    [Header("Human")]
-    public float lv0_HP = 25;
-    public float lv0_ATK = 7;
-    public float lv0_DEF = 3;
-
+   
     public BreakthroughSO lv0_BreakthroughSO;
 
     [Header("Blood Slave")]

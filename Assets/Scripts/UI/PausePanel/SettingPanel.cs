@@ -1,6 +1,4 @@
-using System;
-using UnityEngine;
-using UnityEngine.UI;
+
 public class SettingPanel : Panel
 {
     
@@ -9,6 +7,18 @@ public class SettingPanel : Panel
     {
      
         Hide();
+    }
+
+    public override void Hide()
+    {
+        GameManager.Instance.Unpause();
+        base.Hide();
+       
+    }
+    public override void Show()
+    {
+        base.Show();
+        GameManager.Instance.Pause();
     }
 
 }

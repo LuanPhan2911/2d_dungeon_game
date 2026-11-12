@@ -8,7 +8,7 @@ public class PlayerLevel : MonoBehaviour
 
     [SerializeField] private PlayerLevelSO _dataSO;
 
-    [SerializeField] private int _level = 0;
+    [SerializeField] private int _level = 1;
     [SerializeField] private int _breakthroughCount = 0;
     [SerializeField] private int _currentExp = 0;
     
@@ -18,35 +18,30 @@ public class PlayerLevel : MonoBehaviour
     public int CurrentEXP => _currentExp;
     public int BreakthroughCount => _breakthroughCount;
 
-    public float HP =>_level ==0 ? _dataSO.lv0_HP:  
-        _dataSO.baseHP + (_level - 1) * _dataSO.hpPerLevel + _breakthroughCount * _dataSO.hpBreakthrough;
-    public float ATK => _level == 0 ? _dataSO.lv0_ATK :
-        _dataSO.baseATK + (_level - 1) * _dataSO.atkPerLevel +  _breakthroughCount * _dataSO.atkBreakthrough;
-    public float DEF => _level == 0 ? _dataSO.lv0_DEF :
-        _dataSO.baseDEF + (_level - 1) * _dataSO.defPerLevel +  _breakthroughCount * _dataSO.defBreakthrough;
+    public float HP =>_dataSO.baseHP + (_level - 1) * _dataSO.hpPerLevel + _breakthroughCount * _dataSO.hpBreakthrough;
+    public float ATK => _dataSO.baseATK + (_level - 1) * _dataSO.atkPerLevel +  _breakthroughCount * _dataSO.atkBreakthrough;
+    public float DEF =>  _dataSO.baseDEF + (_level - 1) * _dataSO.defPerLevel +  _breakthroughCount * _dataSO.defBreakthrough;
 
 
-    public string Title => _level==0? _dataSO.lv0_BreakthroughSO.title:
-        _dataSO.breakthroughSOArray[_breakthroughCount].title;
+    public string Title =>  _dataSO.breakthroughSOArray[_breakthroughCount].title;
 
-    public InventoryItem[] RequireItemArray => _level == 0? _dataSO.lv0_BreakthroughSO.ItemArray:
-        _dataSO.breakthroughSOArray[_breakthroughCount].ItemArray;
+    public InventoryItem[] RequireItemArray => _dataSO.breakthroughSOArray[_breakthroughCount].ItemArray;
 
 
     public int ExpToLevelUp
     {
         get
         {
-            if(_level==0 || _level >= _dataSO.maxLevel)
+            if(_level >= _dataSO.maxLevel)
             {
                 return 0;
             }
             return _dataSO.baseExpToLevelUp * (1 << _breakthroughCount);
         }
     }
-    public bool NeedsBreakthrough => _level==0 ||
-        (_level < _dataSO.maxLevel && _level % _dataSO.breakthroughLevelNumber == 0 &&
-            _breakthroughCount < _level / _dataSO.breakthroughLevelNumber);
+    public bool NeedsBreakthrough => 
+        _level < _dataSO.maxLevel && _level % _dataSO.breakthroughLevelNumber == 0 &&
+            _breakthroughCount < _level / _dataSO.breakthroughLevelNumber;
 
 
     public event Action OnExpChanged;

@@ -41,6 +41,19 @@ public class PlayerStatePanel : Panel
         Show(MAP_TAB_INDEX);
     }
 
+
+    public override void Hide()
+    {
+        GameManager.Instance.Unpause();
+        base.Hide();
+
+    }
+    public override void Show()
+    {
+        base.Show();
+        GameManager.Instance.Pause();
+    }
+
     private void Show(int tabIndex)
     {
        

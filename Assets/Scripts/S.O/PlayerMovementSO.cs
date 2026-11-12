@@ -9,7 +9,6 @@ public class PlayerMovementSO : ScriptableObject
     [HideInInspector] public float gravityScale; //Strength of the player's gravity as a multiplier of gravity (set in ProjectSettings/Physics2D).
                                                  //Also the value the player's rigidbody2D.gravityScale is set to.
     [Space(5)]
-    public float plungingGravityMult=4.5f; // Plunge Attack
     public float fallGravityMult=1.5f; //Multiplier to the player's gravityScale when falling.
     public float maxFallSpeed=45f; //Maximum fall speed (terminal velocity) of the player when falling.
     [Space(5)]

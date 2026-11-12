@@ -3,10 +3,10 @@ using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class ConfirmDialog : Panel
+public class ConfirmationDialog : Panel
 {
    
-    public static ConfirmDialog Instance { get; private set; }
+    public static ConfirmationDialog Instance { get; private set; }
 
 
     [SerializeField] private TextMeshProUGUI _messageText;

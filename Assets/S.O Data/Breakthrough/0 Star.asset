@@ -16,7 +16,3 @@ MonoBehaviour:
   ItemArray:
   - dataSO: {fileID: 11400000, guid: 12aafa5e1bd81844ba1c340725cdc2f2, type: 2}
     amount: 1
-  - dataSO: {fileID: 11400000, guid: 83265d9a0e57d494294bc8f79d0711e3, type: 2}
-    amount: 1
-  - dataSO: {fileID: 11400000, guid: 56e16a16f2e79b74c81f491924c7f6b9, type: 2}
-    amount: 1

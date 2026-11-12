@@ -6,7 +6,7 @@ using UnityEngine;
 public class InventoryItem
 {
     public ItemSO dataSO;
-    public int amount;
+    public int amount=1;
 
     public InventoryItem(ItemSO item, int amount)
     {

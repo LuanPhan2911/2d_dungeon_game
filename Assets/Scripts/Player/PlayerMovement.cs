@@ -26,7 +26,6 @@ public partial class PlayerMovement : MonoBehaviour
     public bool IsSprinting { get; private set; }
 
     [HideInInspector]
-    public bool IsPlunging;
     public bool IsGrounded => _lastOnGroundTimer > 0f;
     public bool IsHorizontalMoving => HorizontalInput != 0f;
     public bool IsLeftMove => HorizontalInput < 0f;
@@ -284,12 +283,7 @@ public partial class PlayerMovement : MonoBehaviour
         {
             
             SetGravityScale(0);
-        }else if (IsPlunging)
-        {
-            SetGravityScale(_dataSO.gravityScale * _dataSO.plungingGravityMult);
-            _rb.linearVelocity = new Vector2(_rb.linearVelocityX, Mathf.Max(_rb.linearVelocityY, -_dataSO.maxFallSpeed));
-        }
-        else if (IsJumpCut)
+        } else if (IsJumpCut)
         {
            
             SetGravityScale(_dataSO.gravityScale * _dataSO.jumpCutGravityMult);
@@ -365,7 +359,7 @@ public partial class PlayerMovement : MonoBehaviour
    
     private bool CanMove()
     {
-        return !IsDashing && !IsPlunging ;
+        return !IsDashing ;
     }
     private IEnumerator StartDash(Vector2 dashDir)
     {

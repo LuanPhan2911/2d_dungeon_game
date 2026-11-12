@@ -10,10 +10,7 @@ public class PlayerAttack : MonoBehaviour
     public InputSystem_Actions.PlayerActions PlayerActions => GameInputManager.Instance.PlayerActions;
     public PlayerMovement PMovement => PlayerMovement.Instance;
     public PlayerElement PElement => PlayerElement.Instance;
-    public PlayerHealth PHealth => PlayerHealth.Instance;
 
-
-    [SerializeField] private Transform _plungeAttackPoint;
     [SerializeField] private Transform _sideAttackPoint;
     [SerializeField] private Transform _chargeAttackPoint;
 
@@ -34,12 +31,6 @@ public class PlayerAttack : MonoBehaviour
     [Header("Sword Settting")]
 
 
-   
-
-    #region Normal Attack
-
-
-    #endregion
 
 
     #region Timer
@@ -49,7 +40,6 @@ public class PlayerAttack : MonoBehaviour
 
     private float _currentCritRate;
     private float _nextAttackTime;
-    private float _currentPlungeAttackDamage;
 
 
     private float _chargedTimer;
@@ -135,15 +125,6 @@ public class PlayerAttack : MonoBehaviour
             _isCharging = false;
             _lastPressAttackTimer = 0f;
         }
-
-
-
-
-        if (PMovement.IsPlunging && PMovement.IsGrounded)
-        {
-            PMovement.IsPlunging = false ;
-            ScanAndDamage(_plungeAttackPoint.position, _plungeAttackSize, _currentPlungeAttackDamage);
-        }
     }
 
 
@@ -162,57 +143,17 @@ public class PlayerAttack : MonoBehaviour
     private bool CanNormalAttack()
     {
         return Time.time >= _nextAttackTime && _lastPressAttackTimer >0f &&  !PlayerActions.Attack.IsPressed()
-            &&!PMovement.IsDashing &&! PMovement.IsPlunging;
+            &&!PMovement.IsDashing ;
     }
     private void ExecuteNormalAttack()
     {
         _lastPressAttackTimer = 0f;
-    
-
-
      
         bool isDownPressed = GameInputManager.Instance.IsDownPressed();
 
-       
-         if (isDownPressed && !PMovement.IsGrounded)
-        {
-            Debug.Log("Plunge Attack");
-            StartPlungeAttack();
-            
-        }
-        else
-        {
-        
-            ScanAndDamage(_sideAttackPoint.position, _horizontalAttackSize, _dataSO.baseNormalAttackDamage);
-            SpawnNormalAttackSlashVFX();
-            // horizontal attack
-
-
-        }
-
-       
-       
-       
-
-
+        ScanAndDamage(_sideAttackPoint.position, _horizontalAttackSize, _dataSO.baseNormalAttackDamage);
+        SpawnNormalAttackSlashVFX();
     }
-
-    private void StartPlungeAttack()
-    {
-        PMovement.IsPlunging = true;
-        float fallHeight = PMovement.GetFallHeight();
-
-        if (fallHeight >= _dataSO.hightHeightThreshold)
-        {
-            _currentPlungeAttackDamage = _dataSO.highPlungeAttackDamage;
-        }
-        else
-        {
-            _currentPlungeAttackDamage = _dataSO.lowPlungeAttackDamage;
-        }
-
-    }
-
     public bool IsCritStrike()
     {
         bool isCritStrike = UnityEngine.Random.value <= _currentCritRate;
@@ -238,15 +179,15 @@ public class PlayerAttack : MonoBehaviour
             {
                 Amount = damageAmount,
                 ElementSO = PElement.GetElementInfusedToWeapon(),
-                SourceAttackGameObject= gameObject
+                SourceAttackGameObject = gameObject
 
             };
 
-            #region Energy
-
-            #endregion
-           
-
+            if (IsCritStrike())
+            {
+                damage.IsCrit = true;
+                damage.Amount *= GetCritDamageMultiplier();
+            }
             // 2. Damge to enemy
             foreach (Collider2D hit in hitEnemies)
             {
@@ -318,13 +259,7 @@ public class PlayerAttack : MonoBehaviour
         Gizmos.color = Color.red;
         Gizmos.DrawWireCube(_sideAttackPoint.position, _horizontalAttackSize);
 
-       
-
-        Gizmos.color = Color.green;
-        Gizmos.DrawWireCube(_plungeAttackPoint.position, _plungeAttackSize);
-
         Gizmos.color = Color.blue;
-
         Gizmos.DrawWireCube(_chargeAttackPoint.position, _chargeAttackSize);
 
     }
