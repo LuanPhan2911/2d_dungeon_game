@@ -206,22 +206,8 @@ public class KeyboardTabContent : TabContent
 
     private void SetText(BindingKeyUI bindingKeyUI, InputAction action, string partName=null)
     {
-        string displayString = GameInput.GetKeyboardDisplayString(action, partName);
-
-       
-        Sprite mouseSprite = GetMouseSprite(displayString);
-
-        if (mouseSprite != null)
-        {
-            bindingKeyUI.SetMouseSprite(mouseSprite);
-            bindingKeyUI.ShowMouseImage();
-
-        }
-        else
-        {
-            bindingKeyUI.SetKeyText(displayString);
-            bindingKeyUI.HideMouseImage();
-        }
+        string displayString = GameInput.GetDisplayString(action, GameInputManager.KEYBOARD_SCHEME, partName);
+        bindingKeyUI.SetKeyButtonUI(displayString);
     }
     private void SetInputAction(BindingKeyUI bindingKeyUI, InputAction action, string partName = null)
     {

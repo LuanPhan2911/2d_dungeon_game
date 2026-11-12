@@ -1,22 +1,35 @@
 using Unity.VisualScripting;
 using UnityEngine;
+using UnityEngine.InputSystem;
 
 
 public class InteractObject : MonoBehaviour
 {
-    [SerializeField] private InteractKeyUI _interactKeyUI;
+    [SerializeField] private KeyButtonUI _keyButtonUI;
     public bool CanInteract;
 
+    public virtual void Start()
+    {
+        UpdateInteractKeyUI();
+        GameInputManager.Instance.OnRebindCompleted += UpdateInteractKeyUI;
+    }
+    private void UpdateInteractKeyUI()
+    {
+       string displayString= GameInputManager.Instance.GetDisplayString(
+            GameInputManager.Instance.PlayerActions.Interact, GameInputManager.Instance.CurrentScheme);
+        _keyButtonUI.SetDisplayString(displayString);
+    }
+   
 
     public virtual void Update()
     {
         if (CanInteract)
         {
-            _interactKeyUI.Show();
+            _keyButtonUI.Show();
         }
         else
         {
-            _interactKeyUI.Hide();
+            _keyButtonUI.Hide();
         }
     }
 

@@ -16,19 +16,24 @@ public class GameInputManager : MonoBehaviour
     public const string RIGHT_BINDING = "Right";
 
 
-    public const string LEFT_MOUSE_STRING = "Left Button";
-    public const string RIGHT_MOUSE_STRING = "Right Button";
-    public const string MIDDLE_MOUSE_STRING = "Middle Button";
+    public const string LEFT_MOUSE_STRING = "LMB";
+    public const string RIGHT_MOUSE_STRING = "RMB";
+    public const string MIDDLE_MOUSE_STRING = "MMB";
     public const string BACKWARD_MOUSE_STRING = "Back";
     public const string FORWARD_MOUSE_STRING = "Forward";
     public const string NONE_STRING = "None";
 
 
+    public const string MOUSE_BINDING = "Mouse";
+    public const string KEYBOARD_BINDING = "Keyboard";
+
     public const string KEYBOARD_SCHEME = "Keyboard&Mouse";
+
+
+  
     private const string PLAYER_PREFS_BINDINGS = "PlayerPrefsBinding";
 
 
-    public const int KEYBOARD_BINDING_INDEX = 0;
 
 
 
@@ -36,9 +41,9 @@ public class GameInputManager : MonoBehaviour
     public event System.Action OnRebindCompleted;
 
 
-    private int _currentBindingIndex;
+    private string _currentScheme;
 
-    public int CurrentBindingIndex => _currentBindingIndex;
+    public string CurrentScheme => _currentScheme;
 
 
 
@@ -60,7 +65,7 @@ public class GameInputManager : MonoBehaviour
         {
             _inputActions.LoadBindingOverridesFromJson(PlayerPrefs.GetString(PLAYER_PREFS_BINDINGS));
         }
-        _currentBindingIndex = KEYBOARD_BINDING_INDEX;
+        _currentScheme = KEYBOARD_SCHEME;
 
         PlayerActions.Enable();
         UIActions.Enable();
@@ -128,9 +133,6 @@ public class GameInputManager : MonoBehaviour
         return PlayerActions.Move.ReadValue<Vector2>().x > 0;
     }
 
-    
-   
-
     public void Rebind(InputAction action, int bindingIndex)
     {
         // 1. Disable the action before modifying its bindings
@@ -160,6 +162,9 @@ public class GameInputManager : MonoBehaviour
 
         // Re-enable the action so it works with the new key
         _inputActions.Enable();
+
+        DisablePlayerInput();
+
         OnRebindCompleted?.Invoke();
 
 
@@ -180,6 +185,7 @@ public class GameInputManager : MonoBehaviour
         rebindingOperation.Dispose();
 
         _inputActions.Enable();
+        DisablePlayerInput();
         OnRebindCompleted?.Invoke();
         Debug.Log("Rebinding canceled.");
     }
@@ -215,7 +221,7 @@ public class GameInputManager : MonoBehaviour
 
 
 
-    private string GetDisplayString(InputAction action, string controlType, string partName=null)
+    public string GetDisplayString(InputAction action, string controlType, string partName=null)
     {
         int bindingIndex = partName != null ? 
             GetBindingIndexOfCompositeAction(action, controlType, partName) : 
@@ -225,7 +231,7 @@ public class GameInputManager : MonoBehaviour
         {
             return NONE_STRING;
         }
-        string displayString = action.GetBindingDisplayString(bindingIndex, InputBinding.DisplayStringOptions.DontUseShortDisplayNames);
+        string displayString = action.GetBindingDisplayString(bindingIndex, InputBinding.DisplayStringOptions.DontOmitDevice);
        
         if(string.IsNullOrEmpty(displayString))
         {
@@ -234,10 +240,9 @@ public class GameInputManager : MonoBehaviour
         return displayString;
     }
 
-    public string GetKeyboardDisplayString(InputAction action, string partName = null)
-    {
-        return GetDisplayString(action, KEYBOARD_SCHEME, partName);
-    }
+   
+  
+    
 
     private void RemoveBindingOverride(InputAction action, string controlType, string partName = null)
     {
@@ -273,6 +278,8 @@ public class GameInputManager : MonoBehaviour
 
 
         SaveBinding();
+        OnRebindCompleted?.Invoke();
+        
     }
 
     public void ResetUIInput(string controlType)
@@ -287,5 +294,6 @@ public class GameInputManager : MonoBehaviour
 
 
         SaveBinding();
+        OnRebindCompleted?.Invoke();
     }
 }

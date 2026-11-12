@@ -1,4 +1,5 @@
 
+using System.Globalization;
 using TMPro;
 using Unity.VisualScripting;
 using UnityEngine;
@@ -12,10 +13,8 @@ public class BindingKeyUI : MonoBehaviour
 
     [SerializeField] private Button _button;
 
-    [SerializeField] private TextMeshProUGUI _bindingText;
-
-    [SerializeField] private Image _mouseImage;
-
+    [SerializeField] private KeyButtonUI _keyButtonUI;
+   
     private InputAction _action;
     private int _index;
     private void Awake()
@@ -31,25 +30,11 @@ public class BindingKeyUI : MonoBehaviour
       _action= action;
       _index = index;
     }
-   
-    public void SetKeyText(string text)
+
+    public void SetKeyButtonUI(string displayString)
     {
-        _bindingText.text = text;
+        _keyButtonUI.SetDisplayString(displayString);
     }
-    public void SetMouseSprite(Sprite sprite)
-    {
-        _mouseImage.sprite = sprite;
-    }  
-    public void ShowMouseImage()
-    {
-        _mouseImage.gameObject.SetActive(true);
-        _bindingText.gameObject.SetActive(false);
-    }
-    public void HideMouseImage()
-    {
-        _mouseImage.gameObject.SetActive(false);
-        _bindingText.gameObject.SetActive(true);
-    }
-    
-    
+
+
 }

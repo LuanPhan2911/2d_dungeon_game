@@ -5,19 +5,21 @@ public class CheckPoint : InteractObject
 
 
 
-    public override  void Update()
+    public override void Start()
     {
+        base.Start();
+        GameInputManager.Instance.PlayerActions.Interact.performed += Interact_performed;
+    }
 
-        base.Update();
-
+    private void Interact_performed(UnityEngine.InputSystem.InputAction.CallbackContext obj)
+    {
         if (CanInteract)
         {
-            if (GameInputManager.Instance.PlayerActions.Interact.WasPressedThisFrame())
-            {
-                // show checkpoint panel
-
-                CheckPointPanel.Instance.Show();
-            }
+            CheckPointPanel.Instance.Show();
+        }
+        else
+        {
+            CheckPointPanel.Instance.Hide();
         }
     }
 }

@@ -48,6 +48,8 @@ public class Panel : MonoBehaviour
   
     public virtual void Hide()
     {
+       
+
         gameObject.SetActive(false);
 
         if (_isNeedPauseGame)

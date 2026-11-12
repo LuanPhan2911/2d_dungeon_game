@@ -7,16 +7,6 @@
             "id": "5ff796fb-2d90-452f-ade9-a2a8ca987d68",
             "actions": [
                 {
-                    "name": "Pause",
-                    "type": "Button",
-                    "id": "7daae33b-123a-464c-b8f6-feb3c5c38a5d",
-                    "expectedControlType": "",
-                    "processors": "",
-                    "interactions": "Hold",
-                    "initialStateCheck": false,
-                    "priority": 0
-                },
-                {
                     "name": "Move",
                     "type": "Value",
                     "id": "fdece574-6704-4373-b52c-07727761d548",
@@ -246,17 +236,6 @@
                     "processors": "",
                     "groups": ";Keyboard;Keyboard&Mouse",
                     "action": "Burst",
-                    "isComposite": false,
-                    "isPartOfComposite": false
-                },
-                {
-                    "name": "",
-                    "id": "7a0bee45-228f-475a-9a79-0be3c07396d9",
-                    "path": "<Keyboard>/escape",
-                    "interactions": "",
-                    "processors": "",
-                    "groups": ";Keyboard;Keyboard&Mouse",
-                    "action": "Pause",
                     "isComposite": false,
                     "isPartOfComposite": false
                 },
